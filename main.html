@@ -5391,16 +5391,16 @@ html,body,button,input,textarea,select,option{
 .table-wrap-z1-plan-main{overflow:hidden!important;border-radius:14px!important;}
 .z1-plan-main{table-layout:fixed!important;width:100%!important;}
 .z1-plan-main th,.z1-plan-main td{text-align:center!important;vertical-align:middle!important;}
-.z1-plan-main th:nth-child(1),.z1-plan-main td:nth-child(1){width:19%!important;}
-.z1-plan-main th:nth-child(2),.z1-plan-main td:nth-child(2){width:21%!important;}
-.z1-plan-main th:nth-child(3),.z1-plan-main td:nth-child(3){width:19%!important;}
-.z1-plan-main th:nth-child(4),.z1-plan-main td:nth-child(4){width:23%!important;}
+.z1-plan-main th:nth-child(1),.z1-plan-main td:nth-child(1){width:17%!important;}
+.z1-plan-main th:nth-child(2),.z1-plan-main td:nth-child(2){width:19%!important;}
+.z1-plan-main th:nth-child(3),.z1-plan-main td:nth-child(3){width:17%!important;}
+.z1-plan-main th:nth-child(4),.z1-plan-main td:nth-child(4){width:29%!important;}
 .z1-plan-main th:nth-child(5),.z1-plan-main td:nth-child(5){width:18%!important;}
 .z1-plan-main th{line-height:1.15!important;}
 .z1-plan-main .critical-col{box-sizing:border-box!important;border-left:3px solid #1769d2!important;border-right:3px solid #1769d2!important;}
 .z1-plan-main thead .critical-col{border-top:3px solid #1769d2!important;}
 .z1-plan-main tbody tr:last-child .critical-col{border-bottom:3px solid #1769d2!important;}
-.z1-plan-main tbody .critical-col{color:#d71920!important;font-weight:950!important;}
+.z1-plan-main tbody .critical-col{color:#d71920!important;font-weight:950!important;white-space:nowrap!important;word-break:keep-all!important;overflow-wrap:normal!important;font-variant-numeric:tabular-nums;}
 .z1-pct-editor{display:flex;align-items:center;justify-content:center;gap:3px;width:100%;}
 .z1-assign-input{
   box-sizing:border-box;width:54px;max-width:calc(100% - 12px);height:31px;min-height:31px;
@@ -9222,7 +9222,7 @@ body > .wrap{padding-top:clamp(16px,2.5vh,30px)!important}
 
 
 <footer class="footer-credits" aria-label="제작 정보">
-    <div class="creator-credit">Created by 879 | 안창살 · V4.0.6</div>
+    <div class="creator-credit">Created by 879 | 안창살 · V4.0.8</div>
     <div class="build-credit">2026.10.15</div>
   </footer>
 
@@ -11389,7 +11389,7 @@ function resetZ1PlanUi(){
 })();
 </script>
 <script id="cat-hero-v4-brand">(function(){try{const c=parent.CAT_HERO_V4_CONTEXT||{};const g=c.guild||{};const count=Object.keys(c.members||{}).length;document.title=`${g.name||'길드'} · 격전지 계산기 V4.0`;const s=document.getElementById('v4GuildServer'),n=document.getElementById('v4GuildName'),m=document.getElementById('v4GuildCount'),sh=document.getElementById('v4ShareGuildTitle');if(s)s.textContent=g.server||'-';if(n)n.textContent=g.name||'길드';if(m)m.textContent=count+'명';if(sh)sh.textContent=(g.name||'길드')+' 격전지 계산기';const sub=document.querySelector('#rosterAllTableBtn .roster-all-table-sub');if(sub)sub.textContent=`${count}명 · 기본 · 최소점수 · 지역격추 한눈에 확인`;}catch(e){console.warn(e)}})();</script>
-<script defer src="./shared/journal-bridge.js?v=406"></script><script>document.body.dataset.webSyncRole="main";</script><script type="module" src="./shared/web-sync.js?v=406"></script><script type="module" src="./shared/reward-entry.js?v=406"></script>
+<script defer src="./shared/journal-bridge.js?v=408"></script><script>document.body.dataset.webSyncRole="main";</script><script type="module" src="./shared/web-sync.js?v=408"></script><script type="module" src="./shared/reward-entry.js?v=408"></script>
 <style id="v201-layout-fixes">
 .v200-stats.v201-stats{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,2fr)!important;gap:8px!important;margin-bottom:12px!important}
 .v201-stats .v200-stat{min-height:0!important;height:106px!important;box-sizing:border-box!important;background:#fff!important;border:3px solid #853ee5!important;border-radius:17px!important;padding:8px 5px!important;color:#4d247e!important}
@@ -11541,7 +11541,7 @@ window.addEventListener('dosalja:roster-updated',()=>{reset();});
 new MutationObserver(()=>{if(overlay.hidden||!document.getElementById('v200Title')?.textContent.includes('길드원 관리'))reset();}).observe(overlay,{attributes:true,attributeFilter:['hidden']});
 })();
 </script>
-<script type="module" src="./shared/admin-editor.js?v=406"></script><script type="module" src="./shared/admin-audit.js?v=406"></script><script id="dosalja-unified-bridge">
+<script type="module" src="./shared/admin-editor.js?v=408"></script><script type="module" src="./shared/admin-audit.js?v=408"></script><script id="dosalja-unified-bridge">
 (function(){
   'use strict';
   function routeForHref(href){

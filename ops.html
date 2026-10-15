@@ -3510,7 +3510,7 @@ input:focus,textarea:focus,select:focus{scroll-margin-bottom:140px;}
       </section>
 
       <div class="footer">
-        <b>Created by 879 | 안창살 · V4.0.6</b><br>
+        <b>Created by 879 | 안창살 · V4.0.8</b><br>
         <span class="footer-build-date">2026.10.15</span>
       </div>
     </main>
@@ -3663,6 +3663,7 @@ if(!window.DosaljaShared){
   "use strict";
   const LOGICAL_WIDTH = 430;
   const VALID_TIME_BONUSES = [0,20,40,60,80,100,120];
+  const MAX_MEMBER_TIME_SECONDS = 22 * 60; // 기본 20분 + 차원의 공간 최대 2분
   // Current guild calculator reference data comes only from this tenant roster.
   const INTERNAL_REFERENCE = Object.freeze({
     members:window.DosaljaShared ? Object.fromEntries(Object.entries(window.DosaljaShared.members).map(([name,m])=>[name,{...m,z1:m.z1r,z2:m.z2r,z3:m.z3r}])) : {}
@@ -4751,7 +4752,9 @@ if(!window.DosaljaShared){
   function openMemberModal(name){
     state.selectedMember=name; const m=state.round?.members?.[name]||makeMemberState(), r=memberRemaining(name);
     const maxSwords=Math.max(0,(Number(m.initialSwords)||10)-bossParticipationCount(name));
-    const maxTime=Math.max(0,(Number(m.initialSeconds)||1200)-bossUsedSeconds(name));
+    // 잔여시간 직접 보정은 차원의 공간 확장치를 포함해 최대 22:00까지 허용합니다.
+    // 이미 초대형에서 사용한 시간은 총 보유시간에서 제외합니다.
+    const maxTime=Math.max(0,MAX_MEMBER_TIME_SECONDS-bossUsedSeconds(name));
     document.getElementById("memberModalBody").innerHTML=`<div class="member-detail-card"><div class="member-detail-name">${name}</div><div class="member-resource-edit-grid"><div class="member-resource-edit"><span>현재 칼(기회)</span><div class="sword-edit-line"><input id="remainingSwordsInput" type="number" inputmode="numeric" min="0" max="${maxSwords}" value="${r.swords}"><em>/10</em></div></div><div class="member-resource-edit"><span>현재 잔여 시간</span><button type="button" class="picker-display member-remaining-time" id="remainingTimeBtn" data-seconds="${r.seconds}" data-max-seconds="${maxTime}">${fmtTime(r.seconds)}</button></div></div></div><div class="member-history-title">이번 회차 초대형 참여</div>${memberBossHistoryMarkup(name)}`;
     const timeBtn=document.getElementById("remainingTimeBtn");
     if(timeBtn) timeBtn.onclick=()=>openMemberRemainingTimePicker(name,timeBtn);
@@ -4762,14 +4765,19 @@ if(!window.DosaljaShared){
     if(!(await ensureAdmin())) return;
     const name=state.selectedMember; if(!name)return; const r=deepClone(state.round), m=r.members[name]||makeMemberState();
     const bossCount=bossParticipationCount(name), bossSec=bossUsedSeconds(name);
-    const initialSwords=Number(m.initialSwords)||10, initialSeconds=Number(m.initialSeconds)||1200;
-    const maxSwords=Math.max(0,initialSwords-bossCount), maxTime=Math.max(0,initialSeconds-bossSec);
+    const initialSwords=Number(m.initialSwords)||10;
+    const currentInitialSeconds=Math.max(1200,Math.min(MAX_MEMBER_TIME_SECONDS,Number(m.initialSeconds)||1200));
+    const maxSwords=Math.max(0,initialSwords-bossCount), maxTime=Math.max(0,MAX_MEMBER_TIME_SECONDS-bossSec);
     const desiredSwords=Math.max(0,Math.floor(Number(document.getElementById("remainingSwordsInput").value)||0));
     const desiredSeconds=Math.max(0,Number(document.getElementById("remainingTimeBtn").dataset.seconds)||0);
     if(desiredSwords>maxSwords){showToast(`초대형 참여 ${bossCount}회를 반영하면 최대 ${maxSwords}칼까지 남을 수 있습니다.`);return;}
     if(desiredSeconds>maxTime){showToast(`설정 가능한 최대 잔여 시간은 ${fmtTime(maxTime)}입니다.`);return;}
+    // 기존 회차가 20분으로 생성됐더라도 관리자가 20:20~22:00을 선택하면
+    // 해당 길드원의 총 시간 한도를 필요한 만큼 확장해 저장합니다.
+    const effectiveInitialSeconds=Math.min(MAX_MEMBER_TIME_SECONDS,Math.max(currentInitialSeconds,bossSec+desiredSeconds));
+    m.initialSeconds=effectiveInitialSeconds;
     m.normalSwords=Math.max(0,initialSwords-bossCount-desiredSwords);
-    m.normalSeconds=Math.max(0,initialSeconds-bossSec-desiredSeconds);
+    m.normalSeconds=Math.max(0,effectiveInitialSeconds-bossSec-desiredSeconds);
     r.members[name]=m;
     if(await persistRound(r)){closeModal("memberModal");showToast("길드원 현재 자원을 저장했습니다.");}
   };

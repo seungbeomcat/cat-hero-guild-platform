@@ -209,7 +209,7 @@ function buildBootstrapUrl(id){return `${location.origin}${location.pathname}?g=
 function showRoute(r,push=false){
   if(!frame)return;if(!['main','boss','ops'].includes(r))r='main';
   roleFor(gid).then(announceRole).catch(e=>console.warn('route role refresh',e));
-  frame.src=`${r}.html?g=${encodeURIComponent(gid)}&v=406`;
+  frame.src=`${r}.html?g=${encodeURIComponent(gid)}&v=408`;
   if(push){
     const url=accessMode==='private'&&accessSecret?buildPrivateUrl(accessSecret,r):`${location.pathname}?g=${encodeURIComponent(gid)}${r==='main'?'':'#'+r}`;
     history.pushState({r},'',url);
