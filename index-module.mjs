@@ -1,6 +1,6 @@
 import {initializeApp,getApps,getApp} from 'https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js';
 import {initializeAuth,getAuth,onAuthStateChanged,indexedDBLocalPersistence,browserLocalPersistence,browserSessionPersistence,signInWithEmailAndPassword,createUserWithEmailAndPassword,signOut} from 'https://www.gstatic.com/firebasejs/12.3.0/firebase-auth.js';
-import {getFirestore,doc,getDoc,setDoc,updateDoc,collection,getDocs,onSnapshot,writeBatch,runTransaction,serverTimestamp,addDoc} from 'https://www.gstatic.com/firebasejs/12.3.0/firebase-firestore.js';
+import {getFirestore,doc,getDoc,setDoc,updateDoc,deleteDoc,collection,getDocs,onSnapshot,writeBatch,runTransaction,serverTimestamp,addDoc,query,where} from 'https://www.gstatic.com/firebasejs/12.3.0/firebase-firestore.js';
 
 const CFG=window.GUILD_OPS_CONFIG;
 const app=getApps().length?getApp():initializeApp(CFG.firebase);
@@ -209,7 +209,7 @@ function buildBootstrapUrl(id){return `${location.origin}${location.pathname}?g=
 function showRoute(r,push=false){
   if(!frame)return;if(!['main','boss','ops'].includes(r))r='main';
   roleFor(gid).then(announceRole).catch(e=>console.warn('route role refresh',e));
-  frame.src=`${r}.html?g=${encodeURIComponent(gid)}&v=410`;
+  frame.src=`${r}.html?g=${encodeURIComponent(gid)}&v=411`;
   if(push){
     const url=accessMode==='private'&&accessSecret?buildPrivateUrl(accessSecret,r):`${location.pathname}?g=${encodeURIComponent(gid)}${r==='main'?'':'#'+r}`;
     history.pushState({r},'',url);
@@ -269,12 +269,73 @@ async function openPlatform(){
   };
   loadGuildList();
 }
+const PLATFORM_DELETE_COLLECTIONS=['data','bossTimers','bossHistory','ops','rounds','admins','audit'];
+async function deleteSnapshotDocs(snap){
+  const docs=[...(snap?.docs||[])];
+  for(let i=0;i<docs.length;i+=400){
+    const batch=writeBatch(db);
+    docs.slice(i,i+400).forEach(d=>batch.delete(d.ref));
+    await batch.commit();
+  }
+  return docs.length;
+}
+async function collectGuildDeleteTargets(id,g){
+  const targets={collections:{},invites:null,access:null};
+  for(const col of PLATFORM_DELETE_COLLECTIONS)targets.collections[col]=await getDocs(collection(db,'guilds',id,col));
+  targets.invites=await getDocs(query(collection(db,'guildInvites'),where('guildId','==',id)));
+  if(g?.accessHash)targets.access=await getDoc(doc(db,'guildAccess',String(g.accessHash)));
+  return targets;
+}
+async function deleteGuildCompletely(id,g){
+  await authReady;await roleFor('');
+  if(!window.CAT_HERO_V4_AUTH_STATE.isPlatformAdmin){alert('중앙관리자 권한이 필요합니다.');return false;}
+  const name=String(g?.name||'길드').trim(),server=String(g?.server||'-').trim();
+  const typed=prompt(`길드를 완전히 삭제합니다.\n\n${server} · ${name}\nID: ${id}\n\n삭제 후 복구할 수 없습니다. 계속하려면 길드명을 정확히 입력하세요.`, '');
+  if(typed===null)return false;
+  if(typed.trim()!==name){alert('길드명이 일치하지 않아 삭제를 취소했습니다.');return false;}
+  if(!confirm(`${server} · ${name} 길드를 정말 완전히 삭제하시겠습니까?\n길드 데이터·관리자·활동기록·초대코드·전용주소 연결이 함께 삭제됩니다.`))return false;
+  const counts={};
+  let targets;
+  try{
+    targets=await collectGuildDeleteTargets(id,g);
+  }catch(e){
+    console.error('길드 삭제 권한 사전확인 실패',e);
+    alert('삭제 권한 사전확인에 실패했습니다. 아직 데이터는 삭제하지 않았습니다.\nFirebase에 V4.1.1 Firestore Rules를 먼저 게시한 뒤 다시 시도해 주세요.\n\n'+(e.code||e.message||e));
+    return false;
+  }
+  try{
+    for(const col of PLATFORM_DELETE_COLLECTIONS)counts[col]=await deleteSnapshotDocs(targets.collections[col]);
+    counts.invites=await deleteSnapshotDocs(targets.invites);
+    if(g?.accessHash&&targets.access?.exists()){await deleteDoc(targets.access.ref);counts.access=1;}else counts.access=0;
+    await deleteDoc(doc(db,'guilds',id));
+
+    const rootCheck=await getDoc(doc(db,'guilds',id));
+    if(rootCheck.exists())throw Error('길드 기본 문서 삭제 검증 실패');
+    for(const col of PLATFORM_DELETE_COLLECTIONS){
+      const left=await getDocs(collection(db,'guilds',id,col));
+      if(!left.empty)throw Error(`${col} 하위 데이터 ${left.size}건이 남아 있습니다.`);
+    }
+    const inviteLeft=await getDocs(query(collection(db,'guildInvites'),where('guildId','==',id)));
+    if(!inviteLeft.empty)throw Error(`관리자 초대코드 ${inviteLeft.size}건이 남아 있습니다.`);
+    if(g?.accessHash){const accessLeft=await getDoc(doc(db,'guildAccess',String(g.accessHash)));if(accessLeft.exists())throw Error('길드 전용주소 연결 데이터가 남아 있습니다.');}
+    try{await addDoc(collection(db,'platformAudit'),{kind:'길드 완전 삭제',guildId:id,server,name,deletedCounts:counts,uid:auth.currentUser?.uid||'',email:auth.currentUser?.email||'',at:serverTimestamp()});}catch(e){console.warn('플랫폼 삭제 기록 저장 실패',e);}
+    try{localStorage.removeItem(`cat-hero-v4:${id}:context`);localStorage.removeItem(adminMarkerKey(id));}catch(_e){}
+    alert(`${server} · ${name}\n길드 완전 삭제 및 잔여 데이터 검증이 완료되었습니다.`);
+    await loadGuildList();return true;
+  }catch(e){
+    console.error('길드 완전 삭제 실패',e);
+    alert('길드 삭제 중 문제가 발생했습니다.\n길드 기본 문서는 마지막에 삭제하도록 구성되어 있으므로, 오류 메시지를 확인한 뒤 다시 시도해 주세요.\n\n'+(e.code||e.message||e));
+    try{await loadGuildList();}catch(_e){}
+    return false;
+  }
+}
 async function loadGuildList(){
   const host=document.getElementById('guildList');if(!host)return;const s=await getDocs(collection(db,'guilds')),arr=s.docs.map(d=>({id:d.id,...d.data()}));
-  host.innerHTML=arr.map(g=>`<div class="guild-card"><b>${esc(g.server||'-')} · ${esc(g.name||'길드')}</b><div class="meta">${g.id} · ${g.active===false?'비활성':'활성'} · 전용주소 ${g.accessHash?'설정됨':'미설정'}</div><div class="row"><button class="btn ghost" data-setup="${g.id}">관리자 설정 링크</button><button class="btn ghost" data-invite="${g.id}">코드 발급·복사</button><button class="btn ghost" data-toggle="${g.id}" data-active="${g.active===false?'0':'1'}">${g.active===false?'활성화':'비활성화'}</button></div></div>`).join('');
+  host.innerHTML=arr.map(g=>`<div class="guild-card"><b>${esc(g.server||'-')} · ${esc(g.name||'길드')}</b><div class="meta">${g.id} · ${g.active===false?'비활성':'활성'} · 전용주소 ${g.accessHash?'설정됨':'미설정'}</div><div class="guild-actions"><button class="btn ghost" data-setup="${g.id}">관리자 설정 링크</button><button class="btn ghost" data-invite="${g.id}">코드 발급·복사</button><button class="btn ghost" data-toggle="${g.id}" data-active="${g.active===false?'0':'1'}">${g.active===false?'활성화':'비활성화'}</button><button class="btn ghost danger" data-delete="${g.id}">완전 삭제</button></div></div>`).join('');
   host.querySelectorAll('[data-setup]').forEach(b=>b.onclick=()=>copyText(buildBootstrapUrl(b.dataset.setup),'관리자 설정용 링크'));
   host.querySelectorAll('[data-invite]').forEach(b=>b.onclick=async()=>{const code=rand(20);await setDoc(doc(db,'guildInvites',code),{guildId:b.dataset.invite,used:false,createdAt:serverTimestamp(),expiresAtMs:Date.now()+7*86400000-300000,issuerRole:'platform'});await copyText(code,'1회성 관리자 등록코드');});
   host.querySelectorAll('[data-toggle]').forEach(b=>b.onclick=async()=>{await updateDoc(doc(db,'guilds',b.dataset.toggle),{active:b.dataset.active!=='1',updatedAt:serverTimestamp()});loadGuildList();});
+  host.querySelectorAll('[data-delete]').forEach(b=>b.onclick=async()=>{const g=arr.find(x=>x.id===b.dataset.delete);if(!g)return;b.disabled=true;const old=b.textContent;b.textContent='삭제 중…';await deleteGuildCompletely(g.id,g);if(document.body.contains(b)){b.disabled=false;b.textContent=old;}});
 }
 
 onAuthStateChanged(auth,async()=>{await authReady;if(gid){await roleFor(gid);announceRole();}});

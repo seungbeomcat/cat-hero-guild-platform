@@ -17,7 +17,7 @@
   <header class="hero">
     <h1>도살장 V3 → V4 데이터 이관</h1>
     <p>V3 운영 DB를 읽어 백업한 뒤, V4의 <b>879 · 도살장</b> 길드로 복사하고 다시 대조합니다. 관리자·길드 전용주소·초대코드는 건드리지 않습니다.</p>
-    <div class="badge"><span class="dot"></span> 일회성 마이그레이션 도구 · V1.0.2</div>
+    <div class="badge"><span class="dot"></span> 일회성 마이그레이션 도구 · V1.0.3</div>
   </header>
 
   <section class="card">
@@ -94,17 +94,18 @@
     <h2>작업 로그</h2>
     <div id="log" class="log">도구 준비 완료\n</div>
   </section>
-  <div class="footer">Cat Hero Guild Platform · 도살장 전용 V3→V4 Migration Tool V1.0.2 · 2026.10.15</div>
+  <div class="footer">Cat Hero Guild Platform · 도살장 전용 V3→V4 Migration Tool V1.0.3 · 2026.10.15</div>
 </div>
 
 <script type="module">
 import {initializeApp,getApps,getApp} from 'https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js';
-import {initializeAuth,getAuth,inMemoryPersistence,indexedDBLocalPersistence,browserLocalPersistence,browserSessionPersistence,signInWithEmailAndPassword,onAuthStateChanged} from 'https://www.gstatic.com/firebasejs/12.3.0/firebase-auth.js';
+import {initializeAuth,getAuth,inMemoryPersistence,indexedDBLocalPersistence,browserLocalPersistence,browserSessionPersistence,signInWithEmailAndPassword,signInAnonymously,onAuthStateChanged} from 'https://www.gstatic.com/firebasejs/12.3.0/firebase-auth.js';
 import {getFirestore,doc,collection,getDoc,getDocs,setDoc,writeBatch,serverTimestamp,Timestamp,GeoPoint,Bytes} from 'https://www.gstatic.com/firebasejs/12.3.0/firebase-firestore.js';
 
 const V3_CONFIG={apiKey:'AIzaSyBKJT7idO3z4uBvL645uNl2XSFa8mq7IO4',authDomain:'cat-hero-boss.firebaseapp.com',projectId:'cat-hero-boss',storageBucket:'cat-hero-boss.firebasestorage.app',messagingSenderId:'1065873409630',appId:'1:1065873409630:web:109f8edbe6a818833bd6cf'};
 const V4_CONFIG={apiKey:'AIzaSyB12-ivvWpCTLGRdj7sRIxdDFeowE-2oFI',authDomain:'cat-hero-guild-platform.firebaseapp.com',projectId:'cat-hero-guild-platform',storageBucket:'cat-hero-guild-platform.firebasestorage.app',messagingSenderId:'595731027205',appId:'1:595731027205:web:3b9513abca772cc039d36c'};
 const PLATFORM_ADMIN_UID='QEvBXJ7f3fTVQLOVPkm5AzVh0hb2';
+const V3_ADMIN_UID='vEv3OwvfjYZFRRGPhq5s2Ln7HqC2';
 const TARGET_SERVER='879',TARGET_NAME='도살장';
 
 const $=id=>document.getElementById(id);
@@ -128,10 +129,19 @@ let v4Auth;
 try{v4Auth=initializeAuth(v4GuildApp,{persistence:inMemoryPersistence})}catch(_e){v4Auth=getAuth(v4GuildApp)}
 const v4db=getFirestore(v4GuildApp);
 
+// V3는 실제 운영 구조와 동일하게 두 세션으로 분리합니다.
+// - 관리자 세션: guildSystem / guildJournal
+// - 런타임 익명 세션: bossTimers / bossHistory / riftGalaxyOps / riftGalaxyRounds
+// V3 기존 앱도 보스·OPS 영역은 익명 인증으로 읽으므로 이관 도구도 같은 권한 경로를 사용합니다.
 const v3App=getApps().find(a=>a.name==='dosaljangMigrationSource')||initializeApp(V3_CONFIG,'dosaljangMigrationSource');
 let v3Auth;
 try{v3Auth=initializeAuth(v3App,{persistence:inMemoryPersistence})}catch(_e){v3Auth=getAuth(v3App)}
 const v3db=getFirestore(v3App);
+
+const v3RuntimeApp=getApps().find(a=>a.name==='dosaljangMigrationRuntime')||initializeApp(V3_CONFIG,'dosaljangMigrationRuntime');
+let v3RuntimeAuth;
+try{v3RuntimeAuth=initializeAuth(v3RuntimeApp,{persistence:inMemoryPersistence})}catch(_e){v3RuntimeAuth=getAuth(v3RuntimeApp)}
+const v3RuntimeDb=getFirestore(v3RuntimeApp);
 
 let targetGuild=null,source=null,targetBefore=null,lastVerify=null;
 let v4PlatformReady=false,v4GuildReady=false,v3Ready=false;
@@ -211,16 +221,49 @@ async function confirmGuildAdmin(doLogin=true){
 $('v4PlatformLoginBtn').onclick=ensureV4Platform;
 $('v4GuildLoginBtn').onclick=()=>confirmGuildAdmin(true);
 
+async function ensureV3Runtime(){
+  if(v3RuntimeAuth.currentUser)return v3RuntimeAuth.currentUser;
+  return (await signInAnonymously(v3RuntimeAuth)).user;
+}
+
 async function ensureV3(){
   status($('v3Session'),'V3 관리자 로그인 중…');
   try{
     const email=$('v3Email').value.trim(),pw=$('v3Password').value;if(!email||!pw)throw Error('V3 관리자 이메일과 비밀번호를 입력해 주세요.');
-    const u=(await signInWithEmailAndPassword(v3Auth,email,pw)).user;v3Ready=true;status($('v3Session'),`V3 관리자 로그인 완료 · ${u.email||u.uid}`,'ok');log(`V3 인증 성공: ${u.uid}`);updateButtons();
+    const u=(await signInWithEmailAndPassword(v3Auth,email,pw)).user;
+    if(u.uid!==V3_ADMIN_UID)throw Error(`현재 V3 UID(${u.uid})는 V3.0.1 관리자 UID(${V3_ADMIN_UID})와 다릅니다.`);
+    const runtimeUser=await ensureV3Runtime();
+    v3Ready=true;
+    status($('v3Session'),`V3 관리자 로그인 완료 · ${u.email||u.uid} · UID ${u.uid}
+V3 보스/OPS 런타임 인증 완료 · ${runtimeUser.isAnonymous?'익명 인증':'인증됨'}`,'ok');
+    log(`V3 관리자 인증 성공: ${u.uid}`);log(`V3 런타임 인증 성공: ${runtimeUser.uid}`);updateButtons();
   }catch(e){v3Ready=false;status($('v3Session'),'V3 로그인 실패: '+errText(e),'err');log('V3 로그인 실패: '+errText(e));updateButtons()}
 }
 $('v3LoginBtn').onclick=ensureV3;
 
-async function docsOf(db,name){const s=await getDocs(collection(db,name));return s.docs.map(d=>({id:d.id,data:d.data()}))}
+async function docsOf(db,name){const snap=await getDocs(collection(db,name));return snap.docs.map(d=>({id:d.id,data:d.data()}))}
+async function requiredStep(label,fn){
+  status($('scanStatus'),`V3 사전검사 · ${label} 확인 중…`,'warn');
+  try{const value=await fn();log(`V3 읽기 OK · ${label}`);return value}
+  catch(e){const detail=errText(e);log(`V3 읽기 FAIL · ${label} · ${detail}`);throw Error(`${label} 읽기 실패 · ${detail}`)}
+}
+async function readRoundById(id,found,label){
+  const clean=String(id||'').trim();if(!clean||found.has(clean))return;
+  const snap=await requiredStep(`${label} (${clean})`,()=>getDoc(doc(v3RuntimeDb,'riftGalaxyRounds',clean)));
+  if(snap.exists())found.set(clean,{id:snap.id,data:snap.data()});
+  else log(`V3 회차 문서 없음 · ${clean}`);
+}
+async function readReferencedRounds(activeData){
+  const found=new Map();
+  const currentId=String(activeData?.roundId||'').trim();
+  if(currentId)await readRoundById(currentId,found,'현재 균열·은하 회차');
+  const archiveIds=[...new Set((Array.isArray(activeData?.completedArchiveIds)?activeData.completedArchiveIds:[]).map(x=>String(x||'').trim()).filter(Boolean))];
+  for(const id of archiveIds)await readRoundById(id,found,'완료 회차 아카이브');
+  // 완료 아카이브에는 원본 회차 ID가 저장됩니다. 참조된 원본 회차도 함께 보존합니다.
+  const sourceIds=[...new Set([...found.values()].map(x=>String(x.data?.sourceRoundId||'').trim()).filter(Boolean))];
+  for(const id of sourceIds)await readRoundById(id,found,'완료 회차 원본');
+  return [...found.values()];
+}
 function timestampDate(v){try{if(v&&typeof v.toDate==='function')return v.toDate();}catch(_e){}return null}
 function isoDay(v){const d=timestampDate(v);if(!d)return '';const y=d.getFullYear(),m=String(d.getMonth()+1).padStart(2,'0'),day=String(d.getDate()).padStart(2,'0');return `${y}-${m}-${day}`}
 function hasDocumentReference(v,seen=new WeakSet()){
@@ -250,27 +293,46 @@ function jsonSafe(v,seen=new WeakSet()){
 function canonical(v){return JSON.stringify(jsonSafe(v),(k,x)=>x&&typeof x==='object'&&!Array.isArray(x)?Object.keys(x).sort().reduce((o,key)=>(o[key]=x[key],o),{}):x)}
 
 async function scanSource(){
-  status($('scanStatus'),'V3 데이터를 읽는 중…');log('V3 사전검사 시작');
+  status($('scanStatus'),'V3 데이터를 읽는 중…','warn');log('V3 사전검사 시작');
   try{
-    const [rosterSnap,rewardSnap,bossTimers,bossHistory,ops,rounds,journal,guildSystem]=await Promise.all([
-      getDoc(doc(v3db,'guildSystem','roster')),
-      getDoc(doc(v3db,'guildSystem','rewardHistory')),
-      docsOf(v3db,'bossTimers'),docsOf(v3db,'bossHistory'),docsOf(v3db,'riftGalaxyOps'),docsOf(v3db,'riftGalaxyRounds'),docsOf(v3db,'guildJournal'),docsOf(v3db,'guildSystem')
-    ]);
+    if(!v3Auth.currentUser||v3Auth.currentUser.uid!==V3_ADMIN_UID)throw Error('V3 관리자 인증 상태를 다시 확인해 주세요.');
+    await ensureV3Runtime();
+
+    // 중요: V3 보안규칙은 컬렉션 전체 list와 단일 get 권한이 서로 다를 수 있습니다.
+    // 실제 V3 앱이 사용하는 접근 방식 그대로 읽습니다.
+    const rosterSnap=await requiredStep('guildSystem/roster',()=>getDoc(doc(v3db,'guildSystem','roster')));
+    const rewardSnap=await requiredStep('guildSystem/rewardHistory',()=>getDoc(doc(v3db,'guildSystem','rewardHistory')));
+    const bossTimers=await requiredStep('bossTimers 목록',()=>docsOf(v3RuntimeDb,'bossTimers'));
+    const bossHistory=await requiredStep('bossHistory 목록',()=>docsOf(v3RuntimeDb,'bossHistory'));
+    const activeSnap=await requiredStep('riftGalaxyOps/active',()=>getDoc(doc(v3RuntimeDb,'riftGalaxyOps','active')));
+    const activeData=activeSnap.exists()?activeSnap.data():{};
+    const ops=activeSnap.exists()?[{id:'active',data:activeData}]:[];
+    const rounds=await readReferencedRounds(activeData);
+    const journal=await requiredStep('guildJournal 관리자 기록',()=>docsOf(v3db,'guildJournal'));
+
     if(!rosterSnap.exists())throw Error('V3 guildSystem/roster 문서가 없습니다.');
     const roster=rosterSnap.data(),rewards=rewardSnap.exists()?rewardSnap.data():{records:[]};
     const all=[roster,rewards,...bossTimers.map(x=>x.data),...bossHistory.map(x=>x.data),...ops.map(x=>x.data),...rounds.map(x=>x.data),...journal.map(x=>x.data)];
     if(all.some(x=>hasDocumentReference(x)))throw Error('DocumentReference 형식이 발견되었습니다. 자동 이관을 중단합니다.');
-    source={scannedAt:new Date().toISOString(),sourceProject:'cat-hero-boss',roster,rewards,bossTimers,bossHistory,ops,rounds,journal,guildSystemDocs:guildSystem.map(x=>x.id)};
+    source={
+      scannedAt:new Date().toISOString(),sourceProject:'cat-hero-boss',
+      roster,rewards,bossTimers,bossHistory,ops,rounds,journal,
+      discovery:{
+        guildSystem:['roster','rewardHistory'],
+        roundDiscovery:'riftGalaxyOps/active.roundId + completedArchiveIds + archive.sourceRoundId',
+        currentRoundId:String(activeData?.roundId||''),
+        completedArchiveIds:Array.isArray(activeData?.completedArchiveIds)?[...activeData.completedArchiveIds]:[]
+      }
+    };
     const members=Object.keys(roster.members||{}).length,rewardRecords=Array.isArray(rewards.records)?rewards.records.length:0;
-    $('sourceSummary').innerHTML=[metric('길드원',members),metric('보스 시간 문서',bossTimers.length),metric('보스 처치기록',bossHistory.length),metric('보상 기록',rewardRecords),metric('OPS 문서',ops.length),metric('균열·은하 회차',rounds.length),metric('길드 일지/활동',journal.length),metric('guildSystem 문서',guildSystem.length)].join('');
-    const extra=guildSystem.map(x=>x.id).filter(x=>!['roster','rewardHistory'].includes(x));
-    const msg=`사전검사 완료 · 길드원 ${members}명 · bossHistory ${bossHistory.length}건 · rounds ${rounds.length}건 · journal ${journal.length}건${extra.length?`\n주의: 알려지지 않은 guildSystem 문서: ${extra.join(', ')}`:''}`;
-    status($('scanStatus'),msg,extra.length?'warn':'ok');log(msg.replace(/\n/g,' / '));$('backupBtn').disabled=false;await scanTarget();updateButtons();
+    $('sourceSummary').innerHTML=[metric('길드원',members),metric('보스 시간 문서',bossTimers.length),metric('보스 처치기록',bossHistory.length),metric('보상 기록',rewardRecords),metric('OPS 문서',ops.length),metric('참조 회차',rounds.length),metric('길드 일지/활동',journal.length)].join('');
+    const msg=`사전검사 완료 · 길드원 ${members}명 · bossHistory ${bossHistory.length}건 · 참조 rounds ${rounds.length}건 · journal ${journal.length}건
+V3 보안규칙에 맞춰 guildSystem/rounds 컬렉션 전체 list는 사용하지 않고 실제 앱이 참조하는 문서를 개별 조회했습니다.`;
+    status($('scanStatus'),msg,'ok');log(msg.replace(/\n/g,' / '));$('backupBtn').disabled=false;await scanTarget();updateButtons();
   }catch(e){source=null;status($('scanStatus'),'사전검사 실패: '+errText(e),'err');log('사전검사 실패: '+errText(e));updateButtons()}
 }
 $('scanBtn').onclick=scanSource;
-$('backupBtn').onclick=()=>{if(!source)return;const payload={toolVersion:'V1.0.2',createdAt:new Date().toISOString(),note:'V3 원본 읽기 전용 백업',source:jsonSafe(source)};download(`dosaljang-v3-backup-${new Date().toISOString().replace(/[:.]/g,'-')}.json`,payload);$('backupConfirm').checked=true;log('V3 JSON 백업 다운로드 생성');updateButtons()};
+$('backupBtn').onclick=()=>{if(!source)return;const payload={toolVersion:'V1.0.3',createdAt:new Date().toISOString(),note:'V3 원본 읽기 전용 백업',source:jsonSafe(source)};download(`dosaljang-v3-backup-${new Date().toISOString().replace(/[:.]/g,'-')}.json`,payload);$('backupConfirm').checked=true;log('V3 JSON 백업 다운로드 생성');updateButtons()};
 
 async function scanTarget(){
   if(!targetGuild||!v4GuildReady||!v4Auth.currentUser)return;
@@ -326,7 +388,7 @@ async function migrate(){
     // Update only the public member count on the V4 guild root; do not touch name/server/accessHash/admins.
     const memberCount=Object.keys(source.roster.members||{}).length;
     await setDoc(doc(v4db,'guilds',gid),{memberCount,updatedAt:serverTimestamp()},{merge:true});
-    await setDoc(doc(collection(v4db,'guilds',gid,'audit')),{kind:'V3 데이터 이관',name:'도살장',text:`V3 운영 데이터 이관 완료 · 길드원 ${memberCount}명 · bossHistory ${source.bossHistory.length}건 · rounds ${source.rounds.length}건 · journal ${source.journal.length}건`,uid:v4Auth.currentUser.uid,at:serverTimestamp(),source:'migration-tool-v1.0.2'});
+    await setDoc(doc(collection(v4db,'guilds',gid,'audit')),{kind:'V3 데이터 이관',name:'도살장',text:`V3 운영 데이터 이관 완료 · 길드원 ${memberCount}명 · bossHistory ${source.bossHistory.length}건 · rounds ${source.rounds.length}건 · journal ${source.journal.length}건`,uid:v4Auth.currentUser.uid,at:serverTimestamp(),source:'migration-tool-v1.0.3'});
     status($('migrateStatus'),`이관 쓰기 완료 · 길드원 ${memberCount}명\n이제 반드시 아래의 전체 대조 검증을 실행해 주세요.`,'ok');log('=== 실제 이관 쓰기 완료 ===');$('verifyBtn').disabled=false;await scanTarget();
   }catch(e){status($('migrateStatus'),'이관 실패: '+errText(e),'err');log('이관 실패: '+errText(e))}finally{updateButtons()}
 }
@@ -346,7 +408,7 @@ async function verify(){
     const ta=mapDocs(tgt.audit);for(const x of source.journal){if(!ta.has(x.id))problems.push(`audit/${x.id} 없음`);else if(canonical(x.data)!==canonical(ta.get(x.id)))problems.push(`audit/${x.id} 내용 불일치`)}
     const journalIds=new Set((tgt.journal?.entries||[]).map(x=>String(x.id||'')));for(const x of source.journal)if(!journalIds.has(`v3-${x.id}`))problems.push(`data/journal v3-${x.id} 없음`);
     const memberCount=Object.keys(source.roster.members||{}).length;if(Number(tgt.guild?.memberCount||0)!==memberCount)problems.push(`guild.memberCount 불일치 (${tgt.guild?.memberCount} != ${memberCount})`);
-    lastVerify={toolVersion:'V1.0.2',verifiedAt:new Date().toISOString(),sourceProject:'cat-hero-boss',targetProject:'cat-hero-guild-platform',targetGuild:{id:targetGuild.id,server:targetGuild.server,name:targetGuild.name},counts:{members:memberCount,bossTimers:source.bossTimers.length,bossHistory:source.bossHistory.length,rewards:Array.isArray(source.rewards.records)?source.rewards.records.length:0,ops:source.ops.length,rounds:source.rounds.length,journal:source.journal.length},pass:problems.length===0,problems};
+    lastVerify={toolVersion:'V1.0.3',verifiedAt:new Date().toISOString(),sourceProject:'cat-hero-boss',targetProject:'cat-hero-guild-platform',targetGuild:{id:targetGuild.id,server:targetGuild.server,name:targetGuild.name},counts:{members:memberCount,bossTimers:source.bossTimers.length,bossHistory:source.bossHistory.length,rewards:Array.isArray(source.rewards.records)?source.rewards.records.length:0,ops:source.ops.length,rounds:source.rounds.length,journal:source.journal.length},pass:problems.length===0,problems};
     if(!problems.length){status($('verifyStatus'),'이관 검증 PASS · V3 원본과 V4 도살장 데이터가 일치합니다.','ok');log('검증 PASS');$('verifySummary').innerHTML=[metric('길드원',memberCount),metric('bossHistory',source.bossHistory.length),metric('rounds',source.rounds.length),metric('오류',0)].join('')}
     else{status($('verifyStatus'),`검증 FAIL · ${problems.length}개 차이\n`+problems.slice(0,12).join('\n'),'err');log(`검증 FAIL: ${problems.length}개`);$('verifySummary').innerHTML=[metric('길드원',memberCount),metric('bossHistory',source.bossHistory.length),metric('rounds',source.rounds.length),metric('차이',problems.length)].join('')}
     $('reportBtn').disabled=false;
@@ -359,7 +421,7 @@ $('verifyBtn').onclick=verify;$('reportBtn').onclick=()=>{if(lastVerify)download
   status($('v4PlatformSession'),'V4 중앙관리자 계정을 입력해 대상 길드를 확정해 주세요.','warn');
   status($('v4GuildSession'),'그 다음 V4 도살장 관리자 계정으로 실제 쓰기 권한을 확인해 주세요.','warn');
   status($('v3Session'),'V3 원본 관리자 계정으로 로그인해 주세요.','warn');
-  log('V1.0.2 준비 완료 · 중앙관리자/도살장관리자/V3원본관리자 세션 분리');
+  log('V1.0.3 준비 완료 · V4 2세션 + V3 관리자/런타임 2세션 분리 · V3 보안규칙 호환 조회');
 })();
 </script>
 </body>

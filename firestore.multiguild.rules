@@ -28,21 +28,39 @@ service cloud.firestore {
         && request.resource.data.diff(resource.data).affectedKeys()
           .hasOnly(['name','server','memberCount','updatedAt','accessHash','accessUpdatedAt']));
       match /data/{docId} {
-        allow read: if guildActive(guildId);
+        allow read: if guildActive(guildId) || platformAdmin();
         // 중앙관리자는 신규 길드의 빈 초기 데이터만 생성할 수 있습니다.
         allow create: if guildAdmin(guildId) || (platformAdmin()
           && docId in ['roster','rewards']
           && getAfter(guildPath(guildId)).data.active == true);
-        allow update, delete: if guildAdmin(guildId);
+        allow update: if guildAdmin(guildId);
+        allow delete: if guildAdmin(guildId) || platformAdmin();
       }
-      match /bossTimers/{docId} { allow read: if guildActive(guildId); allow write: if guildAdmin(guildId); }
-      match /bossHistory/{docId} { allow read: if guildActive(guildId); allow write: if guildAdmin(guildId); }
-      match /ops/{docId} { allow read: if guildActive(guildId); allow write: if guildAdmin(guildId); }
-      match /rounds/{docId} { allow read: if guildActive(guildId); allow write: if guildAdmin(guildId); }
+      match /bossTimers/{docId} {
+        allow read: if guildActive(guildId) || platformAdmin();
+        allow create, update: if guildAdmin(guildId);
+        allow delete: if guildAdmin(guildId) || platformAdmin();
+      }
+      match /bossHistory/{docId} {
+        allow read: if guildActive(guildId) || platformAdmin();
+        allow create, update: if guildAdmin(guildId);
+        allow delete: if guildAdmin(guildId) || platformAdmin();
+      }
+      match /ops/{docId} {
+        allow read: if guildActive(guildId) || platformAdmin();
+        allow create, update: if guildAdmin(guildId);
+        allow delete: if guildAdmin(guildId) || platformAdmin();
+      }
+      match /rounds/{docId} {
+        allow read: if guildActive(guildId) || platformAdmin();
+        allow create, update: if guildAdmin(guildId);
+        allow delete: if guildAdmin(guildId) || platformAdmin();
+      }
       match /admins/{uid} {
-        allow list: if guildAdmin(guildId);
-        allow get: if signedIn() && request.auth.uid == uid;
-        allow update, delete: if false;
+        allow list: if guildAdmin(guildId) || platformAdmin();
+        allow get: if (signedIn() && request.auth.uid == uid) || platformAdmin();
+        allow update: if false;
+        allow delete: if platformAdmin();
         allow create: if signedIn() && request.auth.uid == uid && guildActive(guildId)
           && request.resource.data.keys().hasOnly(['role','active','inviteId','createdAt'])
           && request.resource.data.keys().hasAll(['role','active','inviteId','createdAt'])
@@ -58,8 +76,10 @@ service cloud.firestore {
           && getAfter(invitePath(request.resource.data.inviteId)).data.usedAt == request.time;
       }
       match /audit/{auditId} {
-        allow read, create: if guildAdmin(guildId);
-        allow update, delete: if false;
+        allow read: if guildAdmin(guildId) || platformAdmin();
+        allow create: if guildAdmin(guildId);
+        allow update: if false;
+        allow delete: if platformAdmin();
       }
     }
 
@@ -76,12 +96,17 @@ service cloud.firestore {
         && request.resource.data.createdAt == request.time
         && guildAdmin(request.resource.data.guildId);
       allow update: if false;
-      allow delete: if signedIn() && guildAdmin(resource.data.guildId);
+      allow delete: if platformAdmin() || (signedIn() && guildAdmin(resource.data.guildId));
+    }
+
+    match /platformAudit/{auditId} {
+      allow get, list, create: if platformAdmin();
+      allow update, delete: if false;
     }
 
     match /guildInvites/{inviteId} {
       allow get: if signedIn();
-      allow list: if false;
+      allow list: if platformAdmin();
       allow create: if validInviteCreation(request.resource.data)
         && ((platformAdmin() && request.resource.data.issuerRole == 'platform')
           || (guildAdmin(request.resource.data.guildId) && request.resource.data.issuerRole == 'guild-admin'));

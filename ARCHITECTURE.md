@@ -1,4 +1,4 @@
-# Cat Hero Guild Platform V4.1.0 Architecture
+# Cat Hero Guild Platform V4.1.1 Architecture
 
 ## 분리 원칙
 - V3.0 계열은 도살장 전용 기준본이며 수정하지 않습니다.
@@ -44,6 +44,7 @@
 - `guilds/{guildId}/audit/*`: 관리자 활동기록.
 - `guildInvites/{code}`: 1회성 관리자 등록코드.
 - `guildAccess/{sha256(secret)}`: 전용주소 검증용 매핑.
+- `platformAudit/*`: 중앙관리자의 길드 완전 삭제 등 위험 작업 완료 이력.
 
 ## 일반 길드원 권한
 - 계산기: 길드원 선택, 서버격추, 지역/보스 선택 및 계산 사용 가능.
@@ -52,3 +53,13 @@
 
 ## 관리자 활동기록
 활동 유형은 고정 목록이 아니라 실제 저장된 `kind`를 기반으로 자동 확장합니다. 균열·은하는 세부 조작을 모두 기록하지 않고 새 회차 시작과 이번 회차 종료 정도만 기록합니다.
+
+
+## 중앙관리자 길드 완전 삭제
+- 중앙관리자 화면에서만 실행합니다.
+- 오삭제 방지를 위해 길드명을 직접 입력하고 최종 확인을 거칩니다.
+- 현재 V4 스키마의 `data`, `bossTimers`, `bossHistory`, `ops`, `rounds`, `admins`, `audit`를 먼저 정리합니다.
+- 연결된 `guildInvites` 및 현재 `guildAccess` 매핑을 정리합니다.
+- 길드 기본 문서 `guilds/{guildId}`는 가장 마지막에 삭제합니다.
+- 삭제 직후 같은 경로를 다시 조회하여 잔여 데이터가 없는지 확인합니다.
+- 완료 이력은 `platformAudit`에 남깁니다.

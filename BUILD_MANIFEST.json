@@ -1,18 +1,20 @@
 {
-  "version": "V4.1.0",
+  "version": "V4.1.1",
   "buildDate": "2026-10-15",
-  "source": "V4.0.9 full",
+  "source": "V4.1.0 full",
   "liveValidation": "pending",
   "changes": [
-    "상단 서버/길드명/인원수 밝기 개선",
-    "좌/우 상단 텍스트 좌→우 shimmer 강조 효과",
-    "reduced-motion 접근성 fallback 추가"
+    "중앙관리자 길드 카드 버튼 2열 배치 및 한 줄 고정",
+    "중앙관리자 전용 길드 완전 삭제 추가",
+    "삭제 전 권한 사전확인 및 삭제 후 잔여 데이터 자동검증",
+    "guildInvites/guildAccess 정리 및 platformAudit 완료기록",
+    "Firestore Rules 중앙관리자 삭제 권한 추가"
   ],
   "files": [
     {
       "path": "ARCHITECTURE.md",
-      "bytes": 3299,
-      "sha256": "51d7436919b8d79305336a305ebc753ad31bad3d8840efede3b1e8698688213c"
+      "bytes": 4016,
+      "sha256": "3c97fa2ac963d5bd1f04c5f17d643be2b372172273bebafaa358256c3733e293"
     },
     {
       "path": "BUILD_MANIFEST_V4.0.1_BASELINE.json",
@@ -21,18 +23,18 @@
     },
     {
       "path": "DATA_MODEL.md",
-      "bytes": 1402,
-      "sha256": "fc1f702eac71baf5fa99d871666fd694b80ec366b183ee6139b9cecf91002e73"
+      "bytes": 1845,
+      "sha256": "cd5c8ac1c1215dc786248939ccac7156db98152547f9d3e229369d967e71ca9b"
     },
     {
       "path": "PRE_GITHUB_CHECKLIST.md",
-      "bytes": 679,
-      "sha256": "4a6b73b26ae864df7aedac85d275d6c293686f9b5767e9304e710df56d1f74a9"
+      "bytes": 956,
+      "sha256": "8d72cd864b451345a29c58266048b2f9dce7eb3b171f818fef89a30be21b8256"
     },
     {
       "path": "README.md",
-      "bytes": 1012,
-      "sha256": "40a618428982635751a0a147624f161b5fe697deac29a488d37b5a2eeef086c1"
+      "bytes": 1620,
+      "sha256": "506332f1cb4a789c0e376bfa6b010903d7e336b62d1c6b7d609fdc9870d35058"
     },
     {
       "path": "RELEASE_NOTES_V4.0.1.md",
@@ -85,14 +87,19 @@
       "sha256": "84cc98711b7ff2e7ee6adcd31ced2548dcd5e34fdc1be518111f2e63960105f2"
     },
     {
+      "path": "RELEASE_NOTES_V4.1.1.md",
+      "bytes": 1833,
+      "sha256": "477e3d9570846e796196a6e4452b9e228c4705de9617805d27e7c7d62cc79e80"
+    },
+    {
       "path": "SOURCE_BASELINE.md",
-      "bytes": 477,
-      "sha256": "ceff3f639e3a3a960653447702c6e55ebb936c4adc732d5c7b4d5b4862254cc9"
+      "bytes": 587,
+      "sha256": "cc40b25a0866e44355e104d66f2dcfc12bd4b95c0f452dcfec9d00e72b53d32f"
     },
     {
       "path": "VALIDATION.md",
-      "bytes": 1480,
-      "sha256": "c27c5a693588f91e7ae066c71c6271ead9711259491791b08e3a0b31470344a2"
+      "bytes": 3387,
+      "sha256": "9d8608df7038747aa920255ffe9db1532221c0551704e73d3469290e4d3f4c53"
     },
     {
       "path": "assets/bananyang-v337-display.webp",
@@ -287,37 +294,37 @@
     {
       "path": "boss.html",
       "bytes": 206046,
-      "sha256": "790135addb078930688fb9dda42e110124d3036fdbb7950f5ef1fa016f3e0b83"
+      "sha256": "a3d073f5e2c7c1c58064009c8093d7f0fbd6898d7ac0834c361382a6038c2db7"
     },
     {
       "path": "firebase-config.js",
       "bytes": 560,
-      "sha256": "fd55f46d29c75c0935d6074dba4098a6c15cc078929832d618948954d4f4d003"
+      "sha256": "5b16e7ee52da934642c5a13ba3b970a194a26893946309d58bded412c0344f74"
     },
     {
       "path": "firestore.multiguild.rules",
-      "bytes": 5867,
-      "sha256": "88510bddaea3b34a0df3d4d66ce31a86193a404ec8f3e73a27a11c7fefee38e5"
+      "bytes": 6732,
+      "sha256": "6cfdef92380387209c68e90cb1665c8539d3f5ccf528e747565edfad2dba453b"
     },
     {
       "path": "index-module.mjs",
-      "bytes": 24148,
-      "sha256": "fccd92cd35aed7f45ae443710666294f525b79abee130c008c60ea431818f7db"
+      "bytes": 28644,
+      "sha256": "f21949f3c5e58aff2c08ebaab0924281f15850549af49409838989aa71396884"
     },
     {
       "path": "index.html",
-      "bytes": 2017,
-      "sha256": "1d87845a2ea40a02236be7f532a1e3242215c831e047da56b5fcbe85ae27b910"
+      "bytes": 2544,
+      "sha256": "296add3e02c4077d08ac48fbe7e6c8529f3f21869998bdbacd336b0c019cb9cb"
     },
     {
       "path": "main.html",
       "bytes": 593439,
-      "sha256": "781690fd76da52712ae5d1f6826c896aa544811403241c7c187e6045c146ddcf"
+      "sha256": "b58ae3a412dbaf90c5423c05e49ed1a7a3d3af52e8d8a3feb4866ee7121b16d8"
     },
     {
       "path": "ops.html",
       "bytes": 275999,
-      "sha256": "bb244223f67fa081dab23c3f14ae746cd69a2a998a50b6902c038dc12f5f3bb5"
+      "sha256": "924f85edda3a94be993ec42fbfe63febd402c2562124abda5fc11fa6d446bee6"
     },
     {
       "path": "shared/admin-audit.js",

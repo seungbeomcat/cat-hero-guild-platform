@@ -1,4 +1,4 @@
-# V4.1.0 Firestore Data Model
+# V4.1.1 Firestore Data Model
 
 ## guilds/{guildId}
 - name: string
@@ -41,6 +41,9 @@
 - records: array
 - updatedAt
 
+## guilds/{guildId}/data/journal
+수동 일지/관리 기록 보조 데이터.
+
 ## guilds/{guildId}/bossTimers/*
 해당 길드의 보스 팝업/다음 등장시간 자료.
 
@@ -59,3 +62,13 @@
 - text: 요약/세부내용
 - uid: 실행 관리자 UID
 - at: timestamp
+
+## platformAudit/{auditId}
+중앙관리자 수준의 위험 작업 완료 이력입니다.
+- kind: 예) `길드 완전 삭제`
+- guildId / server / name
+- deletedCounts: 삭제된 경로별 문서 수
+- uid / email: 실행 중앙관리자
+- at: timestamp
+
+`platformAudit`은 중앙관리자만 조회·생성할 수 있으며 수정·삭제할 수 없습니다.
