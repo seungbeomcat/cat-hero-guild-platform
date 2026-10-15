@@ -17,7 +17,7 @@
   <header class="hero">
     <h1>도살장 V3 → V4 데이터 이관</h1>
     <p>V3 운영 DB를 읽어 백업한 뒤, V4의 <b>879 · 도살장</b> 길드로 복사하고 다시 대조합니다. 관리자·길드 전용주소·초대코드는 건드리지 않습니다.</p>
-    <div class="badge"><span class="dot"></span> 일회성 마이그레이션 도구 · V1.0.3</div>
+    <div class="badge"><span class="dot"></span> 일회성 마이그레이션 도구 · V1.0.4</div>
   </header>
 
   <section class="card">
@@ -94,7 +94,7 @@
     <h2>작업 로그</h2>
     <div id="log" class="log">도구 준비 완료\n</div>
   </section>
-  <div class="footer">Cat Hero Guild Platform · 도살장 전용 V3→V4 Migration Tool V1.0.3 · 2026.10.15</div>
+  <div class="footer">Cat Hero Guild Platform · 도살장 전용 V3→V4 Migration Tool V1.0.4 · 2026.10.15</div>
 </div>
 
 <script type="module">
@@ -107,6 +107,9 @@ const V4_CONFIG={apiKey:'AIzaSyB12-ivvWpCTLGRdj7sRIxdDFeowE-2oFI',authDomain:'ca
 const PLATFORM_ADMIN_UID='QEvBXJ7f3fTVQLOVPkm5AzVh0hb2';
 const V3_ADMIN_UID='vEv3OwvfjYZFRRGPhq5s2Ln7HqC2';
 const TARGET_SERVER='879',TARGET_NAME='도살장';
+const V3_STATIC_ROSTER={"members":{"안창살":{"base":182.9,"z1r":0,"z2r":5,"z3r":0,"minScore":5000,"field":{"wolf":23,"pirate":22,"cat":22,"food":22,"galaxy":0}},"매콤갈비":{"base":165.2,"z1r":5,"z2r":5,"z3r":0,"minScore":0,"field":{"wolf":8,"pirate":8,"cat":8,"food":8,"galaxy":0}},"도살장":{"base":138.5,"z1r":0,"z2r":5,"z3r":0,"minScore":0,"field":{"wolf":23,"pirate":23,"cat":23,"food":23,"galaxy":0}},"잎새주":{"base":111.1,"z1r":0,"z2r":0,"z3r":0,"minScore":0,"field":{"wolf":23,"pirate":6,"cat":6,"food":6,"galaxy":0}},"차돌":{"base":130.8,"z1r":0,"z2r":5,"z3r":0,"minScore":3000,"field":{"wolf":24,"pirate":22,"cat":22,"food":22,"galaxy":0}},"애기다라":{"base":100,"z1r":0,"z2r":0,"z3r":0,"minScore":0,"field":{"wolf":0,"pirate":0,"cat":0,"food":0,"galaxy":0}},"채끝살":{"base":89,"z1r":0,"z2r":5,"z3r":0,"minScore":0,"field":{"wolf":0,"pirate":0,"cat":0,"food":0,"galaxy":0}},"대창":{"base":72,"z1r":0,"z2r":0,"z3r":0,"minScore":0,"field":{"wolf":0,"pirate":0,"cat":0,"food":0,"galaxy":0}},"진니":{"base":69.2,"z1r":0,"z2r":5,"z3r":0,"minScore":0,"field":{"wolf":7,"pirate":6,"cat":6,"food":6,"galaxy":0}},"아메리칸컬":{"base":81.5,"z1r":0,"z2r":0,"z3r":0,"minScore":2500,"field":{"wolf":8,"pirate":0,"cat":0,"food":6,"galaxy":0}},"지리산":{"base":235,"z1r":0,"z2r":0,"z3r":0,"minScore":0,"field":{"wolf":33,"pirate":33,"cat":33,"food":33,"galaxy":0}},"토시살":{"base":81,"z1r":0,"z2r":0,"z3r":0,"minScore":0,"field":{"wolf":0,"pirate":0,"cat":0,"food":0,"galaxy":0}},"페르시안":{"base":57,"z1r":0,"z2r":0,"z3r":0,"minScore":0,"field":{"wolf":0,"pirate":0,"cat":0,"food":0,"galaxy":0}},"생갈비":{"base":45,"z1r":0,"z2r":0,"z3r":0,"minScore":0,"field":{"wolf":0,"pirate":0,"cat":0,"food":0,"galaxy":0}},"새우살":{"base":45,"z1r":0,"z2r":0,"z3r":0,"minScore":0,"field":{"wolf":0,"pirate":0,"cat":0,"food":0,"galaxy":0}},"항정살":{"base":35.5,"z1r":0,"z2r":0,"z3r":0,"minScore":0,"field":{"wolf":0,"pirate":0,"cat":0,"food":0,"galaxy":0}}},"aliases":{"돗돔":"안창살","돚돔":"안창살","돋돔":"안창살","돝돔":"안창살","돕돔":"안창살","매콤":"매콤갈비","갈비":"매콤갈비","메콤":"매콤갈비","사마엘":"도살장","사마앨":"도살장","사무엘":"도살장","사므엘":"도살장","샤뮤엘":"도살장","사마":"도살장","마엘":"도살장","혀녕":"차돌","혀넝":"차돌","허녕":"차돌","허넝":"차돌","XIGN":"채끝살","xign":"채끝살","사인":"채끝살","싸인":"채끝살","뱅수띠":"대창","벵수띠":"대창","뱅수디":"대창","벵수디":"대창","뱅수":"대창","벵수":"대창","뱅수씨":"대창","벵수씨":"대창","토시":"토시살","토살":"토시살","페르":"페르시안","패르시안":"페르시안","패르":"페르시안","시안":"페르시안","승부왕":"지리산","승부":"지리산","ㅅㅂ왕":"지리산","슴부왕":"지리산","슝브왕":"지리산","데이다라":"애기다라","데이":"애기다라","다라":"애기다라","대이":"애기다라","대이다라":"애기다라","바포메트":"항정살","바포":"항정살","메트":"항정살","바포매트":"항정살","바메":"항정살","하니엘":"생갈비","하니":"생갈비","니엘":"생갈비","벨제붑":"새우살","벨제":"새우살","제붑":"새우살","밸제":"새우살","밸재붑":"새우살","밸제붑":"새우살","벨재붑":"새우살"}};
+const V3_STATIC_REWARDS={"records":[{"id":"rift-20261010","type":"균열","title":"균열의 격전지","period":"2026.10.10 ~ 10.12","sort":"2026-10-12T2","rank":"1위","items":[{"name":"신화 동료 외형 소환권","qty":1,"recipients":["진니"]}]},{"id":"rift-20261003","type":"균열","title":"균열의 격전지","period":"2026.10.03 ~ 10.05","sort":"2026-10-05T2","rank":"1위","items":[{"name":"신화 동료 외형 소환권","qty":1,"recipients":["페르시안"]}]},{"id":"occupation-20260924","type":"점령전","title":"점령전","period":"2026.09.24 ~ 10.05","sort":"2026-10-05T1","rank":"2위","items":[{"name":"럭키펀치 장갑","qty":2,"recipients":[]},{"name":"럭키펀치 모자","qty":2,"recipients":[]},{"name":"럭키펀치 목도리","qty":2,"recipients":[]},{"name":"럭키펀치 신발","qty":2,"recipients":[]},{"name":"길드 점령전 구슬","qty":1200,"status":"unallocated","recipients":[]},{"name":"영웅 장비 제작법 소환권 조각","qty":3,"status":"unallocated","recipients":[]}]},{"id":"galaxy-20260926","type":"은하","title":"은하 격전지","period":"2026.09.26 ~ 09.28","sort":"2026-09-28","rank":"1위","items":[{"name":"하늘빛 상의","qty":2,"recipients":["돗돔","혀녕"]},{"name":"하늘빛 하의","qty":2,"recipients":["승부왕","페르시안"]}]},{"id":"rift-20260919","type":"균열","title":"균열의 격전지","period":"2026.09.19 ~ 09.21","sort":"2026-09-21T2","rank":"1위","items":[{"name":"신화 동료 외형 소환권","qty":1,"recipients":["토시살"]}]},{"id":"brawl-20260916","type":"난투전","title":"길드 난투전","period":"2026.09.16 ~ 09.21","sort":"2026-09-21T1","rank":"1위","items":[{"name":"레드스컬","qty":10,"recipients":["사마엘"]},{"name":"길드난투전 코인","qty":105,"recipients":["사마엘"]}]},{"id":"rift-20260912","type":"균열","title":"균열의 격전지","period":"2026.09.12 ~ 09.14","sort":"2026-09-14","rank":"2위","items":[{"name":"전설 동료 외형 소환권","qty":3,"recipients":["매콤갈비","승부왕","뱅수띠"]}]}]};
+
 
 const $=id=>document.getElementById(id);
 const logEl=$('log');
@@ -291,6 +294,8 @@ function jsonSafe(v,seen=new WeakSet()){
   if(seen.has(v))return '[Circular]';seen.add(v);if(Array.isArray(v))return v.map(x=>jsonSafe(x,seen));const o={};for(const [k,x] of Object.entries(v))o[k]=jsonSafe(x,seen);return o;
 }
 function canonical(v){return JSON.stringify(jsonSafe(v),(k,x)=>x&&typeof x==='object'&&!Array.isArray(x)?Object.keys(x).sort().reduce((o,key)=>(o[key]=x[key],o),{}):x)}
+function operationalDoc(v){const o=cloneForTarget(v);if(o&&typeof o==='object'&&!Array.isArray(o))delete o.migrationFallback;return o}
+
 
 async function scanSource(){
   status($('scanStatus'),'V3 데이터를 읽는 중…','warn');log('V3 사전검사 시작');
@@ -302,6 +307,35 @@ async function scanSource(){
     // 실제 V3 앱이 사용하는 접근 방식 그대로 읽습니다.
     const rosterSnap=await requiredStep('guildSystem/roster',()=>getDoc(doc(v3db,'guildSystem','roster')));
     const rewardSnap=await requiredStep('guildSystem/rewardHistory',()=>getDoc(doc(v3db,'guildSystem','rewardHistory')));
+    let rosterSource='Firestore guildSystem/roster';
+    let roster=null;
+    if(rosterSnap.exists()){
+      roster=rosterSnap.data();
+    }else{
+      try{
+        const cached=JSON.parse(localStorage.getItem('dosalja-roster-cache-v1')||'null');
+        if(cached?.members&&typeof cached.members==='object'&&Object.keys(cached.members).length){
+          roster={members:cached.members,aliases:cached.aliases||{},migrationFallback:'browser-cache'};
+          rosterSource='V3 브라우저 캐시(dosalja-roster-cache-v1)';
+          log(`V3 roster 문서 없음 · 브라우저 캐시 사용 · ${Object.keys(cached.members).length}명`);
+        }
+      }catch(e){log('V3 roster 브라우저 캐시 읽기 실패 · '+errText(e));}
+      if(!roster){
+        roster=JSON.parse(JSON.stringify(V3_STATIC_ROSTER));
+        roster.migrationFallback='V3.0.1-static-baseline';
+        rosterSource='V3.0.1 shared/guild-core.js 기준본';
+        log(`V3 roster 문서 없음 · V3.0.1 정적 기준본 사용 · ${Object.keys(roster.members||{}).length}명`);
+      }
+    }
+    let rewardsSource='Firestore guildSystem/rewardHistory';
+    let rewards=null;
+    if(rewardSnap.exists()) rewards=rewardSnap.data();
+    else {
+      rewards=JSON.parse(JSON.stringify(V3_STATIC_REWARDS));
+      rewards.migrationFallback='V3.0.1-inline-reward-history';
+      rewardsSource='V3.0.1 메인 페이지 내장 보상기록';
+      log(`V3 rewardHistory 문서 없음 · V3.0.1 내장 보상기록 사용 · ${(rewards.records||[]).length}건`);
+    }
     const bossTimers=await requiredStep('bossTimers 목록',()=>docsOf(v3RuntimeDb,'bossTimers'));
     const bossHistory=await requiredStep('bossHistory 목록',()=>docsOf(v3RuntimeDb,'bossHistory'));
     const activeSnap=await requiredStep('riftGalaxyOps/active',()=>getDoc(doc(v3RuntimeDb,'riftGalaxyOps','active')));
@@ -310,8 +344,6 @@ async function scanSource(){
     const rounds=await readReferencedRounds(activeData);
     const journal=await requiredStep('guildJournal 관리자 기록',()=>docsOf(v3db,'guildJournal'));
 
-    if(!rosterSnap.exists())throw Error('V3 guildSystem/roster 문서가 없습니다.');
-    const roster=rosterSnap.data(),rewards=rewardSnap.exists()?rewardSnap.data():{records:[]};
     const all=[roster,rewards,...bossTimers.map(x=>x.data),...bossHistory.map(x=>x.data),...ops.map(x=>x.data),...rounds.map(x=>x.data),...journal.map(x=>x.data)];
     if(all.some(x=>hasDocumentReference(x)))throw Error('DocumentReference 형식이 발견되었습니다. 자동 이관을 중단합니다.');
     source={
@@ -319,6 +351,8 @@ async function scanSource(){
       roster,rewards,bossTimers,bossHistory,ops,rounds,journal,
       discovery:{
         guildSystem:['roster','rewardHistory'],
+        rosterSource,
+        rewardsSource,
         roundDiscovery:'riftGalaxyOps/active.roundId + completedArchiveIds + archive.sourceRoundId',
         currentRoundId:String(activeData?.roundId||''),
         completedArchiveIds:Array.isArray(activeData?.completedArchiveIds)?[...activeData.completedArchiveIds]:[]
@@ -327,12 +361,13 @@ async function scanSource(){
     const members=Object.keys(roster.members||{}).length,rewardRecords=Array.isArray(rewards.records)?rewards.records.length:0;
     $('sourceSummary').innerHTML=[metric('길드원',members),metric('보스 시간 문서',bossTimers.length),metric('보스 처치기록',bossHistory.length),metric('보상 기록',rewardRecords),metric('OPS 문서',ops.length),metric('참조 회차',rounds.length),metric('길드 일지/활동',journal.length)].join('');
     const msg=`사전검사 완료 · 길드원 ${members}명 · bossHistory ${bossHistory.length}건 · 참조 rounds ${rounds.length}건 · journal ${journal.length}건
-V3 보안규칙에 맞춰 guildSystem/rounds 컬렉션 전체 list는 사용하지 않고 실제 앱이 참조하는 문서를 개별 조회했습니다.`;
+길드원 원본: ${rosterSource} · 보상 원본: ${rewardsSource}
+V3 보안규칙에 맞춰 rounds 전체 list는 사용하지 않고 실제 앱이 참조하는 문서를 개별 조회했습니다.`;
     status($('scanStatus'),msg,'ok');log(msg.replace(/\n/g,' / '));$('backupBtn').disabled=false;await scanTarget();updateButtons();
   }catch(e){source=null;status($('scanStatus'),'사전검사 실패: '+errText(e),'err');log('사전검사 실패: '+errText(e));updateButtons()}
 }
 $('scanBtn').onclick=scanSource;
-$('backupBtn').onclick=()=>{if(!source)return;const payload={toolVersion:'V1.0.3',createdAt:new Date().toISOString(),note:'V3 원본 읽기 전용 백업',source:jsonSafe(source)};download(`dosaljang-v3-backup-${new Date().toISOString().replace(/[:.]/g,'-')}.json`,payload);$('backupConfirm').checked=true;log('V3 JSON 백업 다운로드 생성');updateButtons()};
+$('backupBtn').onclick=()=>{if(!source)return;const payload={toolVersion:'V1.0.4',createdAt:new Date().toISOString(),note:'V3 원본 읽기 전용 백업',source:jsonSafe(source)};download(`dosaljang-v3-backup-${new Date().toISOString().replace(/[:.]/g,'-')}.json`,payload);$('backupConfirm').checked=true;log('V3 JSON 백업 다운로드 생성');updateButtons()};
 
 async function scanTarget(){
   if(!targetGuild||!v4GuildReady||!v4Auth.currentUser)return;
@@ -362,8 +397,8 @@ async function migrate(){
     // Recheck source immediately before write to reduce race risk.
     await scanSource();if(!source)throw Error('최종 V3 재검사에 실패했습니다.');
     const items=[];
-    items.push({ref:doc(v4db,'guilds',gid,'data','roster'),data:source.roster});
-    items.push({ref:doc(v4db,'guilds',gid,'data','rewards'),data:source.rewards});
+    items.push({ref:doc(v4db,'guilds',gid,'data','roster'),data:operationalDoc(source.roster)});
+    items.push({ref:doc(v4db,'guilds',gid,'data','rewards'),data:operationalDoc(source.rewards)});
     for(const x of source.bossTimers)items.push({ref:doc(v4db,'guilds',gid,'bossTimers',x.id),data:x.data});
     for(const x of source.bossHistory)items.push({ref:doc(v4db,'guilds',gid,'bossHistory',x.id),data:x.data});
     for(const x of source.ops)items.push({ref:doc(v4db,'guilds',gid,'ops',x.id),data:x.data});
@@ -402,13 +437,13 @@ async function verify(){
   try{
     // Fresh source scan ensures verification is against the current V3 master.
     await scanSource();const tgt=await loadTargetCurrent(),problems=[];
-    if(canonical(source.roster)!==canonical(tgt.roster))problems.push('roster 내용 불일치');
-    if(canonical(source.rewards)!==canonical(tgt.rewards))problems.push('rewards 내용 불일치');
+    if(canonical(operationalDoc(source.roster))!==canonical(tgt.roster))problems.push('roster 내용 불일치');
+    if(canonical(operationalDoc(source.rewards))!==canonical(tgt.rewards))problems.push('rewards 내용 불일치');
     compareDocs('bossTimers',source.bossTimers,tgt.bossTimers,problems);compareDocs('bossHistory',source.bossHistory,tgt.bossHistory,problems);compareDocs('ops',source.ops,tgt.ops,problems);compareDocs('rounds',source.rounds,tgt.rounds,problems);
     const ta=mapDocs(tgt.audit);for(const x of source.journal){if(!ta.has(x.id))problems.push(`audit/${x.id} 없음`);else if(canonical(x.data)!==canonical(ta.get(x.id)))problems.push(`audit/${x.id} 내용 불일치`)}
     const journalIds=new Set((tgt.journal?.entries||[]).map(x=>String(x.id||'')));for(const x of source.journal)if(!journalIds.has(`v3-${x.id}`))problems.push(`data/journal v3-${x.id} 없음`);
     const memberCount=Object.keys(source.roster.members||{}).length;if(Number(tgt.guild?.memberCount||0)!==memberCount)problems.push(`guild.memberCount 불일치 (${tgt.guild?.memberCount} != ${memberCount})`);
-    lastVerify={toolVersion:'V1.0.3',verifiedAt:new Date().toISOString(),sourceProject:'cat-hero-boss',targetProject:'cat-hero-guild-platform',targetGuild:{id:targetGuild.id,server:targetGuild.server,name:targetGuild.name},counts:{members:memberCount,bossTimers:source.bossTimers.length,bossHistory:source.bossHistory.length,rewards:Array.isArray(source.rewards.records)?source.rewards.records.length:0,ops:source.ops.length,rounds:source.rounds.length,journal:source.journal.length},pass:problems.length===0,problems};
+    lastVerify={toolVersion:'V1.0.4',verifiedAt:new Date().toISOString(),sourceProject:'cat-hero-boss',targetProject:'cat-hero-guild-platform',targetGuild:{id:targetGuild.id,server:targetGuild.server,name:targetGuild.name},counts:{members:memberCount,bossTimers:source.bossTimers.length,bossHistory:source.bossHistory.length,rewards:Array.isArray(source.rewards.records)?source.rewards.records.length:0,ops:source.ops.length,rounds:source.rounds.length,journal:source.journal.length},pass:problems.length===0,problems};
     if(!problems.length){status($('verifyStatus'),'이관 검증 PASS · V3 원본과 V4 도살장 데이터가 일치합니다.','ok');log('검증 PASS');$('verifySummary').innerHTML=[metric('길드원',memberCount),metric('bossHistory',source.bossHistory.length),metric('rounds',source.rounds.length),metric('오류',0)].join('')}
     else{status($('verifyStatus'),`검증 FAIL · ${problems.length}개 차이\n`+problems.slice(0,12).join('\n'),'err');log(`검증 FAIL: ${problems.length}개`);$('verifySummary').innerHTML=[metric('길드원',memberCount),metric('bossHistory',source.bossHistory.length),metric('rounds',source.rounds.length),metric('차이',problems.length)].join('')}
     $('reportBtn').disabled=false;
@@ -421,7 +456,7 @@ $('verifyBtn').onclick=verify;$('reportBtn').onclick=()=>{if(lastVerify)download
   status($('v4PlatformSession'),'V4 중앙관리자 계정을 입력해 대상 길드를 확정해 주세요.','warn');
   status($('v4GuildSession'),'그 다음 V4 도살장 관리자 계정으로 실제 쓰기 권한을 확인해 주세요.','warn');
   status($('v3Session'),'V3 원본 관리자 계정으로 로그인해 주세요.','warn');
-  log('V1.0.3 준비 완료 · V4 2세션 + V3 관리자/런타임 2세션 분리 · V3 보안규칙 호환 조회');
+  log('V1.0.4 준비 완료 · V4 2세션 + V3 관리자/런타임 2세션 분리 · V3 보안규칙 호환 조회 + roster/reward 정적 fallback');
 })();
 </script>
 </body>
