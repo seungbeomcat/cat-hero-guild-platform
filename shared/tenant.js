@@ -35,5 +35,7 @@
     return false;
   }
   async function requestAdmin(){return ensureAdmin();}
-  global.CAT_HERO_V4_TENANT={ctx,gid,isAdmin,ensureAdmin,requestAdmin,waitLocalAuth,cacheKey:(name)=>`cat-hero-v4:${gid()}:${name}`};
+  async function logout(){try{if(parent&&typeof parent.CAT_HERO_V4_LOGOUT==='function')return await parent.CAT_HERO_V4_LOGOUT();}catch(e){alert('로그아웃 실패: '+(e.message||e));return false;}alert('로그아웃 화면을 찾을 수 없습니다.');return false;}
+  async function refreshRole(){try{if(parent&&typeof parent.CAT_HERO_V4_ROLE_REFRESH==='function')return await parent.CAT_HERO_V4_ROLE_REFRESH();}catch(_e){}return false;}
+  global.CAT_HERO_V4_TENANT={ctx,gid,isAdmin,ensureAdmin,requestAdmin,logout,refreshRole,waitLocalAuth,cacheKey:(name)=>`cat-hero-v4:${gid()}:${name}`};
 })(window);

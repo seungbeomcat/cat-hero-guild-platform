@@ -1,0 +1,317 @@
+{
+  "package": "Cat Hero Guild Platform",
+  "version": "V4.0.0-rc3",
+  "buildDate": "2026-10-15",
+  "status": "pre-github full-port release candidate; live Firebase/GitHub/Safari validation pending",
+  "firebaseProject": "cat-hero-guild-platform",
+  "sourceBaseline": {
+    "type": "V3.0 preserved single-guild baseline",
+    "zipBytes": 9496626,
+    "zipSha256": "074286e7ff107d044eedd5b75f91724f2fd0fe19c6b11e20b16ffba24428c172",
+    "sourceModified": false
+  },
+  "firestoreRulesSha256": "5142423df2c4aad78ea44c0015ba0167365225157cbf883987d438b98e3e5f6c",
+  "newGuildInitialData": {
+    "members": {},
+    "aliases": {},
+    "rewards": []
+  },
+  "guildIdLength": 16,
+  "staticValidation": {
+    "javascriptChecked": 39,
+    "javascriptSyntaxFailures": 0,
+    "missingLocalReferences": 0,
+    "legacyGuildMemberTokens": 0,
+    "oldFirebaseTokens": 0,
+    "fixed16MemberPatterns": 0,
+    "oldPinGatePatterns": 0,
+    "v3DomIdsMissing": {
+      "main": 0,
+      "boss": 0,
+      "ops": 0
+    },
+    "publishedRulesExactMatch": true
+  },
+  "files": [
+    {
+      "path": "ARCHITECTURE.md",
+      "bytes": 3998,
+      "sha256": "25cc04a3d7905948777e0c698ac36a3328646267d6f4794501df0fccbdb73a3c"
+    },
+    {
+      "path": "DATA_MODEL.md",
+      "bytes": 1696,
+      "sha256": "26c47c83cbea6df500f648521a6e1af6ff6348a3af7fb0b6d7f442f6f2241d75"
+    },
+    {
+      "path": "PRE_GITHUB_CHECKLIST.md",
+      "bytes": 1052,
+      "sha256": "11d8ac2e7ee285c153b8964476c7d7e423f0133ec9a6a7d25cea1435289d9d43"
+    },
+    {
+      "path": "README.md",
+      "bytes": 1356,
+      "sha256": "35f4ed883274d1b7d99da6e7ea2d8d4722b35b47fae20b85f20e91bec6199cdf"
+    },
+    {
+      "path": "SOURCE_BASELINE.md",
+      "bytes": 421,
+      "sha256": "3ea1644293f6ca5732d60ed2c4794888475e93f97e34ed80e658a8a392185f0a"
+    },
+    {
+      "path": "VALIDATION.md",
+      "bytes": 2480,
+      "sha256": "ca81a4bc8304f5585bd132b73079f5ab7917d7d71862d69eaff9efd669116408"
+    },
+    {
+      "path": "assets/bananyang-v337-display.webp",
+      "bytes": 15086,
+      "sha256": "55a776f8b96b58a6cc461486a760ea32b2fc1327e5f8fc2ec4ecdbda26352371"
+    },
+    {
+      "path": "assets/bananyang-v337.png",
+      "bytes": 357659,
+      "sha256": "a792818c3c3e2855747a1f9d43ee19fe281cac2453ddd9d8cf28016ab53031a5"
+    },
+    {
+      "path": "assets/boss-cat-display.webp",
+      "bytes": 37078,
+      "sha256": "89365b382b72afe86e50e92d707d2b49997abec455fb507d0fb727a812980486"
+    },
+    {
+      "path": "assets/boss-cat.png",
+      "bytes": 1577753,
+      "sha256": "3c31be842ad1e76daf05d71082319874da60c552c6091ae032719b52cbb9fd9f"
+    },
+    {
+      "path": "assets/boss-food-display.webp",
+      "bytes": 35298,
+      "sha256": "5525331c07606bf2e128b23f012a4de131c56d835a5b205ae82a5df3f2803dcf"
+    },
+    {
+      "path": "assets/boss-food.png",
+      "bytes": 1499471,
+      "sha256": "a1b177bb7f5ed8a07d699039b0686c1aee510a72fa6eee50b20f5eca8859be84"
+    },
+    {
+      "path": "assets/boss-pirate-display.webp",
+      "bytes": 45650,
+      "sha256": "9a649b4bf954fd9599e022f507118c2e94b390691ca3fbf7217441e610e1e945"
+    },
+    {
+      "path": "assets/boss-pirate.png",
+      "bytes": 1689490,
+      "sha256": "5c75534baa0d35f4e91e2cb7e87c8389a77b9187a9b7d756b986c5a23f623d1a"
+    },
+    {
+      "path": "assets/boss-wolf-display.webp",
+      "bytes": 38278,
+      "sha256": "93055749ed09b7a795a9ba784f936faa25a4b5c2d8947299da6814588ea25044"
+    },
+    {
+      "path": "assets/boss-wolf.png",
+      "bytes": 1584475,
+      "sha256": "a12a8bd97e2ecb706886af895118e87aba2d2e12bf93b8120c6004a19d9c852d"
+    },
+    {
+      "path": "assets/looney-v337-display.webp",
+      "bytes": 19428,
+      "sha256": "e7a761e63d39d4571bec62966472dbe89588d2da1250fe3611471e4e1d3da1e6"
+    },
+    {
+      "path": "assets/looney-v337.png",
+      "bytes": 401201,
+      "sha256": "921d06143771300f815c49014f755d9be4a81511877f0132c641feac0b8f70a6"
+    },
+    {
+      "path": "assets/louis-v337-display.webp",
+      "bytes": 22470,
+      "sha256": "64e3a8e390d9f678a68cda6a585057d9b706080d73a0fcb4b6dd5522b851f0c7"
+    },
+    {
+      "path": "assets/louis-v337.png",
+      "bytes": 427774,
+      "sha256": "81b67fccc5d6cf25c4f324de4699d408a77fb7115264e11929994d6b111261f2"
+    },
+    {
+      "path": "assets/luna-v337-display.webp",
+      "bytes": 15154,
+      "sha256": "4aed7101f4cb7741c14c487e3b86e7131cc543e00e323121995ba5cc07333e47"
+    },
+    {
+      "path": "assets/luna-v337.png",
+      "bytes": 366515,
+      "sha256": "1ba1d5307c2a031fff561b50f249edae243c0fcefc9036db943182c4595a4e42"
+    },
+    {
+      "path": "assets/menu-icons/admin.svg",
+      "bytes": 375,
+      "sha256": "c89d8c5ddfbaac17701150389d9fca47fc26d6dfa3cb2a46b7fff38160ed189e"
+    },
+    {
+      "path": "assets/menu-icons/journal.svg",
+      "bytes": 610,
+      "sha256": "1ef60871a44ef906a5d470064164e8e8ef7a6f42f43732df8cd62e1865a0639f"
+    },
+    {
+      "path": "assets/menu-icons/members.svg",
+      "bytes": 528,
+      "sha256": "7d31c66f11f5c3c538e1b5373da5b67e257582dc202ff11e516b8b6bfdf6f6ac"
+    },
+    {
+      "path": "assets/menu-icons/ops.svg",
+      "bytes": 737,
+      "sha256": "52a55ccc869f3c0dc87edc7450d5c610409e6e7bc9b5d8a2de0b666c69855a8e"
+    },
+    {
+      "path": "assets/menu-icons/rewards.svg",
+      "bytes": 461,
+      "sha256": "7e0f8f8f14bdf6d758eb96714ec81cbdfad0664e489c5c1c0adddf8587da5ede"
+    },
+    {
+      "path": "assets/ops-share-preview.jpg",
+      "bytes": 245118,
+      "sha256": "c6d959a51c5efb3851155a1e47c89fcf9cba12506f1cf649a5c86ac71fab10bb"
+    },
+    {
+      "path": "assets/reward-companion-ticket.webp",
+      "bytes": 3210,
+      "sha256": "255465fee69a4bab19224a54996fc20de8a92e4ca21b864272721c5da811a7ac"
+    },
+    {
+      "path": "assets/reward-pickup-companion-ticket.webp",
+      "bytes": 3642,
+      "sha256": "350b2039ee1e3f961499e6a96c672551a9e3bc6b44886313b0c5214a6dc304ad"
+    },
+    {
+      "path": "assets/reward-random-special-rune-ticket.webp",
+      "bytes": 3568,
+      "sha256": "6a19ea4b95cff6d7b8eba9f1345258c2288c0c0cd6b117a4d5d0d0692d081fc5"
+    },
+    {
+      "path": "assets/reward-rune-ticket.webp",
+      "bytes": 2964,
+      "sha256": "5ad2db748e8bb2dae91e3ed99c01c2296d813d758fece4cc454f252a53d94a2b"
+    },
+    {
+      "path": "assets/rewards/guild-brawl-coin.png",
+      "bytes": 85085,
+      "sha256": "4a3650ab2acbac050cc60bda2bf961d9854032993217a3fd2eb805bef101141e"
+    },
+    {
+      "path": "assets/rewards/guild-occupation-orb.png",
+      "bytes": 80259,
+      "sha256": "0acd6aee9b2c0b5c8327d71daa97bd85295aebcf529891294a0a8e946428778b"
+    },
+    {
+      "path": "assets/rewards/hero-equipment-recipe-fragment.png",
+      "bytes": 65566,
+      "sha256": "f5e6e32e56d285c3e1045c245b210e3305f420d6394b0ea6d4acc0133ba23461"
+    },
+    {
+      "path": "assets/rewards/legendary-companion-ticket.png",
+      "bytes": 24787,
+      "sha256": "3978581d4797841c595587d0c49784e8f055f7e917364da85505ddbf71e260c7"
+    },
+    {
+      "path": "assets/rewards/lucky-punch-gloves.png",
+      "bytes": 60074,
+      "sha256": "3cf77233762ac20519568708e2fac60cb13462f6fb0ec7659f5c945e09515db5"
+    },
+    {
+      "path": "assets/rewards/lucky-punch-hat.png",
+      "bytes": 60719,
+      "sha256": "a6b5ef7466e72bb30fd1c1e46e9936a955628020cd7e0139cb51e0b696df20c0"
+    },
+    {
+      "path": "assets/rewards/lucky-punch-scarf.png",
+      "bytes": 61842,
+      "sha256": "c0e7cc95792198ee32d8945f49125a79a8508aeadd92c74ace05d746aa0b06e8"
+    },
+    {
+      "path": "assets/rewards/lucky-punch-shoes.png",
+      "bytes": 59040,
+      "sha256": "58c13920c8a29f0a013c93c199649bb1963a2ef07877e6cd964da20ed73f4c8d"
+    },
+    {
+      "path": "assets/rewards/myth-companion-ticket.png",
+      "bytes": 28957,
+      "sha256": "8f84c47d21a1c9461c3e2bdfc704d68e016b98ff5aafb4d91159b1fe1505bafd"
+    },
+    {
+      "path": "assets/rewards/red-skull.png",
+      "bytes": 82496,
+      "sha256": "b731591586bc064c66aabd202c795ccc5522dd92e6dee08b2a8df27ac7b5ded0"
+    },
+    {
+      "path": "assets/rewards/skyblue-bottom.png",
+      "bytes": 57915,
+      "sha256": "b7269e084c071cbe161fc74e861013d1326422bf655331c028285e7bcce2a66e"
+    },
+    {
+      "path": "assets/rewards/skyblue-top.png",
+      "bytes": 66211,
+      "sha256": "8ac8bfd95de4d4cf614e70b28c6061286a90dd504ffcaaf63be715c14e5aeb87"
+    },
+    {
+      "path": "boss.html",
+      "bytes": 204806,
+      "sha256": "eef6176b853cacbf46d2f69d8d2d4e1c8abb5f77b2876704f5f6d891d27dfd85"
+    },
+    {
+      "path": "firebase-config.js",
+      "bytes": 564,
+      "sha256": "f6a6eb210e57ad03f70802ea2ebdf9891bc4f6754cc18e31e2304551ba4228a9"
+    },
+    {
+      "path": "firestore.multiguild.rules",
+      "bytes": 4986,
+      "sha256": "5142423df2c4aad78ea44c0015ba0167365225157cbf883987d438b98e3e5f6c"
+    },
+    {
+      "path": "index.html",
+      "bytes": 11401,
+      "sha256": "1e28c5720af5f743d425b42cc270186f97bad4460a4471bea8506a3c00e0d96d"
+    },
+    {
+      "path": "main.html",
+      "bytes": 589851,
+      "sha256": "47663c4eaa1a0809b6ab2e3d4585920d49c196d15cb69892ee67f627ba49ef8e"
+    },
+    {
+      "path": "ops.html",
+      "bytes": 273507,
+      "sha256": "0f0380485f94524d428827bb580c5d066bc4a9eca12236dbede0cb68eac9621e"
+    },
+    {
+      "path": "shared/admin-audit.js",
+      "bytes": 4024,
+      "sha256": "29f30c4e9470dc72ec9cb2588f6a45b99a9ca16e45ae6fb22be62b252e09399d"
+    },
+    {
+      "path": "shared/guild-core.js",
+      "bytes": 3868,
+      "sha256": "1bb996f17b916d3d2d72d90214af9ba8f9afb20aaa03faacb2b2d7be7aecf654"
+    },
+    {
+      "path": "shared/journal-bridge.js",
+      "bytes": 2081,
+      "sha256": "0454a8efb787efe60fb1269141c8bcb0de7e5c103eea9758043d7e102d295b32"
+    },
+    {
+      "path": "shared/reward-entry.js",
+      "bytes": 11843,
+      "sha256": "1760c857f88898113413f1b2ef06928d827441688f4af4af34c64c55f1ef1223"
+    },
+    {
+      "path": "shared/tenant.js",
+      "bytes": 2255,
+      "sha256": "a084242fa7663322d0d61455cfc33f87af054ad11c9be28aa06d2207ee56f3c1"
+    },
+    {
+      "path": "shared/web-sync.js",
+      "bytes": 14621,
+      "sha256": "17871f5db56cf31d8cc32f4bcd48ce0b8ecfdb6e77124476ab3d02301ec6bacd"
+    }
+  ]
+}

@@ -1,42 +1,18 @@
 {
-  "package": "Cat Hero Guild Platform",
-  "version": "V4.0.0-rc3",
+  "version": "V4.0.2",
   "buildDate": "2026-10-15",
-  "status": "pre-github full-port release candidate; live Firebase/GitHub/Safari validation pending",
-  "firebaseProject": "cat-hero-guild-platform",
-  "sourceBaseline": {
-    "type": "V3.0 preserved single-guild baseline",
-    "zipBytes": 9496626,
-    "zipSha256": "074286e7ff107d044eedd5b75f91724f2fd0fe19c6b11e20b16ffba24428c172",
-    "sourceModified": false
-  },
-  "firestoreRulesSha256": "5142423df2c4aad78ea44c0015ba0167365225157cbf883987d438b98e3e5f6c",
-  "newGuildInitialData": {
-    "members": {},
-    "aliases": {},
-    "rewards": []
-  },
-  "guildIdLength": 16,
-  "staticValidation": {
-    "javascriptChecked": 39,
-    "javascriptSyntaxFailures": 0,
-    "missingLocalReferences": 0,
-    "legacyGuildMemberTokens": 0,
-    "oldFirebaseTokens": 0,
-    "fixed16MemberPatterns": 0,
-    "oldPinGatePatterns": 0,
-    "v3DomIdsMissing": {
-      "main": 0,
-      "boss": 0,
-      "ops": 0
-    },
-    "publishedRulesExactMatch": true
-  },
+  "source": "V4.0.1 complete",
+  "liveValidation": "pending",
   "files": [
     {
       "path": "ARCHITECTURE.md",
       "bytes": 3998,
       "sha256": "25cc04a3d7905948777e0c698ac36a3328646267d6f4794501df0fccbdb73a3c"
+    },
+    {
+      "path": "BUILD_MANIFEST_V4.0.1_BASELINE.json",
+      "bytes": 10122,
+      "sha256": "95d3a73aa5f654413cec9370fb13c89a10e5615b65916e2115a919e2489535ed"
     },
     {
       "path": "DATA_MODEL.md",
@@ -52,6 +28,16 @@
       "path": "README.md",
       "bytes": 1356,
       "sha256": "35f4ed883274d1b7d99da6e7ea2d8d4722b35b47fae20b85f20e91bec6199cdf"
+    },
+    {
+      "path": "RELEASE_NOTES_V4.0.1.md",
+      "bytes": 910,
+      "sha256": "b8e67b00069299f6af1ece34fd33e5bf74ad1bd7ecd6037c4cb4ff205141a475"
+    },
+    {
+      "path": "RELEASE_NOTES_V4.0.2.md",
+      "bytes": 1114,
+      "sha256": "73e1e44e279d1522d49d4f8b7e60620c71c101ca8628663238a0f07f13a6509a"
     },
     {
       "path": "SOURCE_BASELINE.md",
@@ -255,13 +241,13 @@
     },
     {
       "path": "boss.html",
-      "bytes": 204806,
-      "sha256": "eef6176b853cacbf46d2f69d8d2d4e1c8abb5f77b2876704f5f6d891d27dfd85"
+      "bytes": 205119,
+      "sha256": "19ae3ad44c879f9f887b4a4a371b631f9002644936dc3a461155eafa36b00724"
     },
     {
       "path": "firebase-config.js",
-      "bytes": 564,
-      "sha256": "f6a6eb210e57ad03f70802ea2ebdf9891bc4f6754cc18e31e2304551ba4228a9"
+      "bytes": 560,
+      "sha256": "a1384b8565d83c097d33e1f94c50218fd7938272b5bec79fddd866b92c3f7928"
     },
     {
       "path": "firestore.multiguild.rules",
@@ -269,29 +255,39 @@
       "sha256": "5142423df2c4aad78ea44c0015ba0167365225157cbf883987d438b98e3e5f6c"
     },
     {
+      "path": "index-module.mjs",
+      "bytes": 11737,
+      "sha256": "340bb1d9733547f027ac6d35ccbf4502e8add0637b9456934206dfadcd27f037"
+    },
+    {
       "path": "index.html",
-      "bytes": 11401,
-      "sha256": "1e28c5720af5f743d425b42cc270186f97bad4460a4471bea8506a3c00e0d96d"
+      "bytes": 12475,
+      "sha256": "3cd5cd694a6a6d496e66fc049d84247400481149de0a52901c4cbe8fafd13ff6"
     },
     {
       "path": "main.html",
-      "bytes": 589851,
-      "sha256": "47663c4eaa1a0809b6ab2e3d4585920d49c196d15cb69892ee67f627ba49ef8e"
+      "bytes": 591388,
+      "sha256": "3a67d025627fc38a04f5ed8b39151cda34ca743dedffd8cf5c3639b6f5f17afb"
     },
     {
       "path": "ops.html",
-      "bytes": 273507,
-      "sha256": "0f0380485f94524d428827bb580c5d066bc4a9eca12236dbede0cb68eac9621e"
+      "bytes": 274415,
+      "sha256": "f2ffc1aaa0817271d2307a3dd0b8e684ac53881730c40fd3bb7b1b4d099a6a89"
     },
     {
       "path": "shared/admin-audit.js",
-      "bytes": 4024,
-      "sha256": "29f30c4e9470dc72ec9cb2588f6a45b99a9ca16e45ae6fb22be62b252e09399d"
+      "bytes": 4662,
+      "sha256": "92d937fe07dc9b7d92c68957aba425ffba3d495adb03b722baa066b69e84c773"
+    },
+    {
+      "path": "shared/admin-editor.js",
+      "bytes": 9388,
+      "sha256": "ce6fdd5b0ca8ccb5b26d707917c78f3bd2541166560abd45861c7ed0eb2ff171"
     },
     {
       "path": "shared/guild-core.js",
-      "bytes": 3868,
-      "sha256": "1bb996f17b916d3d2d72d90214af9ba8f9afb20aaa03faacb2b2d7be7aecf654"
+      "bytes": 3864,
+      "sha256": "0458dd2bd3f4b64031004b9dd4384653aa1025330fb2469f22288376373b424a"
     },
     {
       "path": "shared/journal-bridge.js",
@@ -305,8 +301,8 @@
     },
     {
       "path": "shared/tenant.js",
-      "bytes": 2255,
-      "sha256": "a084242fa7663322d0d61455cfc33f87af054ad11c9be28aa06d2207ee56f3c1"
+      "bytes": 2716,
+      "sha256": "3a8b535aeba94399df46f27bf0459befdddafa92839a123e8d7c869aa85b1fd9"
     },
     {
       "path": "shared/web-sync.js",
