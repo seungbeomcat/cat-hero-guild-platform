@@ -1,8 +1,8 @@
-# Cat Hero Guild Platform V4.0.8 Architecture
+# Cat Hero Guild Platform V4.1.0 Architecture
 
 ## 분리 원칙
 - V3.0 계열은 도살장 전용 기준본이며 수정하지 않습니다.
-- V4.0 계열은 별도 멀티길드 플랫폼입니다.
+- V4.x 계열은 별도 멀티길드 플랫폼입니다.
 - 하나의 앱 코드를 여러 길드가 사용하되 Firestore 경로는 `guildId`로 분리합니다.
 
 ## 화면 구조

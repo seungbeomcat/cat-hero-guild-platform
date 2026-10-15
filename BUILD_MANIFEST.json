@@ -1,17 +1,18 @@
 {
-  "version": "V4.0.8",
+  "version": "V4.1.0",
   "buildDate": "2026-10-15",
-  "source": "V4.0.7 full",
+  "source": "V4.0.9 full",
   "liveValidation": "pending",
   "changes": [
-    "관리자용 길드원 추가·수정·삭제 입력 UI 전면 재디자인",
-    "입력 그룹화·숫자 오른쪽 정렬·퍼센트 단위 고정·하단 액션바·반응형 보정"
+    "상단 서버/길드명/인원수 밝기 개선",
+    "좌/우 상단 텍스트 좌→우 shimmer 강조 효과",
+    "reduced-motion 접근성 fallback 추가"
   ],
   "files": [
     {
       "path": "ARCHITECTURE.md",
       "bytes": 3299,
-      "sha256": "ac2640928b01b6cf09836149177a7cae06fe34f5b883d0c9ec536996c396e5f9"
+      "sha256": "51d7436919b8d79305336a305ebc753ad31bad3d8840efede3b1e8698688213c"
     },
     {
       "path": "BUILD_MANIFEST_V4.0.1_BASELINE.json",
@@ -21,17 +22,17 @@
     {
       "path": "DATA_MODEL.md",
       "bytes": 1402,
-      "sha256": "8a04fdd6a57fe5986e42757958e885edd81e541a698fdedb98aa2c61cd31b8ee"
+      "sha256": "fc1f702eac71baf5fa99d871666fd694b80ec366b183ee6139b9cecf91002e73"
     },
     {
       "path": "PRE_GITHUB_CHECKLIST.md",
-      "bytes": 1200,
-      "sha256": "47a1c7d653ec5dbc1e85af51703ccb043095e4828cc5f5116bdf4301db843191"
+      "bytes": 679,
+      "sha256": "4a6b73b26ae864df7aedac85d275d6c293686f9b5767e9304e710df56d1f74a9"
     },
     {
       "path": "README.md",
-      "bytes": 1484,
-      "sha256": "7626e679a38aa1433d5651292bb8bdac92bfd1f386cba2f8c930d3b9c022f9aa"
+      "bytes": 1012,
+      "sha256": "40a618428982635751a0a147624f161b5fe697deac29a488d37b5a2eeef086c1"
     },
     {
       "path": "RELEASE_NOTES_V4.0.1.md",
@@ -71,17 +72,27 @@
     {
       "path": "RELEASE_NOTES_V4.0.8.md",
       "bytes": 1726,
-      "sha256": "0be96c6dbc4b4119b9a0b9381f5308ac8b9ccfd7be25a914146c67b19a62e2b9"
+      "sha256": "ae6e45ee7a7a2daeba93c34ef1198f2cf1626b87491b4552146351daf54fd328"
+    },
+    {
+      "path": "RELEASE_NOTES_V4.0.9.md",
+      "bytes": 806,
+      "sha256": "eae764bbdd8f4fa47e92584c10b6bc032eb1443a00ce10ca7e3e19d7439cb574"
+    },
+    {
+      "path": "RELEASE_NOTES_V4.1.0.md",
+      "bytes": 804,
+      "sha256": "84cc98711b7ff2e7ee6adcd31ced2548dcd5e34fdc1be518111f2e63960105f2"
     },
     {
       "path": "SOURCE_BASELINE.md",
-      "bytes": 441,
-      "sha256": "8ded4bdb02b80094ad5719af953e4c1e4486007217af428954c678c7d829d908"
+      "bytes": 477,
+      "sha256": "ceff3f639e3a3a960653447702c6e55ebb936c4adc732d5c7b4d5b4862254cc9"
     },
     {
       "path": "VALIDATION.md",
-      "bytes": 2708,
-      "sha256": "28e734d53cc080e8c854e9aa9a0ba5190e4adb61f65f863b2e5327ad71ae9d65"
+      "bytes": 1480,
+      "sha256": "c27c5a693588f91e7ae066c71c6271ead9711259491791b08e3a0b31470344a2"
     },
     {
       "path": "assets/bananyang-v337-display.webp",
@@ -275,13 +286,13 @@
     },
     {
       "path": "boss.html",
-      "bytes": 206042,
-      "sha256": "fe61603e0744479a7c2f38048fc1231f18cdd9420755574cbe9d58e5405a38cf"
+      "bytes": 206046,
+      "sha256": "790135addb078930688fb9dda42e110124d3036fdbb7950f5ef1fa016f3e0b83"
     },
     {
       "path": "firebase-config.js",
       "bytes": 560,
-      "sha256": "f67d38206a1731515c0145c06968e9ef8c0610bbfe9239ccedb74d80fdd2f93e"
+      "sha256": "fd55f46d29c75c0935d6074dba4098a6c15cc078929832d618948954d4f4d003"
     },
     {
       "path": "firestore.multiguild.rules",
@@ -291,22 +302,22 @@
     {
       "path": "index-module.mjs",
       "bytes": 24148,
-      "sha256": "932acfc8fc30f465756198871a0aac6f5533a0e24ba8e4a146215dabbaf803a0"
+      "sha256": "fccd92cd35aed7f45ae443710666294f525b79abee130c008c60ea431818f7db"
     },
     {
       "path": "index.html",
       "bytes": 2017,
-      "sha256": "a3ffd5af3af0c61ca3645e2421da5e2e5bf08ae6efe2030f091bed6f8991964b"
+      "sha256": "1d87845a2ea40a02236be7f532a1e3242215c831e047da56b5fcbe85ae27b910"
     },
     {
       "path": "main.html",
-      "bytes": 591833,
-      "sha256": "aef19453c311cbd763bb4ffeac1e695d3da8b1a1c3d403e424d435a8c04b1cca"
+      "bytes": 593439,
+      "sha256": "781690fd76da52712ae5d1f6826c896aa544811403241c7c187e6045c146ddcf"
     },
     {
       "path": "ops.html",
-      "bytes": 275995,
-      "sha256": "1d2cc6a3c7022d6b5219d6a47fd559aec6f345276e5f59bae30284ff1f6c6b12"
+      "bytes": 275999,
+      "sha256": "bb244223f67fa081dab23c3f14ae746cd69a2a998a50b6902c038dc12f5f3bb5"
     },
     {
       "path": "shared/admin-audit.js",
@@ -315,8 +326,8 @@
     },
     {
       "path": "shared/admin-editor.js",
-      "bytes": 17482,
-      "sha256": "cbbfb29eab917b5f3dc870e7b8996ddd504a2155b5bd8df57b1ecd5c791e5914"
+      "bytes": 17878,
+      "sha256": "fe48ed5dc1cc5227e3cc093cd149b740a71c61985400a9fcb1eb5ac1de4ee346"
     },
     {
       "path": "shared/guild-core.js",

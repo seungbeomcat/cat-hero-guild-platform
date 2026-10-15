@@ -137,7 +137,9 @@ async function rosterEditor(){
       const aliases={...(data.aliases||{})};
       if(old&&old!==name)aliases[old]=name;
       const batch=writeBatch(db);
-      batch.set(doc(db,'guilds',gid,'data','roster'),{...data,members:updated,aliases,updatedAt:serverTimestamp()},{merge:true});
+      // Replace the entire members/aliases maps. Using set(...,{merge:true}) here would
+      // preserve nested keys that disappeared from the new map, which breaks rename/delete.
+      batch.update(doc(db,'guilds',gid,'data','roster'),{members:updated,aliases,updatedAt:serverTimestamp()});
       batch.update(doc(db,'guilds',gid),{memberCount:Object.keys(updated).length,updatedAt:serverTimestamp()});
       batch.set(doc(collection(db,'guilds',gid,'audit')),{kind:!old?'길드원 추가':old!==name?'닉네임 변경':'길드원 격추 변경',name,text:!old?'길드원 등록':old!==name?`${old} → ${name}`:`${name} 기본격추 ${entry.base}% · 최소점수 ${entry.minScore}`,uid:auth.currentUser?.uid||'',at:serverTimestamp()});
       try{
@@ -152,8 +154,13 @@ async function rosterEditor(){
       const old=picker.value;
       if(!old||!confirm(`${old} 길드원을 삭제하시겠습니까?`))return;
       const updated={...members};delete updated[old];
+      const aliases={...(data.aliases||{})};
+      for(const a of Object.keys(aliases)){
+        if(a===old||aliases[a]===old)delete aliases[a];
+      }
       const batch=writeBatch(db);
-      batch.set(doc(db,'guilds',gid,'data','roster'),{...data,members:updated,updatedAt:serverTimestamp()},{merge:true});
+      // Replace the full maps so the removed nickname cannot survive a Firestore merge.
+      batch.update(doc(db,'guilds',gid,'data','roster'),{members:updated,aliases,updatedAt:serverTimestamp()});
       batch.update(doc(db,'guilds',gid),{memberCount:Object.keys(updated).length,updatedAt:serverTimestamp()});
       batch.set(doc(collection(db,'guilds',gid,'audit')),{kind:'길드원 삭제',name:old,text:'길드원 삭제',uid:auth.currentUser?.uid||'',at:serverTimestamp()});
       try{
