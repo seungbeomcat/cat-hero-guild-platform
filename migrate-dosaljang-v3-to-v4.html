@@ -17,12 +17,12 @@
   <header class="hero">
     <h1>도살장 V3 → V4 데이터 이관</h1>
     <p>V3 운영 DB를 읽어 백업한 뒤, V4의 <b>879 · 도살장</b> 길드로 복사하고 다시 대조합니다. 관리자·길드 전용주소·초대코드는 건드리지 않습니다.</p>
-    <div class="badge"><span class="dot"></span> 일회성 마이그레이션 도구 · V1.0.0</div>
+    <div class="badge"><span class="dot"></span> 일회성 마이그레이션 도구 · V1.0.1</div>
   </header>
 
   <section class="card">
     <h2>1. 연결 및 관리자 확인</h2>
-    <div class="notice">이 페이지는 <b>V4 GitHub 저장소 루트에 업로드한 뒤</b> 실행하는 것을 권장합니다. V4 로그인은 기존 브라우저 세션을 우선 복원합니다. V3는 과거 도살장 Firebase 관리자 계정으로 별도 로그인합니다.</div>
+    <div class="notice">이 페이지는 <b>V4 GitHub 저장소 루트에 업로드한 뒤</b> 실행하는 것을 권장합니다. V4 로그인은 메인 계산기의 로그인 상태와 분리된 <b>이관 전용 임시 세션</b>을 사용합니다. 입력한 중앙관리자 계정으로 직접 확인하며, 메인 계산기의 관리자 로그인 상태는 바꾸지 않습니다. V3도 과거 도살장 Firebase 관리자 계정으로 별도 로그인합니다.</div>
     <h3>V4 대상</h3>
     <div id="v4Session" class="status">V4 세션 확인 전</div>
     <div class="grid2" style="margin-top:10px">
@@ -85,7 +85,7 @@
     <h2>작업 로그</h2>
     <div id="log" class="log">도구 준비 완료\n</div>
   </section>
-  <div class="footer">Cat Hero Guild Platform · 도살장 전용 V3→V4 Migration Tool V1.0.0 · 2026.10.15</div>
+  <div class="footer">Cat Hero Guild Platform · 도살장 전용 V3→V4 Migration Tool V1.0.1 · 2026.10.15</div>
 </div>
 
 <script type="module">
@@ -106,10 +106,11 @@ function errText(e){return String(e?.code||e?.message||e)}
 function metric(label,value){return `<div class="metric"><b>${value}</b><span>${label}</span></div>`}
 function download(name,obj){const blob=new Blob([JSON.stringify(obj,null,2)],{type:'application/json;charset=utf-8'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},1000)}
 
-const existingDefault=getApps().find(a=>a.name==='[DEFAULT]');
-const v4App=existingDefault||initializeApp(V4_CONFIG);
+// 이관 도구의 V4 인증은 메인 사이트의 영속 로그인과 완전히 분리합니다.
+// 브라우저에 남아 있는 다른 길드관리자 세션을 잘못 재사용하지 않도록 named app + memory persistence를 사용합니다.
+const v4App=getApps().find(a=>a.name==='dosaljangMigrationTarget')||initializeApp(V4_CONFIG,'dosaljangMigrationTarget');
 let v4Auth;
-try{v4Auth=initializeAuth(v4App,{persistence:[indexedDBLocalPersistence,browserLocalPersistence,browserSessionPersistence]})}catch(_e){v4Auth=getAuth(v4App)}
+try{v4Auth=initializeAuth(v4App,{persistence:inMemoryPersistence})}catch(_e){v4Auth=getAuth(v4App)}
 const v4db=getFirestore(v4App);
 const v3App=getApps().find(a=>a.name==='dosaljangMigrationSource')||initializeApp(V3_CONFIG,'dosaljangMigrationSource');
 let v3Auth;
@@ -147,13 +148,22 @@ async function findTargetGuild(){
 }
 
 async function ensureV4(){
-  status($('v4Session'),'V4 인증 확인 중…');
+  status($('v4Session'),'V4 중앙관리자 로그인 확인 중…');
   try{
-    await waitAuth(v4Auth);
-    let u=v4Auth.currentUser;
-    if(!u){const email=$('v4Email').value.trim(),pw=$('v4Password').value;if(!email||!pw)throw Error('기존 V4 로그인 세션이 없습니다. 이메일과 비밀번호를 입력해 주세요.');u=(await signInWithEmailAndPassword(v4Auth,email,pw)).user}
+    const email=$('v4Email').value.trim(),pw=$('v4Password').value;
+    let u=null;
+    // 이메일/비밀번호가 입력되어 있으면 반드시 그 계정으로 로그인합니다.
+    // 다른 V4 페이지에서 복원된 사용자 세션은 이 이관 도구에서 재사용하지 않습니다.
+    if(email||pw){
+      if(!email||!pw)throw Error('V4 중앙관리자 이메일과 비밀번호를 모두 입력해 주세요.');
+      u=(await signInWithEmailAndPassword(v4Auth,email,pw)).user;
+    }else{
+      await waitAuth(v4Auth);
+      u=v4Auth.currentUser;
+      if(!u)throw Error('V4 중앙관리자 이메일과 비밀번호를 입력해 주세요.');
+    }
     if(u.uid!==PLATFORM_ADMIN_UID)throw Error(`현재 UID(${u.uid})는 플랫폼 중앙관리자 UID가 아닙니다.`);
-    v4Ready=true;status($('v4Session'),`V4 중앙관리자 로그인 확인 · ${u.email||u.uid}`,'ok');log(`V4 인증 성공: ${u.uid}`);await findTargetGuild();
+    v4Ready=true;status($('v4Session'),`V4 중앙관리자 로그인 확인 · ${u.email||u.uid} · UID ${u.uid}`,'ok');log(`V4 인증 성공: ${u.uid}`);await findTargetGuild();
   }catch(e){v4Ready=false;targetGuild=null;status($('v4Session'),'V4 확인 실패: '+errText(e),'err');log('V4 확인 실패: '+errText(e));updateButtons()}
 }
 
