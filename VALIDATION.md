@@ -1,50 +1,44 @@
-# V4.1.1 검증 상태
+# V4.1.2 검증 상태
 
 Build date: 2026-10-15
+Source: V4.1.1 full package
 
-## PASS — JavaScript / 파일 구조
-- `index-module.mjs` Node 구문 검사 통과.
-- `index.html`, `main.html`, `boss.html`, `ops.html`의 inline script 34개 구문 검사 통과.
-- 명시적 로컬 `src`/`href` 48건 확인, 누락 0건. 템플릿 문자열 동적 참조 14건은 별도 제외.
-- `shared/*` 및 전체 `assets/*`는 V4.1.0과 SHA-256 동일 확인.
-- 메인/보스/OPS/진입 페이지 및 `firebase-config.js` V4.1.1 표기와 `v=411` 캐시 키 확인.
+## PASS — 구문 및 파일 구조
+- `firebase-config.js`, `index-module.mjs`, `shared/*.js` Node 구문 검사 통과.
+- `index.html`, `main.html`, `boss.html`, `ops.html` inline script 34개 Node 구문 검사 통과.
+- 주요 HTML 4종의 명시적 로컬 `src`/`href` 45건 검사, 누락 0건.
+- `firestore.multiguild.rules`는 V4.1.1과 byte-for-byte 동일.
+- `shared/guild-core.js`는 V4.1.1과 byte-for-byte 동일하여 이관된 길드 데이터/계산 기준을 변경하지 않음.
 
-## PASS — 중앙관리자 버튼 UI
-- 길드 카드 액션 영역을 2열 grid로 변경.
-- `관리자 설정 링크`, `코드 발급·복사`, `활성화/비활성화`, `완전 삭제`에 `white-space: nowrap` 적용.
-- Chromium 렌더링으로 320 / 360 / 375 / 390 / 430 / 560px 폭 검증.
-- 전 폭에서 버튼 텍스트 줄바꿈·잘림·페이지 가로 overflow 0건 확인.
+- 진입 프레임/공유 모듈 캐시 키를 `v=412`로 갱신.
 
-## PASS — 길드 완전 삭제 로직
-- 삭제 대상 현재 V4 경로: `data`, `bossTimers`, `bossHistory`, `ops`, `rounds`, `admins`, `audit`.
-- `guildInvites`는 `guildId` 기준으로 함께 삭제.
-- 현재 `guildAccess` 해시 매핑도 함께 삭제.
-- 500-write 제한 여유를 위해 400건 단위 batch 삭제.
-- 실제 삭제 전에 모든 대상 경로 조회 권한을 사전확인하도록 구성. Rules 미게시 등으로 권한이 부족하면 삭제 시작 전에 중단.
-- 길드명 직접 입력 + 최종 확인의 2단계 오삭제 방지 확인.
-- 길드 기본 문서는 모든 하위/연결 데이터 삭제 이후 마지막에 삭제.
-- 삭제 후 길드 기본 문서, 7개 하위 컬렉션, 초대코드, 전용주소 매핑 잔존 여부 재검증.
-- 완료 시 `platformAudit`에 길드 ID/서버/길드명/삭제 건수/실행 중앙관리자를 기록.
-- Mock Firestore 시뮬레이션에서 사전조회 → 하위 batch 삭제 → access/invite 정리 → 루트 마지막 삭제 → 잔여검증 순서 PASS.
-- `permission-denied` 사전확인 실패 시 commit/delete 0건으로 중단되는 fail-safe 시뮬레이션 PASS.
+## PASS — 요청 UI 반영
+- 메인 상단 좌·우 텍스트 shimmer를 `4.15s linear` 연속 좌→우 이동으로 변경하고 하이라이트 대비를 강화.
+- `prefers-reduced-motion`에서는 정적인 밝은 텍스트로 자동 대체.
+- 관리자 카드의 `로그인 중` 보조 텍스트 제거. 초록색 카드/아이콘 상태표시는 유지.
+- `균열·은하` 카드에 5.4초 주기의 테두리 순환 하이라이트 적용. reduced-motion에서는 정적 테두리로 대체.
+- 길드원 추가·수정·삭제 폼의 외곽/섹션/필드 테두리와 라운드, 높이, 패딩, 간격을 축소하여 슬림화.
+- 길드원 편집 팝업, 관리자 관리, 보상 추가, OPS 모달 및 메인 주요 팝업의 X 닫기 컨트롤을 확대·통일.
+- OPS 회차 시작 설정의 콘텐츠 선택기 높이를 34px로 축소하고 폰트/내부 여백을 줄임.
+- `균열의 격전지` 명칭 유지, `은하의 격전지`는 `은하 격전지`로 변경. 프로젝트 내 구 표기 잔존 0건.
 
-## PASS — Firestore Rules 구조
-- 중앙관리자의 완전 삭제에 필요한 하위 컬렉션 조회·삭제 권한 확인.
-- `admins`/`audit`의 중앙관리자 삭제 권한 확인.
-- `guildInvites` 목록 조회는 중앙관리자에게만 허용.
-- `guildAccess` 삭제는 기존 길드관리자 또는 중앙관리자만 허용.
-- `platformAudit`은 중앙관리자만 조회·생성 가능하며 수정·삭제 불가.
-- Rules 중괄호/괄호 구조 균형 검사 통과.
+## PASS — 소형/대형 폭 정적 반응형 검사
+회차 시작 설정 3열은 고정 최소폭을 제거하고 비율형 `minmax(0, …)`로 구성했습니다.
+- 320px: 약 96 / 108 / 66px
+- 360px: 약 110 / 124 / 76px
+- 375px: 약 112 / 124 / 85px
+- 390px: 약 117 / 130 / 89px
+- 430px: 약 131 / 145 / 100px
+- 560px: 약 168 / 186 / 128px
+
+320~370px에서는 선택기/날짜/시간 폰트와 패딩을 한 단계 더 줄이는 전용 media rule을 적용했습니다.
 
 ## PASS — 기존 기능 보존
-- V4.0.9 길드원 삭제/닉네임 변경 시 `members`/`aliases` 전체 map 갱신 로직 유지.
-- V4.0.7 OPS 개인 최대 잔여시간 `22 * 60` 유지.
-- 결과표 담당체력 한 줄 고정 규칙 유지.
-- V4.1.0 상단 `v410HeaderShimmer` 효과 및 reduced-motion 대응 유지.
+- V4.1.1 중앙관리자 길드 완전 삭제 기능 및 Firestore Rules 유지.
+- V4.0.9 길드원 삭제/닉네임 변경 map 갱신 로직 유지.
+- OPS 개인 최대 잔여시간 22분 설정 유지.
+- 보스/보상/OPS/rounds/관리자 인증/길드 전용주소 데이터 구조 변경 없음.
 
-## PASS — 패키지
-- `BUILD_MANIFEST.json`을 V4.1.1 기준으로 재생성하고 전체 파일 bytes/SHA-256 재검증.
-- ZIP CRC 무결성 검사 통과.
-
-## 배포 후 확인 필요
-실제 Firebase 권한 검증은 사용 중인 프로젝트에 V4.1.1 `firestore.multiguild.rules`를 게시한 뒤 중앙관리자 화면에서 테스트 길드 1개를 완전 삭제하여 최종 확인합니다. 실제 운영용 `879 · 도살장`은 삭제 테스트 대상으로 사용하지 않습니다.
+## 패키지 검증
+- `BUILD_MANIFEST.json`을 V4.1.2 기준으로 전체 파일 bytes/SHA-256 재생성.
+- ZIP 생성 후 CRC 무결성 검사 및 재압축 파일 목록 대조 수행.

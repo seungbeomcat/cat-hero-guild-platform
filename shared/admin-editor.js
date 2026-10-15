@@ -202,57 +202,57 @@ const style=document.createElement('style');
 style.textContent=`
 #v4AdminEditorOverlay{position:fixed;inset:0;z-index:2147483646;background:rgba(8,2,18,.82);display:grid;place-items:center;padding:max(10px,env(safe-area-inset-top)) 10px max(10px,env(safe-area-inset-bottom));box-sizing:border-box;overscroll-behavior:contain}
 #v4AdminEditorOverlay *{box-sizing:border-box}
-#v4AdminEditorOverlay .v4admin-panel{width:min(540px,100%);max-height:88vh;max-height:min(91dvh,820px);display:grid;grid-template-rows:auto minmax(0,1fr);overflow:hidden;background:#fff;border:3px solid #8742e7;border-radius:26px;color:#34204e;font-family:inherit;box-shadow:0 24px 70px rgba(0,0,0,.42)}
-#v4AdminEditorOverlay .v4admin-header{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:18px 18px 14px;border-bottom:1px solid #eee6f8;background:#fff;z-index:2}
+#v4AdminEditorOverlay .v4admin-panel{width:min(520px,100%);max-height:88vh;max-height:min(91dvh,820px);display:grid;grid-template-rows:auto minmax(0,1fr);overflow:hidden;background:#fff;border:3px solid #8742e7;border-radius:26px;color:#34204e;font-family:inherit;box-shadow:0 24px 70px rgba(0,0,0,.42)}
+#v4AdminEditorOverlay .v4admin-header{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:16px 16px 12px;border-bottom:1px solid #eee6f8;background:#fff;z-index:2}
 #v4AdminEditorOverlay .v4admin-header b{min-width:0;font-size:clamp(20px,5.2vw,25px);font-weight:950;letter-spacing:-.035em;color:#35165d}
-#v4AdminEditorOverlay .v4admin-header button{flex:0 0 auto;display:grid;place-items:center;width:46px;height:46px;padding:0;border:1.5px solid #ddcff0;border-radius:15px;background:#faf7ff;color:#6531a9;font:900 28px/1 inherit;box-shadow:none}
+#v4AdminEditorOverlay .v4admin-header button{flex:0 0 auto;display:grid;place-items:center;width:50px;height:50px;padding:0;border:1.5px solid #d2baef;border-radius:15px;background:#f6efff;color:#5f279f;font:950 30px/1 inherit;box-shadow:0 3px 10px rgba(92,45,145,.07)}
 #v4AdminEditorOverlay .v4admin-header button:active{transform:scale(.97);background:#f2eaff}
-#v4AdminEditorOverlay .v4admin-content{min-height:0;overflow:auto;padding:15px 16px 14px;scrollbar-gutter:stable;overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
+#v4AdminEditorOverlay .v4admin-content{min-height:0;overflow:auto;padding:12px 14px 12px;scrollbar-gutter:stable;overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
 #v4AdminEditorOverlay .v4admin-loading,#v4AdminEditorOverlay .v4admin-error{padding:28px 12px;text-align:center;color:#776789;font-weight:800;line-height:1.5}
-#v4AdminEditorOverlay .v4admin-identity-card{padding:14px;border:1.5px solid #e1d5f1;border-radius:20px;background:linear-gradient(180deg,#fbf9ff 0%,#f7f2fd 100%)}
-#v4AdminEditorOverlay .v4admin-control-label{display:block;margin:0 0 7px;font-size:13px;font-weight:900;color:#5d337f;letter-spacing:-.02em}
-#v4AdminEditorOverlay .v4admin-name-label{margin-top:13px}
+#v4AdminEditorOverlay .v4admin-identity-card{padding:11px;border:1px solid #e1d5f1;border-radius:16px;background:linear-gradient(180deg,#fbf9ff 0%,#f7f2fd 100%)}
+#v4AdminEditorOverlay .v4admin-control-label{display:block;margin:0 0 5px;font-size:12.5px;font-weight:900;color:#5d337f;letter-spacing:-.02em}
+#v4AdminEditorOverlay .v4admin-name-label{margin-top:10px}
 #v4AdminEditorOverlay .v4admin-select-wrap{position:relative}
-#v4AdminEditorOverlay .v4admin-select-wrap:after{content:'⌄';position:absolute;right:15px;top:50%;transform:translateY(-56%);pointer-events:none;color:#5b2b96;font-size:20px;font-weight:950}
-#v4AdminEditorOverlay select,#v4AdminEditorOverlay .v4admin-name-input,#v4AdminEditorOverlay .v4admin-guild-row input{display:block;width:100%;min-width:0;height:48px;margin:0;padding:0 42px 0 14px;border:1.5px solid #d9c9eb;border-radius:15px;background:#fff;color:#312046;font:800 16px/1 inherit;outline:none;box-shadow:0 2px 8px rgba(74,36,111,.04);transition:border-color .15s,box-shadow .15s,background .15s}
+#v4AdminEditorOverlay .v4admin-select-wrap:after{content:'⌄';position:absolute;right:13px;top:50%;transform:translateY(-56%);pointer-events:none;color:#5b2b96;font-size:20px;font-weight:950}
+#v4AdminEditorOverlay select,#v4AdminEditorOverlay .v4admin-name-input,#v4AdminEditorOverlay .v4admin-guild-row input{display:block;width:100%;min-width:0;height:43px;margin:0;padding:0 38px 0 12px;border:1.2px solid #d9c9eb;border-radius:12px;background:#fff;color:#312046;font:800 16px/1 inherit;outline:none;box-shadow:0 2px 8px rgba(74,36,111,.04);transition:border-color .15s,box-shadow .15s,background .15s}
 #v4AdminEditorOverlay select{-webkit-appearance:none;appearance:none}
 #v4AdminEditorOverlay .v4admin-name-input{padding-right:14px}
 #v4AdminEditorOverlay select:focus,#v4AdminEditorOverlay input:focus{border-color:#8145d9;box-shadow:0 0 0 3px rgba(129,69,217,.12);background:#fff}
-#v4AdminEditorOverlay .v4admin-section-stack{display:grid;gap:12px;margin-top:13px}
-#v4AdminEditorOverlay .v4stat-section{padding:13px;border:1.5px solid #e1d5f1;border-radius:20px;background:#fcfbfe}
-#v4AdminEditorOverlay .v4stat-section-title{margin:0 0 10px;font-size:15px;font-weight:950;letter-spacing:-.025em;color:#45206d}
-#v4AdminEditorOverlay .v4stat-grid{display:grid;gap:9px}
+#v4AdminEditorOverlay .v4admin-section-stack{display:grid;gap:8px;margin-top:9px}
+#v4AdminEditorOverlay .v4stat-section{padding:9px 10px;border:1px solid #e1d5f1;border-radius:15px;background:#fcfbfe}
+#v4AdminEditorOverlay .v4stat-section-title{margin:0 0 7px;font-size:14px;font-weight:950;letter-spacing:-.025em;color:#45206d}
+#v4AdminEditorOverlay .v4stat-grid{display:grid;gap:7px}
 #v4AdminEditorOverlay .v4admin-basic-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
 #v4AdminEditorOverlay .v4admin-region-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
-#v4AdminEditorOverlay .v4admin-region-grid .v4stat-field:last-child{grid-column:1/-1;width:calc(50% - 4.5px)}
+#v4AdminEditorOverlay .v4admin-region-grid .v4stat-field:last-child{grid-column:1/-1;width:calc(50% - 3.5px)}
 #v4AdminEditorOverlay .v4admin-upper-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
-#v4AdminEditorOverlay .v4stat-field{min-width:0;padding:10px 10px 9px;border:1px solid #e8def3;border-radius:15px;background:#fff;box-shadow:0 1px 3px rgba(63,29,99,.03)}
-#v4AdminEditorOverlay .v4stat-field>label{display:block;min-height:18px;margin:0 0 5px;text-align:center;font-size:clamp(11px,3vw,13px);font-weight:900;line-height:1.25;color:#57307d;letter-spacing:-.02em;white-space:normal}
-#v4AdminEditorOverlay .v4stat-input-wrap{position:relative;height:40px;display:flex;align-items:center;border-radius:11px;background:#f8f5fc;border:1.5px solid transparent;transition:border-color .15s,background .15s,box-shadow .15s}
+#v4AdminEditorOverlay .v4stat-field{min-width:0;padding:7px 8px 7px;border:1px solid #ebe3f4;border-radius:12px;background:#fff;box-shadow:0 1px 3px rgba(63,29,99,.03)}
+#v4AdminEditorOverlay .v4stat-field>label{display:block;min-height:16px;margin:0 0 4px;text-align:center;font-size:clamp(11px,3vw,13px);font-weight:900;line-height:1.25;color:#57307d;letter-spacing:-.02em;white-space:normal}
+#v4AdminEditorOverlay .v4stat-input-wrap{position:relative;height:36px;display:flex;align-items:center;border-radius:9px;background:#f8f6fb;border:1.5px solid transparent;transition:border-color .15s,background .15s,box-shadow .15s}
 #v4AdminEditorOverlay .v4stat-input-wrap:focus-within{border-color:#8145d9;background:#fff;box-shadow:0 0 0 3px rgba(129,69,217,.10)}
-#v4AdminEditorOverlay .v4stat-input-wrap input{width:100%;height:100%;min-width:0;border:0!important;outline:0!important;background:transparent!important;box-shadow:none!important;padding:0 11px;color:#26153f;text-align:right;font:900 18px/1 inherit;font-variant-numeric:tabular-nums}
-#v4AdminEditorOverlay .v4stat-input-wrap.has-unit input{padding-right:29px}
-#v4AdminEditorOverlay .v4stat-unit{position:absolute;right:10px;top:50%;transform:translateY(-50%);color:#876fa2;font-size:12px;font-weight:900;pointer-events:none}
+#v4AdminEditorOverlay .v4stat-input-wrap input{width:100%;height:100%;min-width:0;border:0!important;outline:0!important;background:transparent!important;box-shadow:none!important;padding:0 10px;color:#26153f;text-align:right;font:900 17px/1 inherit;font-variant-numeric:tabular-nums}
+#v4AdminEditorOverlay .v4stat-input-wrap.has-unit input{padding-right:27px}
+#v4AdminEditorOverlay .v4stat-unit{position:absolute;right:9px;top:50%;transform:translateY(-50%);color:#876fa2;font-size:12px;font-weight:900;pointer-events:none}
 #v4AdminEditorOverlay input[type=number]::-webkit-inner-spin-button,#v4AdminEditorOverlay input[type=number]::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}
 #v4AdminEditorOverlay input[type=number]{-moz-appearance:textfield}
-#v4AdminEditorOverlay .v4admin-note{margin:11px 4px 0;color:#83728f;font-size:11.5px;font-weight:700;line-height:1.45;text-align:center}
-#v4AdminEditorOverlay .v4admin-actions{display:flex;gap:9px;margin-top:14px}
-#v4AdminEditorOverlay .v4admin-actionbar{position:sticky;bottom:-14px;z-index:3;margin-left:-16px;margin-right:-16px;padding:12px 16px max(12px,env(safe-area-inset-bottom));background:linear-gradient(180deg,rgba(255,255,255,.72),#fff 24%);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
-#v4AdminEditorOverlay .v4admin-actions button{flex:1;min-height:48px;border:1.5px solid #8a4cda;border-radius:15px;padding:10px 8px;font:950 16px/1.15 inherit;letter-spacing:-.02em}
+#v4AdminEditorOverlay .v4admin-note{margin:8px 4px 0;color:#83728f;font-size:11.5px;font-weight:700;line-height:1.45;text-align:center}
+#v4AdminEditorOverlay .v4admin-actions{display:flex;gap:8px;margin-top:10px}
+#v4AdminEditorOverlay .v4admin-actionbar{position:sticky;bottom:-14px;z-index:3;margin-left:-14px;margin-right:-14px;padding:9px 14px max(10px,env(safe-area-inset-bottom));background:linear-gradient(180deg,rgba(255,255,255,.72),#fff 24%);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+#v4AdminEditorOverlay .v4admin-actions button{flex:1;min-height:44px;border:1.2px solid #8a4cda;border-radius:12px;padding:9px 8px;font:950 16px/1.15 inherit;letter-spacing:-.02em}
 #v4AdminEditorOverlay .primary{background:linear-gradient(180deg,#8249db,#6730bb);color:#fff;box-shadow:0 8px 18px rgba(103,48,187,.18)}
 #v4AdminEditorOverlay .danger{background:#fff8fa;color:#b8435a;border-color:#e6b5c0!important}
 #v4AdminEditorOverlay .danger:disabled{opacity:.38;box-shadow:none}
-#v4AdminEditorOverlay .v4admin-guild-row{display:grid;grid-template-columns:minmax(0,.36fr) minmax(0,.64fr);gap:10px;padding:14px;border:1.5px solid #e1d5f1;border-radius:20px;background:#fbf9ff}
+#v4AdminEditorOverlay .v4admin-guild-row{display:grid;grid-template-columns:minmax(0,.36fr) minmax(0,.64fr);gap:8px;padding:11px;border:1px solid #e1d5f1;border-radius:16px;background:#fbf9ff}
 #v4AdminEditorOverlay .v4admin-guild-row label{min-width:0;margin:0;font-size:13px;font-weight:900;color:#5d337f}
-#v4AdminEditorOverlay .v4admin-guild-row input{height:47px;margin-top:7px;padding:0 12px}
+#v4AdminEditorOverlay .v4admin-guild-row input{height:43px;margin-top:5px;padding:0 11px}
 @media (max-width:380px){
   #v4AdminEditorOverlay{padding-left:7px;padding-right:7px}
   #v4AdminEditorOverlay .v4admin-panel{border-radius:22px}
   #v4AdminEditorOverlay .v4admin-header{padding:15px 14px 12px}
-  #v4AdminEditorOverlay .v4admin-header button{width:42px;height:42px;border-radius:13px}
+  #v4AdminEditorOverlay .v4admin-header button{width:46px;height:46px;border-radius:14px;font-size:28px}
   #v4AdminEditorOverlay .v4admin-content{padding:12px 12px 12px}
-  #v4AdminEditorOverlay .v4admin-identity-card,#v4AdminEditorOverlay .v4stat-section{padding:11px}
-  #v4AdminEditorOverlay .v4stat-field{padding:8px 7px}
+  #v4AdminEditorOverlay .v4admin-identity-card,#v4AdminEditorOverlay .v4stat-section{padding:9px}
+  #v4AdminEditorOverlay .v4stat-field{padding:7px 6px}
   #v4AdminEditorOverlay .v4stat-grid{gap:7px}
   #v4AdminEditorOverlay .v4admin-region-grid .v4stat-field:last-child{width:calc(50% - 3.5px)}
   #v4AdminEditorOverlay .v4stat-input-wrap input{font-size:17px;padding-left:8px;padding-right:8px}

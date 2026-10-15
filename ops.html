@@ -8,7 +8,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="default" />
   <meta name="apple-mobile-web-app-title" content="Cat Hero 길드 운영" />
-  <title>Cat Hero · 균열·은하 OPS V4.1.1</title>
+  <title>Cat Hero · 균열·은하 OPS V4.1.2</title>
   <!-- KakaoTalk / social link preview -->
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Cat Hero Guild Platform" />
@@ -3438,6 +3438,19 @@ input:focus,textarea:focus,select:focus{scroll-margin-bottom:140px;}
 </style>
 <script src="./firebase-config.js"></script>
 <script src="./shared/tenant.js"></script>
+
+<style id="v412-ops-modal-polish">
+/* V4.1.2 — compact round selector and confident close controls. */
+.modal-head{height:56px!important;min-height:56px!important;padding:0 14px!important}
+.close-btn{box-sizing:border-box!important;width:44px!important;height:44px!important;min-width:44px!important;min-height:44px!important;display:grid!important;place-items:center!important;padding:0!important;border:1.5px solid #d5c7e9!important;border-radius:13px!important;background:#f8f4ff!important;color:#65419a!important;font-size:26px!important;font-weight:950!important;line-height:1!important;box-shadow:0 2px 8px rgba(83,54,128,.05)!important}
+.close-btn:active{transform:scale(.96);background:#f0e8fb!important}
+#roundModal .round-start-grid{grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr) minmax(0,.72fr)!important;gap:7px!important;align-items:end!important}
+#roundModal .field{gap:3px!important}
+#roundModal .field label{font-size:9.4px!important;font-weight:820!important;letter-spacing:-.02em!important}
+#roundModal #setupMode{height:34px!important;min-height:34px!important;border-radius:8px!important;padding:0 24px 0 8px!important;font-size:clamp(11.5px,3.3vw,13px)!important;font-weight:800!important;letter-spacing:-.05em!important;background-position:calc(100% - 12px) 13px,calc(100% - 8px) 13px!important;background-size:4px 4px,4px 4px!important}
+#roundModal .picker-display{height:34px!important;min-height:34px!important;border-radius:8px!important;font-size:13px!important;font-weight:850!important;padding:0 6px!important}
+@media(max-width:370px){#roundModal .round-start-grid{grid-template-columns:minmax(0,.96fr) minmax(0,1.08fr) minmax(0,.66fr)!important;gap:5px!important}#roundModal #setupMode{font-size:10.8px!important;padding-left:6px!important;padding-right:20px!important}#roundModal .picker-display{font-size:11.2px!important;padding-inline:4px!important}.close-btn{width:42px!important;height:42px!important;min-width:42px!important;min-height:42px!important;font-size:25px!important}}
+</style>
 </head>
 <body>
   <div id="shell">
@@ -3510,7 +3523,7 @@ input:focus,textarea:focus,select:focus{scroll-margin-bottom:140px;}
       </section>
 
       <div class="footer">
-        <b>Created by 879 | 안창살 · V4.1.1</b><br>
+        <b>Created by 879 | 안창살 · V4.1.2</b><br>
         <span class="footer-build-date">2026.10.15</span>
       </div>
     </main>
@@ -3521,7 +3534,7 @@ input:focus,textarea:focus,select:focus{scroll-margin-bottom:140px;}
       <div class="modal-head"><div class="modal-title">회차 시작 설정</div><button class="close-btn" data-close="roundModal">×</button></div>
       <div class="modal-body">
         <div class="form-grid round-start-grid">
-          <div class="field"><label>콘텐츠</label><select id="setupMode"><option value="rift">균열의 격전지</option><option value="galaxy">은하의 격전지</option></select></div>
+          <div class="field"><label>콘텐츠</label><select id="setupMode"><option value="rift">균열의 격전지</option><option value="galaxy">은하 격전지</option></select></div>
           <div class="field"><label>시작 날짜</label><button type="button" class="picker-display" id="setupStartDateBtn">2026.10.03.</button><input type="hidden" id="setupStartDate" /></div>
           <div class="field"><label>시작 시각</label><button type="button" class="picker-display" id="setupStartTimeBtn">09:00</button><input type="hidden" id="setupStartTime" /></div>
         </div>
@@ -4136,7 +4149,7 @@ if(!window.DosaljaShared){
   function renderArchiveRoundPicker(){
     const box=document.getElementById("archiveRoundPickerList"); if(!box)return;
     if(!state.archiveRounds.length){box.innerHTML=`<div class="archive-empty-card"><b>보관된 회차가 없습니다.</b></div>`;return;}
-    box.innerHTML=state.archiveRounds.map(r=>`<button type="button" class="archive-round-choice ${r.id===state.archiveRoundId?'active':''}" data-archive-round-choice="${r.id}"><div><b>${archivePeriodLabel(r)}</b><span>${r.mode==='galaxy'?'은하의 격전지':'균열의 격전지'}</span></div><em class="archive-choice-rank">${Number(r.overallGuildRank)>0?`종합 ${Number(r.overallGuildRank)}위`:`${(r.bosses||[]).length}보스`}</em></button>`).join("");
+    box.innerHTML=state.archiveRounds.map(r=>`<button type="button" class="archive-round-choice ${r.id===state.archiveRoundId?'active':''}" data-archive-round-choice="${r.id}"><div><b>${archivePeriodLabel(r)}</b><span>${r.mode==='galaxy'?'은하 격전지':'균열의 격전지'}</span></div><em class="archive-choice-rank">${Number(r.overallGuildRank)>0?`종합 ${Number(r.overallGuildRank)}위`:`${(r.bosses||[]).length}보스`}</em></button>`).join("");
     box.querySelectorAll("[data-archive-round-choice]").forEach(btn=>btn.onclick=()=>{state.archiveRoundId=btn.dataset.archiveRoundChoice;closeModal("archiveRoundModal");renderArchivePage();});
   }
   function openArchiveBossDetail(bossId){
@@ -5110,7 +5123,7 @@ if(!window.DosaljaShared){
   try{ parent.postMessage({type:'dosalja-unified-ready'},'*'); }catch(_e){}
 })();
 </script>
-<script>(function(){try{const g=parent.CAT_HERO_V4_CONTEXT?.guild||{};document.title=`${g.name||'길드'} · 균열·은하 OPS V4.1.1`;}catch(_e){}})();</script>
+<script>(function(){try{const g=parent.CAT_HERO_V4_CONTEXT?.guild||{};document.title=`${g.name||'길드'} · 균열·은하 OPS V4.1.2`;}catch(_e){}})();</script>
 </body>
 </html>
 

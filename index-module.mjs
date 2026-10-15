@@ -209,7 +209,7 @@ function buildBootstrapUrl(id){return `${location.origin}${location.pathname}?g=
 function showRoute(r,push=false){
   if(!frame)return;if(!['main','boss','ops'].includes(r))r='main';
   roleFor(gid).then(announceRole).catch(e=>console.warn('route role refresh',e));
-  frame.src=`${r}.html?g=${encodeURIComponent(gid)}&v=411`;
+  frame.src=`${r}.html?g=${encodeURIComponent(gid)}&v=412`;
   if(push){
     const url=accessMode==='private'&&accessSecret?buildPrivateUrl(accessSecret,r):`${location.pathname}?g=${encodeURIComponent(gid)}${r==='main'?'':'#'+r}`;
     history.pushState({r},'',url);
@@ -300,7 +300,7 @@ async function deleteGuildCompletely(id,g){
     targets=await collectGuildDeleteTargets(id,g);
   }catch(e){
     console.error('길드 삭제 권한 사전확인 실패',e);
-    alert('삭제 권한 사전확인에 실패했습니다. 아직 데이터는 삭제하지 않았습니다.\nFirebase에 V4.1.1 Firestore Rules를 먼저 게시한 뒤 다시 시도해 주세요.\n\n'+(e.code||e.message||e));
+    alert('삭제 권한 사전확인에 실패했습니다. 아직 데이터는 삭제하지 않았습니다.\nFirebase에 현재 배포본의 Firestore Rules를 먼저 게시한 뒤 다시 시도해 주세요.\n\n'+(e.code||e.message||e));
     return false;
   }
   try{

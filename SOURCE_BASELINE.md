@@ -1,8 +1,7 @@
 # Source baseline
 
-- 기준 원본: Cat Hero Guild Platform V4.1.0 full (2026-10-15)
-- 산출물: V4.1.1 멀티길드 전체 패키지
-- 변경 범위: 중앙관리자 길드 카드 버튼 한 줄 고정, 2열 액션 배치, 길드 완전 삭제 및 삭제 후 잔여검증
-- 보안 변경: 중앙관리자 삭제에 필요한 Firestore Rules와 `platformAudit` 추가
-- 유지 범위: V4.1.0 헤더 shimmer, V4.0.9 길드원 삭제 수정, V4.0.8 길드원 관리 UI, V4.0.7 계산/22분, V4.0.6 관리자/전용주소 구조
-- V3.0 도살장 전용 프로젝트는 수정하지 않음
+- Source package: `cat-hero-guild-platform-V4.1.1-full-20261015.zip`
+- Target package: V4.1.2
+- Build date: 2026-10-15
+
+V4.1.2는 V4.1.1의 기능·Firebase 구조·Firestore Rules를 유지한 상태에서 요청된 UI/표기 개선만 반영한 후 재검증했습니다.

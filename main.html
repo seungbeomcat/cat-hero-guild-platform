@@ -8,7 +8,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="Cat Hero 계산기" />
-  <title>Cat Hero · 격전지 계산기 V4.1.1</title>
+  <title>Cat Hero · 격전지 계산기 V4.1.2</title>
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 
@@ -8890,58 +8890,29 @@ body > .wrap{padding-top:clamp(16px,2.5vh,30px)!important}
 </style><script src="./firebase-config.js"></script>
 <script src="./shared/tenant.js"></script>
 
-<style id="v410-header-shimmer">
-/* V4.1.1 — top guild/header emphasis. Layout geometry is unchanged. */
+<style id="v412-header-shimmer">
+/* V4.1.2 — stronger, continuous left-to-right header sheen without hold/jump frames. */
 .v152-boss-info-group{
-  color:#f0e8ff!important;
-  text-shadow:0 0 9px rgba(190,145,255,.16)!important;
+  color:#f2ebff!important;
+  text-shadow:0 0 8px rgba(210,174,255,.20),0 0 18px rgba(133,62,229,.10)!important;
 }
-.v152-boss-info-left>span{
-  opacity:1!important;
-  color:inherit!important;
-  font-weight:850!important;
-}
+.v152-boss-info-left>span{opacity:1!important;color:inherit!important;font-weight:850!important}
 @supports ((-webkit-background-clip:text) or (background-clip:text)){
   .v152-boss-info-group{
-    background-image:linear-gradient(105deg,
-      #eadfff 0%,
-      #eadfff 31%,
-      #ffffff 45%,
-      #ffffff 50%,
-      #d8b8ff 57%,
-      #eadfff 70%,
-      #eadfff 100%)!important;
-    background-size:260% 100%!important;
-    background-position:175% 50%;
-    -webkit-background-clip:text!important;
-    background-clip:text!important;
-    -webkit-text-fill-color:transparent!important;
-    color:transparent!important;
-    animation:v410HeaderShimmer 4.8s ease-in-out infinite!important;
+    background-image:linear-gradient(103deg,#eee5ff 0%,#eee5ff 34%,#cfa8ff 42%,#ffffff 48%,#ffffff 53%,#d8b8ff 59%,#eee5ff 68%,#eee5ff 100%)!important;
+    background-size:255% 100%!important;
+    background-position:-155% 50%;
+    -webkit-background-clip:text!important;background-clip:text!important;
+    -webkit-text-fill-color:transparent!important;color:transparent!important;
+    animation:v412HeaderShimmer 4.15s linear infinite!important;
     will-change:background-position;
   }
-  .v152-boss-info-left>span{
-    -webkit-text-fill-color:inherit!important;
-  }
+  .v152-boss-info-left>span{-webkit-text-fill-color:inherit!important}
 }
-@keyframes v410HeaderShimmer{
-  0%,16%{background-position:175% 50%;}
-  68%,100%{background-position:-75% 50%;}
-}
+@keyframes v412HeaderShimmer{from{background-position:-155% 50%}to{background-position:155% 50%}}
 @media (prefers-reduced-motion:reduce){
-  .v152-boss-info-group{
-    animation:none!important;
-    background:none!important;
-    -webkit-background-clip:border-box!important;
-    background-clip:border-box!important;
-    -webkit-text-fill-color:#f0e8ff!important;
-    color:#f0e8ff!important;
-    will-change:auto!important;
-  }
-  .v152-boss-info-left>span{
-    -webkit-text-fill-color:#f0e8ff!important;
-    color:#f0e8ff!important;
-  }
+  .v152-boss-info-group{animation:none!important;background:none!important;-webkit-background-clip:border-box!important;background-clip:border-box!important;-webkit-text-fill-color:#f2ebff!important;color:#f2ebff!important;will-change:auto!important}
+  .v152-boss-info-left>span{-webkit-text-fill-color:#f2ebff!important;color:#f2ebff!important}
 }
 </style>
 </head>
@@ -9159,7 +9130,7 @@ body > .wrap{padding-top:clamp(16px,2.5vh,30px)!important}
  <button type="button" id="v200Members" class="v200-nav-btn"><img class="v200-menu-icon" src="assets/menu-icons/members.svg?v=20261014-4" alt="" aria-hidden="true" loading="eager"><span>길드원</span></button>
  <a class="v200-nav-btn" href="#cathero-ops"><img class="v200-menu-icon" src="assets/menu-icons/ops.svg?v=20261014-4" alt="" aria-hidden="true" loading="eager"><span>균열·은하</span></a>
  <button type="button" id="v200Rewards" class="v200-nav-btn"><img class="v200-menu-icon" src="assets/menu-icons/rewards.svg?v=20261014-4" alt="" aria-hidden="true" loading="eager"><span>보상분배</span></button>
- <button type="button" id="v200Journal" class="v200-nav-btn"><img class="v200-menu-icon" src="assets/menu-icons/admin.svg?v=215" alt="" aria-hidden="true" loading="eager"><span>관리자</span><small class="v4-admin-active-label">로그인 중</small></button>
+ <button type="button" id="v200Journal" class="v200-nav-btn"><img class="v200-menu-icon" src="assets/menu-icons/admin.svg?v=215" alt="" aria-hidden="true" loading="eager"><span>관리자</span></button>
 </section>
 <div id="v200Overlay" class="v200-overlay" hidden><section class="v200-panel" role="dialog" aria-modal="true" aria-label="길드 운영"><header><button id="v200Back" type="button" aria-label="뒤로가기"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m14.5 5-7 7 7 7"/></svg></button><h2 id="v200Title">길드원</h2><span id="v200Count" hidden></span><div id="v200HeaderActions" hidden></div></header><div id="v200Body"></div></section></div>
 <div id="rewardHistoryPage" class="reward-history-page" hidden aria-hidden="true">
@@ -9277,7 +9248,7 @@ body > .wrap{padding-top:clamp(16px,2.5vh,30px)!important}
 
 
 <footer class="footer-credits" aria-label="제작 정보">
-    <div class="creator-credit">Created by 879 | 안창살 · V4.1.1</div>
+    <div class="creator-credit">Created by 879 | 안창살 · V4.1.2</div>
     <div class="build-credit">2026.10.15</div>
   </footer>
 
@@ -11443,8 +11414,8 @@ function resetZ1PlanUi(){
   }
 })();
 </script>
-<script id="cat-hero-v4-brand">(function(){try{const c=parent.CAT_HERO_V4_CONTEXT||{};const g=c.guild||{};const count=Object.keys(c.members||{}).length;document.title=`${g.name||'길드'} · 격전지 계산기 V4.1.1`;const s=document.getElementById('v4GuildServer'),n=document.getElementById('v4GuildName'),m=document.getElementById('v4GuildCount'),sh=document.getElementById('v4ShareGuildTitle');if(s)s.textContent=g.server||'-';if(n)n.textContent=g.name||'길드';if(m)m.textContent=count+'명';if(sh)sh.textContent=(g.name||'길드')+' 격전지 계산기';const sub=document.querySelector('#rosterAllTableBtn .roster-all-table-sub');if(sub)sub.textContent=`${count}명 · 기본 · 최소점수 · 지역격추 한눈에 확인`;}catch(e){console.warn(e)}})();</script>
-<script defer src="./shared/journal-bridge.js?v=411"></script><script>document.body.dataset.webSyncRole="main";</script><script type="module" src="./shared/web-sync.js?v=411"></script><script type="module" src="./shared/reward-entry.js?v=411"></script>
+<script id="cat-hero-v4-brand">(function(){try{const c=parent.CAT_HERO_V4_CONTEXT||{};const g=c.guild||{};const count=Object.keys(c.members||{}).length;document.title=`${g.name||'길드'} · 격전지 계산기 V4.1.2`;const s=document.getElementById('v4GuildServer'),n=document.getElementById('v4GuildName'),m=document.getElementById('v4GuildCount'),sh=document.getElementById('v4ShareGuildTitle');if(s)s.textContent=g.server||'-';if(n)n.textContent=g.name||'길드';if(m)m.textContent=count+'명';if(sh)sh.textContent=(g.name||'길드')+' 격전지 계산기';const sub=document.querySelector('#rosterAllTableBtn .roster-all-table-sub');if(sub)sub.textContent=`${count}명 · 기본 · 최소점수 · 지역격추 한눈에 확인`;}catch(e){console.warn(e)}})();</script>
+<script defer src="./shared/journal-bridge.js?v=412"></script><script>document.body.dataset.webSyncRole="main";</script><script type="module" src="./shared/web-sync.js?v=412"></script><script type="module" src="./shared/reward-entry.js?v=412"></script>
 <style id="v201-layout-fixes">
 .v200-stats.v201-stats{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,2fr)!important;gap:8px!important;margin-bottom:12px!important}
 .v201-stats .v200-stat{min-height:0!important;height:106px!important;box-sizing:border-box!important;background:#fff!important;border:3px solid #853ee5!important;border-radius:17px!important;padding:8px 5px!important;color:#4d247e!important}
@@ -11596,7 +11567,7 @@ window.addEventListener('dosalja:roster-updated',()=>{reset();});
 new MutationObserver(()=>{if(overlay.hidden||!document.getElementById('v200Title')?.textContent.includes('길드원 관리'))reset();}).observe(overlay,{attributes:true,attributeFilter:['hidden']});
 })();
 </script>
-<script type="module" src="./shared/admin-editor.js?v=411"></script><script type="module" src="./shared/admin-audit.js?v=411"></script><script id="dosalja-unified-bridge">
+<script type="module" src="./shared/admin-editor.js?v=412"></script><script type="module" src="./shared/admin-audit.js?v=412"></script><script id="dosalja-unified-bridge">
 (function(){
   'use strict';
   function routeForHref(href){
@@ -11627,8 +11598,22 @@ new MutationObserver(()=>{if(overlay.hidden||!document.getElementById('v200Title
 .guild-kill-data-viewport{overflow-x:auto!important;overflow-y:auto!important;touch-action:pan-x pan-y!important;}
 .guild-kill-body-table{height:auto!important;min-height:0!important;}
 </style>
-<style id="v402AdminRoleStyle">#v200Journal{position:relative}#v200Journal.v4-admin-active{border-color:#2fa56c!important;background:#edfff4!important;box-shadow:0 0 0 2px rgba(40,167,103,.18)}#v200Journal.v4-admin-active .v200-menu-icon{filter:sepia(1) saturate(4) hue-rotate(83deg)!important}#v200Journal.v4-admin-active span{color:#157748!important}#v200Journal .v4-admin-active-label{display:none;font-size:clamp(8px,2.1vw,11px);font-weight:900;color:#188252;line-height:1}#v200Journal.v4-admin-active .v4-admin-active-label{display:block}</style>
+<style id="v412AdminRoleStyle">#v200Journal{position:relative}#v200Journal.v4-admin-active{border-color:#2fa56c!important;background:#edfff4!important;box-shadow:0 0 0 2px rgba(40,167,103,.18),0 8px 20px rgba(36,139,89,.10)!important}#v200Journal.v4-admin-active .v200-menu-icon{filter:sepia(1) saturate(4) hue-rotate(83deg)!important}#v200Journal.v4-admin-active span{color:#157748!important}</style>
 <script>window.addEventListener('message',function(e){if(e.origin!==location.origin)return;const d=e.data||{};if(d.type==='cat-hero-v4-role'){const b=document.getElementById('v200Journal');if(b)b.classList.toggle('v4-admin-active',!!d.isGuildAdmin);try{const ov=document.getElementById('v200Overlay'),tt=document.getElementById('v200Title');if(ov&&!ov.hidden&&tt?.textContent.includes('길드원'))document.getElementById('v200Members')?.click();}catch(_e){}}if(d.type==='cat-hero-v4-roster-updated'){window.dispatchEvent(new CustomEvent('cat-hero-v4-roster-updated',{detail:d}));}});document.addEventListener('DOMContentLoaded',function(){try{const b=document.getElementById('v200Journal');if(b)b.classList.toggle('v4-admin-active',!!window.CAT_HERO_V4_TENANT?.isAdmin?.());}catch(_e){}});</script>
+
+<style id="v412-ui-polish">
+/* V4.1.2 — restrained animated perimeter for the weekly/monthly core content card. */
+.v200-nav a.v200-nav-btn[href*="cat-hero-ops"]{position:relative!important;isolation:isolate!important;overflow:hidden!important;border:0!important;background:#5ea3ff!important;box-shadow:0 7px 18px rgba(36,52,71,.30)!important}
+.v200-nav a.v200-nav-btn[href*="cat-hero-ops"]::before{content:"";position:absolute;z-index:0;inset:-58%;background:conic-gradient(from 0deg,#5ea3ff 0deg 245deg,#8fc4ff 270deg,#fff 292deg,#b793ff 312deg,#5ea3ff 338deg 360deg);animation:v412OpsBorderOrbit 5.4s linear infinite;will-change:transform}
+.v200-nav a.v200-nav-btn[href*="cat-hero-ops"]::after{content:"";position:absolute;z-index:1;inset:4px;border-radius:16px;background:#243447;pointer-events:none}
+.v200-nav a.v200-nav-btn[href*="cat-hero-ops"]>.v200-menu-icon,.v200-nav a.v200-nav-btn[href*="cat-hero-ops"]>span{position:relative;z-index:2}
+@keyframes v412OpsBorderOrbit{to{transform:rotate(360deg)}}
+/* Larger and more confident close controls. */
+.member-picker-close,.guild-kill-table-close,.reward-detail-close{box-sizing:border-box!important;width:46px!important;height:46px!important;min-width:46px!important;min-height:46px!important;display:grid!important;place-items:center!important;padding:0!important;border:1.5px solid #d4c2ed!important;border-radius:14px!important;background:#f8f3ff!important;color:#6530a7!important;font-size:28px!important;font-weight:900!important;line-height:1!important;box-shadow:0 3px 10px rgba(91,48,145,.06)!important}
+.member-picker-close:active,.guild-kill-table-close:active,.reward-detail-close:active{transform:scale(.96);background:#f0e7ff!important}
+@media(max-width:350px){.member-picker-close,.guild-kill-table-close,.reward-detail-close{width:43px!important;height:43px!important;min-width:43px!important;min-height:43px!important;font-size:26px!important}}
+@media(prefers-reduced-motion:reduce){.v200-nav a.v200-nav-btn[href*="cat-hero-ops"]::before{animation:none!important;background:#5ea3ff!important}}
+</style>
 </body>
 </html>
 

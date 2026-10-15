@@ -5,8 +5,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#000000">
-<title>Cat Hero · 상층 2구역 V4.1.1</title>
-<meta name="app-version" content="V4.1.1">
+<title>Cat Hero · 상층 2구역 V4.1.2</title>
+<meta name="app-version" content="V4.1.2">
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <!-- internal version: V3.6.0 -->
@@ -2143,6 +2143,13 @@ button,input,select,textarea{font:inherit;}
 </style>
 <script src="./firebase-config.js"></script>
 <script src="./shared/tenant.js"></script>
+
+<style id="v412-boss-close-polish">
+/* V4.1.2 — larger, clearer close controls on full-size boss modals. */
+.sheet .close,.monthly-close{box-sizing:border-box!important;width:46px!important;height:46px!important;min-width:46px!important;min-height:46px!important;display:grid!important;place-items:center!important;padding:0!important;border:1.5px solid #d5c4ed!important;border-radius:13px!important;background:#f8f3ff!important;color:#6530a7!important;font-size:27px!important;font-weight:950!important;line-height:1!important;box-shadow:0 2px 8px rgba(91,48,145,.05)!important}
+.sheet .close:active,.monthly-close:active{transform:scale(.96);background:#f0e7ff!important}
+@media(max-width:350px){.sheet .close,.monthly-close{width:43px!important;height:43px!important;min-width:43px!important;min-height:43px!important;font-size:25px!important}}
+</style>
 </head>
 <body>
 <main class="app">
@@ -2294,7 +2301,7 @@ button,input,select,textarea{font:inherit;}
       <div id="historyList" class="history-empty">기록을 불러오는 중입니다.</div>
     </div>
   </section>
-  <footer class="boss-footer-credits" aria-label="페이지 제작 정보"><div>Created by 879 | 안창살 · V4.1.1</div><div class="boss-footer-date">2026.10.15</div></footer>
+  <footer class="boss-footer-credits" aria-label="페이지 제작 정보"><div>Created by 879 | 안창살 · V4.1.2</div><div class="boss-footer-date">2026.10.15</div></footer>
 </main>
 
 <div id="lastWeekModal" class="monthly-modal" aria-hidden="true">
@@ -4156,7 +4163,7 @@ connectLiveData();
   try{ parent.postMessage({type:'dosalja-unified-ready'},'*'); }catch(_e){}
 })();
 </script>
-<script>(function(){try{const g=parent.CAT_HERO_V4_CONTEXT?.guild||{};document.title=`${g.name||'길드'} · 상층 2구역 V4.1.1`;}catch(_e){}})();</script>
+<script>(function(){try{const g=parent.CAT_HERO_V4_CONTEXT?.guild||{};document.title=`${g.name||'길드'} · 상층 2구역 V4.1.2`;}catch(_e){}})();</script>
 </body>
 </html>
 <style id="v401-modal-horizontal-center">.modal,.monthly-modal{left:0!important;right:0!important;box-sizing:border-box!important}.modal>.sheet,.monthly-modal>.monthly-panel{box-sizing:border-box!important;margin-left:auto!important;margin-right:auto!important;max-width:calc(100vw - 20px)!important}</style>
