@@ -1,0 +1,83 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() { return request.auth != null; }
+    function platformAdmin() { return signedIn() && request.auth.uid == 'QEvBXJ7f3fTVQLOVPkm5AzVh0hb2'; }
+    function guildPath(gid) { return /databases/$(database)/documents/guilds/$(gid); }
+    function adminPath(gid, uid) { return /databases/$(database)/documents/guilds/$(gid)/admins/$(uid); }
+    function invitePath(code) { return /databases/$(database)/documents/guildInvites/$(code); }
+    function guildActive(gid) { return exists(guildPath(gid)) && get(guildPath(gid)).data.active == true; }
+    function guildAdmin(gid) {
+      return signedIn() && guildActive(gid) && exists(adminPath(gid,request.auth.uid))
+        && get(adminPath(gid,request.auth.uid)).data.active == true;
+    }
+    function validInviteCreation(d) {
+      return d.keys().hasOnly(['guildId','used','createdAt','expiresAtMs','issuerRole'])
+        && d.keys().hasAll(['guildId','used','createdAt','expiresAtMs','issuerRole'])
+        && d.guildId is string && d.used == false
+        && d.createdAt == request.time && d.expiresAtMs is number
+        && d.expiresAtMs > request.time.toMillis()
+        && d.expiresAtMs <= request.time.toMillis() + 604800000
+        && d.issuerRole in ['platform','guild-admin'];
+    }
+    match /guilds/{guildId} {
+      allow get: if resource.data.active == true || platformAdmin();
+      allow list: if platformAdmin();
+      allow create, delete: if platformAdmin();
+      allow update: if platformAdmin() || (guildAdmin(guildId)
+        && request.resource.data.diff(resource.data).affectedKeys()
+          .hasOnly(['name','server','memberCount','updatedAt']));
+      match /data/{docId} {
+        allow read: if guildActive(guildId);
+        // 중앙관리자는 신규 길드의 빈 초기 데이터만 생성할 수 있습니다.
+        allow create: if guildAdmin(guildId) || (platformAdmin()
+          && docId in ['roster','rewards']
+          && getAfter(guildPath(guildId)).data.active == true);
+        allow update, delete: if guildAdmin(guildId);
+      }
+      match /bossTimers/{docId} { allow read: if guildActive(guildId); allow write: if guildAdmin(guildId); }
+      match /bossHistory/{docId} { allow read: if guildActive(guildId); allow write: if guildAdmin(guildId); }
+      match /ops/{docId} { allow read: if guildActive(guildId); allow write: if guildAdmin(guildId); }
+      match /rounds/{docId} { allow read: if guildActive(guildId); allow write: if guildAdmin(guildId); }
+      match /admins/{uid} {
+        allow list: if false;
+        allow get: if signedIn() && request.auth.uid == uid;
+        allow update, delete: if false;
+        allow create: if signedIn() && request.auth.uid == uid && guildActive(guildId)
+          && request.resource.data.keys().hasOnly(['role','active','inviteId','createdAt'])
+          && request.resource.data.keys().hasAll(['role','active','inviteId','createdAt'])
+          && request.resource.data.role == 'admin' && request.resource.data.active == true
+          && request.resource.data.createdAt == request.time
+          && request.resource.data.inviteId is string
+          && exists(invitePath(request.resource.data.inviteId))
+          && get(invitePath(request.resource.data.inviteId)).data.guildId == guildId
+          && get(invitePath(request.resource.data.inviteId)).data.used == false
+          && get(invitePath(request.resource.data.inviteId)).data.expiresAtMs is number
+          && get(invitePath(request.resource.data.inviteId)).data.expiresAtMs > request.time.toMillis()
+          && getAfter(invitePath(request.resource.data.inviteId)).data.used == true
+          && getAfter(invitePath(request.resource.data.inviteId)).data.usedAt == request.time;
+      }
+      match /audit/{auditId} {
+        allow read, create: if guildAdmin(guildId);
+        allow update, delete: if false;
+      }
+    }
+    match /guildInvites/{inviteId} {
+      allow get: if signedIn();
+      allow list: if false;
+      allow create: if validInviteCreation(request.resource.data)
+        && ((platformAdmin() && request.resource.data.issuerRole == 'platform')
+          || (guildAdmin(request.resource.data.guildId) && request.resource.data.issuerRole == 'guild-admin'));
+      allow update: if signedIn() && resource.data.used == false
+        && resource.data.expiresAtMs is number
+        && resource.data.expiresAtMs > request.time.toMillis()
+        && request.resource.data.used == true
+        && request.resource.data.usedAt == request.time
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['used','usedAt'])
+        && !exists(adminPath(resource.data.guildId, request.auth.uid))
+        && getAfter(adminPath(resource.data.guildId, request.auth.uid)).data.active == true
+        && getAfter(adminPath(resource.data.guildId, request.auth.uid)).data.inviteId == inviteId;
+      allow delete: if platformAdmin();
+    }
+  }
+}
