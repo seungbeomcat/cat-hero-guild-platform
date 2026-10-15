@@ -40,7 +40,7 @@ service cloud.firestore {
       match /ops/{docId} { allow read: if guildActive(guildId); allow write: if guildAdmin(guildId); }
       match /rounds/{docId} { allow read: if guildActive(guildId); allow write: if guildAdmin(guildId); }
       match /admins/{uid} {
-        allow list: if false;
+        allow list: if guildAdmin(guildId);
         allow get: if signedIn() && request.auth.uid == uid;
         allow update, delete: if false;
         allow create: if signedIn() && request.auth.uid == uid && guildActive(guildId)

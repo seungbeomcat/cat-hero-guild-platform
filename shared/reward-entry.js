@@ -34,7 +34,8 @@ const css=`
 `;
 let overlay,itemsHost,previousOverflow='';
 function close(){if(!overlay)return;overlay.hidden=true;document.body.style.overflow=previousOverflow;}
-function open(){
+async function open(){
+ if(!await window.CAT_HERO_V4_TENANT?.ensureAdmin?.())return;
  if(!overlay){const st=document.createElement('style');st.textContent=css;document.head.append(st);overlay=document.createElement('div');overlay.id='rewardEntryOverlay';overlay.hidden=true;document.body.append(overlay);overlay.addEventListener('click',e=>{if(e.target===overlay)close();});}
  const api=window.DOSALJA_REWARDS;const catalog=api?.getCatalog?.()||[];
  const names=Object.keys(window.DosaljaShared?.members||{}).sort((a,b)=>(window.DosaljaShared.members[b].base||0)-(window.DosaljaShared.members[a].base||0));
@@ -61,5 +62,5 @@ function open(){
   }catch(e){status.textContent='저장 실패: '+(e.code||e.message);alert(status.textContent);}finally{button.disabled=false;}
  };
 }
-function bind(){const button=document.getElementById('rewardHistoryAddBtn');if(!button)return;button.addEventListener('click',e=>{e.preventDefault();e.stopImmediatePropagation();open();},true);}
+function bind(){const button=document.getElementById('rewardHistoryAddBtn');if(!button)return;const update=()=>{button.hidden=!window.CAT_HERO_V4_TENANT?.isAdmin?.();button.style.setProperty('display',button.hidden?'none':'','important');};update();window.addEventListener('message',e=>{if(e.origin===location.origin&&e.data?.type==='cat-hero-v4-role')update();});button.addEventListener('click',e=>{e.preventDefault();e.stopImmediatePropagation();open();},true);}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',bind,{once:true});else bind();

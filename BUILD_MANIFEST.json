@@ -1,5 +1,5 @@
 {
-  "version": "V4.0.2",
+  "version": "V4.0.3",
   "buildDate": "2026-10-15",
   "source": "V4.0.1 complete",
   "liveValidation": "pending",
@@ -35,7 +35,7 @@
       "sha256": "b8e67b00069299f6af1ece34fd33e5bf74ad1bd7ecd6037c4cb4ff205141a475"
     },
     {
-      "path": "RELEASE_NOTES_V4.0.2.md",
+      "path": "RELEASE_NOTES_V4.0.3.md",
       "bytes": 1114,
       "sha256": "73e1e44e279d1522d49d4f8b7e60620c71c101ca8628663238a0f07f13a6509a"
     },
