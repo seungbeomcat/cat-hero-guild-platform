@@ -3510,8 +3510,8 @@ input:focus,textarea:focus,select:focus{scroll-margin-bottom:140px;}
       </section>
 
       <div class="footer">
-        <b>Cat Hero Guild Platform · V4.0.0</b><br>
-        <span class="footer-build-date">2026.10.14</span>
+        <b>Created by 879 | 안창살 · V4.0.1</b><br>
+        <span class="footer-build-date">2026.10.15</span>
       </div>
     </main>
   </div>
@@ -3729,14 +3729,10 @@ if(!window.DosaljaShared){
     return `${d.getMonth()+1}/${d.getDate()} ${String(d.getHours()).padStart(2,"0")}:${String(d.getMinutes()).padStart(2,"0")}`;
   };
   const fmtPeriod = (start,end) => {
-    const a=toDateSafe(start), b=toDateSafe(end); if(!a||!b) return "진행기간 : 현재 회차 미진행";
-    const days=["일","월","화","수","목","금","토"];
-    const md=d=>`${d.getMonth()+1}월${d.getDate()}일(${days[d.getDay()]})`;
-    const short=d=>`${d.getMonth()+1}/${d.getDate()}(${days[d.getDay()]})`;
-    const hm=d=>`${String(d.getHours()).padStart(2,"0")}:${String(d.getMinutes()).padStart(2,"0")}`;
-    // On narrow phones abbreviate the label rather than clipping the end of the period.
-    if(window.matchMedia("(max-width: 430px)").matches) return `${a.getMonth()+1}/${a.getDate()} ${hm(a)} ~ ${b.getMonth()+1}/${b.getDate()} ${hm(b)}`;
-    return `진행기간 : ${md(a)} ${hm(a)}부터 ${md(b)} ${hm(b)}까지`;
+    const a=toDateSafe(start),b=toDateSafe(end);if(!a||!b)return '진행기간 : 현재 회차 미진행';
+    const days=['일','월','화','수','목','금','토'];
+    const hm=d=>`${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`;
+    return `${a.getFullYear()}년 ${a.getMonth()+1}월 ${a.getDate()}일(${days[a.getDay()]}) ${hm(a)}부터 ${b.getMonth()+1}월 ${b.getDate()}일(${days[b.getDay()]})까지.`;
   };
   const fmtResourceUpdate = value => {
     const d=toDateSafe(value); if(!d) return "-";
@@ -5095,3 +5091,8 @@ if(!window.DosaljaShared){
 <script>(function(){try{const g=parent.CAT_HERO_V4_CONTEXT?.guild||{};document.title=`${g.name||'길드'} · 균열·은하 OPS V4.0`;}catch(_e){}})();</script>
 </body>
 </html>
+
+<style id="v401-period-nowrap">.topbar .period-card .subhead{white-space:nowrap!important;overflow:visible!important;text-overflow:clip!important;letter-spacing:-.055em!important;font-size:12px!important}.topbar .period-card{min-width:0!important}</style>
+<script id="v401-period-fit">(function(){function fit(){const el=document.getElementById('periodText');if(!el)return;const box=el.parentElement;if(!box)return;const available=box.clientWidth||el.clientWidth;if(!available)return;let size=Math.min(18,Math.max(10,available/24));el.style.setProperty('font-size',size+'px','important');while(size>6&&el.scrollWidth>available){size-=.25;el.style.setProperty('font-size',size+'px','important');}}window.addEventListener('resize',fit);new MutationObserver(fit).observe(document.getElementById('periodText'),{childList:true,characterData:true,subtree:true});setTimeout(fit,100);})();</script>
+
+<style id="v401-modal-horizontal-center">.modal,.monthly-modal{left:0!important;right:0!important;box-sizing:border-box!important}.modal>.sheet,.monthly-modal>.monthly-panel{box-sizing:border-box!important;margin-left:auto!important;margin-right:auto!important;max-width:calc(100vw - 20px)!important}</style>

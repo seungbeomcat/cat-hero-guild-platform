@@ -42,7 +42,7 @@
   function safeSecRange(sec){const c=Math.max(0,Math.round(sec));return {center:c,low:Math.max(0,c-rules.safeSeconds),high:c+rules.safeSeconds};}
   function largestRemainder(raws,target,tieGs){const floors=raws.map(Math.floor);const remaining=Math.max(0,target-floors.reduce((a,b)=>a+b,0));const ranked=raws.map((r,i)=>({i,frac:r-Math.floor(r),G:Number(tieGs[i])||0})).sort((a,b)=>(b.frac-a.frac)||(b.G-a.G)||(a.i-b.i));const out=floors.slice();for(let i=0;i<remaining;i++)out[ranked[i%ranked.length].i]++;return {out,ranked,remaining};}
   function allocateHpExact(hp,items){const S=items.reduce((a,x)=>a+x.P,0);const raws=items.map(x=>S?hp*x.P/S:0);const alloc=largestRemainder(raws,hp,items.map(x=>x.G));return {raws,out:alloc.out,totalMin:0,remain:hp,S};}
-  const core={schemaVersion:4,version:'V4.0.0-rc3',guildId:context.guildId,guild:context.guild||{},members,aliases,formerNames,bosses,rules,canonical,memberOrder,zoneTotal,regionTotal,sustainedDpsFromG,scoreAtCompletedWaves,safeSecRange,largestRemainder,allocateHpExact};
+  const core={schemaVersion:4,version:'V4.0.1',guildId:context.guildId,guild:context.guild||{},members,aliases,formerNames,bosses,rules,canonical,memberOrder,zoneTotal,regionTotal,sustainedDpsFromG,scoreAtCompletedWaves,safeSecRange,largestRemainder,allocateHpExact};
   global.CatHeroV4={...(global.CatHeroV4||{}),guildId:context.guildId,guild:context.guild||{},cacheKey:(name)=>`cat-hero-v4:${context.guildId}:${name}`};
   global.CatHeroShared=core;
   global.DosaljaShared=core; // V3 engine compatibility alias; contains no fixed guild roster.

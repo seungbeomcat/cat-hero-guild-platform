@@ -9222,8 +9222,8 @@ body > .wrap{padding-top:clamp(16px,2.5vh,30px)!important}
 
 
 <footer class="footer-credits" aria-label="제작 정보">
-    <div class="creator-credit">Cat Hero Guild Platform · V4.0.0</div>
-    <div class="build-credit">2026.10.14</div>
+    <div class="creator-credit">Created by 879 | 안창살 · V4.0.1</div>
+    <div class="build-credit">2026.10.15</div>
   </footer>
 
 
@@ -11540,7 +11540,7 @@ window.addEventListener('dosalja:roster-updated',()=>{reset();});
 new MutationObserver(()=>{if(overlay.hidden||!document.getElementById('v200Title')?.textContent.includes('길드원 관리'))reset();}).observe(overlay,{attributes:true,attributeFilter:['hidden']});
 })();
 </script>
-<script type="module" src="./shared/admin-audit.js?v=400"></script><script id="dosalja-unified-bridge">
+<script type="module" src="./shared/admin-editor.js?v=401"></script><script type="module" src="./shared/admin-audit.js?v=401"></script><script id="dosalja-unified-bridge">
 (function(){
   'use strict';
   function routeForHref(href){
@@ -11573,3 +11573,6 @@ new MutationObserver(()=>{if(overlay.hidden||!document.getElementById('v200Title
 </style>
 </body>
 </html>
+
+<script id="v401-guild-title-edit">document.addEventListener('click',e=>{if(e.target.closest('#v4GuildServer,#v4GuildName')){window.DOSALJA_ADMIN?.guildEditor?.();}});</script>
+<style id="v401-guild-title-style">#v4GuildServer,#v4GuildName{cursor:pointer}</style>
