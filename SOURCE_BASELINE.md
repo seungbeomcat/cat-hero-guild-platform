@@ -1,7 +1,9 @@
 # Source baseline
 
-- Source package: `cat-hero-guild-platform-V4.1.1-full-20261015.zip`
-- Target package: V4.1.2
-- Build date: 2026-10-15
-
-V4.1.2는 V4.1.1의 기능·Firebase 구조·Firestore Rules를 유지한 상태에서 요청된 UI/표기 개선만 반영한 후 재검증했습니다.
+- 기준 원본: Cat Hero Guild Platform V4.1.1 full (2026-10-15)
+- 산출물: V4.1.3 멀티길드 전체 패키지
+- 변경 범위: 메인 헤더 광택, 관리자 카드 상태표시, 균열·은하 메뉴 테두리 효과, 길드원 편집 폼 슬림화, 닫기 버튼 표준화, OPS 회차 콘텐츠 선택기 및 명칭
+- 보안 변경: 없음. V4.1.1 Firestore Rules 그대로 유지
+- 데이터 변경: 없음. 기존 V4 운영 데이터 및 V3→V4 이관 데이터 구조 유지
+- 유지 범위: V4.1.1 완전삭제, V4.0.9 길드원 삭제 수정, V4.0.7 계산/22분, V4.0.6 관리자/전용주소 구조
+- V3.0 도살장 전용 프로젝트는 수정하지 않음

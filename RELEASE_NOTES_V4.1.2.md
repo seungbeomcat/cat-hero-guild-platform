@@ -1,15 +1,21 @@
 # Cat Hero Guild Platform V4.1.2
 
-Build date: 2026.10.15
+Build date: 2026-10-15
 
-## UI polish
-- Header guild/server/count and `격전지 계산기` sheen strengthened and changed to continuous left-to-right motion.
-- Removed the redundant `로그인 중` text from the administrator card; the green card/icon remains the login indicator.
-- Added a restrained animated perimeter highlight to the `균열·은하` navigation card.
-- Refined the guild-member add/edit/delete form with thinner borders, shorter fields, tighter spacing, and lighter section cards.
-- Enlarged and unified major popup X close controls for easier recognition and touch.
-- Round-start content selector is more compact with reduced typography.
-- Corrected the content label to `은하 격전지`; `균열의 격전지` remains unchanged.
+## UI 개선
+- 상단 길드 정보/페이지 제목 광택 효과를 더 밝고 부드러운 연속 이동으로 조정했습니다.
+- 관리자 로그인 카드에서 `로그인 중` 문구를 제거하고 초록색 카드/아이콘 상태만 유지했습니다.
+- `균열·은하` 메뉴에는 카드 내부를 번쩍이게 하지 않고 테두리에만 흐르는 광택 효과를 적용했습니다.
+- 길드원 추가·수정·삭제 폼의 외곽 구획, 내부 입력 카드, 입력칸 높이와 여백을 줄여 밀도를 개선했습니다.
+- 주요 팝업 닫기 `×` 버튼을 더 크고 선명하게 통일했습니다.
+- `회차 시작 설정`의 콘텐츠 선택기 높이/폭/폰트를 줄여 과한 느낌을 완화했습니다.
 
-## Functional scope
-No calculation formulas, migrated guild data, Firestore data model, authentication flow, or Firestore security rules were changed in this release.
+## 명칭
+- `균열의 격전지` 유지.
+- `은하의 격전지`를 `은하 격전지`로 정정.
+- 과거 회차 선택 화면도 같은 명칭을 사용합니다.
+
+## 호환성
+- 애니메이션 감소 설정(`prefers-reduced-motion`)에서는 헤더/테두리 애니메이션을 정적으로 대체합니다.
+- Firestore 경로, 관리자 권한, 계산식, 보스/보상/OPS 저장 구조는 변경하지 않습니다.
+- Firestore Rules 변경 없음.
