@@ -17,19 +17,28 @@
   <header class="hero">
     <h1>도살장 V3 → V4 데이터 이관</h1>
     <p>V3 운영 DB를 읽어 백업한 뒤, V4의 <b>879 · 도살장</b> 길드로 복사하고 다시 대조합니다. 관리자·길드 전용주소·초대코드는 건드리지 않습니다.</p>
-    <div class="badge"><span class="dot"></span> 일회성 마이그레이션 도구 · V1.0.1</div>
+    <div class="badge"><span class="dot"></span> 일회성 마이그레이션 도구 · V1.0.2</div>
   </header>
 
   <section class="card">
     <h2>1. 연결 및 관리자 확인</h2>
-    <div class="notice">이 페이지는 <b>V4 GitHub 저장소 루트에 업로드한 뒤</b> 실행하는 것을 권장합니다. V4 로그인은 메인 계산기의 로그인 상태와 분리된 <b>이관 전용 임시 세션</b>을 사용합니다. 입력한 중앙관리자 계정으로 직접 확인하며, 메인 계산기의 관리자 로그인 상태는 바꾸지 않습니다. V3도 과거 도살장 Firebase 관리자 계정으로 별도 로그인합니다.</div>
-    <h3>V4 대상</h3>
-    <div id="v4Session" class="status">V4 세션 확인 전</div>
+    <div class="notice">이관에는 역할이 서로 다른 <b>3개의 인증 세션</b>을 사용합니다. ① V4 중앙관리자는 <b>879 · 도살장</b>의 정확한 guildId를 찾기만 합니다. ② V4 도살장 관리자는 그 길드의 실제 운영 데이터를 읽고 씁니다. ③ V3 원본 관리자는 기존 도살장 Firebase를 읽습니다. 세 세션은 모두 메인 계산기 로그인과 분리된 임시 세션이며, 메인 계산기의 로그인 상태를 바꾸지 않습니다.</div>
+
+    <h3>V4 중앙관리자 · 대상 길드 확인용</h3>
+    <div id="v4PlatformSession" class="status">V4 중앙관리자 확인 전</div>
     <div class="grid2" style="margin-top:10px">
-      <div class="field"><label>V4 관리자 이메일</label><input id="v4Email" type="email" autocomplete="username" placeholder="필요할 때만 입력"></div>
-      <div class="field"><label>V4 관리자 비밀번호</label><input id="v4Password" type="password" autocomplete="current-password" placeholder="필요할 때만 입력"></div>
+      <div class="field"><label>V4 중앙관리자 이메일</label><input id="v4PlatformEmail" type="email" autocomplete="username" placeholder="플랫폼 중앙관리자 이메일"></div>
+      <div class="field"><label>V4 중앙관리자 비밀번호</label><input id="v4PlatformPassword" type="password" autocomplete="current-password" placeholder="비밀번호"></div>
     </div>
-    <div class="actions" style="margin-top:10px"><button class="btn primary" id="v4LoginBtn">V4 관리자 확인 / 로그인</button></div>
+    <div class="actions" style="margin-top:10px"><button class="btn primary" id="v4PlatformLoginBtn">V4 중앙관리자 확인</button></div>
+
+    <h3>V4 도살장 관리자 · 실제 이관 쓰기용</h3>
+    <div id="v4GuildSession" class="status">V4 도살장 관리자 확인 전</div>
+    <div class="grid2" style="margin-top:10px">
+      <div class="field"><label>V4 도살장 관리자 이메일</label><input id="v4GuildEmail" type="email" autocomplete="username" placeholder="도살장 관리자 이메일"></div>
+      <div class="field"><label>V4 도살장 관리자 비밀번호</label><input id="v4GuildPassword" type="password" autocomplete="current-password" placeholder="비밀번호"></div>
+    </div>
+    <div class="actions" style="margin-top:10px"><button class="btn primary" id="v4GuildLoginBtn">V4 도살장 관리자 확인</button></div>
 
     <h3>V3 원본</h3>
     <div class="grid2">
@@ -43,7 +52,7 @@
   <section class="card">
     <h2>2. V3 사전검사</h2>
     <div class="actions"><button class="btn primary" id="scanBtn" disabled>V3 전체 사전검사</button><button class="btn" id="backupBtn" disabled>JSON 백업 다운로드</button></div>
-    <div id="scanStatus" class="status">두 프로젝트의 관리자 확인 후 실행할 수 있습니다.</div>
+    <div id="scanStatus" class="status">V4 중앙관리자 + V4 도살장 관리자 + V3 원본 관리자 확인 후 실행할 수 있습니다.</div>
     <div id="sourceSummary" class="summary" style="margin-top:10px"></div>
     <h3>이관 경로</h3>
     <div class="map"><table><thead><tr><th>V3 원본</th><th>V4 도살장</th><th>방식</th></tr></thead><tbody>
@@ -62,7 +71,7 @@
     <h2>3. V4 대상 확인</h2>
     <div id="targetBox" class="status">대상 길드를 찾지 않았습니다.</div>
     <div id="targetSummary" class="summary" style="margin-top:10px"></div>
-    <div class="dangerbox" style="margin-top:10px">V4의 <b>관리자 문서, 길드 전용주소(accessHash), 관리자 초대코드</b>는 이관 대상이 아니며 수정하지 않습니다. 운영 데이터만 채웁니다.</div>
+    <div class="dangerbox" style="margin-top:10px">V4의 <b>관리자 문서, 길드 전용주소(accessHash), 관리자 초대코드</b>는 이관 대상이 아니며 수정하지 않습니다. 중앙관리자 세션은 대상 guildId 확인에만 사용하고, 실제 운영 데이터 쓰기는 <b>V4 도살장 관리자 세션</b>으로만 실행합니다.</div>
   </section>
 
   <section class="card">
@@ -85,7 +94,7 @@
     <h2>작업 로그</h2>
     <div id="log" class="log">도구 준비 완료\n</div>
   </section>
-  <div class="footer">Cat Hero Guild Platform · 도살장 전용 V3→V4 Migration Tool V1.0.1 · 2026.10.15</div>
+  <div class="footer">Cat Hero Guild Platform · 도살장 전용 V3→V4 Migration Tool V1.0.2 · 2026.10.15</div>
 </div>
 
 <script type="module">
@@ -106,26 +115,33 @@ function errText(e){return String(e?.code||e?.message||e)}
 function metric(label,value){return `<div class="metric"><b>${value}</b><span>${label}</span></div>`}
 function download(name,obj){const blob=new Blob([JSON.stringify(obj,null,2)],{type:'application/json;charset=utf-8'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},1000)}
 
-// 이관 도구의 V4 인증은 메인 사이트의 영속 로그인과 완전히 분리합니다.
-// 브라우저에 남아 있는 다른 길드관리자 세션을 잘못 재사용하지 않도록 named app + memory persistence를 사용합니다.
-const v4App=getApps().find(a=>a.name==='dosaljangMigrationTarget')||initializeApp(V4_CONFIG,'dosaljangMigrationTarget');
+// 이관 도구의 인증은 메인 사이트의 영속 로그인과 완전히 분리합니다.
+// 같은 V4 프로젝트라도 중앙관리자와 도살장 관리자는 서로 다른 named app + memory persistence로 분리해
+// 한 계정이 두 역할을 동시에 가져야 하는 잘못된 조건을 만들지 않습니다.
+const v4PlatformApp=getApps().find(a=>a.name==='dosaljangMigrationPlatform')||initializeApp(V4_CONFIG,'dosaljangMigrationPlatform');
+let v4PlatformAuth;
+try{v4PlatformAuth=initializeAuth(v4PlatformApp,{persistence:inMemoryPersistence})}catch(_e){v4PlatformAuth=getAuth(v4PlatformApp)}
+const v4PlatformDb=getFirestore(v4PlatformApp);
+
+const v4GuildApp=getApps().find(a=>a.name==='dosaljangMigrationGuild')||initializeApp(V4_CONFIG,'dosaljangMigrationGuild');
 let v4Auth;
-try{v4Auth=initializeAuth(v4App,{persistence:inMemoryPersistence})}catch(_e){v4Auth=getAuth(v4App)}
-const v4db=getFirestore(v4App);
+try{v4Auth=initializeAuth(v4GuildApp,{persistence:inMemoryPersistence})}catch(_e){v4Auth=getAuth(v4GuildApp)}
+const v4db=getFirestore(v4GuildApp);
+
 const v3App=getApps().find(a=>a.name==='dosaljangMigrationSource')||initializeApp(V3_CONFIG,'dosaljangMigrationSource');
 let v3Auth;
 try{v3Auth=initializeAuth(v3App,{persistence:inMemoryPersistence})}catch(_e){v3Auth=getAuth(v3App)}
 const v3db=getFirestore(v3App);
 
 let targetGuild=null,source=null,targetBefore=null,lastVerify=null;
-let v4Ready=false,v3Ready=false;
+let v4PlatformReady=false,v4GuildReady=false,v3Ready=false;
 
 function updateButtons(){
-  $('scanBtn').disabled=!(v4Ready&&v3Ready&&targetGuild);
+  $('scanBtn').disabled=!(v4PlatformReady&&v4GuildReady&&v3Ready&&targetGuild);
   $('backupBtn').disabled=!source;
   const confirmations=$('backupConfirm').checked&&$('freezeConfirm').checked&&$('confirmText').value.trim()==='도살장 이관';
-  $('migrateBtn').disabled=!(source&&targetGuild&&confirmations);
-  $('verifyBtn').disabled=!(source&&targetGuild);
+  $('migrateBtn').disabled=!(source&&targetGuild&&v4PlatformReady&&v4GuildReady&&v3Ready&&confirmations);
+  $('verifyBtn').disabled=!(source&&targetGuild&&v4PlatformReady&&v4GuildReady&&v3Ready);
   $('reportBtn').disabled=!lastVerify;
 }
 ['backupConfirm','freezeConfirm','confirmText'].forEach(id=>$(id).addEventListener('input',updateButtons));
@@ -133,39 +149,67 @@ function updateButtons(){
 async function waitAuth(auth){if(typeof auth.authStateReady==='function')await auth.authStateReady();else await new Promise(r=>{const u=onAuthStateChanged(auth,()=>{u();r()})})}
 
 async function findTargetGuild(){
-  if(!v4Auth.currentUser)throw Error('V4 로그인이 필요합니다.');
-  const snap=await getDocs(collection(v4db,'guilds'));
+  if(!v4PlatformAuth.currentUser)throw Error('V4 중앙관리자 로그인이 필요합니다.');
+  const snap=await getDocs(collection(v4PlatformDb,'guilds'));
   const matches=snap.docs.map(d=>({id:d.id,...d.data()})).filter(g=>String(g.server||'').trim()===TARGET_SERVER&&String(g.name||'').trim()===TARGET_NAME&&g.active!==false);
   if(matches.length!==1)throw Error(`V4에서 ${TARGET_SERVER} · ${TARGET_NAME} 활성 길드를 정확히 1개 찾아야 합니다. 현재 ${matches.length}개입니다.`);
-  const g=matches[0];
-  const adminSnap=await getDoc(doc(v4db,'guilds',g.id,'admins',v4Auth.currentUser.uid));
-  if(!adminSnap.exists()||adminSnap.data()?.active!==true)throw Error('현재 V4 계정이 도살장 길드의 활성 관리자에 등록되어 있지 않습니다.');
-  targetGuild=g;
-  $('targetBox').innerHTML=`<div class="target"><div><b>${g.server} · ${g.name}</b><small>guildId: ${g.id}</small></div><span class="pill">활성 관리자 확인</span></div>`;
-  log(`V4 대상 길드 확인: ${g.server} · ${g.name} (${g.id})`);
-  await scanTarget();
+  targetGuild=matches[0];
+  $('targetBox').innerHTML=`<div class="target"><div><b>${targetGuild.server} · ${targetGuild.name}</b><small>guildId: ${targetGuild.id}</small></div><span class="pill">중앙관리자 대상 확정</span></div>`;
+  log(`V4 중앙관리자가 대상 길드 확정: ${targetGuild.server} · ${targetGuild.name} (${targetGuild.id})`);
+  if(v4Auth.currentUser)await confirmGuildAdmin(false);
   updateButtons();
 }
 
-async function ensureV4(){
-  status($('v4Session'),'V4 중앙관리자 로그인 확인 중…');
+async function ensureV4Platform(){
+  status($('v4PlatformSession'),'V4 중앙관리자 확인 중…');
   try{
-    const email=$('v4Email').value.trim(),pw=$('v4Password').value;
-    let u=null;
-    // 이메일/비밀번호가 입력되어 있으면 반드시 그 계정으로 로그인합니다.
-    // 다른 V4 페이지에서 복원된 사용자 세션은 이 이관 도구에서 재사용하지 않습니다.
-    if(email||pw){
-      if(!email||!pw)throw Error('V4 중앙관리자 이메일과 비밀번호를 모두 입력해 주세요.');
-      u=(await signInWithEmailAndPassword(v4Auth,email,pw)).user;
-    }else{
-      await waitAuth(v4Auth);
-      u=v4Auth.currentUser;
-      if(!u)throw Error('V4 중앙관리자 이메일과 비밀번호를 입력해 주세요.');
-    }
+    const email=$('v4PlatformEmail').value.trim(),pw=$('v4PlatformPassword').value;
+    if(!email||!pw)throw Error('V4 중앙관리자 이메일과 비밀번호를 모두 입력해 주세요.');
+    const u=(await signInWithEmailAndPassword(v4PlatformAuth,email,pw)).user;
     if(u.uid!==PLATFORM_ADMIN_UID)throw Error(`현재 UID(${u.uid})는 플랫폼 중앙관리자 UID가 아닙니다.`);
-    v4Ready=true;status($('v4Session'),`V4 중앙관리자 로그인 확인 · ${u.email||u.uid} · UID ${u.uid}`,'ok');log(`V4 인증 성공: ${u.uid}`);await findTargetGuild();
-  }catch(e){v4Ready=false;targetGuild=null;status($('v4Session'),'V4 확인 실패: '+errText(e),'err');log('V4 확인 실패: '+errText(e));updateButtons()}
+    v4PlatformReady=true;
+    status($('v4PlatformSession'),`V4 중앙관리자 확인 완료 · ${u.email||u.uid} · UID ${u.uid}`,'ok');
+    log(`V4 중앙관리자 인증 성공: ${u.uid}`);
+    await findTargetGuild();
+  }catch(e){
+    v4PlatformReady=false;targetGuild=null;v4GuildReady=false;
+    status($('v4PlatformSession'),'V4 중앙관리자 확인 실패: '+errText(e),'err');
+    status($('v4GuildSession'),'대상 길드가 확정된 뒤 도살장 관리자를 확인할 수 있습니다.','warn');
+    log('V4 중앙관리자 확인 실패: '+errText(e));updateButtons();
+  }
 }
+
+async function confirmGuildAdmin(doLogin=true){
+  status($('v4GuildSession'),'V4 도살장 관리자 확인 중…');
+  try{
+    if(!targetGuild)throw Error('먼저 V4 중앙관리자로 879 · 도살장 대상 길드를 확정해 주세요.');
+    let u=v4Auth.currentUser;
+    if(doLogin){
+      const email=$('v4GuildEmail').value.trim(),pw=$('v4GuildPassword').value;
+      if(!email||!pw)throw Error('V4 도살장 관리자 이메일과 비밀번호를 모두 입력해 주세요.');
+      u=(await signInWithEmailAndPassword(v4Auth,email,pw)).user;
+    }
+    if(!u)throw Error('V4 도살장 관리자 로그인이 필요합니다.');
+    const adminSnap=await getDoc(doc(v4db,'guilds',targetGuild.id,'admins',u.uid));
+    if(!adminSnap.exists()||adminSnap.data()?.active!==true)throw Error(`현재 V4 계정(${u.email||u.uid})은 879 · 도살장의 활성 관리자가 아닙니다.`);
+    const guildSnap=await getDoc(doc(v4db,'guilds',targetGuild.id));
+    if(!guildSnap.exists())throw Error('V4 도살장 길드 문서를 읽을 수 없습니다.');
+    const gd=guildSnap.data();
+    if(String(gd.server||'').trim()!==TARGET_SERVER||String(gd.name||'').trim()!==TARGET_NAME||gd.active===false)throw Error('중앙관리자가 확정한 대상과 도살장 관리자에게 보이는 길드 정보가 일치하지 않습니다.');
+    v4GuildReady=true;
+    status($('v4GuildSession'),`V4 도살장 관리자 확인 완료 · ${u.email||u.uid} · UID ${u.uid}`,'ok');
+    $('targetBox').innerHTML=`<div class="target"><div><b>${targetGuild.server} · ${targetGuild.name}</b><small>guildId: ${targetGuild.id}</small></div><span class="pill">중앙 + 길드관리자 확인</span></div>`;
+    log(`V4 도살장 관리자 인증 성공: ${u.uid}`);
+    await scanTarget();
+  }catch(e){
+    v4GuildReady=false;
+    status($('v4GuildSession'),'V4 도살장 관리자 확인 실패: '+errText(e),'err');
+    log('V4 도살장 관리자 확인 실패: '+errText(e));
+  }finally{updateButtons()}
+}
+
+$('v4PlatformLoginBtn').onclick=ensureV4Platform;
+$('v4GuildLoginBtn').onclick=()=>confirmGuildAdmin(true);
 
 async function ensureV3(){
   status($('v3Session'),'V3 관리자 로그인 중…');
@@ -174,7 +218,7 @@ async function ensureV3(){
     const u=(await signInWithEmailAndPassword(v3Auth,email,pw)).user;v3Ready=true;status($('v3Session'),`V3 관리자 로그인 완료 · ${u.email||u.uid}`,'ok');log(`V3 인증 성공: ${u.uid}`);updateButtons();
   }catch(e){v3Ready=false;status($('v3Session'),'V3 로그인 실패: '+errText(e),'err');log('V3 로그인 실패: '+errText(e));updateButtons()}
 }
-$('v4LoginBtn').onclick=ensureV4;$('v3LoginBtn').onclick=ensureV3;
+$('v3LoginBtn').onclick=ensureV3;
 
 async function docsOf(db,name){const s=await getDocs(collection(db,name));return s.docs.map(d=>({id:d.id,data:d.data()}))}
 function timestampDate(v){try{if(v&&typeof v.toDate==='function')return v.toDate();}catch(_e){}return null}
@@ -226,10 +270,10 @@ async function scanSource(){
   }catch(e){source=null;status($('scanStatus'),'사전검사 실패: '+errText(e),'err');log('사전검사 실패: '+errText(e));updateButtons()}
 }
 $('scanBtn').onclick=scanSource;
-$('backupBtn').onclick=()=>{if(!source)return;const payload={toolVersion:'V1.0.0',createdAt:new Date().toISOString(),note:'V3 원본 읽기 전용 백업',source:jsonSafe(source)};download(`dosaljang-v3-backup-${new Date().toISOString().replace(/[:.]/g,'-')}.json`,payload);$('backupConfirm').checked=true;log('V3 JSON 백업 다운로드 생성');updateButtons()};
+$('backupBtn').onclick=()=>{if(!source)return;const payload={toolVersion:'V1.0.2',createdAt:new Date().toISOString(),note:'V3 원본 읽기 전용 백업',source:jsonSafe(source)};download(`dosaljang-v3-backup-${new Date().toISOString().replace(/[:.]/g,'-')}.json`,payload);$('backupConfirm').checked=true;log('V3 JSON 백업 다운로드 생성');updateButtons()};
 
 async function scanTarget(){
-  if(!targetGuild)return;
+  if(!targetGuild||!v4GuildReady||!v4Auth.currentUser)return;
   try{
     const gid=targetGuild.id;
     const [roster,rewards,bossTimers,bossHistory,ops,rounds,audit,journal]=await Promise.all([
@@ -250,7 +294,7 @@ async function batchSet(items){
 function journalEntry(x){const d=x.data;return {id:`v3-${x.id}`,legacyId:x.id,kind:d.kind||'길드 활동',name:d.name||'',date:/^\d{4}-\d{2}-\d{2}$/.test(String(d.date||''))?d.date:(isoDay(d.at)||isoDay(d.updatedAt)||''),text:d.text||'',manual:d.manual===true,before:d.before??null,after:d.after??null,field:d.field||'',rewardId:d.rewardId||'',source:'V3',legacyUid:d.uid||''}}
 
 async function migrate(){
-  if(!source||!targetGuild)return;const gid=targetGuild.id;
+  if(!source||!targetGuild||!v4GuildReady||!v4Auth.currentUser)return;const gid=targetGuild.id;
   status($('migrateStatus'),'이관 실행 중… 브라우저를 닫지 마세요.','warn');$('migrateBtn').disabled=true;log('=== 실제 이관 시작 ===');
   try{
     // Recheck source immediately before write to reduce race risk.
@@ -282,7 +326,7 @@ async function migrate(){
     // Update only the public member count on the V4 guild root; do not touch name/server/accessHash/admins.
     const memberCount=Object.keys(source.roster.members||{}).length;
     await setDoc(doc(v4db,'guilds',gid),{memberCount,updatedAt:serverTimestamp()},{merge:true});
-    await setDoc(doc(collection(v4db,'guilds',gid,'audit')),{kind:'V3 데이터 이관',name:'도살장',text:`V3 운영 데이터 이관 완료 · 길드원 ${memberCount}명 · bossHistory ${source.bossHistory.length}건 · rounds ${source.rounds.length}건 · journal ${source.journal.length}건`,uid:v4Auth.currentUser.uid,at:serverTimestamp(),source:'migration-tool-v1.0.0'});
+    await setDoc(doc(collection(v4db,'guilds',gid,'audit')),{kind:'V3 데이터 이관',name:'도살장',text:`V3 운영 데이터 이관 완료 · 길드원 ${memberCount}명 · bossHistory ${source.bossHistory.length}건 · rounds ${source.rounds.length}건 · journal ${source.journal.length}건`,uid:v4Auth.currentUser.uid,at:serverTimestamp(),source:'migration-tool-v1.0.2'});
     status($('migrateStatus'),`이관 쓰기 완료 · 길드원 ${memberCount}명\n이제 반드시 아래의 전체 대조 검증을 실행해 주세요.`,'ok');log('=== 실제 이관 쓰기 완료 ===');$('verifyBtn').disabled=false;await scanTarget();
   }catch(e){status($('migrateStatus'),'이관 실패: '+errText(e),'err');log('이관 실패: '+errText(e))}finally{updateButtons()}
 }
@@ -292,7 +336,7 @@ async function loadTargetCurrent(){const gid=targetGuild.id;const [roster,reward
 function mapDocs(arr){return new Map(arr.map(x=>[x.id,x.data]))}
 function compareDocs(label,srcArr,tgtArr,problems){const t=mapDocs(tgtArr);for(const x of srcArr){if(!t.has(x.id)){problems.push(`${label}/${x.id} 없음`);continue}if(canonical(x.data)!==canonical(t.get(x.id)))problems.push(`${label}/${x.id} 내용 불일치`)}}
 async function verify(){
-  if(!source||!targetGuild)return;status($('verifyStatus'),'전체 대조 중…','warn');log('=== V3 ↔ V4 대조 시작 ===');
+  if(!source||!targetGuild||!v4GuildReady||!v4Auth.currentUser)return;status($('verifyStatus'),'전체 대조 중…','warn');log('=== V3 ↔ V4 대조 시작 ===');
   try{
     // Fresh source scan ensures verification is against the current V3 master.
     await scanSource();const tgt=await loadTargetCurrent(),problems=[];
@@ -302,7 +346,7 @@ async function verify(){
     const ta=mapDocs(tgt.audit);for(const x of source.journal){if(!ta.has(x.id))problems.push(`audit/${x.id} 없음`);else if(canonical(x.data)!==canonical(ta.get(x.id)))problems.push(`audit/${x.id} 내용 불일치`)}
     const journalIds=new Set((tgt.journal?.entries||[]).map(x=>String(x.id||'')));for(const x of source.journal)if(!journalIds.has(`v3-${x.id}`))problems.push(`data/journal v3-${x.id} 없음`);
     const memberCount=Object.keys(source.roster.members||{}).length;if(Number(tgt.guild?.memberCount||0)!==memberCount)problems.push(`guild.memberCount 불일치 (${tgt.guild?.memberCount} != ${memberCount})`);
-    lastVerify={toolVersion:'V1.0.0',verifiedAt:new Date().toISOString(),sourceProject:'cat-hero-boss',targetProject:'cat-hero-guild-platform',targetGuild:{id:targetGuild.id,server:targetGuild.server,name:targetGuild.name},counts:{members:memberCount,bossTimers:source.bossTimers.length,bossHistory:source.bossHistory.length,rewards:Array.isArray(source.rewards.records)?source.rewards.records.length:0,ops:source.ops.length,rounds:source.rounds.length,journal:source.journal.length},pass:problems.length===0,problems};
+    lastVerify={toolVersion:'V1.0.2',verifiedAt:new Date().toISOString(),sourceProject:'cat-hero-boss',targetProject:'cat-hero-guild-platform',targetGuild:{id:targetGuild.id,server:targetGuild.server,name:targetGuild.name},counts:{members:memberCount,bossTimers:source.bossTimers.length,bossHistory:source.bossHistory.length,rewards:Array.isArray(source.rewards.records)?source.rewards.records.length:0,ops:source.ops.length,rounds:source.rounds.length,journal:source.journal.length},pass:problems.length===0,problems};
     if(!problems.length){status($('verifyStatus'),'이관 검증 PASS · V3 원본과 V4 도살장 데이터가 일치합니다.','ok');log('검증 PASS');$('verifySummary').innerHTML=[metric('길드원',memberCount),metric('bossHistory',source.bossHistory.length),metric('rounds',source.rounds.length),metric('오류',0)].join('')}
     else{status($('verifyStatus'),`검증 FAIL · ${problems.length}개 차이\n`+problems.slice(0,12).join('\n'),'err');log(`검증 FAIL: ${problems.length}개`);$('verifySummary').innerHTML=[metric('길드원',memberCount),metric('bossHistory',source.bossHistory.length),metric('rounds',source.rounds.length),metric('차이',problems.length)].join('')}
     $('reportBtn').disabled=false;
@@ -310,10 +354,12 @@ async function verify(){
 }
 $('verifyBtn').onclick=verify;$('reportBtn').onclick=()=>{if(lastVerify)download(`dosaljang-v3-to-v4-verify-${new Date().toISOString().replace(/[:.]/g,'-')}.json`,lastVerify)};
 
-(async()=>{
+(()=>{
   if(location.protocol==='file:')log('주의: file:// 직접 실행보다 V4 GitHub Pages 루트에서 실행하세요.');
-  await waitAuth(v4Auth).catch(()=>{});
-  if(v4Auth.currentUser){$('v4Email').value=v4Auth.currentUser.email||'';ensureV4()}else status($('v4Session'),'기존 V4 로그인 세션 없음 · 이메일/비밀번호 입력 필요','warn');
+  status($('v4PlatformSession'),'V4 중앙관리자 계정을 입력해 대상 길드를 확정해 주세요.','warn');
+  status($('v4GuildSession'),'그 다음 V4 도살장 관리자 계정으로 실제 쓰기 권한을 확인해 주세요.','warn');
+  status($('v3Session'),'V3 원본 관리자 계정으로 로그인해 주세요.','warn');
+  log('V1.0.2 준비 완료 · 중앙관리자/도살장관리자/V3원본관리자 세션 분리');
 })();
 </script>
 </body>
