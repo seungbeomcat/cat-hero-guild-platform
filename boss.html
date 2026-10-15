@@ -2294,7 +2294,7 @@ button,input,select,textarea{font:inherit;}
       <div id="historyList" class="history-empty">기록을 불러오는 중입니다.</div>
     </div>
   </section>
-  <footer class="boss-footer-credits" aria-label="페이지 제작 정보"><div>Created by 879 | 안창살 · V4.0.4</div><div class="boss-footer-date">2026.10.15</div></footer>
+  <footer class="boss-footer-credits" aria-label="페이지 제작 정보"><div>Created by 879 | 안창살 · V4.0.6</div><div class="boss-footer-date">2026.10.15</div></footer>
 </main>
 
 <div id="lastWeekModal" class="monthly-modal" aria-hidden="true">
@@ -2606,7 +2606,7 @@ const auth=getAuth(app);
 const db=getFirestore(app);
 const authReady=(async()=>{if(typeof auth.authStateReady==="function")await auth.authStateReady();return auth.currentUser;})();
 
-function requireWritePin(){if(window.CAT_HERO_V4_TENANT?.isAdmin?.())return true;Promise.resolve(window.CAT_HERO_V4_TENANT?.requestAdmin?.()).then(ok=>{if(ok)alert('관리자 인증이 완료되었습니다. 방금 선택한 작업을 한 번 더 눌러 주세요.');});return false;}
+function requireWritePin(){if(window.CAT_HERO_V4_TENANT?.isAdmin?.())return true;alert(window.CAT_HERO_V4_TENANT?.permissionMessage||'관리 권한이 없습니다.\n관리자 기능은 메인 화면의 관리자 메뉴에서 인증 후 사용할 수 있습니다.');return false;}
 
 // Current guild members are loaded from the V4 tenant roster. No guild-specific fallback roster is bundled.
 const MEMBERS=window.DosaljaShared?.members || {};
@@ -3886,6 +3886,7 @@ document.getElementById("saveComplete").addEventListener("click",async()=>{
         bossHistoryUpdatedAt:serverTimestamp(),bossHistoryUpdatedAtMs:calcBaseMs
       }:{})
     },{merge:true});
+    batch.set(doc(collection(db,"guilds",GUILD_ID,"audit")),{kind:"보스 처치 등록",name:BOSSES[completeBoss].name,text:"처치 등록 및 다음 팝업 시간 저장",uid:auth.currentUser?.uid||"",at:serverTimestamp()});
     await batch.commit();closeModal(completeModal);
   }catch(e){err.textContent="저장 실패: "+(e?.message||e)}
   finally{syncCompleteSave()}
@@ -3914,6 +3915,7 @@ document.getElementById("saveRecord").addEventListener("click",async()=>{
     batch.set(doc(db,...WEEKLY_REWARD_DOC_PATH),{
       bossHistoryUpdatedAt:serverTimestamp(),bossHistoryUpdatedAtMs:Date.now()
     },{merge:true});
+    batch.set(doc(collection(db,"guilds",GUILD_ID,"audit")),{kind:editingHistoryId?"보스 처치 기록 변경":"보스 처치 기록 추가",name:BOSSES[recordBoss].name,text:editingHistoryId?"기존 처치 기록 변경":"처치 기록 추가",uid:auth.currentUser?.uid||"",at:serverTimestamp()});
     await batch.commit();editingHistoryId=null;closeModal(recordModal);
   }catch(e){err.textContent="저장 실패: "+(e?.message||e)}
   finally{syncRecordSave()}
@@ -3928,6 +3930,7 @@ document.getElementById("deleteRecord").addEventListener("click",async()=>{
     batch.set(doc(db,...WEEKLY_REWARD_DOC_PATH),{
       bossHistoryUpdatedAt:serverTimestamp(),bossHistoryUpdatedAtMs:Date.now()
     },{merge:true});
+    batch.set(doc(collection(db,"guilds",GUILD_ID,"audit")),{kind:"보스 처치 기록 삭제",name:"보스 기록",text:"처치 기록 삭제",uid:auth.currentUser?.uid||"",at:serverTimestamp()});
     await batch.commit();editingHistoryId=null;closeModal(recordModal);
   }
   catch(e){err.textContent="삭제 실패: "+(e?.message||e)}
@@ -3952,6 +3955,7 @@ document.getElementById("savePopup").addEventListener("click",async()=>{
       remainingMsAtRecord:remain,updateSource:source,calculatedAtClient:Timestamp.fromMillis(calcBaseMs),
       updatedAt:serverTimestamp(),updatedByUid:auth.currentUser?.uid||""
     },{merge:true});
+    batch.set(doc(collection(db,"guilds",GUILD_ID,"audit")),{kind:"보스 시간 변경",name:BOSSES[popupBoss].name,text:"팝업 시간 변경",uid:auth.currentUser?.uid||"",at:serverTimestamp()});
     await batch.commit();closeModal(popupModal);
   }catch(e){err.textContent="저장 실패: "+(e?.message||e)}
   finally{syncPopupSave()}

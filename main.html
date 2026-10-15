@@ -9222,7 +9222,7 @@ body > .wrap{padding-top:clamp(16px,2.5vh,30px)!important}
 
 
 <footer class="footer-credits" aria-label="제작 정보">
-    <div class="creator-credit">Created by 879 | 안창살 · V4.0.4</div>
+    <div class="creator-credit">Created by 879 | 안창살 · V4.0.6</div>
     <div class="build-credit">2026.10.15</div>
   </footer>
 
@@ -11389,7 +11389,7 @@ function resetZ1PlanUi(){
 })();
 </script>
 <script id="cat-hero-v4-brand">(function(){try{const c=parent.CAT_HERO_V4_CONTEXT||{};const g=c.guild||{};const count=Object.keys(c.members||{}).length;document.title=`${g.name||'길드'} · 격전지 계산기 V4.0`;const s=document.getElementById('v4GuildServer'),n=document.getElementById('v4GuildName'),m=document.getElementById('v4GuildCount'),sh=document.getElementById('v4ShareGuildTitle');if(s)s.textContent=g.server||'-';if(n)n.textContent=g.name||'길드';if(m)m.textContent=count+'명';if(sh)sh.textContent=(g.name||'길드')+' 격전지 계산기';const sub=document.querySelector('#rosterAllTableBtn .roster-all-table-sub');if(sub)sub.textContent=`${count}명 · 기본 · 최소점수 · 지역격추 한눈에 확인`;}catch(e){console.warn(e)}})();</script>
-<script defer src="./shared/journal-bridge.js?v=400"></script><script>document.body.dataset.webSyncRole="main";</script><script type="module" src="./shared/web-sync.js?v=400"></script><script type="module" src="./shared/reward-entry.js?v=400"></script>
+<script defer src="./shared/journal-bridge.js?v=406"></script><script>document.body.dataset.webSyncRole="main";</script><script type="module" src="./shared/web-sync.js?v=406"></script><script type="module" src="./shared/reward-entry.js?v=406"></script>
 <style id="v201-layout-fixes">
 .v200-stats.v201-stats{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,2fr)!important;gap:8px!important;margin-bottom:12px!important}
 .v201-stats .v200-stat{min-height:0!important;height:106px!important;box-sizing:border-box!important;background:#fff!important;border:3px solid #853ee5!important;border-radius:17px!important;padding:8px 5px!important;color:#4d247e!important}
@@ -11442,10 +11442,11 @@ function resetZ1PlanUi(){
  const n=sorted.length,topN=Math.ceil(n/3),middleN=Math.ceil(Math.max(0,n-topN)/2),bottomN=Math.max(0,n-topN-middleN),topGroup=sorted.slice(0,topN),middleGroup=sorted.slice(topN,topN+middleN),bottomGroup=sorted.slice(topN+middleN);const topAvg=mean5(topGroup),middleAvg=mean5(middleGroup),bottomAvg=mean5(bottomGroup);
  document.getElementById('v200Count').textContent='';
  const actions=document.getElementById('v200HeaderActions');actions.hidden=false;
- actions.innerHTML='<button id="v200Refresh" title="새로고침" aria-label="새로고침"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11a8 8 0 1 0-2 6M20 4v7h-7"/></svg></button><button id="v200Admin" title="관리자 편집" aria-label="관리자 편집"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M10 2h4l.6 2.5 2 1 2.3-1.1 2.8 2.8-1.1 2.3 1 2 .4 2.5-2.5.6-1 2 1.1 2.3-2.8 2.8-2.3-1.1-2 1L14 22h-4l-.6-2.5-2-1-2.3 1.1-2.8-2.8 1.1-2.3-1-2L2 10l2.5-.6 1-2-1.1-2.3 2.8-2.8 2.3 1.1 2-1z"/></svg></button>';
+ const adminNow=!!window.CAT_HERO_V4_TENANT?.isAdmin?.();
+ actions.innerHTML='<button id="v200Refresh" title="새로고침" aria-label="새로고침"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11a8 8 0 1 0-2 6M20 4v7h-7"/></svg></button>'+ (adminNow?'<button id="v200Admin" title="관리자 편집" aria-label="관리자 편집"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M10 2h4l.6 2.5 2 1 2.3-1.1 2.8 2.8-1.1 2.3 1 2 .4 2.5-2.5.6-1 2 1.1 2.3-2.8 2.8-2.3-1.1-2 1L14 22h-4l-.6-2.5-2-1-2.3 1.1-2.8-2.8 1.1-2.3-1-2L2 10l2.5-.6 1-2-1.1-2.3 2.8-2.8 2.3 1.1 2-1z"/></svg></button>':'');
  body.innerHTML=`<div class="v200-stats v201-stats"><div class="v200-stat v201-winner"><div class="v200-best"><span class="v200-gold-one">1</span></div><strong class="winner-name">${esc(sorted[0]?.[0]||'-')}</strong><strong class="winner-base">${Number(sorted[0]?.[1]?.base||0)}%</strong></div><div class="v200-stat v201-average-card"><div class="v201-average-left"><small>전체 ${group.length}인 평균</small><strong>${group.length?avg.toFixed(1):'—'}${group.length?'%':''}</strong></div><div class="v201-average-right"><div><small>상위권 ${topGroup.length}인 평균</small><strong>${topGroup.length?topAvg.toFixed(1)+'%':'—'}</strong></div><div><small>도약권 ${bottomGroup.length}인 평균</small><strong>${bottomGroup.length?bottomAvg.toFixed(1)+'%':'—'}</strong></div></div><div class="v204-average-middle"><small>중간권 ${middleGroup.length}인 평균</small><strong>${middleGroup.length?middleAvg.toFixed(1)+'%':'—'}</strong></div></div></div><div class="v206-help">닉네임 선택 시 서버격추가 반영된 지역별 종합격추 확인</div><div class="v200-scroll"><table class="v200-table"><thead><tr><th>길드원</th><th>기본격추</th><th>최소점수</th><th>늑대</th><th>해적</th><th>고양이</th><th>음식</th><th>은하</th><th>상층1</th><th>상층2</th><th>상층3</th></tr></thead><tbody>${rows.map(([n,m])=>`<tr><td>${esc(n)}</td><td class="base">${Number(m.base||0)}%</td><td class="minimum">${Number(m.minScore||0).toLocaleString()}</td>${['wolf','pirate','cat','food','galaxy'].map(k=>`<td>${Number(m.field?.[k]||0)}%</td>`).join('')}${['z1r','z2r','z3r'].map(k=>`<td>${Number(m[k]||0)}%</td>`).join('')}</tr>`).join('')}</tbody></table></div>`;
  document.getElementById('v200Refresh').onclick=()=>{roster();};
- document.getElementById('v200Admin').onclick=()=>{if(!window.DOSALJA_ADMIN?.rosterEditor){alert('관리자 편집 모듈을 불러오지 못했습니다. 네트워크 연결을 확인하세요.');return;}window.DOSALJA_ADMIN.rosterEditor();};
+ const adminBtn=document.getElementById('v200Admin');if(adminBtn)adminBtn.onclick=()=>{if(!window.DOSALJA_ADMIN?.rosterEditor){alert('관리자 편집 모듈을 불러오지 못했습니다. 네트워크 연결을 확인하세요.');return;}window.DOSALJA_ADMIN.rosterEditor();};
  }
  document.getElementById('v200Members').onclick=roster;
  function journal(){open('길드 일지');document.getElementById('v200HeaderActions').hidden=true;document.getElementById('v200Count').textContent='';body.innerHTML='<div class="v200-tools"><button id="v200JournalAdd">+ 기록 추가</button><button id="v200JournalRefresh">새로고침</button><select id="v200JournalFilter" aria-label="일지 분류"><option value="">전체 기록</option><option value="격추">격추 변경</option><option value="닉네임">닉네임 변경</option><option value="가입">가입</option><option value="탈퇴">탈퇴</option><option value="기타">기타</option></select></div><div id="v200JournalList">Firebase 기록 조회 중…</div>';
@@ -11540,7 +11541,7 @@ window.addEventListener('dosalja:roster-updated',()=>{reset();});
 new MutationObserver(()=>{if(overlay.hidden||!document.getElementById('v200Title')?.textContent.includes('길드원 관리'))reset();}).observe(overlay,{attributes:true,attributeFilter:['hidden']});
 })();
 </script>
-<script type="module" src="./shared/admin-editor.js?v=401"></script><script type="module" src="./shared/admin-audit.js?v=401"></script><script id="dosalja-unified-bridge">
+<script type="module" src="./shared/admin-editor.js?v=406"></script><script type="module" src="./shared/admin-audit.js?v=406"></script><script id="dosalja-unified-bridge">
 (function(){
   'use strict';
   function routeForHref(href){
@@ -11572,7 +11573,7 @@ new MutationObserver(()=>{if(overlay.hidden||!document.getElementById('v200Title
 .guild-kill-body-table{height:auto!important;min-height:0!important;}
 </style>
 <style id="v402AdminRoleStyle">#v200Journal{position:relative}#v200Journal.v4-admin-active{border-color:#2fa56c!important;background:#edfff4!important;box-shadow:0 0 0 2px rgba(40,167,103,.18)}#v200Journal.v4-admin-active .v200-menu-icon{filter:sepia(1) saturate(4) hue-rotate(83deg)!important}#v200Journal.v4-admin-active span{color:#157748!important}#v200Journal .v4-admin-active-label{display:none;font-size:clamp(8px,2.1vw,11px);font-weight:900;color:#188252;line-height:1}#v200Journal.v4-admin-active .v4-admin-active-label{display:block}</style>
-<script>window.addEventListener('message',function(e){if(e.origin!==location.origin)return;const d=e.data||{};if(d.type==='cat-hero-v4-role'){const b=document.getElementById('v200Journal');if(b)b.classList.toggle('v4-admin-active',!!d.isGuildAdmin);}if(d.type==='cat-hero-v4-roster-updated'){window.dispatchEvent(new CustomEvent('cat-hero-v4-roster-updated',{detail:d}));}});document.addEventListener('DOMContentLoaded',function(){try{const b=document.getElementById('v200Journal');if(b)b.classList.toggle('v4-admin-active',!!window.CAT_HERO_V4_TENANT?.isAdmin?.());}catch(_e){}});</script>
+<script>window.addEventListener('message',function(e){if(e.origin!==location.origin)return;const d=e.data||{};if(d.type==='cat-hero-v4-role'){const b=document.getElementById('v200Journal');if(b)b.classList.toggle('v4-admin-active',!!d.isGuildAdmin);try{const ov=document.getElementById('v200Overlay'),tt=document.getElementById('v200Title');if(ov&&!ov.hidden&&tt?.textContent.includes('길드원'))document.getElementById('v200Members')?.click();}catch(_e){}}if(d.type==='cat-hero-v4-roster-updated'){window.dispatchEvent(new CustomEvent('cat-hero-v4-roster-updated',{detail:d}));}});document.addEventListener('DOMContentLoaded',function(){try{const b=document.getElementById('v200Journal');if(b)b.classList.toggle('v4-admin-active',!!window.CAT_HERO_V4_TENANT?.isAdmin?.());}catch(_e){}});</script>
 </body>
 </html>
 

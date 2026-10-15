@@ -3510,7 +3510,7 @@ input:focus,textarea:focus,select:focus{scroll-margin-bottom:140px;}
       </section>
 
       <div class="footer">
-        <b>Created by 879 | 안창살 · V4.0.4</b><br>
+        <b>Created by 879 | 안창살 · V4.0.6</b><br>
         <span class="footer-build-date">2026.10.15</span>
       </div>
     </main>
@@ -4127,7 +4127,7 @@ if(!window.DosaljaShared){
   async function saveArchiveGuildRanking(){
     const round=selectedArchiveRound(); if(!round)return;
     const list=Array.from({length:4},(_,i)=>({rank:i+1,server:String(document.querySelector(`[data-guild-rank-server="${i}"]`)?.value||'').trim(),guild:String(document.querySelector(`[data-guild-rank-name="${i}"]`)?.value||'').trim(),total:Math.max(0,Math.min(999,Number(document.querySelector(`[data-guild-rank-total="${i}"]`)?.value)||0))}));
-    if(!window.CAT_HERO_V4_TENANT?.isAdmin?.()){window.CAT_HERO_V4_TENANT?.requestAdmin?.();return;}
+    if(!window.CAT_HERO_V4_TENANT?.isAdmin?.()){alert(window.CAT_HERO_V4_TENANT?.permissionMessage||'관리 권한이 없습니다.\n관리자 기능은 메인 화면의 관리자 메뉴에서 인증 후 사용할 수 있습니다.');return;}
     if(!(await ensureFirebaseReady()))return;
     const btn=document.getElementById('archiveGuildRankSaveBtn'); if(btn){btn.disabled=true;btn.textContent='저장 중…';}
     try{await state.firebase.saveArchiveGuildRanking(round.id,list);round.guildRankingList=list;saveOpsCacheSnapshot();renderArchivePage();showToast('길드 순위 목록을 저장했습니다.');}catch(err){console.error(err);showToast(firebaseErrorMessage(err));}
@@ -4902,6 +4902,13 @@ if(!window.DosaljaShared){
             updatedAt:new Date().toISOString(),
             updatedAtServer:fsMod.serverTimestamp()
           },{merge:true});
+          batch.set(fsMod.doc(fsMod.collection(db,"guilds",GUILD_ID,"audit")),{
+            kind:`${round.mode==="galaxy"?"은하":"균열"} 새 회차 시작`,
+            name:round.mode==="galaxy"?"은하":"균열",
+            text:"새 회차 시작",
+            uid:auth.currentUser?.uid||"",
+            at:fsMod.serverTimestamp()
+          });
           await withTimeout(batch.commit(),10000,"새 회차 저장");
         },
         async finishRound(round,currentBossFinalRank,overallGuildRank){
@@ -4927,6 +4934,13 @@ if(!window.DosaljaShared){
             updatedAt:new Date().toISOString(),
             updatedAtServer:fsMod.serverTimestamp()
           },{merge:true});
+          batch.set(fsMod.doc(fsMod.collection(db,"guilds",GUILD_ID,"audit")),{
+            kind:`${round.mode==="galaxy"?"은하":"균열"} 이번 회차 종료`,
+            name:round.mode==="galaxy"?"은하":"균열",
+            text:"이번 회차 종료",
+            uid:auth.currentUser?.uid||"",
+            at:fsMod.serverTimestamp()
+          });
           await withTimeout(batch.commit(),10000,"회차 종료 결과 저장");
           state.archiveIds=completedArchiveIds;
           return archive;

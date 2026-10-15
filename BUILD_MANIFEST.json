@@ -1,13 +1,13 @@
 {
-  "version": "V4.0.4",
+  "version": "V4.0.6",
   "buildDate": "2026-10-15",
-  "source": "V4.0.3 full",
+  "source": "V4.0.5 full",
   "liveValidation": "pending",
   "files": [
     {
       "path": "ARCHITECTURE.md",
-      "bytes": 3998,
-      "sha256": "25cc04a3d7905948777e0c698ac36a3328646267d6f4794501df0fccbdb73a3c"
+      "bytes": 3299,
+      "sha256": "e0165fb8e84df4dd83f7bd4a764d9de9231e7e572a7c275897e74da8af2b24bf"
     },
     {
       "path": "BUILD_MANIFEST_V4.0.1_BASELINE.json",
@@ -16,18 +16,18 @@
     },
     {
       "path": "DATA_MODEL.md",
-      "bytes": 1696,
-      "sha256": "26c47c83cbea6df500f648521a6e1af6ff6348a3af7fb0b6d7f442f6f2241d75"
+      "bytes": 1402,
+      "sha256": "365625b04f45f9aae0906f492aa96012121655b54d433ef20a6677887f31471e"
     },
     {
       "path": "PRE_GITHUB_CHECKLIST.md",
-      "bytes": 1052,
-      "sha256": "11d8ac2e7ee285c153b8964476c7d7e423f0133ec9a6a7d25cea1435289d9d43"
+      "bytes": 1260,
+      "sha256": "c9c423ae25ed9b316b1f577b7842d20d009aeca726674f174d28c1ae17e52a11"
     },
     {
       "path": "README.md",
-      "bytes": 1356,
-      "sha256": "35f4ed883274d1b7d99da6e7ea2d8d4722b35b47fae20b85f20e91bec6199cdf"
+      "bytes": 1832,
+      "sha256": "285c14723c15d5dc20f1deb9c071cf8d48d6a326a5f63decb6e83edcf0e690d2"
     },
     {
       "path": "RELEASE_NOTES_V4.0.1.md",
@@ -47,17 +47,27 @@
     {
       "path": "RELEASE_NOTES_V4.0.4.md",
       "bytes": 818,
-      "sha256": "6fdb852eac594020c92f3e01d575f5504157efeb7521c8911477760d13660bb9"
+      "sha256": "d2930baedce061dbfc1d8886eb88aa19a743d4b424e24041b5ca9d3e4a7f88f5"
+    },
+    {
+      "path": "RELEASE_NOTES_V4.0.5.md",
+      "bytes": 693,
+      "sha256": "a8c0862f19ca6c3fc25331c0b4259ae8083563e522c36d0bedcc60c7bc8ba092"
+    },
+    {
+      "path": "RELEASE_NOTES_V4.0.6.md",
+      "bytes": 3100,
+      "sha256": "dac0f49463cfbc7163e921a3bd1d288dc96833d2353a8b11c9f77fcdf9cf7ef8"
     },
     {
       "path": "SOURCE_BASELINE.md",
-      "bytes": 421,
-      "sha256": "3ea1644293f6ca5732d60ed2c4794888475e93f97e34ed80e658a8a392185f0a"
+      "bytes": 304,
+      "sha256": "329593d9ec64fafaa5947d2e948e54556e188abd622fe97bee33aa4e14b12a46"
     },
     {
       "path": "VALIDATION.md",
-      "bytes": 2480,
-      "sha256": "ca81a4bc8304f5585bd132b73079f5ab7917d7d71862d69eaff9efd669116408"
+      "bytes": 3022,
+      "sha256": "b0e3b36a4482acac82cc64f95d780db81b6a6b1fc62ff71d3c08d2d9495ad04e"
     },
     {
       "path": "assets/bananyang-v337-display.webp",
@@ -251,48 +261,48 @@
     },
     {
       "path": "boss.html",
-      "bytes": 205119,
-      "sha256": "fe75299f59f33d3958077b97e40f817531657d9bedfe8180b64116acd0e6e6ee"
+      "bytes": 206042,
+      "sha256": "66df301d6ba990628c71e37a918fa2429582a0203e4e039cdf349dccca425409"
     },
     {
       "path": "firebase-config.js",
       "bytes": 560,
-      "sha256": "0a5700f29b89deadabd6c5858c04e29980fb7062d4f870516978602e60f8fbeb"
+      "sha256": "0819108333eddfb4e6d9422facb9e8c36c93cbbb70bae65fe864fc3e5c29b7b5"
     },
     {
       "path": "firestore.multiguild.rules",
-      "bytes": 5000,
-      "sha256": "28018c7f35e8ce4d443f0cca51eea9991bc2ba00ccef91aa71ae1b8f1b87ae36"
+      "bytes": 5867,
+      "sha256": "88510bddaea3b34a0df3d4d66ce31a86193a404ec8f3e73a27a11c7fefee38e5"
     },
     {
       "path": "index-module.mjs",
-      "bytes": 12214,
-      "sha256": "8c072607bc9917b667cabf5286e6f86fa1935338d34789577c7a5b04fc05f624"
+      "bytes": 24148,
+      "sha256": "99fa72643175409308557165351bb633d6a46842ef1c3f4065bb22729a0ed677"
     },
     {
       "path": "index.html",
-      "bytes": 2015,
-      "sha256": "f6012440236621052a974e32a3eaa4327f3d19e7f01c89da94515e40a42511b0"
+      "bytes": 2017,
+      "sha256": "54b90eb4213b33ba26ff01bb4e81b4f71dac18ee8679c9c6b04010881159175b"
     },
     {
       "path": "main.html",
-      "bytes": 591388,
-      "sha256": "0d769e13ed7cd9af2a184873dce73a0c260d04fca33a4f423ccd6ee5265533c0"
+      "bytes": 591709,
+      "sha256": "630625bf1cf7b31906fd4ce7a2e9d2c7c4658877cc85551c62267f2ed3fe3d96"
     },
     {
       "path": "ops.html",
-      "bytes": 274415,
-      "sha256": "fc173689929871d7fc6fe09f3a9773d3e4c82f3c580468649bb6398f4a7b4507"
+      "bytes": 275269,
+      "sha256": "7ff4db975aa283e6dbd283c3151cdfe37dd10811af136d596b40da71968e8984"
     },
     {
       "path": "shared/admin-audit.js",
-      "bytes": 8134,
-      "sha256": "a14474e22fe33e7dd88ab856633c9760f0745075320796c992d221ad94a1fa73"
+      "bytes": 14410,
+      "sha256": "628777c9c96d5deb51e6904ad41f3bed6dead50ff1d2536218aecca4baa96f91"
     },
     {
       "path": "shared/admin-editor.js",
-      "bytes": 9388,
-      "sha256": "ce6fdd5b0ca8ccb5b26d707917c78f3bd2541166560abd45861c7ed0eb2ff171"
+      "bytes": 9384,
+      "sha256": "1203f4d391245bad8c229bd128efae19d7a417ce6190642014e281676a851895"
     },
     {
       "path": "shared/guild-core.js",
@@ -311,13 +321,13 @@
     },
     {
       "path": "shared/tenant.js",
-      "bytes": 2916,
-      "sha256": "fa7a57227f84a035ae4949ecf91f6074ad1c589cfa0be823e4247ae2633b2a6d"
+      "bytes": 3143,
+      "sha256": "bcf586727a0dfe20f917b86aa150a7e7f829d8742f67c50e2cb7a2d63d27afb4"
     },
     {
       "path": "shared/web-sync.js",
-      "bytes": 14639,
-      "sha256": "67dd01ce7b35efaeeb410c2673d997150280b1ce428b8ff893265fc2c66c049d"
+      "bytes": 14939,
+      "sha256": "120a794a04bf084627a5fe5d9c4f15c06914c4ab6e981c89cb5fe27a660c692e"
     }
   ]
 }

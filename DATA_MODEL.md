@@ -1,26 +1,61 @@
-# V4 길드 데이터 운영 방식
+# V4.0.6 Firestore Data Model
 
-## 새 길드 생성 시
-중앙관리자가 길드명과 서버번호를 입력하면 16자리 난수 guildId와 1회성 최초 관리자 등록코드가 생성됩니다. roster는 `members:{}`로 생성되며 기존 길드의 길드원은 복사되지 않습니다.
+## guilds/{guildId}
+- name: string
+- server: string
+- active: boolean
+- memberCount: number
+- appVersion: string
+- accessHash: string — 길드 전용주소 secret의 SHA-256. secret 원문은 저장하지 않음.
+- accessUpdatedAt: timestamp (주소 설정 후)
+- createdAt / updatedAt: timestamp
 
-## 최초 길드 관리자
-길드 전용 URL에서 관리자 기능을 선택하고 이메일/비밀번호 인증 후 발급받은 1회성 등록코드를 사용합니다. 관리자 문서 생성과 등록코드 사용 처리는 같은 Firestore transaction에서 수행합니다.
+## guilds/{guildId}/admins/{uid}
+- role: `admin`
+- active: boolean
+- inviteId: string
+- createdAt: timestamp
 
-## 길드원 등록
-길드 관리자가 닉네임과 다음 수치를 입력합니다.
-- 기본격추
-- 최소점수
-- 늑대 / 해적 / 고양이 / 음식 / 은하
-- 상층 1구역 / 2구역 / 3구역
+## guildInvites/{inviteId}
+- guildId
+- used
+- createdAt
+- expiresAtMs
+- issuerRole: `platform` | `guild-admin`
+- usedAt (사용 후)
 
-인원수는 별도 숫자로 수동 관리하지 않고 실제 roster 개수로 자동 계산합니다.
+## guildAccess/{accessHash}
+문서 ID 자체가 `SHA-256(secret)` hex 값입니다.
+- guildId: string
+- active: true
+- createdAt: timestamp
 
-## 세 화면 공유
-`main.html`, `boss.html`, `ops.html`은 모두 동일한 `guilds/{guildId}/data/roster`를 기준으로 길드원 목록을 구성합니다. 길드원 수는 16명으로 제한하지 않습니다.
+원문 secret 및 완성된 공유 URL은 Firestore에 저장하지 않습니다.
 
-## 기록 보존
-현재 roster는 계산과 신규 입력에 사용합니다. 이미 완료된 보스/OPS 회차는 저장 당시 참여자·점수 스냅샷을 보존합니다. 닉네임 변경은 alias를 이용해 현재 진행 기록의 연결을 돕지만 완료 기록 자체를 소급 덮어쓰지 않습니다.
+## guilds/{guildId}/data/roster
+- members: object
+- aliases: object
+- updatedAt
 
+## guilds/{guildId}/data/rewards
+- records: array
+- updatedAt
 
-## 추가 길드 관리자
-기존 길드 관리자는 관리자 편집 화면에서 약 7일 유효한 1회성 등록코드를 새로 발급할 수 있습니다. 코드는 해당 `guildId`에만 귀속되며 한 번 사용되면 재사용할 수 없습니다.
+## guilds/{guildId}/bossTimers/*
+해당 길드의 보스 팝업/다음 등장시간 자료.
+
+## guilds/{guildId}/bossHistory/*
+해당 길드의 보스 처치 및 참여 기록.
+
+## guilds/{guildId}/ops/*
+현재 균열·은하 운영 상태.
+
+## guilds/{guildId}/rounds/*
+진행/완료 회차 및 결과 스냅샷.
+
+## guilds/{guildId}/audit/*
+- kind: 동적 활동 유형
+- name: 대상
+- text: 요약/세부내용
+- uid: 실행 관리자 UID
+- at: timestamp

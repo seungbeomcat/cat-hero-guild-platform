@@ -26,7 +26,7 @@ service cloud.firestore {
       allow create, delete: if platformAdmin();
       allow update: if platformAdmin() || (guildAdmin(guildId)
         && request.resource.data.diff(resource.data).affectedKeys()
-          .hasOnly(['name','server','memberCount','updatedAt']));
+          .hasOnly(['name','server','memberCount','updatedAt','accessHash','accessUpdatedAt']));
       match /data/{docId} {
         allow read: if guildActive(guildId);
         // 중앙관리자는 신규 길드의 빈 초기 데이터만 생성할 수 있습니다.
@@ -62,6 +62,23 @@ service cloud.firestore {
         allow update, delete: if false;
       }
     }
+
+    match /guildAccess/{accessHash} {
+      // 길드 전용 주소의 원문은 저장하지 않고 SHA-256 해시를 문서 ID로 사용합니다.
+      // 정확한 해시를 아는 사용자만 단건 조회할 수 있으며 목록 조회는 금지합니다.
+      allow get: if true;
+      allow list: if false;
+      allow create: if signedIn()
+        && request.resource.data.keys().hasOnly(['guildId','active','createdAt'])
+        && request.resource.data.keys().hasAll(['guildId','active','createdAt'])
+        && request.resource.data.guildId is string
+        && request.resource.data.active == true
+        && request.resource.data.createdAt == request.time
+        && guildAdmin(request.resource.data.guildId);
+      allow update: if false;
+      allow delete: if signedIn() && guildAdmin(resource.data.guildId);
+    }
+
     match /guildInvites/{inviteId} {
       allow get: if signedIn();
       allow list: if false;
