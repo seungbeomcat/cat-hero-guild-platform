@@ -11,6 +11,7 @@
       ]);
       const app=appLib.getApps().length?appLib.getApp():appLib.initializeApp(window.GUILD_OPS_CONFIG.firebase);
       const auth=authLib.getAuth(app);
+      await authLib.setPersistence(auth,authLib.browserLocalPersistence).catch(e=>console.warn('iframe 인증 유지 설정 실패',e));
       if(typeof auth.authStateReady==='function')await auth.authStateReady();
       if(auth.currentUser)return auth.currentUser;
       return await new Promise(resolve=>{

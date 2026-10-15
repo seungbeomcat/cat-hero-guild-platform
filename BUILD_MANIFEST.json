@@ -1,7 +1,7 @@
 {
-  "version": "V4.0.3",
+  "version": "V4.0.4",
   "buildDate": "2026-10-15",
-  "source": "V4.0.1 complete",
+  "source": "V4.0.3 full",
   "liveValidation": "pending",
   "files": [
     {
@@ -35,9 +35,19 @@
       "sha256": "b8e67b00069299f6af1ece34fd33e5bf74ad1bd7ecd6037c4cb4ff205141a475"
     },
     {
-      "path": "RELEASE_NOTES_V4.0.3.md",
+      "path": "RELEASE_NOTES_V4.0.2.md",
       "bytes": 1114,
       "sha256": "73e1e44e279d1522d49d4f8b7e60620c71c101ca8628663238a0f07f13a6509a"
+    },
+    {
+      "path": "RELEASE_NOTES_V4.0.3.md",
+      "bytes": 1104,
+      "sha256": "47832033d438b081aa8a12c2cf0a0a3c470bb6c0640b7df5469b28d104547b66"
+    },
+    {
+      "path": "RELEASE_NOTES_V4.0.4.md",
+      "bytes": 818,
+      "sha256": "6fdb852eac594020c92f3e01d575f5504157efeb7521c8911477760d13660bb9"
     },
     {
       "path": "SOURCE_BASELINE.md",
@@ -242,42 +252,42 @@
     {
       "path": "boss.html",
       "bytes": 205119,
-      "sha256": "19ae3ad44c879f9f887b4a4a371b631f9002644936dc3a461155eafa36b00724"
+      "sha256": "fe75299f59f33d3958077b97e40f817531657d9bedfe8180b64116acd0e6e6ee"
     },
     {
       "path": "firebase-config.js",
       "bytes": 560,
-      "sha256": "a1384b8565d83c097d33e1f94c50218fd7938272b5bec79fddd866b92c3f7928"
+      "sha256": "0a5700f29b89deadabd6c5858c04e29980fb7062d4f870516978602e60f8fbeb"
     },
     {
       "path": "firestore.multiguild.rules",
-      "bytes": 4986,
-      "sha256": "5142423df2c4aad78ea44c0015ba0167365225157cbf883987d438b98e3e5f6c"
+      "bytes": 5000,
+      "sha256": "28018c7f35e8ce4d443f0cca51eea9991bc2ba00ccef91aa71ae1b8f1b87ae36"
     },
     {
       "path": "index-module.mjs",
-      "bytes": 11737,
-      "sha256": "340bb1d9733547f027ac6d35ccbf4502e8add0637b9456934206dfadcd27f037"
+      "bytes": 12214,
+      "sha256": "8c072607bc9917b667cabf5286e6f86fa1935338d34789577c7a5b04fc05f624"
     },
     {
       "path": "index.html",
-      "bytes": 12475,
-      "sha256": "3cd5cd694a6a6d496e66fc049d84247400481149de0a52901c4cbe8fafd13ff6"
+      "bytes": 2015,
+      "sha256": "f6012440236621052a974e32a3eaa4327f3d19e7f01c89da94515e40a42511b0"
     },
     {
       "path": "main.html",
       "bytes": 591388,
-      "sha256": "3a67d025627fc38a04f5ed8b39151cda34ca743dedffd8cf5c3639b6f5f17afb"
+      "sha256": "0d769e13ed7cd9af2a184873dce73a0c260d04fca33a4f423ccd6ee5265533c0"
     },
     {
       "path": "ops.html",
       "bytes": 274415,
-      "sha256": "f2ffc1aaa0817271d2307a3dd0b8e684ac53881730c40fd3bb7b1b4d099a6a89"
+      "sha256": "fc173689929871d7fc6fe09f3a9773d3e4c82f3c580468649bb6398f4a7b4507"
     },
     {
       "path": "shared/admin-audit.js",
-      "bytes": 4662,
-      "sha256": "92d937fe07dc9b7d92c68957aba425ffba3d495adb03b722baa066b69e84c773"
+      "bytes": 8134,
+      "sha256": "a14474e22fe33e7dd88ab856633c9760f0745075320796c992d221ad94a1fa73"
     },
     {
       "path": "shared/admin-editor.js",
@@ -296,18 +306,18 @@
     },
     {
       "path": "shared/reward-entry.js",
-      "bytes": 11843,
-      "sha256": "1760c857f88898113413f1b2ef06928d827441688f4af4af34c64c55f1ef1223"
+      "bytes": 12181,
+      "sha256": "6793d39265d4b317c97005cde52196cadd7e2103cbb64e50b755dbceff41c5fe"
     },
     {
       "path": "shared/tenant.js",
-      "bytes": 2716,
-      "sha256": "3a8b535aeba94399df46f27bf0459befdddafa92839a123e8d7c869aa85b1fd9"
+      "bytes": 2916,
+      "sha256": "fa7a57227f84a035ae4949ecf91f6074ad1c589cfa0be823e4247ae2633b2a6d"
     },
     {
       "path": "shared/web-sync.js",
-      "bytes": 14621,
-      "sha256": "17871f5db56cf31d8cc32f4bcd48ce0b8ecfdb6e77124476ab3d02301ec6bacd"
+      "bytes": 14639,
+      "sha256": "67dd01ce7b35efaeeb410c2673d997150280b1ce428b8ff893265fc2c66c049d"
     }
   ]
 }
