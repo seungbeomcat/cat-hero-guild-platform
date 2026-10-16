@@ -1,23 +1,23 @@
 {
-  "version": "V4.1.7",
+  "version": "V4.1.8",
   "buildDate": "2026-10-16",
-  "source": "V4.1.6 full (V4.1.5 lineage)",
-  "liveValidation": "syntax-static-invariants-pass; iPhone/GitHub Pages runtime check pending",
+  "source": "V4.1.7 full (V4.1.5 lineage)",
+  "liveValidation": "static-syntax-invariants-pass; iPhone/GitHub Pages runtime check pending",
   "changes": [
-    "행운 룰렛 상단 불필요 소개 카드 삭제",
-    "길드원 공용 배지 모바일 한 줄 고정",
-    "iPhone/Safari 추첨 항목 입력 자동 확대 방지(16px)",
-    "Royal Violet 룰렛 UI 글로우/유리광 정돈",
-    "자동 순차 추첨·중복 방지·단톡방 결과 이미지 유지",
-    "일반 길드원 포함 공용 사용 및 사용기록 미저장 유지",
+    "룰렛 인원수 드롭다운 삭제 및 최대 16명 4×4 직접 선택",
+    "최소 2명 선택 후 참여자 확인 → 기존 추첨 흐름",
+    "결과 시작/완료 시각·추첨 ID·세션 최초/재추첨 표시",
+    "결과 자체는 미저장; 구성 해시 회차 숫자만 sessionStorage 임시 사용",
+    "길드 보상 분배 5번째 길드전 카테고리/관리자 유형 추가",
+    "길드전 전용 보상 아이템 미추가",
     "은하 격전지 개편 미반영",
     "Firestore Rules 변경 없음"
   ],
   "files": [
     {
       "path": "ARCHITECTURE.md",
-      "bytes": 4838,
-      "sha256": "b8d6980de79b038245f70656c374fc7cae86e0c5006334e66750ee71408716ff"
+      "bytes": 5161,
+      "sha256": "fe95e053f1aadde264418bfda074152a9bfbc64e3d15d46873e35980eeacd8af"
     },
     {
       "path": "BUILD_MANIFEST_V4.0.1_BASELINE.json",
@@ -26,18 +26,18 @@
     },
     {
       "path": "DATA_MODEL.md",
-      "bytes": 2174,
-      "sha256": "c3d170339299757075af782bdea37a887b976a5326575f0b090d99fb340c1234"
+      "bytes": 2497,
+      "sha256": "dd5c4cfb8de34b48ec301fdf9490a3b5bb696c12866302c1a70ceb56c4e8afef"
     },
     {
       "path": "PRE_GITHUB_CHECKLIST.md",
-      "bytes": 1766,
-      "sha256": "daf1c7df84b10b26045c7358be0a4677f9b5c1f3c9ae9538c9a4f0689f98ecc3"
+      "bytes": 1117,
+      "sha256": "65b0158a9bf28eaf4049925680b34a1088e80937fc398e46a5e9b54d63235c18"
     },
     {
       "path": "README.md",
-      "bytes": 2218,
-      "sha256": "7761aa8b433c110b57d27ddac742513a822ef30a486018941a678a50e5f44988"
+      "bytes": 1217,
+      "sha256": "7100b7586b04efce83e8bb40bacb42d1046e30cb6b22c84a93f4bef70b855376"
     },
     {
       "path": "RELEASE_NOTES_V4.0.1.md",
@@ -125,14 +125,19 @@
       "sha256": "85c84dfaa6b47169c6ce0bee402c7c7d3328bb6a59b11ab6067598b3f21d4ad5"
     },
     {
+      "path": "RELEASE_NOTES_V4.1.8.md",
+      "bytes": 2140,
+      "sha256": "c2ee06def0a37afae1c3fac60c3e2287658120a55888d7d965a48bd200e8b4ac"
+    },
+    {
       "path": "SOURCE_BASELINE.md",
-      "bytes": 797,
-      "sha256": "bcbf6dfe688ca7591bf8a1b6d09a8649c009a8ca3c3014279060464fa396fc6f"
+      "bytes": 508,
+      "sha256": "b60511d04add4369263062e2a0fc3fd2c2eb8d57571167b619b96d8644a7caa7"
     },
     {
       "path": "VALIDATION.md",
-      "bytes": 2149,
-      "sha256": "b3b216b0d11cae22a45212e3c6c0a26cadb77b28f0471b1e295eab8ae6d8fe94"
+      "bytes": 1782,
+      "sha256": "2c7cd9164e9de098e0e71122609bcd92b2eddf160929dee2e0ab9464eab04bf0"
     },
     {
       "path": "assets/bananyang-v337-display.webp",
@@ -332,12 +337,12 @@
     {
       "path": "boss.html",
       "bytes": 206956,
-      "sha256": "1e44ec82200cd548a99ad86d36dcba5f09b7e74dd75b767d69ffb31559d7aea4"
+      "sha256": "39110e89be32f60580524f0ed14ab9f47d74e613f8d29d45a78d36c3ede4669c"
     },
     {
       "path": "firebase-config.js",
       "bytes": 560,
-      "sha256": "7223fb05ec570cb9da3babb6d5a7fa68059fb6e38a00ed2a07366b5a9052c46d"
+      "sha256": "1d69dbe190c807c1ddd296663b9355eaa9678beef4cb8f5b5fb18d2cf359c059"
     },
     {
       "path": "firestore.multiguild.rules",
@@ -347,27 +352,27 @@
     {
       "path": "index-module.mjs",
       "bytes": 29980,
-      "sha256": "4522bc9f8c1881f810bacf4c92cdfc2a3d1d24485b94dd52638ea269bc2b37f0"
+      "sha256": "4438e06261a53f32824041e4d567b69e9f3d3deb9e7a487ef1da50a604aa21ea"
     },
     {
       "path": "index.html",
       "bytes": 2544,
-      "sha256": "f77977ed126df5772f9f94da09e087e4838b12170af24cb6c42677e855f0b4a1"
+      "sha256": "5e2d0f173e1730a5b562cb1196c981f587c6dcbf61ce716381c760a9fde64cea"
     },
     {
       "path": "main.html",
-      "bytes": 597741,
-      "sha256": "a17eed36309f802bcb50d647207c8c6919dd165e5240aa77b7e4464e9e6caf9d"
+      "bytes": 598485,
+      "sha256": "1cca0d4e885a7199f28690f7f3116e19611be091cb8ca71bc605107d21ab45ad"
     },
     {
       "path": "ops.html",
       "bytes": 283978,
-      "sha256": "9129ac8dbb6e2ec031ab86533f09eb125cd41389fb41252ce3851317891c6087"
+      "sha256": "d7a72e9300de0c4c4c88ca11310b8e1bf35c0a2e74c729f9fd9019bb3241d659"
     },
     {
       "path": "roulette.html",
-      "bytes": 36810,
-      "sha256": "05433369b9d514392371a9deb8be592c1a6bec324816cf9194134b827e39480a"
+      "bytes": 39214,
+      "sha256": "a1aef8666f34cd5c470db0e04b6a0aaa8932a44042d41066bd36ba8d06f09e73"
     },
     {
       "path": "shared/admin-audit.js",
@@ -391,8 +396,8 @@
     },
     {
       "path": "shared/reward-entry.js",
-      "bytes": 12233,
-      "sha256": "cad4a5c3cbc6e8df2ada76192df742f46d09050721441e69608694adc65fb561"
+      "bytes": 12257,
+      "sha256": "268b70418e36fbcae76c7149b2d71913f93ec4daa4cbf6e3f5af8b53a8da8acf"
     },
     {
       "path": "shared/tenant.js",
@@ -401,8 +406,8 @@
     },
     {
       "path": "shared/web-sync.js",
-      "bytes": 14991,
-      "sha256": "c35787ef848e41f0cd5cb66d8e1f1f9e00612e5b8585357a0e0ede8b6da97bc8"
+      "bytes": 15025,
+      "sha256": "a70058877925e9b74e986c453ec9f534bf672f674c7cf58dc3601835cdfc4bc3"
     }
   ]
 }

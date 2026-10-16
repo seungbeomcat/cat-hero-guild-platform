@@ -8,7 +8,7 @@ await window.CAT_HERO_V4_TENANT?.waitLocalAuth?.();
 const app=getApps().length?getApp():initializeApp(config);
 const auth=getAuth(app),db=getFirestore(app),ref=doc(db,'guilds',gid,'data','rewards');
 const safe=x=>String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const titles={'균열':'균열의 격전지','은하':'은하 격전지','점령전':'점령전','난투전':'길드 난투전'};
+const titles={'균열':'균열의 격전지','은하':'은하 격전지','점령전':'점령전','난투전':'길드 난투전','길드전':'길드전'};
 const css=`
 #rewardEntryOverlay[hidden]{display:none!important}#rewardEntryOverlay{position:fixed;inset:0;z-index:2147483640;background:rgba(7,3,16,.80);display:flex;align-items:center;justify-content:center;padding:10px;box-sizing:border-box;font-family:inherit}
 #rewardEntryDialog{box-sizing:border-box;width:min(402px,calc(100vw - 20px));max-height:calc(100dvh - 20px);overflow-y:auto;overscroll-behavior:contain;background:#fff;border:3px solid #8340dc;border-radius:20px;padding:14px;color:#302047;font-family:inherit;box-shadow:0 20px 65px #0007}

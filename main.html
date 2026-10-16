@@ -8,7 +8,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="Cat Hero 계산기" />
-  <title>Cat Hero · 격전지 계산기 V4.1.7</title>
+  <title>Cat Hero · 격전지 계산기 V4.1.8</title>
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 
@@ -8610,8 +8610,8 @@ button,input,select,textarea{font:inherit;}
 .reward-history-title-wrap{grid-column:2;text-align:center;min-width:0;}
 .reward-history-title-wrap h2{margin:0;font-size:19px;line-height:1.15;color:#45206f;font-weight:950;letter-spacing:-.35px;}
 .reward-history-title-wrap p{margin:4px 0 0;font-size:10.8px;line-height:1.15;color:#7f6b94;font-weight:800;}
-.reward-history-filters{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px;margin:0 0 10px;padding:10px;border:3px solid #8f42ef;border-radius:16px;background:#faf8fc;box-sizing:border-box;}
-.reward-history-filters button{height:44px;border:2px solid var(--filter-border,#d7c5eb);border-radius:11px;background:var(--filter-bg,#fff);color:var(--filter-text,#4c2a69);font-size:13.2px;font-weight:900;padding:0 4px;white-space:nowrap;transition:background .18s ease,border-color .18s ease,color .18s ease,transform .12s ease;}
+.reward-history-filters{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:5px;margin:0 0 10px;padding:10px;border:3px solid #8f42ef;border-radius:16px;background:#faf8fc;box-sizing:border-box;}
+.reward-history-filters button{height:44px;border:2px solid var(--filter-border,#d7c5eb);border-radius:11px;background:var(--filter-bg,#fff);color:var(--filter-text,#4c2a69);font-size:12.2px;font-weight:900;padding:0 2px;white-space:nowrap;transition:background .18s ease,border-color .18s ease,color .18s ease,transform .12s ease;}
 .reward-history-filters button[aria-pressed="true"]{border-color:var(--filter-active-border,#d6a62f);background:var(--filter-active-bg,#2E5D66);color:var(--filter-active-text,#fff);box-shadow:inset 0 0 0 1px rgba(255,255,255,.18);}
 .reward-history-list{display:flex;flex-direction:column;gap:9px;}
 .reward-history-card{width:100%;display:grid;grid-template-columns:54px minmax(0,1fr) 28px;gap:9px;align-items:center;padding:11px;border:3px solid var(--card-border,#8f42ef);border-radius:16px;background:var(--card-bg,#faf8fc);color:var(--card-text,#3d2456);text-align:left;box-sizing:border-box;box-shadow:0 6px 16px rgba(0,0,0,.16);}
@@ -8648,8 +8648,8 @@ button,input,select,textarea{font:inherit;}
 .reward-recipient-chip.unallocated{background:#f8e9e9;border-color:#e4bcbc;color:#9b4444;}
 @media(max-width:390px){
   .reward-history-shell{width:calc(100% - 18px);}
-  .reward-history-filters{gap:5px;padding:8px;}
-  .reward-history-filters button{font-size:12.4px;}
+  .reward-history-filters{gap:3px;padding:7px;}
+  .reward-history-filters button{font-size:11.3px;padding:0 1px;}
   .reward-history-card{grid-template-columns:48px minmax(0,1fr) 24px;gap:7px;padding:9px;}
   .reward-card-rank{width:44px;height:44px;font-size:12.5px;}
   .reward-card-title{font-size:14px;}
@@ -8891,7 +8891,7 @@ body > .wrap{padding-top:clamp(16px,2.5vh,30px)!important}
 <script src="./shared/tenant.js"></script>
 
 <style id="v413-header-shimmer">
-/* V4.1.7 — clear left-to-right glass sheen, continuous and stronger. */
+/* V4.1.8 — clear left-to-right glass sheen, continuous and stronger. */
 .v152-boss-info-group{color:#f5efff!important;text-shadow:0 0 7px rgba(255,255,255,.22),0 0 19px rgba(151,83,238,.30)!important}
 .v152-boss-info-left>span{opacity:1!important;color:inherit!important;font-weight:880!important}
 @supports ((-webkit-background-clip:text) or (background-clip:text)){
@@ -9115,7 +9115,7 @@ body > .wrap{padding-top:clamp(16px,2.5vh,30px)!important}
 <section class="v200-nav" aria-label="길드 운영 메뉴">
  <button type="button" id="v200Members" class="v200-nav-btn"><img class="v200-menu-icon" src="assets/menu-icons/members.svg?v=20261014-4" alt="" aria-hidden="true" loading="eager"><span>길드원</span></button>
  <a id="v413OpsNav" class="v200-nav-btn" href="#cathero-ops"><img class="v200-menu-icon" src="assets/menu-icons/ops.svg?v=20261014-4" alt="" aria-hidden="true" loading="eager"><span>균열·은하</span></a>
- <a id="v416RouletteNav" class="v200-nav-btn" href="#cathero-roulette" aria-label="행운 룰렛"><img class="v200-menu-icon" src="assets/menu-icons/roulette.svg?v=417" alt="" aria-hidden="true" loading="eager"><span>행운룰렛</span></a>
+ <a id="v416RouletteNav" class="v200-nav-btn" href="#cathero-roulette" aria-label="행운 룰렛"><img class="v200-menu-icon" src="assets/menu-icons/roulette.svg?v=418" alt="" aria-hidden="true" loading="eager"><span>행운룰렛</span></a>
  <button type="button" id="v200Rewards" class="v200-nav-btn"><img class="v200-menu-icon" src="assets/menu-icons/rewards.svg?v=20261014-4" alt="" aria-hidden="true" loading="eager"><span>보상분배</span></button>
  <button type="button" id="v200Journal" class="v200-nav-btn"><img class="v200-menu-icon" src="assets/menu-icons/admin.svg?v=215" alt="" aria-hidden="true" loading="eager"><span>관리자</span></button>
 </section>
@@ -9135,6 +9135,7 @@ body > .wrap{padding-top:clamp(16px,2.5vh,30px)!important}
       <button type="button" data-reward-filter="은하">은하</button>
       <button type="button" data-reward-filter="점령전">점령전</button>
       <button type="button" data-reward-filter="난투전">난투전</button>
+      <button type="button" data-reward-filter="길드전">길드전</button>
     </nav>
     <div id="rewardHistoryList" class="reward-history-list" aria-live="polite"></div>
   </div>
@@ -9235,7 +9236,7 @@ body > .wrap{padding-top:clamp(16px,2.5vh,30px)!important}
 
 
 <footer class="footer-credits" aria-label="제작 정보">
-    <div class="creator-credit">Created by 879 | 안창살 · V4.1.7</div>
+    <div class="creator-credit">Created by 879 | 안창살 · V4.1.8</div>
     <div class="build-credit">2026.10.16</div>
   </footer>
 
@@ -11191,7 +11192,8 @@ function resetZ1PlanUi(){
     "균열":{filterBg:"#7C3AED",filterBorder:"#5B21B6",filterText:"#FFFFFF",filterActiveBg:"#5B21B6",filterActiveBorder:"#F2C94C",filterActiveText:"#FFFFFF",cardBg:"#FCFAFF",cardBorder:"#7C3AED",cardText:"#3B1768",rankBg:"#7C3AED",rankBorder:"#5B21B6",rankText:"#FFFFFF",titleText:"#5B21B6",periodText:"#6D5A80",miniBg:"#FFFFFF",miniBorder:"#B79AEF",miniText:"#4A2869",arrowColor:"#7C3AED",detailBorder:"#7C3AED",detailRankBg:"#7C3AED",detailRankText:"#FFFFFF",detailTitleText:"#5B21B6",detailPeriodText:"#6D5A80",detailItemBg:"#F8F3FF",detailItemBorder:"#C8B2F3",detailItemText:"#43205E",chipBg:"#EEE4FF",chipBorder:"#C8A9F4",chipText:"#53288A"},
     "은하":{filterBg:"#2563EB",filterBorder:"#1D4ED8",filterText:"#FFFFFF",filterActiveBg:"#1D4ED8",filterActiveBorder:"#F2C94C",filterActiveText:"#FFFFFF",cardBg:"#F8FAFF",cardBorder:"#2563EB",cardText:"#173A7A",rankBg:"#2563EB",rankBorder:"#1D4ED8",rankText:"#FFFFFF",titleText:"#1D4ED8",periodText:"#5B6E91",miniBg:"#FFFFFF",miniBorder:"#9EBBF6",miniText:"#274B84",arrowColor:"#2563EB",detailBorder:"#2563EB",detailRankBg:"#2563EB",detailRankText:"#FFFFFF",detailTitleText:"#1D4ED8",detailPeriodText:"#5B6E91",detailItemBg:"#F1F5FF",detailItemBorder:"#B7CAF7",detailItemText:"#24467B",chipBg:"#E3ECFF",chipBorder:"#AEC3F6",chipText:"#244C93"},
     "점령전":{filterBg:"#059669",filterBorder:"#047857",filterText:"#FFFFFF",filterActiveBg:"#047857",filterActiveBorder:"#F2C94C",filterActiveText:"#FFFFFF",cardBg:"#F7FCFA",cardBorder:"#059669",cardText:"#145B46",rankBg:"#059669",rankBorder:"#047857",rankText:"#FFFFFF",titleText:"#047857",periodText:"#59786F",miniBg:"#FFFFFF",miniBorder:"#8DD6BD",miniText:"#285D4C",arrowColor:"#059669",detailBorder:"#059669",detailRankBg:"#059669",detailRankText:"#FFFFFF",detailTitleText:"#047857",detailPeriodText:"#59786F",detailItemBg:"#EFFAF6",detailItemBorder:"#A5DEC9",detailItemText:"#28594A",chipBg:"#DDF5EC",chipBorder:"#9EDBC5",chipText:"#176047"},
-    "난투전":{filterBg:"#EA580C",filterBorder:"#C2410C",filterText:"#FFFFFF",filterActiveBg:"#C2410C",filterActiveBorder:"#F2C94C",filterActiveText:"#FFFFFF",cardBg:"#FFF9F5",cardBorder:"#EA580C",cardText:"#7B3212",rankBg:"#EA580C",rankBorder:"#C2410C",rankText:"#FFFFFF",titleText:"#C2410C",periodText:"#80665B",miniBg:"#FFFFFF",miniBorder:"#F2AD88",miniText:"#7A3C22",arrowColor:"#EA580C",detailBorder:"#EA580C",detailRankBg:"#EA580C",detailRankText:"#FFFFFF",detailTitleText:"#C2410C",detailPeriodText:"#80665B",detailItemBg:"#FFF2EB",detailItemBorder:"#F3B99A",detailItemText:"#763A22",chipBg:"#FFE7DA",chipBorder:"#F0B395",chipText:"#8A3E1C"}
+    "난투전":{filterBg:"#EA580C",filterBorder:"#C2410C",filterText:"#FFFFFF",filterActiveBg:"#C2410C",filterActiveBorder:"#F2C94C",filterActiveText:"#FFFFFF",cardBg:"#FFF9F5",cardBorder:"#EA580C",cardText:"#7B3212",rankBg:"#EA580C",rankBorder:"#C2410C",rankText:"#FFFFFF",titleText:"#C2410C",periodText:"#80665B",miniBg:"#FFFFFF",miniBorder:"#F2AD88",miniText:"#7A3C22",arrowColor:"#EA580C",detailBorder:"#EA580C",detailRankBg:"#EA580C",detailRankText:"#FFFFFF",detailTitleText:"#C2410C",detailPeriodText:"#80665B",detailItemBg:"#FFF2EB",detailItemBorder:"#F3B99A",detailItemText:"#763A22",chipBg:"#FFE7DA",chipBorder:"#F0B395",chipText:"#8A3E1C"},
+    "길드전":{filterBg:"#DB2777",filterBorder:"#BE185D",filterText:"#FFFFFF",filterActiveBg:"#BE185D",filterActiveBorder:"#F2C94C",filterActiveText:"#FFFFFF",cardBg:"#FFF8FC",cardBorder:"#DB2777",cardText:"#7A1D4B",rankBg:"#DB2777",rankBorder:"#BE185D",rankText:"#FFFFFF",titleText:"#BE185D",periodText:"#806071",miniBg:"#FFFFFF",miniBorder:"#F0A5C9",miniText:"#7A2850",arrowColor:"#DB2777",detailBorder:"#DB2777",detailRankBg:"#DB2777",detailRankText:"#FFFFFF",detailTitleText:"#BE185D",detailPeriodText:"#806071",detailItemBg:"#FFF0F7",detailItemBorder:"#F1B4D1",detailItemText:"#74254D",chipBg:"#FFE2F0",chipBorder:"#EFA8C9",chipText:"#8A2458"}
   };
   const REWARD_IMAGE_MAP={
     '신화 동료 외형 소환권':"data:image/webp;base64,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",
@@ -11401,8 +11403,8 @@ function resetZ1PlanUi(){
   }
 })();
 </script>
-<script id="cat-hero-v4-brand">(function(){try{const c=parent.CAT_HERO_V4_CONTEXT||{};const g=c.guild||{};const count=Object.keys(c.members||{}).length;document.title=`${g.name||'길드'} · 격전지 계산기 V4.1.7`;const s=document.getElementById('v4GuildServer'),n=document.getElementById('v4GuildName'),m=document.getElementById('v4GuildCount'),sh=document.getElementById('v4ShareGuildTitle');if(s)s.textContent=g.server||'-';if(n)n.textContent=g.name||'길드';if(m)m.textContent=count+'명';if(sh)sh.textContent=(g.name||'길드')+' 격전지 계산기';const sub=document.querySelector('#rosterAllTableBtn .roster-all-table-sub');if(sub)sub.textContent=`${count}명 · 기본 · 최소점수 · 지역격추 한눈에 확인`;}catch(e){console.warn(e)}})();</script>
-<script defer src="./shared/journal-bridge.js?v=417"></script><script>document.body.dataset.webSyncRole="main";</script><script type="module" src="./shared/web-sync.js?v=417"></script><script type="module" src="./shared/reward-entry.js?v=417"></script>
+<script id="cat-hero-v4-brand">(function(){try{const c=parent.CAT_HERO_V4_CONTEXT||{};const g=c.guild||{};const count=Object.keys(c.members||{}).length;document.title=`${g.name||'길드'} · 격전지 계산기 V4.1.8`;const s=document.getElementById('v4GuildServer'),n=document.getElementById('v4GuildName'),m=document.getElementById('v4GuildCount'),sh=document.getElementById('v4ShareGuildTitle');if(s)s.textContent=g.server||'-';if(n)n.textContent=g.name||'길드';if(m)m.textContent=count+'명';if(sh)sh.textContent=(g.name||'길드')+' 격전지 계산기';const sub=document.querySelector('#rosterAllTableBtn .roster-all-table-sub');if(sub)sub.textContent=`${count}명 · 기본 · 최소점수 · 지역격추 한눈에 확인`;}catch(e){console.warn(e)}})();</script>
+<script defer src="./shared/journal-bridge.js?v=418"></script><script>document.body.dataset.webSyncRole="main";</script><script type="module" src="./shared/web-sync.js?v=418"></script><script type="module" src="./shared/reward-entry.js?v=418"></script>
 <style id="v201-layout-fixes">
 .v200-stats.v201-stats{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,2fr)!important;gap:8px!important;margin-bottom:12px!important}
 .v201-stats .v200-stat{min-height:0!important;height:106px!important;box-sizing:border-box!important;background:#fff!important;border:3px solid #853ee5!important;border-radius:17px!important;padding:8px 5px!important;color:#4d247e!important}
@@ -11554,7 +11556,7 @@ window.addEventListener('dosalja:roster-updated',()=>{reset();});
 new MutationObserver(()=>{if(overlay.hidden||!document.getElementById('v200Title')?.textContent.includes('길드원 관리'))reset();}).observe(overlay,{attributes:true,attributeFilter:['hidden']});
 })();
 </script>
-<script type="module" src="./shared/admin-editor.js?v=417"></script><script type="module" src="./shared/admin-audit.js?v=417"></script><script id="dosalja-unified-bridge">
+<script type="module" src="./shared/admin-editor.js?v=418"></script><script type="module" src="./shared/admin-audit.js?v=418"></script><script id="dosalja-unified-bridge">
 (function(){
   'use strict';
   function routeForHref(href){
@@ -11590,7 +11592,7 @@ new MutationObserver(()=>{if(overlay.hidden||!document.getElementById('v200Title
 <script>window.addEventListener('message',function(e){if(e.origin!==location.origin)return;const d=e.data||{};if(d.type==='cat-hero-v4-role'){const b=document.getElementById('v200Journal');if(b)b.classList.toggle('v4-admin-active',!!d.isGuildAdmin);try{const ov=document.getElementById('v200Overlay'),tt=document.getElementById('v200Title');if(ov&&!ov.hidden&&tt?.textContent.includes('길드원'))document.getElementById('v200Members')?.click();}catch(_e){}}if(d.type==='cat-hero-v4-roster-updated'){window.dispatchEvent(new CustomEvent('cat-hero-v4-roster-updated',{detail:d}));}});document.addEventListener('DOMContentLoaded',function(){try{const b=document.getElementById('v200Journal');if(b)b.classList.toggle('v4-admin-active',!!window.CAT_HERO_V4_TENANT?.isAdmin?.());}catch(_e){}});</script>
 
 <style id="v413-ui-polish">
-/* V4.1.7 — 균열·은하는 일반 메뉴와 확실히 구분되는 움직이는 유리광 테두리. */
+/* V4.1.8 — 균열·은하는 일반 메뉴와 확실히 구분되는 움직이는 유리광 테두리. */
 #v413OpsNav{position:relative!important;isolation:isolate!important;border:4px solid transparent!important;background:linear-gradient(#fff,#fff) padding-box,linear-gradient(112deg,#6722d8 0%,#6722d8 14%,#b85dff 23%,#ffffff 30%,#55cfff 36%,#ffffff 42%,#a548f0 49%,#6722d8 61%,#6722d8 100%) border-box!important;background-size:100% 100%,360% 100%!important;background-position:0 0,-150% 50%!important;box-shadow:0 0 0 1px rgba(127,55,218,.35),0 0 18px rgba(127,55,218,.42),0 0 30px rgba(65,181,255,.18)!important;animation:v413OpsBorderFlow 2.35s linear infinite!important;will-change:background-position,box-shadow}
 #v413OpsNav::after{content:"";position:absolute;inset:-5px;z-index:-1;pointer-events:none;border-radius:24px;border:2px solid rgba(174,103,255,.36);opacity:.96;box-shadow:0 0 14px rgba(148,76,242,.48),0 0 26px rgba(65,181,255,.22)}
 @keyframes v413OpsBorderFlow{0%{background-position:0 0,-150% 50%;box-shadow:0 0 0 1px rgba(127,55,218,.34),0 0 16px rgba(127,55,218,.38),0 0 28px rgba(65,171,255,.16)}50%{background-position:0 0,0% 50%;box-shadow:0 0 0 1px rgba(127,55,218,.55),0 0 26px rgba(142,70,239,.62),0 0 38px rgba(56,189,248,.28)}100%{background-position:0 0,150% 50%;box-shadow:0 0 0 1px rgba(127,55,218,.34),0 0 16px rgba(127,55,218,.38),0 0 28px rgba(65,171,255,.16)}}
@@ -11601,7 +11603,7 @@ new MutationObserver(()=>{if(overlay.hidden||!document.getElementById('v200Title
 
 
 <style id="v416-five-menu-layout">
-/* V4.1.7 — 5개 운영 메뉴. 기존 카드/테두리 언어를 유지한 채 폭만 축소합니다. */
+/* V4.1.8 — 5개 운영 메뉴. 기존 카드/테두리 언어를 유지한 채 폭만 축소합니다. */
 .v200-nav{grid-template-columns:repeat(5,minmax(0,1fr))!important;gap:clamp(4px,1.45vw,7px)!important;padding-inline:0!important}
 .v200-nav-btn{min-width:0!important;aspect-ratio:1/1!important;padding:clamp(4px,1.5vw,7px) 1px!important;gap:clamp(2px,.9vw,5px)!important;border-radius:clamp(13px,4vw,19px)!important}
 .v200-nav-btn .v200-menu-icon{width:clamp(29px,9.4vw,48px)!important;height:clamp(29px,9.4vw,48px)!important}

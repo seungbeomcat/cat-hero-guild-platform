@@ -1,32 +1,38 @@
-# V4.1.7 검증 상태
+# V4.1.8 검증
 
 Build date: 2026-10-16
 
-## PASS — V4.1.6 기능 보존
-- V4.1.6 전체 소스를 기준으로 수정했습니다.
-- 행운 룰렛의 관리자/일반 길드원 공용 권한 구조를 유지했습니다.
-- Firestore write, 관리자 audit write, localStorage/sessionStorage write가 룰렛 코드에 없음을 재검사했습니다.
-- 자동 순차 추첨, `crypto.getRandomValues()` 기반 추첨, 중복 당첨 방지, 최종 결과 일괄 출력 및 1080×1350 단톡방 결과 이미지 기능을 유지했습니다.
+## PASS — 룰렛 구조
+- `참여 인원` 드롭다운 및 관련 JS 경로 제거
+- 최대 16명 4×4 길드원 그리드 직접 선택
+- 최소 2명부터 `참여자 확인` 활성화
+- 확인 후 추첨 항목 설정, 자동 순차 추첨, 당첨자 pool 제거 유지
+- 입력창 16px 이상으로 iPhone 자동 확대 방지 유지
 
-## PASS — 요청 UI 수정
-- 상단 소개 카드를 DOM에서 완전히 제거했습니다.
-- `길드원 공용` 배지에 `white-space: nowrap` 및 충분한 고정 폭을 적용했습니다.
-- 모바일 입력 요소를 16px 이상으로 유지해 iOS Safari의 포커스 자동 확대 조건을 제거했습니다.
-- `maximum-scale` 또는 `user-scalable=no`는 사용하지 않아 사용자의 수동 확대 접근성은 유지합니다.
-- 단계 카드/선택 버튼/선택 길드원/입력창의 시각 효과를 Royal Violet 디자인 범위 안에서 정돈했습니다.
+## PASS — 결과 신뢰 표시
+- 시작 시점에 `crypto.getRandomValues()` 기반 당첨 계획을 확정
+- 시작/완료 시각과 난수 기반 추첨 ID 표시
+- 같은 참여자+항목 구성의 회차 카운터를 sessionStorage로만 임시 판별
+- 첫 회차는 `이 구성 · 최초 실행`, 이후는 `동일 구성 · 재추첨 N회차` 표시
+- 화면/공유 이미지에 `현재 브라우저 세션 기준`을 명시하여 서버 공증처럼 오인하지 않도록 처리
+- 당첨 결과, 길드원 명단, 항목명 자체는 sessionStorage/Firestore/audit에 저장하지 않음
 
-## PASS — 미반영 범위 보호
-- V4.1.5 OPS 자원 기본값 저장 및 `round.id` null/draft 방어 로직을 유지했습니다.
-- V4.1.4 관리자 로그인 영구 유지 및 명시적 로그아웃 경로를 변경하지 않았습니다.
-- 미완성 은하 격전지 개편 논의 내용은 구현하지 않았습니다.
-- `firestore.multiguild.rules` 내용은 V4.1.6과 바이트 단위로 동일합니다.
+## PASS — 보상 분배
+- 필터 4→5개: 균열/은하/점령전/난투전/길드전
+- 한 줄 5열 CSS 적용
+- 길드전 테마와 관리자 보상 유형 선택 경로 추가
+- 길드전 전용 아이템 데이터는 미추가
 
-## 정적 검증
-- `index-module.mjs` 및 `shared/*.js` Node 구문 검사.
-- `main.html`, `boss.html`, `ops.html`, `roulette.html` 인라인 JavaScript 구문 검사.
-- 로컬 정적 참조 누락 검사.
-- `main/boss/ops/roulette` 라우팅 연결 검사.
-- 룰렛 입력 16px, 공용 배지 한 줄, 소개 카드 제거 조건 검사.
-- BUILD_MANIFEST SHA-256 재생성 및 ZIP CRC 검사.
+## PASS — 유지 범위
+- 은하 격전지 미완성 개편안 미반영
+- Firestore Rules 바이트 동일
+- OPS, 관리자 로그인 핵심 구조 유지
 
-실제 GitHub Pages + iPhone 환경에서는 Safari/카카오톡 인앱 브라우저의 키보드 포커스, Web Share 공유 시트 및 룰렛 회전 체감을 최종 확인하는 것을 권장합니다.
+## 정적 검사
+- Node JS 구문 검사
+- HTML inline script 구문 검사
+- 로컬 참조 파일 존재 검사
+- V4.1.8 버전/라우팅/룰렛 핵심 invariant 검사
+- BUILD_MANIFEST SHA-256 재생성 및 ZIP CRC 검사
+
+실기기는 GitHub Pages 배포 후 iPhone Safari/카카오 인앱브라우저에서 4×4 버튼 터치, 공유 이미지, 시스템 공유 시트를 최종 확인해야 합니다.
