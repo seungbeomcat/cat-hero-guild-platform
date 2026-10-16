@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#090218">
-<title>Cat Hero · 행운 룰렛 V4.2.3</title>
+<title>Cat Hero · 행운 룰렛 V4.2.4</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <style>
 :root{--violet:#8b47f2;--violet2:#bc78ff;--blue:#5bc8ff;--ink:#f8f3ff;--muted:#c4b5dd;--panel:rgba(24,12,49,.86);--panel2:rgba(13,8,31,.94);--line:#8a43e8;--gold:#ffd76a;--green:#7ff4cc}
@@ -74,6 +74,42 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 @media(min-width:700px){.result{padding:19px!important}.result-row{min-height:64px!important}.participant-chip{font-size:14px!important}.result-item,.result-winner{font-size:16px!important}.share-result,.again{font-size:14px!important}}
 </style>
 
+
+<style id="v424-reward-picker-and-winner-grid">
+/* V4.2.4: compact inline item selectors; image-only icon dropdown; single-line result grid. */
+.item-inputs{gap:8px!important;margin-top:10px!important}
+.item-row{display:flex!important;align-items:center!important;gap:6px!important;min-width:0!important;width:100%!important;position:relative}
+.item-tag{height:43px!important;flex:0 0 42px!important;font-size:11px!important}
+.reward-category,.reward-grade{appearance:none;-webkit-appearance:none;flex:0 0 auto;min-width:0;max-width:100%;height:43px;border:1.5px solid #8552b8;border-radius:11px;background-color:#1e1037;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='m2 2 4 4 4-4' fill='none' stroke='%23d9b3ff' stroke-width='1.8'/%3E%3C/svg%3E");background-position:right 7px center;background-repeat:no-repeat;color:#f6eaff;font:850 13px 'Pretendard Variable',sans-serif;padding:0 19px 0 8px;outline:none;cursor:pointer}
+.reward-category{width:clamp(75px,23vw,114px)}.reward-grade{width:clamp(69px,21vw,105px)}
+.reward-category:focus-visible,.reward-grade:focus-visible,.reward-text-input:focus-visible,.reward-pick-button:focus-visible{outline:2px solid #8ecbff;outline-offset:2px}
+.reward-category option,.reward-grade option{background:#1e1037;color:#fff}
+.item-row .reward-text-input{flex:1 1 0;min-width:0!important;width:0!important;height:43px!important;font-size:16px!important;background:#100b22!important;color:#fff!important;padding:0 9px!important}
+.reward-picker{flex:1 1 0;min-width:0;position:relative}
+.reward-pick-button{display:flex;align-items:center;justify-content:space-between;gap:4px;width:100%;height:43px;padding:3px 6px 3px 8px;border:1.5px solid #8f58c8;border-radius:11px;background:linear-gradient(145deg,#251044,#140a2b);color:#eee0ff;font:850 clamp(10px,2.9vw,12px) 'Pretendard Variable',sans-serif;white-space:nowrap;cursor:pointer;min-width:0}
+.reward-pick-button:disabled{opacity:.48;cursor:not-allowed}
+.reward-pick-button .reward-pick-placeholder{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.reward-pick-button img{width:34px;height:34px;object-fit:contain;display:block;flex:none}
+.reward-pick-button .reward-chevron{color:#ddbdff;font-size:16px;flex:none;line-height:1}
+.reward-pick-menu{position:absolute;z-index:95;right:0;top:calc(100% + 5px);width:min(316px,calc(100vw - 42px));max-height:min(340px,58vh);overflow-y:auto;padding:9px;border:1.5px solid #9857e7;border-radius:14px;background:#130c29;box-shadow:0 14px 30px rgba(0,0,0,.65),0 0 25px rgba(116,67,205,.28)}
+.reward-pick-menu[hidden]{display:none!important}
+.reward-icon-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px}
+.reward-icon-option{aspect-ratio:1;min-width:0;border:2px solid rgba(151,99,214,.3);border-radius:10px;background:#211634;padding:3px;cursor:pointer;position:relative}
+.reward-icon-option img{display:block;width:100%;height:100%;object-fit:contain}
+.reward-icon-option[aria-pressed="true"]{border-color:#82ccff;box-shadow:0 0 0 1px #4ea3fa,inset 0 0 8px rgba(79,161,250,.25)}
+.reward-icon-option[aria-pressed="true"]:after{content:'✓';position:absolute;right:2px;top:1px;color:#fefefe;background:#267dd1;border-radius:50%;font-size:10px;width:15px;height:15px;line-height:15px;text-align:center}
+/* Keep results in a compact multi-column grid; one outcome = one horizontal card. */
+.result-list{display:grid!important;grid-template-columns:repeat(var(--winner-cols,2),minmax(0,1fr))!important;gap:8px!important;width:100%!important;max-width:var(--winner-grid-max,100%)!important;margin:0 auto!important;align-items:stretch!important;justify-content:center!important}
+.result-row{display:flex!important;flex:none!important;flex-direction:row!important;align-items:center!important;justify-content:space-between!important;gap:7px!important;min-width:0!important;width:100%!important;max-width:none!important;min-height:55px!important;height:55px!important;padding:6px 9px!important;border:1.6px solid #658be5!important;border-radius:12px!important;background:linear-gradient(135deg,#1d2d49,#241638)!important;box-shadow:inset 0 1px 0 rgba(227,216,255,.07),0 3px 9px rgba(0,0,0,.15)!important;overflow:hidden!important}
+.result-row.is-text{border-color:#9264d3!important;background:linear-gradient(130deg,#2a1d42,#17152f)!important}
+.result-item{display:flex!important;flex:0 1 auto!important;align-items:center!important;justify-content:flex-start!important;min-width:0!important;width:auto!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important;color:#ffd68d!important;text-align:left!important;font-size:clamp(10.5px,2.75vw,13px)!important;line-height:1.1!important}
+.result-item.reward-image{flex:0 0 auto!important;overflow:visible!important}
+.result-item.reward-image img{height:41px!important;width:41px!important;display:block;object-fit:contain}
+.result-winner{flex:0 1 auto!important;min-width:0!important;width:auto!important;overflow:hidden!important;white-space:nowrap!important;text-overflow:ellipsis!important;text-align:right!important;color:#f5efff!important;font-size:clamp(10.5px,2.9vw,13.5px)!important;font-weight:930!important;line-height:1.2!important}
+.result-row.is-text .result-winner{color:#d5d6ff!important}
+@media(min-width:540px){.reward-category{width:116px}.reward-grade{width:106px}.result-row{height:64px!important;min-height:64px!important}.result-item.reward-image img{width:48px!important;height:48px!important}.result-winner{font-size:14.5px!important}.result-item{font-size:14px!important}}
+@media(max-width:355px){.item-row{gap:4px!important}.item-tag{flex-basis:37px!important}.reward-category{width:73px!important;padding-left:5px!important;padding-right:16px!important;font-size:12px!important}.reward-grade{width:66px!important;padding-left:5px!important;padding-right:16px!important;font-size:12px!important}.reward-pick-button{padding:2px 4px!important;font-size:10px!important}.result-row{gap:4px!important;padding:5px 6px!important}.result-item.reward-image img{width:37px!important;height:37px!important}.result-winner{font-size:10.5px!important}}
+</style>
 </head>
 <body>
 <div class="sky" aria-hidden="true"></div>
@@ -90,14 +126,14 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
   </section>
 
   <section id="itemStep" class="step" hidden>
-    <div class="step-head"><span class="step-no">02</span><div class="step-title"><b>추첨 항목</b><small>항목 수를 먼저 고른 뒤 이름을 직접 입력합니다.</small></div><span id="itemStatus" class="step-count">미설정</span></div>
+    <div class="step-head"><span class="step-no">02</span><div class="step-title"><b>추첨 항목</b><small>분류를 선택하고 보상 아이콘 또는 직접 입력을 지정하세요.</small></div><span id="itemStatus" class="step-count">미설정</span></div>
     <div class="step-body">
       <div class="custom-select">
         <button id="itemCountBtn" class="select-button" type="button" aria-expanded="false"><span class="placeholder">추첨 항목 개수 선택</span><span class="chev">⌄</span></button>
         <div id="itemCountMenu" class="select-menu" role="listbox" hidden></div>
       </div>
       <div id="itemInputs" class="item-inputs"></div>
-      <div class="rule-note">예: 1개면 ‘당첨’, 2개면 ‘흰템 / 초록 레시피’, 3개면 ‘영웅템 / 보라 레시피 / 레드 박스’처럼 자유롭게 입력할 수 있습니다.</div>
+      <div class="rule-note">분류에 따라 등급과 아이콘을 선택하거나, 입력 항목에 자유롭게 내용을 적을 수 있습니다.</div>
       <button id="startBtn" class="start" type="button" disabled>룰렛 시작</button>
     </div>
   </section>
@@ -131,11 +167,12 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
     </div>
   </section>
 
-  <footer class="footer"><b>Created by 879 | 안창살 · V4.2.3</b><br>2026.10.16</footer>
+  <footer class="footer"><b>Created by 879 | 안창살 · V4.2.4</b><br>2026.10.16</footer>
 </main>
 
 <script src="./firebase-config.js"></script>
 <script src="./shared/guild-core.js?v=423"></script>
+<script src="./shared/roulette-reward-catalog.js?v=424"></script>
 <script>
 (function(){
 'use strict';
@@ -143,6 +180,13 @@ const $=id=>document.getElementById(id);
 const core=window.DosaljaShared||window.CatHeroShared||{members:{},guild:{}};
 const guild=core.guild||{};
 const roster=Object.entries(core.members||{}).filter(([,m])=>!m?.retired&&!m?.inactive&&!m?.left).sort((a,b)=>Number(b[1]?.base||0)-Number(a[1]?.base||0)||a[0].localeCompare(b[0],'ko-KR')).map(([n])=>n);
+const rewardCatalog=Array.isArray(window.CatHeroRouletteRewards)?window.CatHeroRouletteRewards:[];
+const rewardKinds=["소환권","장비","레시피","입력"];
+const rewardGrades=["일반","고급","희귀","영웅","전설"];
+const blankReward=()=>({kind:"",grade:"",icon:"",text:""});
+const rewardValid=x=>!!x&&(x.kind==="입력"?!!String(x.text||"").trim():!!x.icon&&rewardCatalog.some(r=>r.src===x.icon&&r.kind===x.kind&&(x.kind==="소환권"||r.grade===x.grade)));
+const rewardKey=x=>x.kind==="입력"?"text:"+String(x.text).trim().replace(/\s+/g," ").toLocaleLowerCase("ko-KR"):"icon:"+x.icon;
+const rewardImage=x=>x?.kind!=="입력"&&!!x?.icon;
 const state={peopleCount:0,selected:[],membersConfirmed:false,itemCount:0,items:[],results:[],running:false,rotation:0,shareUrl:'',shareBlob:null,drawStartedAt:null,drawFinishedAt:null,drawId:'',attemptNo:1,firstAttempt:true,configKey:''};
 $('guildLine').textContent=[guild.server,guild.name].filter(Boolean).join(' | ')||'길드 · 공용 기능';
 
@@ -171,13 +215,41 @@ function toggleMember(name){if(state.running)return;const i=state.selected.index
 function confirmMembers(){if(state.selected.length<2||state.running)return;state.peopleCount=state.selected.length;state.membersConfirmed=true;setupItems();setTimeout(()=>$('itemStep').scrollIntoView({behavior:'smooth',block:'start'}),100);}
 $('memberConfirmBtn').onclick=confirmMembers;
 function setupItems(){state.itemCount=0;state.items=[];$('itemStep').hidden=false;$('itemStatus').textContent='미설정';$('itemCountBtn').innerHTML='<span class="placeholder">추첨 항목 개수 선택</span><span class="chev">⌄</span>';$('itemInputs').innerHTML='';$('startBtn').disabled=true;const host=$('itemCountMenu');host.innerHTML='';for(let n=1;n<=state.peopleCount;n++){const b=document.createElement('button');b.type='button';b.dataset.value=n;b.textContent=n+'개';b.onclick=()=>selectItemCount(n);host.append(b);}}
-function selectItemCount(n){state.itemCount=n;state.items=Array(n).fill('');$('itemCountBtn').innerHTML=`<span>${n}개</span><span class="chev">⌄</span>`;$('itemCountBtn').setAttribute('aria-expanded','false');$('itemCountMenu').hidden=true;$('itemStatus').textContent=n+'개';[...$('itemCountMenu').querySelectorAll('button')].forEach(b=>b.classList.toggle('selected',Number(b.dataset.value)===n));renderItemInputs();}
-function itemPlaceholder(i,n){if(n===1)return '예: 당첨';const samples=['흰템','초록 레시피','영웅템','보라 레시피','레드 박스'];return '예: '+(samples[i]||`${i+1}번째 아이템`);}
-function renderItemInputs(){const host=$('itemInputs');host.innerHTML='';for(let i=0;i<state.itemCount;i++){const row=document.createElement('label');row.className='item-row';row.innerHTML=`<span class="item-tag">${i+1}차</span><input type="text" maxlength="30" autocomplete="off" placeholder="${itemPlaceholder(i,state.itemCount)}" aria-label="${i+1}차 추첨 항목 이름">`;const input=row.querySelector('input');input.value=state.items[i]||'';input.addEventListener('input',()=>{state.items[i]=input.value.trim();updateStart();});host.append(row);}updateStart();if(state.itemCount)$('itemInputs').querySelector('input')?.focus();}
-function updateStart(){$('startBtn').disabled=!(state.membersConfirmed&&state.selected.length>=2&&state.peopleCount===state.selected.length&&state.itemCount>0&&state.items.length===state.itemCount&&state.items.every(Boolean));}
+function selectItemCount(n){state.itemCount=n;state.items=Array.from({length:n},blankReward);$('itemCountBtn').innerHTML=`<span>${n}개</span><span class="chev">⌄</span>`;$('itemCountBtn').setAttribute('aria-expanded','false');$('itemCountMenu').hidden=true;$('itemStatus').textContent=n+'개';[...$('itemCountMenu').querySelectorAll('button')].forEach(b=>b.classList.toggle('selected',Number(b.dataset.value)===n));renderItemInputs();}
+function closeRewardMenus(except){document.querySelectorAll('.reward-pick-menu').forEach(el=>{if(el!==except){el.hidden=true;el.previousElementSibling?.setAttribute('aria-expanded','false');}});}
+function menuOptions(select,values,placeholder){const opt=document.createElement('option');opt.value='';opt.textContent=placeholder;select.append(opt);values.forEach(value=>{const o=document.createElement('option');o.value=value;o.textContent=value;select.append(o);});}
+function renderItemInputs(){
+ const host=$('itemInputs');host.innerHTML='';closeRewardMenus();
+ for(let i=0;i<state.itemCount;i++){
+  const item=state.items[i]||blankReward(),row=document.createElement('div');row.className='item-row';
+  const tag=document.createElement('span');tag.className='item-tag';tag.textContent=`${i+1}차`;row.append(tag);
+  const category=document.createElement('select');category.className='reward-category';category.setAttribute('aria-label',`${i+1}차 보상 분류`);menuOptions(category,rewardKinds,'분류');category.value=item.kind;
+  category.onchange=()=>{state.items[i]={...blankReward(),kind:category.value};renderItemInputs();};row.append(category);
+  if(item.kind==='입력'){
+   const input=document.createElement('input');input.type='text';input.className='reward-text-input';input.maxLength=40;input.autocomplete='off';input.placeholder='자유 입력';input.setAttribute('aria-label',`${i+1}차 직접 입력 보상`);input.value=item.text||'';
+   input.oninput=()=>{state.items[i].text=input.value;updateStart();};row.append(input);
+  } else if(item.kind){
+   if(item.kind!=='소환권'){
+    const grade=document.createElement('select');grade.className='reward-grade';grade.setAttribute('aria-label',`${i+1}차 보상 등급`);menuOptions(grade,rewardGrades,'등급');grade.value=item.grade;
+    grade.onchange=()=>{state.items[i]={...state.items[i],grade:grade.value,icon:''};renderItemInputs();};row.append(grade);
+   }
+   const holder=document.createElement('div');holder.className='reward-picker';const button=document.createElement('button');button.type='button';button.className='reward-pick-button';button.setAttribute('aria-label',`${i+1}차 보상 아이콘 선택`);button.setAttribute('aria-expanded','false');const locked=item.kind!=='소환권'&&!item.grade;button.disabled=locked;
+   if(item.icon){const img=document.createElement('img');img.src=item.icon;img.alt='선택된 보상 아이콘';button.append(img);}else{const hint=document.createElement('span');hint.className='reward-pick-placeholder';hint.textContent='아이콘 선택';button.append(hint);}
+   const arrow=document.createElement('span');arrow.className='reward-chevron';arrow.textContent='⌄';button.append(arrow);
+   const menu=document.createElement('div');menu.className='reward-pick-menu';menu.hidden=true;
+   const grid=document.createElement('div');grid.className='reward-icon-grid';const filtered=rewardCatalog.filter(r=>r.kind===item.kind&&(item.kind==='소환권'||r.grade===item.grade));
+   filtered.forEach(reward=>{const option=document.createElement('button');option.type='button';option.className='reward-icon-option';option.setAttribute('aria-label','보상 아이콘 선택');option.setAttribute('aria-pressed',String(item.icon===reward.src));option.title='';const img=document.createElement('img');img.src=reward.src;img.alt='';img.loading='lazy';option.append(img);option.onclick=()=>{state.items[i].icon=reward.src;renderItemInputs();updateStart();};grid.append(option);});
+   menu.append(grid);button.onclick=e=>{e.stopPropagation();const next=menu.hidden;closeRewardMenus(next?menu:null);closeMenus();menu.hidden=!next;button.setAttribute('aria-expanded',String(next));};holder.append(button,menu);row.append(holder);
+  }
+  host.append(row);
+ }
+ updateStart();
+}
+document.addEventListener('click',e=>{if(!e.target.closest('.reward-picker'))closeRewardMenus();});
+function updateStart(){$('startBtn').disabled=!(state.membersConfirmed&&state.selected.length>=2&&state.peopleCount===state.selected.length&&state.itemCount>0&&state.items.length===state.itemCount&&state.items.every(rewardValid));}
 
 function hashText(text){let h=2166136261;for(let i=0;i<text.length;i++){h^=text.charCodeAt(i);h=Math.imul(h,16777619);}return (h>>>0).toString(36).toUpperCase();}
-function drawConfigKey(){const members=state.selected.slice().sort((a,b)=>a.localeCompare(b,'ko-KR')).join('|');const items=state.items.map(x=>String(x).trim().replace(/\s+/g,' ').toLocaleLowerCase('ko-KR')).sort((a,b)=>a.localeCompare(b,'ko-KR')).join('|');const guildKey=[guild.server,guild.name].filter(Boolean).join('|');return hashText(guildKey+'::'+members+'::'+items);}
+function drawConfigKey(){const members=state.selected.slice().sort((a,b)=>a.localeCompare(b,'ko-KR')).join('|');const items=state.items.map(rewardKey).sort((a,b)=>a.localeCompare(b,'ko-KR')).join('|');const guildKey=[guild.server,guild.name].filter(Boolean).join('|');return hashText(guildKey+'::'+members+'::'+items);}
 function formatStamp(d){if(!d)return '';const p=n=>String(n).padStart(2,'0');return `${d.getFullYear()}.${p(d.getMonth()+1)}.${p(d.getDate())} ${p(d.getHours())}:${p(d.getMinutes())}:${p(d.getSeconds())}`;}
 function formatClock(d){if(!d)return {date:'',time:''};const p=n=>String(n).padStart(2,'0');return {date:`${d.getFullYear()}.${p(d.getMonth()+1)}.${p(d.getDate())}`,time:`${p(d.getHours())}:${p(d.getMinutes())}:${p(d.getSeconds())}`};}
 function setClock(id,d){const v=formatClock(d),el=$(id);el.innerHTML=`<span class="proof-date">${v.date}</span><span class="proof-time">${v.time}</span>`;}
@@ -190,8 +262,8 @@ function sleep(ms){return new Promise(r=>setTimeout(r,ms));}
 function drawWheel(names){const c=$('wheel'),ctx=c.getContext('2d'),w=c.width,h=c.height,cx=w/2,cy=h/2,r=w*.465,n=Math.max(1,names.length),step=Math.PI*2/n;ctx.clearRect(0,0,w,h);const colors=['#783fe3','#4b6ed9','#a23fd5','#3758b9','#b154d9','#5867e9','#7d37c5','#3e8ccf'];for(let i=0;i<n;i++){const a0=-Math.PI/2+i*step,a1=a0+step;ctx.beginPath();ctx.moveTo(cx,cy);ctx.arc(cx,cy,r,a0,a1);ctx.closePath();const grad=ctx.createRadialGradient(cx,cy,r*.08,cx,cy,r);grad.addColorStop(0,'#251048');grad.addColorStop(.36,colors[i%colors.length]);grad.addColorStop(1,i%2?'#171339':'#210b3e');ctx.fillStyle=grad;ctx.fill();ctx.strokeStyle='rgba(241,224,255,.72)';ctx.lineWidth=3;ctx.stroke();}
 ctx.save();ctx.beginPath();ctx.arc(cx,cy,r,0,Math.PI*2);ctx.strokeStyle='#e6caff';ctx.lineWidth=8;ctx.shadowColor='#b674ff';ctx.shadowBlur=20;ctx.stroke();ctx.restore();
 for(let i=0;i<n;i++){const mid=-Math.PI/2+(i+.5)*step;ctx.save();ctx.translate(cx,cy);ctx.rotate(mid);ctx.translate(r*.66,0);ctx.rotate(Math.PI/2);const fs=n<=6?34:n<=10?28:n<=13?24:21;ctx.font=`900 ${fs}px "Pretendard Variable",sans-serif`;ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillStyle='#fff';ctx.shadowColor='rgba(25,4,55,.9)';ctx.shadowBlur=7;let text=names[i];while(ctx.measureText(text).width>r*.43&&text.length>3)text=text.slice(0,-2)+'…';ctx.fillText(text,0,0);ctx.restore();}}
-async function spinTo(plan,roundIndex){const canvas=$('wheel'),n=plan.names.length,step=360/n,target=-(plan.winnerIndex+.5)*step;drawWheel(plan.names);$('roundLine').textContent=`${roundIndex+1} / ${state.items.length} ROUND`;$('roundItem').textContent=plan.item;$('runStatus').textContent=`${plan.names.length}명 중 추첨 중…`;$('progressBar').style.width=((roundIndex)/state.items.length*100)+'%';canvas.style.transition='none';canvas.style.transform=`rotate(${state.rotation}deg)`;canvas.getBoundingClientRect();const current=((state.rotation%360)+360)%360,targetNorm=((target%360)+360)%360;let delta=(targetNorm-current+360)%360;delta+=360*(5+secureIndex(3));state.rotation+=delta;canvas.style.transition='transform 3.65s cubic-bezier(.08,.72,.10,1)';canvas.style.transform=`rotate(${state.rotation}deg)`;await sleep(3700);$('runStatus').textContent=roundIndex===state.items.length-1?'마지막 회차 완료 · 결과 정리 중…':'회차 완료 · 다음 룰렛으로 이동합니다…';$('progressBar').style.width=((roundIndex+1)/state.items.length*100)+'%';await sleep(roundIndex===state.items.length-1?850:720);}
-async function startDraw(){if(state.running||$('startBtn').disabled)return;state.running=true;closeMenus();state.results=[];state.rotation=0;registerAttempt();const plan=makePlan();$('memberStep').hidden=true;$('itemStep').hidden=true;$('resultPanel').hidden=true;$('runPanel').hidden=false;$('runPanel').scrollIntoView({behavior:'smooth',block:'start'});for(let i=0;i<plan.length;i++)await spinTo(plan[i],i);state.results=plan.map(({item,winner})=>({item,winner}));state.drawFinishedAt=new Date();state.running=false;showResults();}
+async function spinTo(plan,roundIndex){const canvas=$('wheel'),n=plan.names.length,step=360/n,target=-(plan.winnerIndex+.5)*step;drawWheel(plan.names);$('roundLine').textContent=`${roundIndex+1} / ${state.items.length} ROUND`;const label=$('roundItem');label.replaceChildren();if(rewardImage(plan.item)){const icon=document.createElement('img');icon.src=plan.item.icon;icon.alt='추첨 보상 아이콘';icon.style.cssText='display:block;width:64px;height:64px;object-fit:contain;margin:0 auto';label.append(icon);}else{label.textContent=plan.item.text;}$('runStatus').textContent=`${plan.names.length}명 중 추첨 중…`;$('progressBar').style.width=((roundIndex)/state.items.length*100)+'%';canvas.style.transition='none';canvas.style.transform=`rotate(${state.rotation}deg)`;canvas.getBoundingClientRect();const current=((state.rotation%360)+360)%360,targetNorm=((target%360)+360)%360;let delta=(targetNorm-current+360)%360;delta+=360*(5+secureIndex(3));state.rotation+=delta;canvas.style.transition='transform 3.65s cubic-bezier(.08,.72,.10,1)';canvas.style.transform=`rotate(${state.rotation}deg)`;await sleep(3700);$('runStatus').textContent=roundIndex===state.items.length-1?'마지막 회차 완료 · 결과 정리 중…':'회차 완료 · 다음 룰렛으로 이동합니다…';$('progressBar').style.width=((roundIndex+1)/state.items.length*100)+'%';await sleep(roundIndex===state.items.length-1?850:720);}
+async function startDraw(){if(state.running||$('startBtn').disabled)return;state.running=true;closeMenus();closeRewardMenus();state.results=[];state.rotation=0;registerAttempt();const plan=makePlan();$('memberStep').hidden=true;$('itemStep').hidden=true;$('resultPanel').hidden=true;$('runPanel').hidden=false;$('runPanel').scrollIntoView({behavior:'smooth',block:'start'});for(let i=0;i<plan.length;i++)await spinTo(plan[i],i);state.results=plan.map(({item,winner})=>({item,winner}));state.drawFinishedAt=new Date();state.running=false;showResults();}
 $('startBtn').onclick=startDraw;
 function scrollResultTop(){const panel=$('resultPanel'),bar=document.querySelector('.topbar');if(!panel)return;const offset=(bar?.getBoundingClientRect().height||0)+18;const y=Math.max(0,panel.getBoundingClientRect().top+window.scrollY-offset);window.scrollTo({top:y,behavior:'smooth'});setTimeout(()=>{const yy=Math.max(0,panel.getBoundingClientRect().top+window.scrollY-offset);if(Math.abs(window.scrollY-yy)>4)window.scrollTo({top:yy,behavior:'auto'});},320);}
 // Shared responsive row arrangement for the on-page result and the actual PNG.
@@ -200,11 +272,20 @@ function participantRows(names){
   for(let i=0;i<n;i+=cols)groups.push(names.slice(i,i+cols));
   return groups;
 }
-function groupPairs(items){const out=[];for(let i=0;i<items.length;i+=2)out.push(items.slice(i,i+2));return out;}
+function idealWinnerCols(n){if(n<=3)return n;if(n===4)return 2;if(n===6)return 3;if(n===8)return 4;if(n===9)return 3;return Math.min(4,Math.ceil(Math.sqrt(n)));}
+function resultGroups(items,maxCols=4){const n=items.length,cols=Math.min(maxCols,idealWinnerCols(n)),out=[];for(let i=0;i<n;i+=cols)out.push(items.slice(i,i+cols));return out;}
+function sizeWinnerGrid(){const host=$('resultList');if(!host||!state.results.length)return;const avail=host.parentElement?.clientWidth||host.clientWidth||320;const ideal=idealWinnerCols(state.results.length);const mobileMax=Math.max(1,Math.floor((avail+8)/140));const cols=Math.min(ideal,mobileMax);host.style.setProperty('--winner-cols',String(cols));host.style.setProperty('--winner-grid-max',Math.min(avail,cols*225+(cols-1)*8)+'px');}
+window.addEventListener('resize',sizeWinnerGrid,{passive:true});
 function showResults(){
   $('runPanel').hidden=true;
   const host=$('resultList');host.innerHTML='';
-  groupPairs(state.results).forEach(group=>{const line=document.createElement('div');line.className='result-line';group.forEach(r=>{const row=document.createElement('div');row.className='result-row';row.innerHTML='<span class="result-item"></span><span class="result-winner"></span>';row.querySelector('.result-item').textContent=r.item;row.querySelector('.result-winner').textContent=r.winner;row.title=`${r.item} · ${r.winner}`;line.append(row);});host.append(line);});
+  state.results.forEach(r=>{
+    const card=document.createElement('div');card.className='result-row'+(rewardImage(r.item)?' is-icon':' is-text');
+    const item=document.createElement('span');item.className='result-item'+(rewardImage(r.item)?' reward-image':'');
+    if(rewardImage(r.item)){const img=document.createElement('img');img.src=r.item.icon;img.alt='보상 아이콘';item.append(img);}else{item.textContent=r.item.text;item.title=r.item.text;}
+    const winner=document.createElement('span');winner.className='result-winner';winner.textContent=r.winner;winner.title=r.winner;
+    card.append(item,winner);host.append(card);
+  });sizeWinnerGrid();
   $('winnerCount').textContent=`${state.results.length}개`;
   $('proofCard').classList.toggle('retry',!state.firstAttempt);$('proofBadge').classList.toggle('retry',!state.firstAttempt);$('proofBadge').textContent=state.firstAttempt?'최초 추첨':`재추첨 ${state.attemptNo}회차`;
   setClock('proofStart',state.drawStartedAt);setClock('proofEnd',state.drawFinishedAt);
@@ -220,10 +301,10 @@ function fitText(ctx,text,maxWidth){let s=String(text);if(ctx.measureText(s).wid
 async function makeShareImage(){
   await (document.fonts?.ready||Promise.resolve());
   const W=1080,pad=58,inner=W-2*pad,people=orderedParticipants(),winners=new Set(state.results.map(r=>r.winner));
-  const pGroups=participantRows(people),rGroups=groupPairs(state.results);
+  const pGroups=participantRows(people),rGroups=resultGroups(state.results);
   const gap=24,headerH=110,timeH=158,chipH=77,chipGap=12,peopleHead=72,peopleBottom=22;
   const peopleH=peopleHead+pGroups.length*chipH+Math.max(0,pGroups.length-1)*chipGap+peopleBottom;
-  const resultHead=70,resultCardH=148,resultGap=16,resultsH=resultHead+rGroups.length*resultCardH+Math.max(0,rGroups.length-1)*resultGap;
+  const resultHead=70,resultCardH=100,resultGap=16,resultsH=resultHead+rGroups.length*resultCardH+Math.max(0,rGroups.length-1)*resultGap;
   const H=pad+headerH+gap+timeH+gap+peopleH+gap+resultsH+pad;
   const canvas=document.createElement('canvas');canvas.width=W;canvas.height=H;
   const ctx=canvas.getContext('2d',{alpha:false});ctx.imageSmoothingEnabled=true;ctx.imageSmoothingQuality='high';
@@ -274,15 +355,38 @@ async function makeShareImage(){
   y+=peopleH+gap;
   putText('당첨 결과',pad+4,y+38,{size:34,min:34,align:'left',weight:950});
   putText(`${state.results.length}개`,W-pad-4,y+38,{size:28,min:28,align:'right',color:'#c4b7d6',weight:900});
-  const cardW=Math.min(174*2.48,Math.max(108*2.48,inner*.35)),cGap=25;
+  // Match the on-page compact winner grid: responsive column count, single horizontal card.
+  const cols=Math.min(4,idealWinnerCols(state.results.length)),cGap=18;
+  const cardW=Math.min(330,(inner-(cols-1)*cGap)/cols);
+  const imageCache=new Map();
+  await Promise.all(state.results.filter(r=>rewardImage(r.item)).map(async r=>{
+    if(imageCache.has(r.item.icon))return;
+    const promise=new Promise(resolve=>{const im=new Image();im.onload=()=>resolve(im);im.onerror=()=>resolve(null);im.src=r.item.icon;});imageCache.set(r.item.icon,promise);
+  }));
+  for(const [key,promise] of imageCache.entries())imageCache.set(key,await promise);
   let cardY=y+resultHead;
   rGroups.forEach(group=>{
     const rowW=group.length*cardW+(group.length-1)*cGap;
     let x=pad+(inner-rowW)/2;
     group.forEach(r=>{
-      rounded(x,cardY,cardW,resultCardH,22,'#d9f0d9','#78ad83',5.5);
-      putText(r.item,x+cardW/2,cardY+resultCardH*.36,{size:41,min:30,maxWidth:cardW-32,color:'#111a13',weight:930});
-      putText(r.winner,x+cardW/2,cardY+resultCardH*.68,{size:41,min:30,maxWidth:cardW-32,color:'#111a13',weight:930});
+      const iconic=rewardImage(r.item);
+      rounded(x,cardY,cardW,resultCardH,20,iconic?'#1e2945':'#281b40',iconic?'#7295e9':'#9b72dc',3);
+      const middleY=cardY+resultCardH/2;
+      if(iconic){
+        const im=imageCache.get(r.item.icon),imageSide=78;
+        if(im)ctx.drawImage(im,x+11,cardY+(resultCardH-imageSide)/2,imageSide,imageSide);
+        else putText('◇',x+48,middleY,{size:45,min:45,color:'#8ecbff'});
+        const nameSpace=cardW-104;
+        ctx.font='930 29px "Pretendard Variable",sans-serif';
+        putText(fitText(ctx,r.winner,nameSpace),x+cardW-12,middleY,{size:29,min:21,maxWidth:nameSpace,align:'right',color:'#f6efff',weight:930});
+      }else{
+        const leftW=Math.max(65,cardW*.51),rightW=cardW-leftW-28;
+        const leftText=String(r.item.text||'');
+        ctx.font='900 27px "Pretendard Variable",sans-serif';
+        putText(fitText(ctx,leftText,leftW-17),x+14,middleY,{size:27,min:20,maxWidth:leftW-17,align:'left',color:'#ffd58c',weight:900});
+        ctx.font='930 27px "Pretendard Variable",sans-serif';
+        putText(fitText(ctx,r.winner,rightW),x+cardW-13,middleY,{size:27,min:20,maxWidth:rightW,align:'right',color:'#dfe0ff',weight:930});
+      }
       x+=cardW+cGap;
     });
     cardY+=resultCardH+resultGap;
