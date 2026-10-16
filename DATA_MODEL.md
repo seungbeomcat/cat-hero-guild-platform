@@ -1,4 +1,4 @@
-# V4.1.6 Firestore Data Model
+# V4.1.7 Firestore Data Model
 
 ## guilds/{guildId}
 - name: string
@@ -74,7 +74,7 @@
 중앙관리자 수준의 위험 작업 완료 이력입니다.
 
 
-## V4.1.6 행운 룰렛
+## V4.1.7 행운 룰렛
 - `roulette.html`은 현재 길드 roster를 읽기만 하는 공용 미니게임입니다.
 - 관리자 인증 및 Firestore 쓰기/활동기록 저장을 사용하지 않습니다.
 - 통합 라우터의 `roulette` 경로로 진입하며 은하 OPS 데이터 구조와 분리됩니다.

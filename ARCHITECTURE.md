@@ -1,4 +1,4 @@
-# Cat Hero Guild Platform V4.1.6 Architecture
+# Cat Hero Guild Platform V4.1.7 Architecture
 
 ## 분리 원칙
 - V3.0 계열은 도살장 전용 기준본이며 수정하지 않습니다.
@@ -73,7 +73,7 @@
 - A new round copies these defaults into its member resource snapshot.
 
 
-## V4.1.6 행운 룰렛
+## V4.1.7 행운 룰렛
 - `roulette.html`은 현재 길드 roster를 읽기만 하는 공용 미니게임입니다.
 - 관리자 인증 및 Firestore 쓰기/활동기록 저장을 사용하지 않습니다.
 - 통합 라우터의 `roulette` 경로로 진입하며 은하 OPS 데이터 구조와 분리됩니다.
