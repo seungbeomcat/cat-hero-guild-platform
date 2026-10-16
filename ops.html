@@ -8,7 +8,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="default" />
   <meta name="apple-mobile-web-app-title" content="Cat Hero 길드 운영" />
-  <title>Cat Hero · 균열·은하 OPS V4.1.4</title>
+  <title>Cat Hero · 균열·은하 OPS V4.1.5</title>
   <!-- KakaoTalk / social link preview -->
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Cat Hero Guild Platform" />
@@ -3522,7 +3522,7 @@ input:focus,textarea:focus,select:focus{scroll-margin-bottom:140px;}
       </section>
 
       <div class="footer">
-        <b>Created by 879 | 안창살 · V4.1.4</b><br>
+        <b>Created by 879 | 안창살 · V4.1.5</b><br>
         <span class="footer-build-date">2026.10.16</span>
       </div>
     </main>
@@ -3720,8 +3720,22 @@ if(!window.DosaljaShared){
 
   const deepClone = obj => JSON.parse(JSON.stringify(obj));
   const EXTENDED_INITIAL_SECONDS = Object.freeze({});
+  let memberResourceDefaults = {};
+  function normalizeMemberResourceDefaults(raw){
+    const source=(raw&&typeof raw==="object"&&raw.members&&typeof raw.members==="object")?raw.members:(raw&&typeof raw==="object"?raw:{});
+    const migrated={};
+    for(const [rawName,value] of Object.entries(source)){
+      const name=activeMemberName(rawName);
+      if(!MEMBER_ORDER.includes(name)) continue;
+      const candidate=(value&&typeof value==="object")?value.initialSeconds:value;
+      const seconds=Number(candidate);
+      if(Number.isFinite(seconds)) migrated[name]={initialSeconds:Math.max(1200,Math.min(MAX_MEMBER_TIME_SECONDS,Math.round(seconds)))};
+    }
+    return Object.fromEntries(MEMBER_ORDER.map(name=>[name,{initialSeconds:migrated[name]?.initialSeconds||EXTENDED_INITIAL_SECONDS[name]||1200}]));
+  }
+  const memberDefaultSeconds = name => Math.max(1200,Math.min(MAX_MEMBER_TIME_SECONDS,Number(memberResourceDefaults?.[name]?.initialSeconds)||EXTENDED_INITIAL_SECONDS[name]||1200));
   const makeMemberState = (initialSeconds=1200) => ({initialSwords:10,initialSeconds,normalSwords:0,normalSeconds:0});
-  const makeMembers = () => Object.fromEntries(MEMBER_ORDER.map(n => [n,makeMemberState(EXTENDED_INITIAL_SECONDS[n]||1200)]));
+  const makeMembers = () => Object.fromEntries(MEMBER_ORDER.map(n => [n,makeMemberState(memberDefaultSeconds(n))]));
   const nowParts = () => { const d=new Date(); return {date:`${d.getFullYear()}.${String(d.getMonth()+1).padStart(2,"0")}.${String(d.getDate()).padStart(2,"0")}.`,time:`${String(d.getHours()).padStart(2,"0")}:${String(d.getMinutes()).padStart(2,"0")}`}; };
   const fmtNum = n => Number(n||0).toLocaleString("ko-KR");
   const fmtTime = s => { s=Math.max(0,Math.round(Number(s)||0)); return `${String(Math.floor(s/60)).padStart(2,"0")}:${String(s%60).padStart(2,"0")}`; };
@@ -3774,7 +3788,8 @@ if(!window.DosaljaShared){
       delete r.members[oldName];
     }
     for(const name of MEMBER_ORDER){
-      r.members[name]={...makeMemberState(EXTENDED_INITIAL_SECONDS[name]||1200),...(r.members[name]||{})};
+      const existing=r.members[name];
+      r.members[name]={...makeMemberState(existing?1200:memberDefaultSeconds(name)),...(existing||{})};
       const ext=EXTENDED_INITIAL_SECONDS[name];
       if(ext && Number(r.members[name].initialSeconds)===1200 && Number(r.members[name].normalSeconds||0)===0) r.members[name].initialSeconds=ext;
     }
@@ -3905,7 +3920,7 @@ if(!window.DosaljaShared){
     };
   }
 
-  let state={round:null,firebase:null,firebaseError:null,connected:false,loading:true,connectionStalled:false,cacheHydrated:false,adminUnlockedUntil:0,selectedBossId:null,editingBoss:false,selectedMember:null,unsubscribeRound:null,unsubscribeActive:null,archiveIds:[],archiveRounds:[],archiveLoading:false,archiveError:null,archiveOpen:false,archiveRoundId:null,archiveTab:"bosses",archiveRewardSelection:null};
+  let state={round:null,firebase:null,firebaseError:null,connected:false,loading:true,connectionStalled:false,cacheHydrated:false,adminUnlockedUntil:0,selectedBossId:null,editingBoss:false,selectedMember:null,unsubscribeRound:null,unsubscribeActive:null,unsubscribeResourceDefaults:null,archiveIds:[],archiveRounds:[],archiveLoading:false,archiveError:null,archiveOpen:false,archiveRoundId:null,archiveTab:"bosses",archiveRewardSelection:null};
 
   const OPS_CACHE_KEY=window.CAT_HERO_V4_TENANT.cacheKey("opsSnapshotV1");
   const OPS_CACHE_MAX_AGE_MS=24*60*60*1000;
@@ -3916,10 +3931,10 @@ if(!window.DosaljaShared){
     const out={};for(const [k,v] of Object.entries(value))out[k]=opsCacheClone(v);return out;
   }
   function saveOpsCacheSnapshot(){
-    try{const payload={savedAt:Date.now(),round:state.round?.id&&!state.round?.isDraft?opsCacheClone(state.round):null,archiveIds:normalizeArchiveIds(state.archiveIds),archiveRounds:state.archiveRounds.slice(0,8).map(opsCacheClone)};localStorage.setItem(OPS_CACHE_KEY,JSON.stringify(payload));}catch(e){console.warn("[ops cache] save failed",e);}
+    try{const payload={savedAt:Date.now(),round:state.round?.id&&!state.round?.isDraft?opsCacheClone(state.round):null,resourceDefaults:opsCacheClone(memberResourceDefaults),archiveIds:normalizeArchiveIds(state.archiveIds),archiveRounds:state.archiveRounds.slice(0,8).map(opsCacheClone)};localStorage.setItem(OPS_CACHE_KEY,JSON.stringify(payload));}catch(e){console.warn("[ops cache] save failed",e);}
   }
   function hydrateOpsCache(){
-    try{const raw=localStorage.getItem(OPS_CACHE_KEY);if(!raw)return false;const p=JSON.parse(raw),savedAt=Number(p?.savedAt)||0;if(!savedAt||Date.now()-savedAt>OPS_CACHE_MAX_AGE_MS)return false;state.round=p.round?normalizeRound(p.round,p.round.id):makeDraftRound();state.archiveIds=normalizeArchiveIds(p.archiveIds||[]);state.archiveRounds=Array.isArray(p.archiveRounds)?p.archiveRounds.map(x=>normalizeArchiveRound(x,x?.id)).filter(x=>x.id):[];state.archiveRoundId=state.archiveRounds[0]?.id||null;state.cacheHydrated=true;return true;}catch(e){console.warn("[ops cache] read failed",e);return false;}
+    try{const raw=localStorage.getItem(OPS_CACHE_KEY);if(!raw)return false;const p=JSON.parse(raw),savedAt=Number(p?.savedAt)||0;if(!savedAt||Date.now()-savedAt>OPS_CACHE_MAX_AGE_MS)return false;memberResourceDefaults=normalizeMemberResourceDefaults(p.resourceDefaults||{});state.round=p.round?normalizeRound(p.round,p.round.id):makeDraftRound();state.archiveIds=normalizeArchiveIds(p.archiveIds||[]);state.archiveRounds=Array.isArray(p.archiveRounds)?p.archiveRounds.map(x=>normalizeArchiveRound(x,x?.id)).filter(x=>x.id):[];state.archiveRoundId=state.archiveRounds[0]?.id||null;state.cacheHydrated=true;return true;}catch(e){console.warn("[ops cache] read failed",e);return false;}
   }
 
   let firebaseReadyPromise=null;
@@ -4448,6 +4463,7 @@ if(!window.DosaljaShared){
   function cleanupFirebaseListeners(){
     if(state.unsubscribeRound){try{state.unsubscribeRound();}catch(_){} state.unsubscribeRound=null;}
     if(state.unsubscribeActive){try{state.unsubscribeActive();}catch(_){} state.unsubscribeActive=null;}
+    if(state.unsubscribeResourceDefaults){try{state.unsubscribeResourceDefaults();}catch(_){} state.unsubscribeResourceDefaults=null;}
   }
   function markFirebaseStalled(err){
     cleanupFirebaseListeners();
@@ -4486,6 +4502,7 @@ if(!window.DosaljaShared){
     return false;
   }
   async function persistRound(round){
+    if(!round?.id||round.isDraft){showToast("현재 진행 중인 실제 회차가 없습니다.");return false;}
     if(!(await ensureFirebaseReady())) return false;
     if(!(await ensureAdmin())) return false;
     const resourceChanged=resourceSignature(state.round)!==resourceSignature(round);
@@ -4762,12 +4779,15 @@ if(!window.DosaljaShared){
   }
 
   function openMemberModal(name){
-    state.selectedMember=name; const m=state.round?.members?.[name]||makeMemberState(), r=memberRemaining(name);
-    const maxSwords=Math.max(0,(Number(m.initialSwords)||10)-bossParticipationCount(name));
-    // 잔여시간 직접 보정은 차원의 공간 확장치를 포함해 최대 22:00까지 허용합니다.
-    // 이미 초대형에서 사용한 시간은 총 보유시간에서 제외합니다.
-    const maxTime=Math.max(0,MAX_MEMBER_TIME_SECONDS-bossUsedSeconds(name));
-    document.getElementById("memberModalBody").innerHTML=`<div class="member-detail-card"><div class="member-detail-name">${name}</div><div class="member-resource-edit-grid"><div class="member-resource-edit"><span>현재 칼(기회)</span><div class="sword-edit-line"><input id="remainingSwordsInput" type="number" inputmode="numeric" min="0" max="${maxSwords}" value="${r.swords}"><em>/10</em></div></div><div class="member-resource-edit"><span>현재 잔여 시간</span><button type="button" class="picker-display member-remaining-time" id="remainingTimeBtn" data-seconds="${r.seconds}" data-max-seconds="${maxTime}">${fmtTime(r.seconds)}</button></div></div></div><div class="member-history-title">이번 회차 초대형 참여</div>${memberBossHistoryMarkup(name)}`;
+    state.selectedMember=name;
+    const hasActiveRound=!!(state.round?.id&&!state.round?.isDraft);
+    const m=hasActiveRound?(state.round?.members?.[name]||makeMemberState(memberDefaultSeconds(name))):makeMemberState(memberDefaultSeconds(name));
+    const r=hasActiveRound?memberRemaining(name):{swords:10,seconds:memberDefaultSeconds(name)};
+    const maxSwords=hasActiveRound?Math.max(0,(Number(m.initialSwords)||10)-bossParticipationCount(name)):10;
+    // 실제 회차 중에는 사용량을 제외한 현재 잔여시간을, 회차 미진행 중에는 다음 회차 시작시간을 편집합니다.
+    const maxTime=hasActiveRound?Math.max(0,MAX_MEMBER_TIME_SECONDS-bossUsedSeconds(name)):MAX_MEMBER_TIME_SECONDS;
+    const inactiveNotice=hasActiveRound?"":`<div class="member-history-empty" style="margin:10px 0 0">현재 회차 미진행 · 저장한 시간은 다음 균열·은하 회차의 시작 시간으로 사용됩니다.</div>`;
+    document.getElementById("memberModalBody").innerHTML=`<div class="member-detail-card"><div class="member-detail-name">${name}</div><div class="member-resource-edit-grid"><div class="member-resource-edit"><span>${hasActiveRound?'현재 칼(기회)':'다음 회차 시작 칼'}</span><div class="sword-edit-line"><input id="remainingSwordsInput" type="number" inputmode="numeric" min="0" max="${maxSwords}" value="${r.swords}" ${hasActiveRound?'':'disabled'}><em>/10</em></div></div><div class="member-resource-edit"><span>${hasActiveRound?'현재 잔여 시간':'다음 회차 시작 시간'}</span><button type="button" class="picker-display member-remaining-time" id="remainingTimeBtn" data-seconds="${r.seconds}" data-max-seconds="${maxTime}">${fmtTime(r.seconds)}</button></div></div>${inactiveNotice}</div><div class="member-history-title">이번 회차 초대형 참여</div>${memberBossHistoryMarkup(name)}`;
     const timeBtn=document.getElementById("remainingTimeBtn");
     if(timeBtn) timeBtn.onclick=()=>openMemberRemainingTimePicker(name,timeBtn);
     openModal("memberModal");
@@ -4775,23 +4795,57 @@ if(!window.DosaljaShared){
 
   document.getElementById("saveMemberUsageBtn").onclick=async()=>{
     if(!(await ensureAdmin())) return;
-    const name=state.selectedMember; if(!name)return; const r=deepClone(state.round), m=r.members[name]||makeMemberState();
+    if(!(await ensureFirebaseReady())) return;
+    const name=state.selectedMember; if(!name)return;
+    const hasActiveRound=!!(state.round?.id&&!state.round?.isDraft);
+    const desiredSeconds=Math.max(0,Number(document.getElementById("remainingTimeBtn")?.dataset.seconds)||0);
+
+    if(!hasActiveRound){
+      if(desiredSeconds<1200||desiredSeconds>MAX_MEMBER_TIME_SECONDS||(desiredSeconds-1200)%20!==0){
+        showToast("회차 미진행 중 시작 시간은 20:00부터 22:00까지 20초 단위로 설정하세요.");
+        return;
+      }
+      const nextDefaults=normalizeMemberResourceDefaults({...memberResourceDefaults,[name]:{initialSeconds:desiredSeconds}});
+      try{
+        await state.firebase.saveResourceDefaults(nextDefaults);
+        memberResourceDefaults=nextDefaults;
+        state.round=makeDraftRound();
+        state.connected=true;
+        state.firebaseError=null;
+        renderAll();
+        saveOpsCacheSnapshot();
+        closeModal("memberModal");
+        showToast(`${name} 다음 회차 시작 시간을 ${fmtTime(desiredSeconds)}으로 저장했습니다.`);
+      }catch(err){console.error(err);state.firebaseError=err;showToast(firebaseErrorMessage(err));}
+      return;
+    }
+
+    const r=deepClone(state.round), m=r.members[name]||makeMemberState(memberDefaultSeconds(name));
     const bossCount=bossParticipationCount(name), bossSec=bossUsedSeconds(name);
     const initialSwords=Number(m.initialSwords)||10;
     const currentInitialSeconds=Math.max(1200,Math.min(MAX_MEMBER_TIME_SECONDS,Number(m.initialSeconds)||1200));
     const maxSwords=Math.max(0,initialSwords-bossCount), maxTime=Math.max(0,MAX_MEMBER_TIME_SECONDS-bossSec);
     const desiredSwords=Math.max(0,Math.floor(Number(document.getElementById("remainingSwordsInput").value)||0));
-    const desiredSeconds=Math.max(0,Number(document.getElementById("remainingTimeBtn").dataset.seconds)||0);
     if(desiredSwords>maxSwords){showToast(`초대형 참여 ${bossCount}회를 반영하면 최대 ${maxSwords}칼까지 남을 수 있습니다.`);return;}
     if(desiredSeconds>maxTime){showToast(`설정 가능한 최대 잔여 시간은 ${fmtTime(maxTime)}입니다.`);return;}
-    // 기존 회차가 20분으로 생성됐더라도 관리자가 20:20~22:00을 선택하면
-    // 해당 길드원의 총 시간 한도를 필요한 만큼 확장해 저장합니다.
+    // 회차 중 20분을 넘겨 확장한 값은 현재 회차에 적용하고, 다음 회차 기본 시작시간에도 보존합니다.
     const effectiveInitialSeconds=Math.min(MAX_MEMBER_TIME_SECONDS,Math.max(currentInitialSeconds,bossSec+desiredSeconds));
     m.initialSeconds=effectiveInitialSeconds;
     m.normalSwords=Math.max(0,initialSwords-bossCount-desiredSwords);
     m.normalSeconds=Math.max(0,effectiveInitialSeconds-bossSec-desiredSeconds);
     r.members[name]=m;
-    if(await persistRound(r)){closeModal("memberModal");showToast("길드원 현재 자원을 저장했습니다.");}
+    const storedDefault=memberDefaultSeconds(name);
+    const nextDefaults=effectiveInitialSeconds>storedDefault?normalizeMemberResourceDefaults({...memberResourceDefaults,[name]:{initialSeconds:effectiveInitialSeconds}}):null;
+    try{
+      if(nextDefaults){
+        await state.firebase.saveRoundAndResourceDefaults(r,resourceSignature(state.round)!==resourceSignature(r),nextDefaults);
+        memberResourceDefaults=nextDefaults;
+        state.round=normalizeRound(r,r.id);state.connected=true;state.loading=false;renderAll();saveOpsCacheSnapshot();
+        closeModal("memberModal");showToast("길드원 현재 자원과 차공 시작 시간을 저장했습니다.");
+      }else if(await persistRound(r)){
+        closeModal("memberModal");showToast("길드원 현재 자원을 저장했습니다.");
+      }
+    }catch(err){console.error(err);state.firebaseError=err;showToast(firebaseErrorMessage(err));}
   };
 
   const historyRailEl=document.getElementById("historyBossRail");
@@ -4847,6 +4901,12 @@ if(!window.DosaljaShared){
 
       const GUILD_ID=window.CAT_HERO_V4_TENANT.gid();
       const activeRef=fsMod.doc(db,"guilds",GUILD_ID,"ops","active");
+      const resourceDefaultsRef=fsMod.doc(db,"guilds",GUILD_ID,"data","opsResourceDefaults");
+      const loadResourceDefaultsOnce=async()=>{
+        const snap=await withTimeout(fsMod.getDoc(resourceDefaultsRef),8000,"길드원 시작시간 설정 조회");
+        assertCurrentFirebaseAttempt(attempt);
+        memberResourceDefaults=normalizeMemberResourceDefaults(snap.exists()?snap.data():{});
+      };
       const loadRoundOnce=async(roundId)=>{
         if(!roundId) return makeDraftRound();
         const ref=fsMod.doc(db,"guilds",GUILD_ID,"rounds",roundId);
@@ -4855,6 +4915,8 @@ if(!window.DosaljaShared){
         return snap.exists()?normalizeRound(snap.data(),snap.id):makeDraftRound();
       };
 
+      await loadResourceDefaultsOnce();
+      assertCurrentFirebaseAttempt(attempt);
       const activeSnap=await withTimeout(fsMod.getDoc(activeRef),8000,"활성 회차 조회");
       assertCurrentFirebaseAttempt(attempt);
       const initialRoundId=activeSnap.exists()?activeSnap.data().roundId:null;
@@ -4893,18 +4955,39 @@ if(!window.DosaljaShared){
         });
       };
 
+      const buildRoundPayload=(round,resourceChanged=false)=>{
+        if(!round?.id) throw new Error("현재 진행 중인 실제 회차가 없습니다.");
+        const payload=deepClone(round); delete payload.updatedAtServer; delete payload.resourceUpdatedAtServer; delete payload.isDraft;
+        payload.updatedAt=new Date().toISOString();
+        payload.updatedAtServer=fsMod.serverTimestamp();
+        if(resourceChanged){
+          payload.resourceUpdatedAt=new Date().toISOString();
+          payload.resourceUpdatedAtServer=fsMod.serverTimestamp();
+        }else{
+          const oldResourceDate=toDateSafe(round.resourceUpdatedAtServer||round.resourceUpdatedAt);
+          if(oldResourceDate) payload.resourceUpdatedAtServer=fsMod.Timestamp.fromDate(oldResourceDate);
+        }
+        return payload;
+      };
+      const buildResourceDefaultsPayload=(defaults)=>({
+        schemaVersion:1,
+        members:normalizeMemberResourceDefaults(defaults),
+        updatedAtClient:new Date().toISOString(),
+        updatedAtServer:fsMod.serverTimestamp()
+      });
+
       state.firebase={
+        async saveResourceDefaults(defaults){
+          await withTimeout(fsMod.setDoc(resourceDefaultsRef,buildResourceDefaultsPayload(defaults),{merge:false}),10000,"길드원 시작시간 설정 저장");
+        },
+        async saveRoundAndResourceDefaults(round,resourceChanged,defaults){
+          const batch=fsMod.writeBatch(db);
+          batch.set(fsMod.doc(db,"guilds",GUILD_ID,"rounds",round.id),buildRoundPayload(round,resourceChanged),{merge:false});
+          batch.set(resourceDefaultsRef,buildResourceDefaultsPayload(defaults),{merge:false});
+          await withTimeout(batch.commit(),10000,"길드원 자원 및 시작시간 저장");
+        },
         async saveRound(round,resourceChanged=false){
-          const payload=deepClone(round); delete payload.updatedAtServer; delete payload.resourceUpdatedAtServer; delete payload.isDraft;
-          payload.updatedAt=new Date().toISOString();
-          payload.updatedAtServer=fsMod.serverTimestamp();
-          if(resourceChanged){
-            payload.resourceUpdatedAt=new Date().toISOString();
-            payload.resourceUpdatedAtServer=fsMod.serverTimestamp();
-          }else{
-            const oldResourceDate=toDateSafe(round.resourceUpdatedAtServer||round.resourceUpdatedAt);
-            if(oldResourceDate) payload.resourceUpdatedAtServer=fsMod.Timestamp.fromDate(oldResourceDate);
-          }
+          const payload=buildRoundPayload(round,resourceChanged);
           await withTimeout(fsMod.setDoc(fsMod.doc(db,"guilds",GUILD_ID,"rounds",round.id),payload,{merge:false}),10000,"회차 저장");
         },
         async createRound(round){
@@ -5003,6 +5086,14 @@ if(!window.DosaljaShared){
 
       finishLoad(initialRound);
       subscribeRound(initialRoundId||null);
+
+      state.unsubscribeResourceDefaults=fsMod.onSnapshot(resourceDefaultsRef,snap=>{
+        if(attempt!==firebaseInitAttempt) return;
+        memberResourceDefaults=normalizeMemberResourceDefaults(snap.exists()?snap.data():{});
+        if(!state.round?.id||state.round?.isDraft) state.round=makeDraftRound();
+        renderAll();
+        saveOpsCacheSnapshot();
+      },err=>console.warn("resource defaults subscription failed",err));
 
       state.unsubscribeActive=fsMod.onSnapshot(activeRef,snap=>{
         if(attempt!==firebaseInitAttempt) return;
@@ -5123,7 +5214,7 @@ if(!window.DosaljaShared){
   try{ parent.postMessage({type:'dosalja-unified-ready'},'*'); }catch(_e){}
 })();
 </script>
-<script>(function(){try{const g=parent.CAT_HERO_V4_CONTEXT?.guild||{};document.title=`${g.name||'길드'} · 균열·은하 OPS V4.1.4`;}catch(_e){}})();</script>
+<script>(function(){try{const g=parent.CAT_HERO_V4_CONTEXT?.guild||{};document.title=`${g.name||'길드'} · 균열·은하 OPS V4.1.5`;}catch(_e){}})();</script>
 </body>
 </html>
 

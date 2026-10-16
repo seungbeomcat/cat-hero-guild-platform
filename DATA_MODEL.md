@@ -1,4 +1,4 @@
-# V4.1.4 Firestore Data Model
+# V4.1.5 Firestore Data Model
 
 ## guilds/{guildId}
 - name: string
@@ -7,7 +7,7 @@
 - memberCount: number
 - appVersion: string
 - accessHash: string — 길드 전용주소 secret의 SHA-256. secret 원문은 저장하지 않음.
-- accessUpdatedAt: timestamp (주소 설정 후)
+- accessUpdatedAt: timestamp
 - createdAt / updatedAt: timestamp
 
 ## guilds/{guildId}/admins/{uid}
@@ -22,15 +22,13 @@
 - createdAt
 - expiresAtMs
 - issuerRole: `platform` | `guild-admin`
-- usedAt (사용 후)
+- usedAt
 
 ## guildAccess/{accessHash}
 문서 ID 자체가 `SHA-256(secret)` hex 값입니다.
 - guildId: string
 - active: true
 - createdAt: timestamp
-
-원문 secret 및 완성된 공유 URL은 Firestore에 저장하지 않습니다.
 
 ## guilds/{guildId}/data/roster
 - members: object
@@ -40,6 +38,15 @@
 ## guilds/{guildId}/data/rewards
 - records: array
 - updatedAt
+
+## guilds/{guildId}/data/opsResourceDefaults
+회차와 독립된 길드원 OPS 시작 자원 기본값입니다.
+- schemaVersion: 1
+- members.{nickname}.initialSeconds: number — 1200~1320초
+- updatedAtClient: ISO string
+- updatedAtServer: timestamp
+
+현재 회차가 없어도 관리자 저장이 가능하며, 새 균열·은하 회차의 길드원별 시작 시간 기본값으로 사용합니다.
 
 ## guilds/{guildId}/data/journal
 수동 일지/관리 기록 보조 데이터.
@@ -65,10 +72,3 @@
 
 ## platformAudit/{auditId}
 중앙관리자 수준의 위험 작업 완료 이력입니다.
-- kind: 예) `길드 완전 삭제`
-- guildId / server / name
-- deletedCounts: 삭제된 경로별 문서 수
-- uid / email: 실행 중앙관리자
-- at: timestamp
-
-`platformAudit`은 중앙관리자만 조회·생성할 수 있으며 수정·삭제할 수 없습니다.

@@ -1,4 +1,4 @@
-# Cat Hero Guild Platform V4.1.4 Architecture
+# Cat Hero Guild Platform V4.1.5 Architecture
 
 ## 분리 원칙
 - V3.0 계열은 도살장 전용 기준본이며 수정하지 않습니다.
@@ -63,3 +63,9 @@
 - 길드 기본 문서 `guilds/{guildId}`는 가장 마지막에 삭제합니다.
 - 삭제 직후 같은 경로를 다시 조회하여 잔여 데이터가 없는지 확인합니다.
 - 완료 이력은 `platformAudit`에 남깁니다.
+
+
+## OPS persistent resource defaults
+- `guilds/{guildId}/data/opsResourceDefaults` stores per-member starting time independently from active rounds.
+- Draft/no-round edits never write to `rounds/{roundId}`.
+- A new round copies these defaults into its member resource snapshot.
