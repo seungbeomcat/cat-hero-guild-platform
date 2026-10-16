@@ -1,4 +1,4 @@
-# V4.2.1 Firestore Data Model
+# V4.2.2 Firestore Data Model
 
 ## guilds/{guildId}
 - name: string

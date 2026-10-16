@@ -1,22 +1,22 @@
 {
-  "version": "V4.2.1",
+  "version": "V4.2.2",
   "buildDate": "2026-10-16",
-  "source": "V4.1.13 full (V4.1.5 lineage)",
-  "liveValidation": "static-syntax-invariants-pass; responsive CSS invariant audit pass; share canvas layout audit pass; physical iOS/Android runtime check pending",
+  "source": "V4.2.1 full (V4.1.5 lineage)",
+  "liveValidation": "static-syntax-invariants-pass; complete-package-assets/shared-presence-pass; physical iOS/Android runtime check pending",
   "changes": [
-    "행운 룰렛 시작/완료 시각 라벨·날짜·시간 전체 가운데 정렬",
-    "당첨 결과 카드 밝은 퍼플·핑크·블루 그라데이션 및 굵은 골드 대비 테두리 적용",
-    "룰렛 이미지 공유를 현재 결과 화면과 같은 세로형 고해상도 PNG 구조로 개선",
-    "공유 이미지에서 액션 버튼/푸터 제외, PNG 파일만 직접 공유",
-    "V4.1.13의 결과 순서·2열 2줄 당첨 카드·불필요 텍스트 제거 기준 유지",
-    "V4.1.13 계산기 공유/보상 5종/iOS 입력 줌 방지/길드전 기능 유지",
+    "V4.2.1 full을 실제 기준 원본으로 사용해 assets/shared 포함 전체 패키지 유지",
+    "행운 룰렛 결과 제목 하단과 이미지 공유/재추첨 버튼 상단에 얇은 긴 구분선 추가",
+    "이미지 공유/재추첨 버튼을 진한 남색 배경 + 하늘색 굵은 테두리로 통일",
+    "당첨자 1명일 때 당첨 결과 카드를 가운데 정렬",
+    "당첨 결과 카드의 밝은 퍼플·핑크·블루 조합 및 굵은 골드 테두리 유지",
+    "공유 PNG에서도 단일 당첨 결과를 가운데 정렬하고 버튼/푸터/텍스트 캡션 제외 유지",
     "미완성 은하 격전지 개편안 미반영, Firestore Rules 변경 없음"
   ],
   "files": [
     {
       "path": "ARCHITECTURE.md",
       "bytes": 7803,
-      "sha256": "77f3a3b41db1608cd83671d097b9462795720f2294c1e2ad44e753b94b340873"
+      "sha256": "fe99b77c2f0d7a6fdb158e26f00b18612475872c89aae2b9340a2481ea7d77a0"
     },
     {
       "path": "BUILD_MANIFEST_V4.0.1_BASELINE.json",
@@ -26,17 +26,17 @@
     {
       "path": "DATA_MODEL.md",
       "bytes": 3652,
-      "sha256": "947f44fccb1a022818b3a37cae9bd621d7c4dfd8298d7f7c86c453f3c2ba6791"
+      "sha256": "85ba7fb7d606a4790336d67e86cfac64398708f32f084c04b3be6392b900f53c"
     },
     {
       "path": "PRE_GITHUB_CHECKLIST.md",
       "bytes": 1031,
-      "sha256": "be027f81d5e5a41fbc4dc88c765707ef2c566686551226e6e682fea4f79c5f22"
+      "sha256": "1fb967a7d6c36e0474333583a7b7aaddc04714cde5171d460707215634a4be10"
     },
     {
       "path": "README.md",
-      "bytes": 1748,
-      "sha256": "27fa0eab0a53fe25a4e083b44197cf83e1cafb4ecf0b58fb12b1261738576a1f"
+      "bytes": 2031,
+      "sha256": "fe5e3266c8f606920e8c6b07cae3e70a5f29c98c2494ebf420ff8388aa902ece"
     },
     {
       "path": "RELEASE_NOTES_V4.0.1.md",
@@ -159,14 +159,19 @@
       "sha256": "d9f69fcb114a6d59c0746c900e09a4aa93a3405bdd84bb9e0d72460b3c1762d7"
     },
     {
+      "path": "RELEASE_NOTES_V4.2.2.md",
+      "bytes": 2112,
+      "sha256": "658eec4013ab994110a9ee535df2025564b86756d1bd396f4849ba79e1451a1a"
+    },
+    {
       "path": "SOURCE_BASELINE.md",
-      "bytes": 1011,
-      "sha256": "fe1f6c0d9f483c1bf2715dce89e6e0061c083315a1ffccc54f0d91e552be941a"
+      "bytes": 1250,
+      "sha256": "635098b9b537ad6299fc4a12751271fd48805528ae868f56163ef85fec65fa1a"
     },
     {
       "path": "VALIDATION.md",
-      "bytes": 3219,
-      "sha256": "4560ffe977445cf62ad751a6d55eeddfbb5e885736f66b5ef94325f295269b87"
+      "bytes": 851,
+      "sha256": "9bd380d07e7437130976223b87c66a302cbcdbb8f2ec69568eb3d3d34bbe0431"
     },
     {
       "path": "assets/bananyang-v337-display.webp",
@@ -391,7 +396,7 @@
     {
       "path": "boss.html",
       "bytes": 206956,
-      "sha256": "fbee239eeb98db26eb4c4e9a30d33b4330e8958fd2e7ef108f4987b789a6221a"
+      "sha256": "0795102c72befa5c578137e75eb6004f147aa85e36bf066c5e97e3cfb6f5771c"
     },
     {
       "path": "firebase-config.js",
@@ -406,27 +411,27 @@
     {
       "path": "index-module.mjs",
       "bytes": 29980,
-      "sha256": "8a1fed2b36e0ef26929ab0eb8cfc001fb33752c12273db30bf7a3c8c280f61ff"
+      "sha256": "a8c1e85c0a6b3bc74dbb6b6e3e4b9b1a475f05ba4141b6b92e5f81d85fbd0756"
     },
     {
       "path": "index.html",
       "bytes": 2544,
-      "sha256": "3dc2acfd3f4600fdaa1f184cd1b4d37f78c096f07bfa2cb181e3ae531a7173ea"
+      "sha256": "03309e7200dac0dfb3b9c315edcb0387dd01fb28dab9b2789a76590a7ba3d930"
     },
     {
       "path": "main.html",
       "bytes": 610993,
-      "sha256": "06d2174a0253eaf72653e6fb241714acf808f91e7b262bc9a0c15acaba3f3555"
+      "sha256": "d3f865c95e1785460e4118ddd3f782b62e5d13b360bf06e0ffa337df1525c588"
     },
     {
       "path": "ops.html",
       "bytes": 283978,
-      "sha256": "40d822d764f29cc9812b4b301f5bb5ac4a962345645e4f4063313c731efa83ac"
+      "sha256": "7c5eb8f9777a71832235b75474a431d28197a2492eb1da9b84621db8516f1e4b"
     },
     {
       "path": "roulette.html",
-      "bytes": 52345,
-      "sha256": "e2f9870dbb76f390075253af34a7d1242a01419778d5ab94e3ff822fd3641321"
+      "bytes": 56532,
+      "sha256": "176343961f2464b4e476be11ff3c9114fde511123ae497fbd983b239528ac1fb"
     },
     {
       "path": "shared/admin-audit.js",

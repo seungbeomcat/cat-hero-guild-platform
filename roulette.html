@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#090218">
-<title>Cat Hero · 행운 룰렛 V4.2.1</title>
+<title>Cat Hero · 행운 룰렛 V4.2.2</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <style>
 :root{--violet:#8b47f2;--violet2:#bc78ff;--blue:#5bc8ff;--ink:#f8f3ff;--muted:#c4b5dd;--panel:rgba(24,12,49,.86);--panel2:rgba(13,8,31,.94);--line:#8a43e8;--gold:#ffd76a;--green:#7ff4cc}
@@ -64,6 +64,36 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 @media(max-width:360px){.result-row{min-height:62px!important;border-width:2px!important}}
 </style>
 </style>
+
+<style id="v422-final-polish">
+/* V4.2.2 — latest roulette result refinements after V4.2.1 */
+.result h2{font-size:clamp(19px,5.1vw,26px)!important;line-height:1.08!important;letter-spacing:-.045em!important}
+.result-divider{width:100%;height:1px;border-radius:999px;background:linear-gradient(90deg,rgba(0,0,0,0) 0%,rgba(171,129,232,.82) 10%,rgba(105,182,255,.68) 50%,rgba(171,129,232,.82) 90%,rgba(0,0,0,0) 100%);opacity:.92;flex:0 0 auto}
+.result-divider-top{order:.9;margin:6px 0 12px}
+.result-divider-actions{order:3.5;margin:12px 0 12px}
+.proof-card{margin-bottom:12px!important}
+.proof-grid{gap:10px!important}
+.proof-cell{min-height:112px!important;padding:10px 10px!important}
+.proof-cell small{font-size:10px!important;text-align:center!important}
+.proof-cell strong{font-size:clamp(12px,3.2vw,15px)!important;line-height:1.18!important;text-align:center!important}
+.participant-card{margin-bottom:12px!important}
+.result-section-head b{font-size:14px!important}
+.result-section-head span{font-size:11px!important;color:#cfd8f7!important}
+.result-list{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important;align-items:stretch!important}
+.result-list.single{display:flex!important;justify-content:center!important;align-items:stretch!important}
+.result-list.single .result-row{width:min(100%,320px)!important;max-width:320px!important}
+.result-row{min-width:0;min-height:76px!important;padding:12px 10px!important;border:3px solid #ffd86f!important;border-radius:17px!important;background:linear-gradient(135deg,#a857ff 0%,#f078d9 54%,#67a7ff 100%)!important;box-shadow:inset 0 1px rgba(255,255,255,.18),0 8px 22px rgba(96,50,188,.23),0 0 0 1px rgba(255,216,111,.14)!important}
+.result-item,.result-winner{display:block!important;width:100%!important;white-space:normal!important;overflow:visible!important;text-overflow:clip!important;word-break:keep-all!important;text-align:center!important;font-size:clamp(12.5px,3.35vw,15px)!important;line-height:1.22!important;font-weight:930!important}
+.result-item{color:#fff!important;text-shadow:0 1px 5px rgba(36,7,65,.34)!important}
+.result-winner{margin-top:2px!important;color:#fff3ae!important;text-shadow:0 1px 5px rgba(65,37,0,.30)!important}
+.result-actions{order:4;display:grid!important;grid-template-columns:1fr 1fr!important;gap:12px!important;margin:0 2px 0!important}
+.share-result,.again{width:100%!important;min-width:0!important;min-height:50px!important;border-radius:14px!important;font-size:13px!important;font-weight:950!important;color:#fff!important;background:#243447!important;background-image:none!important;border:3px solid #5EA3FF!important;box-shadow:0 7px 18px rgba(36,52,71,.30)!important}
+.share-result:hover,.share-result:active,.again:hover,.again:active{background:#243447!important;border-color:#5EA3FF!important;box-shadow:0 8px 20px rgba(36,52,71,.34)!important}
+@media(max-width:420px){.proof-cell{min-height:100px!important}.result-row{min-height:72px!important;padding:10px 8px!important}.share-result,.again{min-height:48px!important}}
+@media(max-width:360px){.result h2{font-size:20px!important}.proof-cell{min-height:92px!important;padding:9px 7px!important}.proof-cell strong{font-size:11.5px!important}.result-list{gap:8px!important}.result-row{min-height:68px!important;padding:9px 6px!important}.result-item,.result-winner{font-size:12px!important}.result-actions{gap:8px!important}.share-result,.again{font-size:12px!important}}
+@media(min-width:700px){.result-row{min-height:82px!important}.result-item,.result-winner{font-size:15.5px!important}.share-result,.again{font-size:14px!important}}
+</style>
+
 </head>
 <body>
 <div class="sky" aria-hidden="true"></div>
@@ -110,20 +140,22 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
         <div class="result-hero-copy"><h2>추첨 결과</h2></div>
         <span id="proofBadge" class="proof-badge">최초 추첨</span>
       </header>
+      <div class="result-divider result-divider-top" aria-hidden="true"></div>
       <div id="proofCard" class="proof-card">
         <div class="proof-grid"><div class="proof-cell"><small>시작 시각</small><strong id="proofStart"></strong></div><div class="proof-cell"><small>완료 시각</small><strong id="proofEnd"></strong></div></div>
       </div>
       <section class="participant-card" aria-label="전체 참여자"><div class="participant-head"><div class="participant-title"><b>전체 참여 명단</b></div><span id="participantCount" class="participant-count"></span></div><div id="participantList" class="participant-chips"></div></section>
       <section class="result-winners" aria-label="당첨 결과"><div class="result-section-head"><b>당첨 결과</b><span id="winnerCount"></span></div><div id="resultList" class="result-list"></div></section>
+      <div class="result-divider result-divider-actions" aria-hidden="true"></div>
       <div class="result-actions"><button id="shareResultBtn" class="share-result" type="button">이미지 공유</button><button id="againBtn" class="again" type="button">재추첨</button></div>
     </div>
   </section>
 
-  <footer class="footer"><b>Created by 879 | 안창살 · V4.2.1</b><br>2026.10.16</footer>
+  <footer class="footer"><b>Created by 879 | 안창살 · V4.2.2</b><br>2026.10.16</footer>
 </main>
 
 <script src="./firebase-config.js"></script>
-<script src="./shared/guild-core.js?v=421"></script>
+<script src="./shared/guild-core.js?v=422"></script>
 <script>
 (function(){
 'use strict';
@@ -184,7 +216,7 @@ $('startBtn').onclick=startDraw;
 function scrollResultTop(){const panel=$('resultPanel'),bar=document.querySelector('.topbar');if(!panel)return;const offset=(bar?.getBoundingClientRect().height||0)+18;const y=Math.max(0,panel.getBoundingClientRect().top+window.scrollY-offset);window.scrollTo({top:y,behavior:'smooth'});setTimeout(()=>{const yy=Math.max(0,panel.getBoundingClientRect().top+window.scrollY-offset);if(Math.abs(window.scrollY-yy)>4)window.scrollTo({top:yy,behavior:'auto'});},320);}
 function showResults(){
   $('runPanel').hidden=true;
-  const host=$('resultList');host.innerHTML='';
+  const host=$('resultList');host.innerHTML='';host.classList.toggle('single',state.results.length===1);
   state.results.forEach(r=>{const row=document.createElement('div');row.className='result-row';row.innerHTML='<span class="result-item"></span><span class="result-winner"></span>';row.querySelector('.result-item').textContent=r.item;row.querySelector('.result-winner').textContent=r.winner;row.title=`${r.item} · ${r.winner}`;host.append(row);});
   $('winnerCount').textContent=`${state.results.length}개`;
   $('proofCard').classList.toggle('retry',!state.firstAttempt);$('proofBadge').classList.toggle('retry',!state.firstAttempt);$('proofBadge').textContent=state.firstAttempt?'최초 추첨':`재추첨 ${state.attemptNo}회차`;
@@ -203,7 +235,7 @@ async function makeShareImage(){
   const names=orderedParticipants(),winners=new Set(state.results.map(r=>r.winner));
   const pCols=names.length<=6?3:4,pGap=15,pH=78,pRows=Math.ceil(names.length/pCols);
   const participantHeadH=88,participantsH=participantHeadH+pRows*pH+(pRows-1)*pGap+28;
-  const rCols=2,rGap=18,rH=172,rRows=Math.ceil(state.results.length/rCols);
+  const rCols=state.results.length===1?1:2,rGap=18,rH=172,rRows=Math.ceil(state.results.length/rCols),singleResult=state.results.length===1;
   const resultHeadH=82,resultsH=resultHeadH+rRows*rH+(rRows-1)*rGap+10;
   const headerH=120,proofH=220,sectionGap=36,bottomPad=66;
   const H=pad+headerH+sectionGap+proofH+sectionGap+participantsH+sectionGap+resultsH+bottomPad;
@@ -221,6 +253,7 @@ async function makeShareImage(){
   const badgeText=state.firstAttempt?'최초 추첨':`재추첨 ${state.attemptNo}회차`;
   ctx.font='950 24px "Pretendard Variable",sans-serif';const bw=Math.max(175,ctx.measureText(badgeText).width+52),bh=58,bx=W-pad-bw,by=y-bh/2;
   ctx.fillStyle=state.firstAttempt?'rgba(29,111,90,.72)':'rgba(130,80,24,.72)';ctx.strokeStyle=state.firstAttempt?'#83efcf':'#ffd37b';ctx.lineWidth=2.5;roundRect(ctx,bx,by,bw,bh,bh/2);ctx.fill();ctx.stroke();ctx.textAlign='center';ctx.fillStyle=state.firstAttempt?'#d4fff0':'#ffebb3';ctx.fillText(badgeText,bx+bw/2,y+1);
+  ctx.beginPath();ctx.moveTo(pad,y+44);ctx.lineTo(W-pad,y+44);ctx.strokeStyle='rgba(171,129,232,.58)';ctx.lineWidth=2;ctx.stroke();
 
   y=pad+headerH+sectionGap;
   // Time/session card
@@ -243,8 +276,8 @@ async function makeShareImage(){
   y+=participantsH+sectionGap;
   // Winner section
   ctx.textBaseline='alphabetic';ctx.textAlign='left';ctx.fillStyle='#f5efff';ctx.font='950 31px "Pretendard Variable",sans-serif';ctx.fillText('당첨 결과',pad,y+45);ctx.textAlign='right';ctx.fillStyle='#aa99bd';ctx.font='850 24px "Pretendard Variable",sans-serif';ctx.fillText(`${state.results.length}개`,W-pad,y+45);
-  const cardsTop=y+resultHeadH,cardW=(inner-rGap)/2;
-  state.results.forEach((r,i)=>{const col=i%2,row=Math.floor(i/2),x=pad+col*(cardW+rGap),yy=cardsTop+row*(rH+rGap);const grad=ctx.createLinearGradient(x,yy,x+cardW,yy+rH);grad.addColorStop(0,'#7c38e8');grad.addColorStop(.54,'#c542cb');grad.addColorStop(1,'#397fe2');ctx.fillStyle=grad;ctx.strokeStyle='#ffd86f';ctx.lineWidth=5;roundRect(ctx,x,yy,cardW,rH,22);ctx.fill();ctx.stroke();ctx.textBaseline='middle';ctx.textAlign='center';ctx.fillStyle='#fff';ctx.font='930 31px "Pretendard Variable",sans-serif';ctx.fillText(fitText(ctx,r.item,cardW-44),x+cardW/2,yy+rH*.38);ctx.fillStyle='#fff3ae';ctx.fillText(fitText(ctx,r.winner,cardW-44),x+cardW/2,yy+rH*.68);});
+  const cardsTop=y+resultHeadH,cardW=singleResult?Math.min(520,inner*.72):(inner-rGap)/2,baseX=singleResult?pad+(inner-cardW)/2:pad;
+  state.results.forEach((r,i)=>{const col=singleResult?0:i%2,row=Math.floor(i/rCols),x=singleResult?baseX:pad+col*(cardW+rGap),yy=cardsTop+row*(rH+rGap);const grad=ctx.createLinearGradient(x,yy,x+cardW,yy+rH);grad.addColorStop(0,'#a857ff');grad.addColorStop(.54,'#f078d9');grad.addColorStop(1,'#67a7ff');ctx.fillStyle=grad;ctx.strokeStyle='#ffd86f';ctx.lineWidth=5;roundRect(ctx,x,yy,cardW,rH,22);ctx.fill();ctx.stroke();ctx.textBaseline='middle';ctx.textAlign='center';ctx.fillStyle='#fff';ctx.font='930 31px "Pretendard Variable",sans-serif';ctx.fillText(fitText(ctx,r.item,cardW-44),x+cardW/2,yy+rH*.38);ctx.fillStyle='#fff3ae';ctx.fillText(fitText(ctx,r.winner,cardW-44),x+cardW/2,yy+rH*.68);});
   return new Promise((resolve,reject)=>canvas.toBlob(b=>b?resolve(b):reject(Error('이미지 생성 실패')),'image/png',1));
 }
 function saveBlob(blob){const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=`행운룰렛-결과-${new Date().toISOString().slice(0,10)}.png`;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1500);}
