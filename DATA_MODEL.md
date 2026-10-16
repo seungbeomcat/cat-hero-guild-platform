@@ -1,4 +1,4 @@
-# V4.1.12 Firestore Data Model
+# V4.1.13 Firestore Data Model
 
 ## guilds/{guildId}
 - name: string
@@ -103,5 +103,5 @@ Firestore 스키마 추가는 없습니다.
 - 당첨 결과, 항목명, 전체 참여 명단은 영구 저장하지 않습니다.
 
 
-## V4.1.12 데이터 모델 변경 여부
+## V4.1.13 데이터 모델 변경 여부
 Firestore 스키마 변경은 없습니다. 신규 보상 5종은 기존 reward item의 `name`, `qty`, `recipients` 구조를 그대로 사용합니다. 아이콘 경로는 클라이언트 catalog에만 존재합니다.
