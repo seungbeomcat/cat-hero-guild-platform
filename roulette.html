@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#090218">
-<title>Cat Hero · 행운 룰렛 V4.2.6</title>
+<title>Cat Hero · 행운 룰렛 V4.2.7</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <style>
 :root{--violet:#8b47f2;--violet2:#bc78ff;--blue:#5bc8ff;--ink:#f8f3ff;--muted:#c4b5dd;--panel:rgba(24,12,49,.86);--panel2:rgba(13,8,31,.94);--line:#8a43e8;--gold:#ffd76a;--green:#7ff4cc}
@@ -207,7 +207,7 @@ button.reward-compact-select{
     </div>
   </section>
 
-  <footer class="footer"><b>Created by 879 | 안창살 · V4.2.6</b><br>2026.10.17</footer>
+  <footer class="footer"><b>Created by 879 | 안창살 · V4.2.7</b><br>2026.10.17</footer>
 </main>
 
 <script src="./firebase-config.js"></script>
@@ -307,7 +307,7 @@ function renderItemInputs(){
     const grid=document.createElement('div');grid.className='reward-icon-grid';
     const filtered=rewardCatalog.filter(r=>r.kind===item.kind&&(item.kind==='소환권'||r.grade===item.grade));
     filtered.forEach(reward=>{
-      const option=document.createElement('button');option.type='button';option.className='reward-icon-option';option.dataset.rewardId=reward.id;option.setAttribute('aria-label','보상 아이콘 선택');option.setAttribute('aria-pressed',String(item.icon===reward.src));
+      const option=document.createElement('button');option.type='button';option.className='reward-icon-option';option.setAttribute('aria-label','보상 아이콘 선택');option.setAttribute('aria-pressed',String(item.icon===reward.src));
       const img=document.createElement('img');img.src=reward.src;img.alt='';img.loading='lazy';option.append(img);
       option.onclick=()=>{state.items[i].icon=reward.src;renderItemInputs();updateStart();};grid.append(option);
     });
@@ -402,10 +402,12 @@ function fitText(ctx,text,maxWidth){let s=String(text);if(ctx.measureText(s).wid
 async function makeShareImage(){
   await (document.fonts?.ready||Promise.resolve());
   const W=1080,pad=58,inner=W-2*pad,people=orderedParticipants(),winners=new Set(state.results.map(r=>r.winner));
-  const pGroups=participantRows(people),rGroups=resultGroups(state.results);
-  const gap=24,headerH=110,timeH=158,chipH=77,chipGap=12,peopleHead=72,peopleBottom=22;
+  // V4.2.7: winner cards, not timestamps, are the visual focus when the PNG is shared to chat.
+  const pGroups=participantRows(people),rGroups=resultGroups(state.results,3);
+  const gap=17,headerH=84,timeH=82,chipH=56,chipGap=10,peopleHead=59,peopleBottom=17;
   const peopleH=peopleHead+pGroups.length*chipH+Math.max(0,pGroups.length-1)*chipGap+peopleBottom;
-  const resultHead=70,resultCardH=84,resultGap=14,resultsH=resultHead+rGroups.length*resultCardH+Math.max(0,rGroups.length-1)*resultGap;
+  const resultHead=78,resultCardH=124,resultGap=16,resultBottom=23;
+  const resultsH=resultHead+rGroups.length*resultCardH+Math.max(0,rGroups.length-1)*resultGap+resultBottom;
   const H=pad+headerH+gap+timeH+gap+peopleH+gap+resultsH+pad;
   const canvas=document.createElement('canvas');canvas.width=W;canvas.height=H;
   const ctx=canvas.getContext('2d',{alpha:false});ctx.imageSmoothingEnabled=true;ctx.imageSmoothingQuality='high';
@@ -416,49 +418,57 @@ async function makeShareImage(){
   const glow=ctx.createRadialGradient(W*.86,90,10,W*.86,90,720);glow.addColorStop(0,'rgba(68,150,255,.19)');glow.addColorStop(1,'rgba(0,0,0,0)');ctx.fillStyle=glow;ctx.fillRect(0,0,W,820);
   ctx.strokeStyle='#9148ea';ctx.lineWidth=8;roundRect(ctx,23,23,W-46,H-46,40);ctx.stroke();
   let y=pad;
-  putText('추첨 결과',pad+4,y+39,{size:49,min:49,align:'left',weight:950});
+  putText('추첨 결과',pad+4,y+31,{size:46,min:46,align:'left',weight:950});
   const badgeText=state.firstAttempt?'최초 추첨':`재추첨 ${state.attemptNo}회차`;
-  ctx.font='900 22px "Pretendard Variable",sans-serif';const badgeW=Math.max(165,ctx.measureText(badgeText).width+50);
-  const badgeX=W-pad-badgeW;rounded(badgeX,y+13,badgeW,53,27,state.firstAttempt?'rgba(25,113,87,.70)':'rgba(111,75,28,.67)',state.firstAttempt?'#82dfbc':'#e7c37d',2.5);
-  putText(badgeText,badgeX+badgeW/2,y+40,{size:27,min:24,color:state.firstAttempt?'#caffeb':'#ffe3ac',maxWidth:badgeW-18});
-  drawLine(y+headerH-8);
+  ctx.font='900 22px "Pretendard Variable",sans-serif';const badgeW=Math.max(164,ctx.measureText(badgeText).width+44);
+  const badgeX=W-pad-badgeW;rounded(badgeX,y+6,badgeW,51,26,state.firstAttempt?'rgba(25,113,87,.70)':'rgba(111,75,28,.67)',state.firstAttempt?'#82dfbc':'#e7c37d',2.5);
+  putText(badgeText,badgeX+badgeW/2,y+32,{size:25,min:22,color:state.firstAttempt?'#caffeb':'#ffe3ac',maxWidth:badgeW-18});
+  drawLine(y+headerH-7);
   y+=headerH+gap;
-  const clockGap=20,clockW=(inner-clockGap)/2,p2=n=>String(n).padStart(2,'0');
-  const splitClock=d=>d?{date:`${d.getFullYear()}.${p2(d.getMonth()+1)}.${p2(d.getDate())}`,time:`${p2(d.getHours())}:${p2(d.getMinutes())}:${p2(d.getSeconds())}`}:{date:'',time:''};
-  [['시작 시각',splitClock(state.drawStartedAt)],['완료 시각',splitClock(state.drawFinishedAt)]].forEach(([label,v],i)=>{
-    const x=pad+i*(clockW+clockGap);rounded(x,y,clockW,timeH,23,'rgba(41,22,73,.69)','rgba(169,114,234,.39)',2);
-    putText(label,x+clockW/2,y+34,{size:25,min:25,color:'#c6b6d7',weight:850});
-    putText(v.date,x+clockW/2,y+82,{size:34,min:31,maxWidth:clockW-26,weight:950});
-    putText(v.time,x+clockW/2,y+121,{size:34,min:31,maxWidth:clockW-26,weight:950});
+  // One quiet, compact line per timestamp: label above, date+time together below.
+  const p2=n=>String(n).padStart(2,'0'),clockW=392,clockGap=16,clockLeft=(W-(clockW*2+clockGap))/2;
+  const clockString=d=>d?`${d.getFullYear()}.${p2(d.getMonth()+1)}.${p2(d.getDate())}  ${p2(d.getHours())}:${p2(d.getMinutes())}:${p2(d.getSeconds())}`:'—';
+  [['시작 시각',clockString(state.drawStartedAt)],['완료 시각',clockString(state.drawFinishedAt)]].forEach(([label,value],i)=>{
+    const x=clockLeft+i*(clockW+clockGap);rounded(x,y,clockW,timeH,18,'rgba(38,22,72,.53)','rgba(151,111,203,.28)',1.5);
+    putText(label,x+clockW/2,y+23,{size:19,min:19,color:'#b5a6c8',weight:760});
+    putText(value,x+clockW/2,y+55,{size:25,min:23,maxWidth:clockW-17,weight:870,color:'#efe9ff'});
   });
   y+=timeH+gap;
-  rounded(pad,y,inner,peopleH,26,'rgba(18,29,61,.88)','rgba(108,190,255,.54)',2.5);
-  putText('전체 참여 명단',pad+28,y+42,{size:34,min:34,align:'left',weight:950});
-  putText(`${people.length}명`,W-pad-28,y+42,{size:31,min:31,align:'right',color:'#b8e6ff',weight:950});
+  rounded(pad,y,inner,peopleH,24,'rgba(18,29,61,.76)','rgba(108,190,255,.44)',2.2);
+  putText('전체 참여 명단',pad+25,y+32,{size:29,min:29,align:'left',weight:920});
+  putText(`${people.length}명`,W-pad-25,y+32,{size:27,min:27,align:'right',color:'#b8e6ff',weight:910});
   let rowY=y+peopleHead;
   pGroups.forEach(group=>{
-    const measured=group.map(name=>{
-      ctx.font='900 31px "Pretendard Variable",sans-serif';return Math.max(164,Math.min(260,ctx.measureText(name).width+75));
-    });
-    // Cap widths according to the available columns, without stretching chips to fill a row.
-    const maxChip=(inner-62-(group.length-1)*15)/group.length;
+    const measured=group.map(name=>{ctx.font='870 26px "Pretendard Variable",sans-serif';return Math.max(142,Math.min(240,ctx.measureText(name).width+62));});
+    const maxChip=(inner-48-(group.length-1)*13)/group.length;
     const widths=measured.map(w=>Math.min(w,maxChip));
-    const rowW=widths.reduce((a,b)=>a+b,0)+(group.length-1)*15;
+    const rowW=widths.reduce((a,b)=>a+b,0)+(group.length-1)*13;
     let x=pad+(inner-rowW)/2;
     group.forEach((name,i)=>{
       const won=winners.has(name),cw=widths[i];
-      rounded(x,rowY,cw,chipH,17,won?'rgba(90,64,30,.52)':'rgba(18,10,37,.89)',won?'#cba55e':'rgba(153,94,209,.68)',2.7);
-      putText((won?'★ ':'')+name,x+cw/2,rowY+chipH/2,{size:31,min:26,weight:900,color:won?'#ffe3a0':'#f0e6f7',maxWidth:cw-20});
-      x+=cw+15;
+      rounded(x,rowY,cw,chipH,14,won?'rgba(90,64,30,.48)':'rgba(18,10,37,.88)',won?'#cba55e':'rgba(153,94,209,.62)',2.2);
+      putText((won?'★ ':'')+name,x+cw/2,rowY+chipH/2,{size:26,min:23,weight:870,color:won?'#ffe3a0':'#f0e6f7',maxWidth:cw-17});
+      x+=cw+13;
     });
     rowY+=chipH+chipGap;
   });
   y+=peopleH+gap;
-  putText('당첨 결과',pad+4,y+38,{size:34,min:34,align:'left',weight:950});
-  putText(`${state.results.length}개`,W-pad-4,y+38,{size:28,min:28,align:'right',color:'#c4b7d6',weight:900});
-  // Match the on-page compact winner grid: responsive column count, single horizontal card.
-  const cols=Math.min(4,idealWinnerCols(state.results.length)),cGap=16;
-  const cardW=Math.min(228,(inner-(cols-1)*cGap)/cols);
+  // Separate highlighted result region uses more visual space than the metadata sections.
+  const resultGradient=ctx.createLinearGradient(pad,y,W-pad,y+resultsH);
+  resultGradient.addColorStop(0,'rgba(32,46,84,.93)');resultGradient.addColorStop(1,'rgba(28,20,62,.91)');
+  rounded(pad,y,inner,resultsH,26,resultGradient,'rgba(110,144,240,.66)',2.8);
+  putText('당첨 결과',pad+27,y+40,{size:43,min:43,align:'left',weight:950,color:'#ffffff'});
+  putText(`${state.results.length}개`,W-pad-26,y+40,{size:27,min:27,align:'right',color:'#bfc7ff',weight:900});
+  // Up to 3 columns in shared PNG to keep rewards readable in messenger thumbnails.
+  const cols=Math.min(3,idealWinnerCols(state.results.length)),cGap=16;
+  const maxWidth=Math.floor((inner-(cols-1)*cGap)/cols);
+  const measureText=(value,size,weight=920)=>{ctx.font=`${weight} ${size}px "Pretendard Variable",sans-serif`;return ctx.measureText(String(value||'')).width;};
+  let natural=272;
+  for(const r of state.results){
+    if(rewardImage(r.item)){natural=Math.max(natural,Math.ceil(95+16+measureText(r.winner,31)+28));}
+    else{natural=Math.max(natural,Math.ceil(measureText(r.item.text||'',27)+19+measureText(r.winner,30)+30));}
+  }
+  const cardW=Math.min(maxWidth,Math.min(400,Math.max(280,natural)));
   const imageCache=new Map();
   await Promise.all(state.results.filter(r=>rewardImage(r.item)).map(async r=>{
     if(imageCache.has(r.item.icon))return;
@@ -471,22 +481,24 @@ async function makeShareImage(){
     let x=pad+(inner-rowW)/2;
     group.forEach(r=>{
       const iconic=rewardImage(r.item);
-      rounded(x,cardY,cardW,resultCardH,20,iconic?'#1e2945':'#281b40',iconic?'#7295e9':'#9b72dc',3);
+      ctx.save();ctx.shadowColor=iconic?'rgba(77,144,255,.23)':'rgba(158,108,224,.18)';ctx.shadowBlur=9;
+      rounded(x,cardY,cardW,resultCardH,22,iconic?'#1c2946':'#2a2046',iconic?'#80aaff':'#af89ed',3.6);ctx.restore();
       const middleY=cardY+resultCardH/2;
       if(iconic){
-        const im=imageCache.get(r.item.icon),imageSide=68;
-        if(im)ctx.drawImage(im,x+11,cardY+(resultCardH-imageSide)/2,imageSide,imageSide);
-        else putText('◇',x+48,middleY,{size:45,min:45,color:'#8ecbff'});
-        const nameSpace=cardW-92;
-        ctx.font='930 25px "Pretendard Variable",sans-serif';
-        putText(fitText(ctx,r.winner,nameSpace),x+cardW-12,middleY,{size:25,min:20,maxWidth:nameSpace,align:'right',color:'#f6efff',weight:930});
+        const im=imageCache.get(r.item.icon),imageSide=94,imgX=x+12;
+        if(im)ctx.drawImage(im,imgX,cardY+(resultCardH-imageSide)/2,imageSide,imageSide);
+        else putText('◇',imgX+imageSide/2,middleY,{size:48,min:48,color:'#8ecbff'});
+        const nameX=imgX+imageSide+11,nameSpace=cardW-(nameX-x)-16;
+        const fs=Math.min(32,Math.max(24,Math.floor(nameSpace/(Math.max(2,Array.from(r.winner).length)*.90))));
+        ctx.font=`930 ${fs}px "Pretendard Variable",sans-serif`;
+        putText(fitText(ctx,r.winner,nameSpace),nameX+nameSpace/2,middleY,{size:fs,min:21,maxWidth:nameSpace,align:'center',color:'#f9f6ff',weight:930});
       }else{
-        const leftW=Math.max(65,cardW*.54),rightW=cardW-leftW-24;
+        const leftMax=Math.max(70,cardW*.52),rightW=Math.max(55,cardW-leftMax-30);
         const leftText=String(r.item.text||'');
-        ctx.font='900 22px "Pretendard Variable",sans-serif';
-        putText(fitText(ctx,leftText,leftW-17),x+14,middleY,{size:22,min:18,maxWidth:leftW-17,align:'left',color:'#ffd58c',weight:900});
-        ctx.font='930 23px "Pretendard Variable",sans-serif';
-        putText(fitText(ctx,r.winner,rightW),x+cardW-13,middleY,{size:23,min:18,maxWidth:rightW,align:'right',color:'#dfe0ff',weight:930});
+        ctx.font='900 27px "Pretendard Variable",sans-serif';
+        putText(fitText(ctx,leftText,leftMax-12),x+16,middleY,{size:27,min:20,maxWidth:leftMax-12,align:'left',color:'#ffdf9b',weight:900});
+        ctx.font='930 30px "Pretendard Variable",sans-serif';
+        putText(fitText(ctx,r.winner,rightW),x+cardW-15,middleY,{size:30,min:21,maxWidth:rightW,align:'right',color:'#e8e4ff',weight:930});
       }
       x+=cardW+cGap;
     });

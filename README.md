@@ -1,9 +1,9 @@
-# Cat Hero Guild Platform V4.2.6
+# Cat Hero Guild Platform V4.2.7
 
 - V4.2.4 전체본 기반, 관리자 활동 기록 개별 삭제·일괄삭제 추가.
 - GitHub에 ZIP 내부 폴더의 **내용 전체**를 배포합니다.
 - **필수:** Firestore Rules도 `firestore.multiguild.rules` 기준으로 업데이트해야 길드 관리자의 삭제가 동작합니다.
-- 변경 내역: `RELEASE_NOTES_V4.2.6.md`.
+- 변경 내역: `RELEASE_NOTES_V4.2.7.md`.
 
 ---
 
@@ -39,3 +39,7 @@ Baseline: V4.2.2 complete archive (assets/shared and Firestore Rules preserved)
 - V3 운영 퇴역, 은하 미완성 개편안 미반영
 - Firestore Rules 및 shared/, assets/ 데이터 자산 미변경
 - 길드 보상 5종, 길드전 카테고리, 계산기/룰렛 경로 및 관련 기능 유지
+
+
+## V4.2.7 패치 추가사항
+공유 PNG에서 작은 시각 정보/강조된 당첨자 카드, 관리자 일괄삭제 좌측 빨간 경고형 버튼 및 전체 활동 필터 타이포그래피 개선. 상세 `RELEASE_NOTES_V4.2.7.md`.
