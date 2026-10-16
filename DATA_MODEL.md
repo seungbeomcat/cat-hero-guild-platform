@@ -1,4 +1,4 @@
-# V4.1.9 Firestore Data Model
+# V4.1.10 Firestore Data Model
 
 ## guilds/{guildId}
 - name: string
@@ -86,7 +86,18 @@
 - 보상 분배 유형에 길드전을 추가하되 전용 보상 아이템은 아직 정의하지 않습니다.
 
 
-## V4.1.9 룰렛 저장 정책
+## V4.1.10 룰렛 저장 정책
 - 룰렛 결과/전체 참여 명단은 영구 저장하지 않음.
 - 화면 및 공유 이미지의 참여 명단은 현재 실행의 `state.selected`에서 즉시 생성.
 - 최초/재추첨 회차 판별용 정규화 구성 키의 횟수만 현재 브라우저 `sessionStorage`에 임시 저장.
+
+## V4.1.10 브라우저 임시 전달 데이터
+Firestore 스키마 추가는 없습니다.
+
+- `sessionStorage["cat-hero-v4:roulette-prefill"]`
+  - source: `calculator`
+  - names: 현재 계산 참여자 닉네임 배열, 최대 16명
+  - createdAt: 클라이언트 epoch ms
+  - 룰렛 페이지가 읽은 즉시 삭제하는 one-shot 데이터
+- 기존 `cat-hero-v4:roulette-session:{configHash}`는 동일 구성의 현재 세션 추첨 회차 숫자만 저장합니다.
+- 당첨 결과, 항목명, 전체 참여 명단은 영구 저장하지 않습니다.

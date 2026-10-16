@@ -1,4 +1,4 @@
-# Cat Hero Guild Platform V4.1.9
+# Cat Hero Guild Platform V4.1.10
 
 Build date: 2026-10-16
 
@@ -19,4 +19,10 @@ Build date: 2026-10-16
 - 미완성 은하 격전지 개편안 미반영
 - Firestore Rules 변경 없음
 
-자세한 내용은 `RELEASE_NOTES_V4.1.9.md`와 `VALIDATION.md`를 확인하세요.
+자세한 내용은 `RELEASE_NOTES_V4.1.10.md`와 `VALIDATION.md`를 확인하세요.
+
+
+## V4.1.10 추가
+- 계산 결과 `이미지 공유` 직접 실행
+- 계산 결과 참여자를 `보상 분배 룰렛`으로 자동 전달
+- 행운 룰렛 단톡방 결과 이미지 2번 시안 기반 대형 가독성 디자인

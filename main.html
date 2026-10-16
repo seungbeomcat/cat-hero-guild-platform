@@ -8,7 +8,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="Cat Hero 계산기" />
-  <title>Cat Hero · 격전지 계산기 V4.1.9</title>
+  <title>Cat Hero · 격전지 계산기 V4.1.10</title>
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 
@@ -9097,7 +9097,10 @@ body > .wrap{padding-top:clamp(16px,2.5vh,30px)!important}
   </section>
 
   <section id="result" class="card result">
-    <button id="shareOpenBtn" class="share-open">결과표 단톡방 공유용 이미지 만들기</button>
+    <div id="resultActionBar" class="result-action-bar" aria-label="계산 결과 빠른 기능">
+      <button id="shareOpenBtn" class="share-open result-action-btn result-image-share" type="button">이미지 공유</button>
+      <button id="rewardRouletteBtn" class="result-action-btn result-reward-roulette" type="button">보상 분배 룰렛</button>
+    </div>
     <div id="headline" class="headline"></div>
     <div id="mainTable"></div>
     <div id="note"></div>
@@ -9236,7 +9239,7 @@ body > .wrap{padding-top:clamp(16px,2.5vh,30px)!important}
 
 
 <footer class="footer-credits" aria-label="제작 정보">
-    <div class="creator-credit">Created by 879 | 안창살 · V4.1.9</div>
+    <div class="creator-credit">Created by 879 | 안창살 · V4.1.10</div>
     <div class="build-credit">2026.10.16</div>
   </footer>
 
@@ -11403,7 +11406,7 @@ function resetZ1PlanUi(){
   }
 })();
 </script>
-<script id="cat-hero-v4-brand">(function(){try{const c=parent.CAT_HERO_V4_CONTEXT||{};const g=c.guild||{};const count=Object.keys(c.members||{}).length;document.title=`${g.name||'길드'} · 격전지 계산기 V4.1.9`;const s=document.getElementById('v4GuildServer'),n=document.getElementById('v4GuildName'),m=document.getElementById('v4GuildCount'),sh=document.getElementById('v4ShareGuildTitle');if(s)s.textContent=g.server||'-';if(n)n.textContent=g.name||'길드';if(m)m.textContent=count+'명';if(sh)sh.textContent=(g.name||'길드')+' 격전지 계산기';const sub=document.querySelector('#rosterAllTableBtn .roster-all-table-sub');if(sub)sub.textContent=`${count}명 · 기본 · 최소점수 · 지역격추 한눈에 확인`;}catch(e){console.warn(e)}})();</script>
+<script id="cat-hero-v4-brand">(function(){try{const c=parent.CAT_HERO_V4_CONTEXT||{};const g=c.guild||{};const count=Object.keys(c.members||{}).length;document.title=`${g.name||'길드'} · 격전지 계산기 V4.1.10`;const s=document.getElementById('v4GuildServer'),n=document.getElementById('v4GuildName'),m=document.getElementById('v4GuildCount'),sh=document.getElementById('v4ShareGuildTitle');if(s)s.textContent=g.server||'-';if(n)n.textContent=g.name||'길드';if(m)m.textContent=count+'명';if(sh)sh.textContent=(g.name||'길드')+' 격전지 계산기';const sub=document.querySelector('#rosterAllTableBtn .roster-all-table-sub');if(sub)sub.textContent=`${count}명 · 기본 · 최소점수 · 지역격추 한눈에 확인`;}catch(e){console.warn(e)}})();</script>
 <script defer src="./shared/journal-bridge.js?v=418"></script><script>document.body.dataset.webSyncRole="main";</script><script type="module" src="./shared/web-sync.js?v=418"></script><script type="module" src="./shared/reward-entry.js?v=418"></script>
 <style id="v201-layout-fixes">
 .v200-stats.v201-stats{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,2fr)!important;gap:8px!important;margin-bottom:12px!important}
@@ -11617,6 +11620,145 @@ new MutationObserver(()=>{if(overlay.hidden||!document.getElementById('v200Title
 </style>
 
 </body>
+
+<style id="v4110-result-actions-and-share">
+/* V4.1.10 — 계산 결과 바로가기 2종. 서로 붙지 않는 독립 카드형 버튼. */
+#resultActionBar.result-action-bar{
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;
+  gap:clamp(12px,3.8vw,20px)!important;
+  margin:0 clamp(2px,.9vw,6px) 18px!important;
+  padding:0!important;
+  align-items:stretch!important;
+}
+#resultActionBar .result-action-btn{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  min-width:0!important;
+  min-height:58px!important;
+  margin:0!important;
+  padding:9px 8px!important;
+  border-radius:17px!important;
+  font-size:clamp(12.5px,3.55vw,16px)!important;
+  font-weight:950!important;
+  letter-spacing:-.045em!important;
+  line-height:1.1!important;
+  white-space:nowrap!important;
+  cursor:pointer!important;
+  -webkit-tap-highlight-color:transparent!important;
+  transition:transform .12s ease,box-shadow .18s ease,background .18s ease!important;
+}
+#resultActionBar .result-action-btn:active{transform:scale(.975)!important}
+#resultActionBar #shareOpenBtn{
+  color:#3f2372!important;
+  border:2px solid #a978ee!important;
+  background:linear-gradient(155deg,#ffffff 0%,#f7f0ff 52%,#ede4ff 100%)!important;
+  box-shadow:0 7px 18px rgba(93,46,153,.11),inset 0 0 0 1px rgba(255,255,255,.75)!important;
+}
+#resultActionBar #rewardRouletteBtn{
+  color:#fff!important;
+  border:2px solid #a761ef!important;
+  background:linear-gradient(132deg,#6e2ac5 0%,#8d42e6 52%,#5c68de 100%)!important;
+  box-shadow:0 7px 20px rgba(105,43,184,.23),inset 0 1px 0 rgba(255,255,255,.18)!important;
+}
+#resultActionBar #shareOpenBtn.show{display:flex!important}
+#resultActionBar .result-action-btn[disabled]{opacity:.55!important;cursor:wait!important;transform:none!important}
+@media(max-width:350px){#resultActionBar.result-action-bar{gap:10px!important;margin-inline:0!important}#resultActionBar .result-action-btn{min-height:54px!important;font-size:12px!important;padding-inline:5px!important}}
+</style>
+<script id="v4110-result-actions-and-share-script">
+(function(){
+'use strict';
+const oldShare=document.getElementById('shareOpenBtn');
+if(!oldShare)return;
+/* 이전 버전의 미리보기 오버레이 click listener를 제거하고 V4.1.10 직접 공유 동작만 연결합니다. */
+const shareBtn=oldShare.cloneNode(true);oldShare.replaceWith(shareBtn);
+const rouletteBtn=document.getElementById('rewardRouletteBtn');
+
+function rounded(ctx,x,y,w,h,r){const rr=Math.min(r,w/2,h/2);ctx.beginPath();ctx.moveTo(x+rr,y);ctx.arcTo(x+w,y,x+w,y+h,rr);ctx.arcTo(x+w,y+h,x,y+h,rr);ctx.arcTo(x,y+h,x,y,rr);ctx.arcTo(x,y,x+w,y,rr);ctx.closePath();}
+function safeText(v){return String(v??'').replace(/\s+/g,' ').trim();}
+function cellText(cell){
+  const clone=cell.cloneNode(true);
+  clone.querySelectorAll('input').forEach(inp=>{const t=document.createTextNode(inp.value||'—');inp.replaceWith(t);});
+  clone.querySelectorAll('button,svg').forEach(x=>x.remove());
+  return safeText(clone.textContent);
+}
+function fit(ctx,text,maxWidth,minSize,startSize,weight){let size=startSize;ctx.font=`${weight} ${size}px "Pretendard Variable",-apple-system,BlinkMacSystemFont,sans-serif`;while(size>minSize&&ctx.measureText(text).width>maxWidth){size-=1;ctx.font=`${weight} ${size}px "Pretendard Variable",-apple-system,BlinkMacSystemFont,sans-serif`;}let out=text;while(out.length>2&&ctx.measureText(out).width>maxWidth){out=out.slice(0,-1);}if(out!==text)out=out.slice(0,-1)+'…';return {text:out,size};}
+function wrap(ctx,text,maxWidth,maxLines=3){const src=safeText(text);if(!src)return [];const words=src.split(' '),lines=[];let line='';for(const word of words){const test=line?line+' '+word:word;if(ctx.measureText(test).width<=maxWidth){line=test;continue;}if(line)lines.push(line);line=word;if(lines.length>=maxLines-1)break;}if(line&&lines.length<maxLines)lines.push(line);return lines;}
+function collectShareTable(){
+  const table=document.querySelector('#mainTable table');if(!table)throw new Error('공유할 결과표를 찾지 못했습니다.');
+  const headRows=[...table.querySelectorAll('thead tr')];
+  const leaf=headRows.length?headRows[headRows.length-1]:table.rows.length?[table.rows[0]]:[];
+  let headers=[...(leaf.cells||[])].map(cellText);
+  const body=[...table.querySelectorAll('tbody tr')].map(tr=>[...tr.cells].map(cellText)).filter(r=>r.some(Boolean));
+  if(!body.length)throw new Error('공유할 계산 결과가 없습니다.');
+  const cols=Math.max(headers.length,...body.map(r=>r.length));
+  if(headers.length!==cols){const first=[...(table.querySelectorAll('thead th'))].map(cellText);headers=first.slice(-cols);}
+  while(headers.length<cols)headers.push('');
+  body.forEach(r=>{while(r.length<cols)r.push('');});
+  return {headers,body,cols};
+}
+async function makeCalculatorShareBlob(){
+  await (document.fonts?.ready||Promise.resolve());
+  const {headers,body,cols}=collectShareTable();
+  const headline=safeText(document.getElementById('headline')?.textContent)||'격전지 계산 결과';
+  const note=safeText(document.getElementById('note')?.textContent);
+  const guildName=safeText(document.getElementById('v4ShareGuildTitle')?.textContent||document.getElementById('v4GuildName')?.textContent||'길드 격전지 계산기');
+  const W=1080,margin=58,inner=W-margin*2;
+  const headerH=76,rowH=Math.max(76,Math.min(94,Math.floor(400/Math.max(3,body.length))));
+  const tableH=headerH+rowH*body.length;
+  const noteH=note?154:0;
+  const H=Math.max(760,Math.min(1350,300+tableH+noteH+112));
+  const c=document.createElement('canvas');c.width=W;c.height=H;const ctx=c.getContext('2d');
+  ctx.fillStyle='#f7f4fb';ctx.fillRect(0,0,W,H);
+  const topGlow=ctx.createLinearGradient(0,0,W,0);topGlow.addColorStop(0,'#6f2bd0');topGlow.addColorStop(.52,'#9b4ded');topGlow.addColorStop(1,'#5e72df');ctx.fillStyle=topGlow;ctx.fillRect(0,0,W,18);
+  ctx.strokeStyle='#7e35dc';ctx.lineWidth=7;rounded(ctx,28,28,W-56,H-56,34);ctx.stroke();
+  ctx.textAlign='center';ctx.fillStyle='#6b32ad';ctx.font='900 28px "Pretendard Variable",sans-serif';ctx.fillText(guildName, W/2,86);
+  ctx.fillStyle='#17345f';ctx.font='950 38px "Pretendard Variable",sans-serif';ctx.fillText('격전지 계산 결과',W/2,138);
+  const hf=fit(ctx,headline,inner,28,50,950);ctx.fillStyle='#482080';ctx.font=`950 ${hf.size}px "Pretendard Variable",sans-serif`;ctx.fillText(hf.text,W/2,211);
+  const tableY=246;
+  let widths=[];
+  if(cols===5){widths=[.19,.20,.20,.20,.21].map(x=>inner*x);}else{const base=inner/cols;widths=Array(cols).fill(base);}
+  let x=margin;
+  headers.forEach((h,i)=>{const w=widths[i];ctx.fillStyle=i===1&&/이탈/.test(h)?'#eaf2ff':'#e8dafa';ctx.fillRect(x,tableY,w,headerH);ctx.strokeStyle=i===1&&/이탈/.test(h)?'#2f78df':'#d1baf1';ctx.lineWidth=i===1&&/이탈/.test(h)?4:2;ctx.strokeRect(x,tableY,w,headerH);ctx.textAlign='center';ctx.textBaseline='middle';const f=fit(ctx,h,w-18,20,30,950);ctx.fillStyle='#452078';ctx.font=`950 ${f.size}px "Pretendard Variable",sans-serif`;ctx.fillText(f.text,x+w/2,tableY+headerH/2);x+=w;});
+  body.forEach((row,ri)=>{let xx=margin;row.forEach((v,ci)=>{const w=widths[ci];const y=tableY+headerH+ri*rowH;ctx.fillStyle=ri%2?'#fbf9ff':'#ffffff';ctx.fillRect(xx,y,w,rowH);ctx.strokeStyle=ci===1&&headers[ci]&&/이탈/.test(headers[ci])?'#2f78df':'#ddd0ef';ctx.lineWidth=ci===1&&headers[ci]&&/이탈/.test(headers[ci])?4:1.7;ctx.strokeRect(xx,y,w,rowH);ctx.textAlign='center';ctx.textBaseline='middle';const f=fit(ctx,v,w-18,20,32,900);ctx.fillStyle=ci===1&&/이탈/.test(headers[ci]||'')?'#dd2727':'#27213d';ctx.font=`900 ${f.size}px "Pretendard Variable",sans-serif`;ctx.fillText(f.text,xx+w/2,y+rowH/2);xx+=w;});});
+  let y=tableY+tableH+26;
+  if(note){ctx.fillStyle='#fff4d9';ctx.strokeStyle='#e8b94f';ctx.lineWidth=2;rounded(ctx,margin,y,inner,noteH-18,22);ctx.fill();ctx.stroke();ctx.textAlign='left';ctx.textBaseline='alphabetic';ctx.fillStyle='#76500f';ctx.font='850 27px "Pretendard Variable",sans-serif';const lines=wrap(ctx,note,inner-54,3);lines.forEach((line,i)=>ctx.fillText(line,margin+27,y+47+i*37));y+=noteH;}
+  ctx.textAlign='center';ctx.fillStyle='#8c7b9f';ctx.font='750 19px "Pretendard Variable",sans-serif';ctx.fillText(`Created by 879 | 안창살 · V4.1.10`,W/2,H-52);
+  return await new Promise((resolve,reject)=>c.toBlob(b=>b?resolve(b):reject(new Error('이미지 생성 실패')),'image/png',1));
+}
+function downloadBlob(blob,name){const u=URL.createObjectURL(blob),a=document.createElement('a');a.href=u;a.download=name;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),1500);}
+async function directShare(){
+  if(!document.getElementById('result')?.classList.contains('show'))return;
+  const original=shareBtn.textContent;shareBtn.disabled=true;shareBtn.textContent='공유 준비 중…';
+  try{
+    const blob=await makeCalculatorShareBlob();const file=new File([blob],`격전지-계산결과-${new Date().toISOString().slice(0,10)}.png`,{type:'image/png'});
+    if(navigator.share&&(!navigator.canShare||navigator.canShare({files:[file]}))){await navigator.share({title:'격전지 계산 결과',files:[file]});}
+    else{downloadBlob(blob,file.name);alert('이 브라우저는 이미지 직접 공유를 지원하지 않아 이미지로 저장했습니다.');}
+  }catch(e){if(e?.name!=='AbortError')alert('결과 이미지를 공유하지 못했습니다. '+(e?.message||e));}
+  finally{shareBtn.disabled=false;shareBtn.textContent=original;}
+}
+function getParticipantNames(){
+  let names=[];
+  try{if(typeof pickerNamesFromInput==='function')names=pickerNamesFromInput();}catch(_e){}
+  if(!Array.isArray(names)||!names.length){
+    const members=window.DosaljaShared?.members||{};const set=new Set(Object.keys(members));
+    names=[...document.querySelectorAll('#mainTable tbody tr')].map(tr=>safeText(tr.cells?.[0]?.textContent)).filter(n=>set.has(n));
+  }
+  return [...new Set(names.map(safeText).filter(Boolean))];
+}
+function routeRoulette(){
+  const names=getParticipantNames();
+  if(names.length<2){alert('보상 분배 룰렛은 참여 길드원이 2명 이상인 계산 결과에서 사용할 수 있습니다.');return;}
+  try{sessionStorage.setItem('cat-hero-v4:roulette-prefill',JSON.stringify({source:'calculator',names:names.slice(0,16),createdAt:Date.now()}));}catch(_e){alert('참여 명단을 룰렛으로 전달하지 못했습니다. 브라우저 저장 기능을 확인해 주세요.');return;}
+  try{if(parent&&parent!==window){parent.postMessage({type:'dosalja-unified-route',route:'roulette'},'*');return;}}catch(_e){}
+  const g=new URLSearchParams(location.search).get('g')||'';location.href=`roulette.html${g?'?g='+encodeURIComponent(g):''}`;
+}
+shareBtn.addEventListener('click',directShare);
+rouletteBtn?.addEventListener('click',routeRoulette);
+})();
+</script>
+
 </html>
 
 <script id="v401-guild-title-edit">document.addEventListener('click',e=>{if(e.target.closest('#v4GuildServer,#v4GuildName')){window.DOSALJA_ADMIN?.guildEditor?.();}});</script>

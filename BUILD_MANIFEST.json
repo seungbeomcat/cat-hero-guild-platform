@@ -1,23 +1,22 @@
 {
-  "version": "V4.1.9",
+  "version": "V4.1.10",
   "buildDate": "2026-10-16",
-  "source": "V4.1.8 full (V4.1.5 lineage)",
+  "source": "V4.1.9 full (V4.1.5 lineage)",
   "liveValidation": "static-syntax-invariants-pass; iPhone/GitHub Pages runtime check pending",
   "changes": [
-    "룰렛 상단 포인터의 꼭짓점이 원판을 향하도록 방향 수정",
-    "최종 결과의 최초/재추첨 상태, 시작/완료 시각, 추첨 ID 정보 구조 재설계",
-    "최종 결과 화면에 추첨 시작 당시 전체 참여 명단 추가 및 당첨자 강조",
-    "단톡방 결과 이미지의 제목/상태/결과 폰트 확대와 여백 재구성",
-    "단톡방 결과 이미지에 전체 참여자 최대 16명 4열 칩 추가",
-    "5개 이상 결과는 공유 이미지에서 2열 카드로 배치해 고밀도 구성 대응",
-    "V4.1.8 길드전 보상 카테고리 유지, 전용 아이템 미추가",
+    "계산 결과 상단을 이미지 공유 / 보상 분배 룰렛 2개 독립 카드로 변경",
+    "이미지 공유는 핵심 계산 결과를 고해상도 PNG로 즉시 렌더링 후 시스템 공유창 호출",
+    "보상 분배 룰렛은 현재 계산 참여자를 일회성 sessionStorage로 전달해 참여자 선택 단계를 건너뜀",
+    "행운 룰렛 단톡방 결과 이미지를 사용자 선택 2번 시안 방향의 대형 고가독성 레이아웃으로 재설계",
+    "결과 회차 수에 따라 1/2/3/4열 자동 배치, 전체 참여 명단과 당첨자 강조 유지",
+    "길드전 보상 카테고리 유지, 길드전 전용 아이템 미추가",
     "미완성 은하 격전지 개편안 미반영, Firestore Rules 변경 없음"
   ],
   "files": [
     {
       "path": "ARCHITECTURE.md",
-      "bytes": 5768,
-      "sha256": "d72021a6d0fdcd67384665a82c08d8eb130ba00f154caeebf3e29395c10f9653"
+      "bytes": 6663,
+      "sha256": "7971a9e703441f967c422f6b29d31dbb285a4b7bb5ab247ba7ece2077bebe4e2"
     },
     {
       "path": "BUILD_MANIFEST_V4.0.1_BASELINE.json",
@@ -26,18 +25,18 @@
     },
     {
       "path": "DATA_MODEL.md",
-      "bytes": 2828,
-      "sha256": "e47558d18f4fa39213e3153bd55df4c94dbd4195f373ce78c162a9990d9218e2"
+      "bytes": 3390,
+      "sha256": "aa4649cda83258ea6c908708ed5e33786645bb216d1473bfaa358d113d0012b8"
     },
     {
       "path": "PRE_GITHUB_CHECKLIST.md",
-      "bytes": 1117,
-      "sha256": "2d1ae4320d42395da16b4245a62e92c85a5379ce770fe7946c90f312f1162891"
+      "bytes": 1533,
+      "sha256": "1ed1655fb948aad8991d6c113f74abb6834fef18340d726a21f19c27ae171f97"
     },
     {
       "path": "README.md",
-      "bytes": 1582,
-      "sha256": "b0d50201fd3c64b48d08b9b2a4087c5e52480e78b5dd005bbffba0f99af1aa6c"
+      "bytes": 1814,
+      "sha256": "d7332894d667b656b2a0b344b9f882e80cc17adc2ffbcc58a69f71c93f127b1e"
     },
     {
       "path": "RELEASE_NOTES_V4.0.1.md",
@@ -95,6 +94,11 @@
       "sha256": "477e3d9570846e796196a6e4452b9e228c4705de9617805d27e7c7d62cc79e80"
     },
     {
+      "path": "RELEASE_NOTES_V4.1.10.md",
+      "bytes": 1880,
+      "sha256": "310b169f330876d553272c2b6e211fa09a9295e6b15179971e9bffacd1d6a265"
+    },
+    {
       "path": "RELEASE_NOTES_V4.1.2.md",
       "bytes": 1261,
       "sha256": "3cb6626afe245078380e015f97ce269a4a859efeba34462287cec566e31f3ac0"
@@ -136,13 +140,13 @@
     },
     {
       "path": "SOURCE_BASELINE.md",
-      "bytes": 673,
-      "sha256": "e2e42eb2a38e5d2abec3750e3a42a3db89e49ec2da4cc7706344496ea45515d1"
+      "bytes": 837,
+      "sha256": "7d9360c8e4b1b58fa5452cbd38c188441737ecd6886ad9729377200445c3468b"
     },
     {
       "path": "VALIDATION.md",
-      "bytes": 2314,
-      "sha256": "ab8ffba107b0dffc683c4cc02aff51517e42786727b89251deb379e6eb117fac"
+      "bytes": 3353,
+      "sha256": "61a6850a317b21dac888bdfddbc66322e5087b4240487e5b18e8417ea40aca40"
     },
     {
       "path": "assets/bananyang-v337-display.webp",
@@ -341,13 +345,13 @@
     },
     {
       "path": "boss.html",
-      "bytes": 206956,
-      "sha256": "ee305681e0fb023482d4b8e0c4423eb463b72b456de6bb22411aac6aeccff37b"
+      "bytes": 206960,
+      "sha256": "7084ee39af78c781b62993e8ee745fb9a09eb955ab1228382396abb751f2bc28"
     },
     {
       "path": "firebase-config.js",
-      "bytes": 560,
-      "sha256": "a8ff2245e355af59da6e766d4f5fba8374a3922cfb966a484d606373354c1c0f"
+      "bytes": 561,
+      "sha256": "a2b178b8c815c7492f1e0e9d75abe4e4f9c3527e357fd3de777f9c85780328b9"
     },
     {
       "path": "firestore.multiguild.rules",
@@ -361,23 +365,23 @@
     },
     {
       "path": "index.html",
-      "bytes": 2544,
-      "sha256": "12319e9dcebe73b80a8c1ad24e79edeeed6d789361721ea178d09f50fe29ffca"
+      "bytes": 2545,
+      "sha256": "54b72415801f9d73b40dabe9efa814f7e4a83da4dc428ed5a8c134cc51f344d6"
     },
     {
       "path": "main.html",
-      "bytes": 598485,
-      "sha256": "62f390d9c19552b44a092237edfbf6722a7956cd56d14af6c1b7fe35a0872e67"
+      "bytes": 609599,
+      "sha256": "d101876702a52d1a9b90715807c18ffba80ea2b255d8d697278b6455aee6bebe"
     },
     {
       "path": "ops.html",
-      "bytes": 283978,
-      "sha256": "f5bac77ed6d2a3245bc2eaef531b739b51b0e6fbfba49eb3b95d2004bb9d867e"
+      "bytes": 283981,
+      "sha256": "5fcc58e4b7171ded17f7763abf5482d5e292768af84b252943fc4d9c2b68da79"
     },
     {
       "path": "roulette.html",
-      "bytes": 45919,
-      "sha256": "97dfe06525fad55b6c3898592b0bdcb855aa0335870cba36bc5deccebca035f1"
+      "bytes": 48105,
+      "sha256": "100170687b0bd8702aa735dfb907d9bad8394239e5265560010cbb8267e94d56"
     },
     {
       "path": "shared/admin-audit.js",
