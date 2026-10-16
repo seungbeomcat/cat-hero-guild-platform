@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#090218">
-<title>Cat Hero · 행운 룰렛 V4.1.10</title>
+<title>Cat Hero · 행운 룰렛 V4.1.11</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <style>
 :root{--violet:#8b47f2;--violet2:#bc78ff;--blue:#5bc8ff;--ink:#f8f3ff;--muted:#c4b5dd;--panel:rgba(24,12,49,.86);--panel2:rgba(13,8,31,.94);--line:#8a43e8;--gold:#ffd76a;--green:#7ff4cc}
@@ -83,7 +83,7 @@ button,input{font:inherit}.sky{position:fixed;inset:0;pointer-events:none;overfl
     <div class="privacy">결과 자체는 Firestore·활동기록에 저장되지 않습니다. 동일 구성의 최초/재추첨 표시는 현재 브라우저 세션에서만 판별합니다.</div>
   </section>
 
-  <footer class="footer"><b>Created by 879 | 안창살 · V4.1.10</b><br>2026.10.16</footer>
+  <footer class="footer"><b>Created by 879 | 안창살 · V4.1.11</b><br>2026.10.16</footer>
 </main>
 
 <div id="shareModal" class="share-modal" hidden aria-hidden="true">
@@ -96,7 +96,7 @@ button,input{font:inherit}.sky{position:fixed;inset:0;pointer-events:none;overfl
 </div>
 
 <script src="./firebase-config.js"></script>
-<script src="./shared/guild-core.js?v=419"></script>
+<script src="./shared/guild-core.js?v=4111"></script>
 <script>
 (function(){
 'use strict';
@@ -161,36 +161,38 @@ function roundRect(ctx,x,y,w,h,r){const rr=Math.min(r,w/2,h/2);ctx.beginPath();c
 function fitText(ctx,text,maxWidth){let s=String(text);if(ctx.measureText(s).width<=maxWidth)return s;while(s.length>2&&ctx.measureText(s+'…').width>maxWidth)s=s.slice(0,-1);return s+'…';}
 async function makeShareImage(){
 await (document.fonts?.ready||Promise.resolve());
-const canvas=document.createElement('canvas');canvas.width=1080;canvas.height=1350;const ctx=canvas.getContext('2d');
-const W=1080,H=1350;
-/* 2번 시안 기준: 대형 제목 + 핵심 요약 + 큰 당첨 카드 + 전체 명단 + 하단 메타. */
-const bg=ctx.createLinearGradient(0,0,W,H);bg.addColorStop(0,'#1a0734');bg.addColorStop(.48,'#120624');bg.addColorStop(1,'#06020d');ctx.fillStyle=bg;ctx.fillRect(0,0,W,H);
-const glow=ctx.createRadialGradient(540,210,20,540,210,570);glow.addColorStop(0,'rgba(159,74,255,.42)');glow.addColorStop(.48,'rgba(94,48,196,.13)');glow.addColorStop(1,'rgba(0,0,0,0)');ctx.fillStyle=glow;ctx.fillRect(0,0,W,760);
-for(let i=0;i<88;i++){const x=(i*211)%1020+30,y=(i*i*53)%1290+25,r=i%11===0?3.2:1.45;ctx.fillStyle=i%5===0?'rgba(111,214,255,.78)':'rgba(255,255,255,.5)';ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);ctx.fill();}
-ctx.strokeStyle='#9d4ff1';ctx.lineWidth=7;roundRect(ctx,34,34,1012,1282,40);ctx.stroke();ctx.strokeStyle='rgba(201,145,255,.28)';ctx.lineWidth=2;roundRect(ctx,50,50,980,1250,32);ctx.stroke();
-const guildName=[guild.server,guild.name].filter(Boolean).join(' | ')||'CAT HERO GUILD';ctx.textAlign='center';ctx.fillStyle='#d7c3f2';ctx.font='900 31px "Pretendard Variable",sans-serif';ctx.fillText(guildName,540,96);
-ctx.fillStyle='#fff';ctx.shadowColor='rgba(174,96,255,.55)';ctx.shadowBlur=20;ctx.font='950 74px "Pretendard Variable",sans-serif';ctx.fillText('행운 룰렛 결과',540,190);ctx.shadowBlur=0;
-const badgeText=state.firstAttempt?'최초 추첨':`재추첨 ${state.attemptNo}회차`;ctx.font='950 31px "Pretendard Variable",sans-serif';const badgeW=Math.max(230,ctx.measureText(badgeText).width+80),badgeX=(W-badgeW)/2;ctx.fillStyle=state.firstAttempt?'rgba(26,107,85,.58)':'rgba(126,75,24,.52)';ctx.strokeStyle=state.firstAttempt?'#79f0ca':'#ffd376';ctx.lineWidth=2.5;roundRect(ctx,badgeX,218,badgeW,66,33);ctx.fill();ctx.stroke();ctx.fillStyle=state.firstAttempt?'#baffea':'#ffe6a9';ctx.fillText(badgeText,540,262);
-/* 핵심 요약 3분할 */
-const sy=310,sh=106,sx=84,sw=912;ctx.fillStyle='rgba(38,15,75,.86)';ctx.strokeStyle='rgba(185,105,255,.72)';ctx.lineWidth=2.5;roundRect(ctx,sx,sy,sw,sh,24);ctx.fill();ctx.stroke();
-ctx.strokeStyle='rgba(205,164,255,.24)';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(sx+sw/3,sy+18);ctx.lineTo(sx+sw/3,sy+sh-18);ctx.moveTo(sx+sw*2/3,sy+18);ctx.lineTo(sx+sw*2/3,sy+sh-18);ctx.stroke();
-[['참여',`${state.peopleCount}명`],['추첨',`${state.itemCount}개`],['중복 당첨','없음']].forEach(([a,b],i)=>{const cx=sx+sw*(i+.5)/3;ctx.fillStyle='#bda5dd';ctx.font='850 22px "Pretendard Variable",sans-serif';ctx.fillText(a,cx,sy+37);ctx.fillStyle='#fff';ctx.font='950 38px "Pretendard Variable",sans-serif';ctx.fillText(b,cx,sy+78);});
-/* 당첨 결과: 4개까지는 한 줄 전체폭 대형 카드, 이후 2열. */
-const count=state.results.length,cols=count<=4?1:count<=8?2:count<=12?3:4,rows=Math.ceil(count/cols),resultTop=446;let rowH=count<=2?168:count<=4?126:count<=8?104:count<=12?88:76;let gapY=count<=2?18:count<=8?14:8,gapX=14,left=74,totalW=932,colW=(totalW-gapX*(cols-1))/cols;
-state.results.forEach((r,i)=>{const col=cols===1?0:i%2,row=cols===1?i:Math.floor(i/2),x=left+col*(colW+gapX),y=resultTop+row*(rowH+gapY),h=rowH;const grad=ctx.createLinearGradient(x,y,x+colW,y+h);grad.addColorStop(0,'rgba(91,32,166,.96)');grad.addColorStop(.62,'rgba(42,18,82,.96)');grad.addColorStop(1,'rgba(92,54,21,.78)');ctx.fillStyle=grad;ctx.strokeStyle='#b962ff';ctx.lineWidth=3;roundRect(ctx,x,y,colW,h,22);ctx.fill();ctx.stroke();
-  const badge=cols===1?90:cols===2?66:48;ctx.fillStyle='#8a40ea';roundRect(ctx,x+14,y+14,badge,h-28,15);ctx.fill();ctx.textAlign='center';ctx.fillStyle='#fff';ctx.font=`950 ${cols===1?33:24}px "Pretendard Variable",sans-serif`;ctx.fillText(`${i+1}차`,x+14+badge/2,y+h/2+11);
-  if(cols===1){ctx.textAlign='left';ctx.fillStyle='#fff';ctx.font=`950 ${count<=2?48:40}px "Pretendard Variable",sans-serif`;ctx.fillText(fitText(ctx,r.item,390),x+126,y+h/2+15);ctx.textAlign='right';ctx.fillStyle='#ffe184';ctx.font=`950 ${count<=2?52:42}px "Pretendard Variable",sans-serif`;ctx.fillText('★ '+fitText(ctx,r.winner,270),x+colW-25,y+h/2+15);}else{ctx.textAlign='left';ctx.fillStyle='#eee4fb';ctx.font=`900 ${count>10?21:25}px "Pretendard Variable",sans-serif`;ctx.fillText(fitText(ctx,r.item,colW-badge-48),x+badge+31,y+40);ctx.fillStyle='#ffe184';ctx.font=`950 ${count>10?24:29}px "Pretendard Variable",sans-serif`;ctx.fillText('★ '+fitText(ctx,r.winner,colW-badge-48),x+badge+31,y+h-22);}
+const canvas=document.createElement('canvas');canvas.width=1080;canvas.height=1350;const ctx=canvas.getContext('2d',{alpha:false});
+const W=1080,H=1350;ctx.imageSmoothingEnabled=true;ctx.imageSmoothingQuality='high';
+/* V4.1.11: 2번 시안 계열을 유지하되 제목/상태/카드 높이의 리듬을 통일. */
+const bg=ctx.createLinearGradient(0,0,W,H);bg.addColorStop(0,'#18052f');bg.addColorStop(.50,'#10041f');bg.addColorStop(1,'#07020d');ctx.fillStyle=bg;ctx.fillRect(0,0,W,H);
+const glow=ctx.createRadialGradient(450,150,20,450,150,620);glow.addColorStop(0,'rgba(156,70,255,.38)');glow.addColorStop(.46,'rgba(88,43,182,.12)');glow.addColorStop(1,'rgba(0,0,0,0)');ctx.fillStyle=glow;ctx.fillRect(0,0,W,760);
+for(let i=0;i<78;i++){const x=(i*197)%1000+40,y=(i*i*47)%1260+34,r=i%13===0?3:1.35;ctx.fillStyle=i%6===0?'rgba(110,214,255,.68)':'rgba(255,255,255,.42)';ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);ctx.fill();}
+ctx.strokeStyle='#9d4ff1';ctx.lineWidth=7;roundRect(ctx,34,34,1012,1282,40);ctx.stroke();ctx.strokeStyle='rgba(201,145,255,.26)';ctx.lineWidth=2;roundRect(ctx,50,50,980,1250,32);ctx.stroke();
+const guildName=[guild.server,guild.name].filter(Boolean).join(' | ')||'CAT HERO GUILD';
+/* 상단 두 줄은 같은 폰트 크기로 맞추고, 추첨 상태는 우측 상단 배지로 분리. */
+ctx.textAlign='left';ctx.textBaseline='alphabetic';ctx.fillStyle='#eadfff';ctx.font='950 48px "Pretendard Variable",sans-serif';ctx.fillText(fitText(ctx,guildName,610),82,105);ctx.fillStyle='#ffffff';ctx.shadowColor='rgba(174,96,255,.48)';ctx.shadowBlur=16;ctx.fillText('행운 룰렛 결과',82,170);ctx.shadowBlur=0;
+const badgeText=state.firstAttempt?'최초 추첨':`재추첨 ${state.attemptNo}회차`;ctx.font='950 26px "Pretendard Variable",sans-serif';const badgeW=Math.max(190,ctx.measureText(badgeText).width+54),badgeH=56,badgeX=1000-badgeW,badgeY=72;ctx.fillStyle=state.firstAttempt?'rgba(26,107,85,.62)':'rgba(126,75,24,.58)';ctx.strokeStyle=state.firstAttempt?'#79f0ca':'#ffd376';ctx.lineWidth=2.5;roundRect(ctx,badgeX,badgeY,badgeW,badgeH,28);ctx.fill();ctx.stroke();ctx.textAlign='center';ctx.fillStyle=state.firstAttempt?'#c6ffed':'#ffe9ae';ctx.fillText(badgeText,badgeX+badgeW/2,badgeY+37);
+/* 요약 카드: 3개 셀 높이/폭 완전 동일. */
+const sx=74,sy=214,sw=932,sh=102,cellW=sw/3;ctx.fillStyle='rgba(36,13,71,.88)';ctx.strokeStyle='rgba(185,105,255,.72)';ctx.lineWidth=2.5;roundRect(ctx,sx,sy,sw,sh,22);ctx.fill();ctx.stroke();
+for(let i=1;i<3;i++){ctx.strokeStyle='rgba(205,164,255,.22)';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(sx+cellW*i,sy+17);ctx.lineTo(sx+cellW*i,sy+sh-17);ctx.stroke();}
+[['참여',`${state.peopleCount}명`],['추첨',`${state.itemCount}개`],['중복 당첨','없음']].forEach(([a,b],i)=>{const cx=sx+cellW*(i+.5);ctx.textAlign='center';ctx.fillStyle='#bba5d6';ctx.font='850 21px "Pretendard Variable",sans-serif';ctx.fillText(a,cx,sy+34);ctx.fillStyle='#fff';ctx.font='950 37px "Pretendard Variable",sans-serif';ctx.fillText(b,cx,sy+76);});
+/* 당첨 카드: 같은 행/같은 카드 높이. */
+const count=state.results.length,cols=count<=4?1:count<=8?2:count<=12?3:4,rows=Math.ceil(count/cols),resultTop=342,gapX=14,gapY=14,left=74,totalW=932,colW=(totalW-gapX*(cols-1))/cols;
+let cardH=count<=2?166:count<=4?122:count<=8?98:count<=12?82:70;
+state.results.forEach((r,i)=>{const col=i%cols,row=Math.floor(i/cols),x=left+col*(colW+gapX),y=resultTop+row*(cardH+gapY),h=cardH;const grad=ctx.createLinearGradient(x,y,x+colW,y+h);grad.addColorStop(0,'rgba(92,31,169,.98)');grad.addColorStop(.63,'rgba(42,17,81,.98)');grad.addColorStop(1,'rgba(99,58,19,.80)');ctx.fillStyle=grad;ctx.strokeStyle='#b962ff';ctx.lineWidth=3;roundRect(ctx,x,y,colW,h,20);ctx.fill();ctx.stroke();
+  const badgeW2=cols===1?92:cols===2?64:46;ctx.fillStyle='#8a40ea';roundRect(ctx,x+13,y+13,badgeW2,h-26,14);ctx.fill();ctx.textAlign='center';ctx.fillStyle='#fff';ctx.font=`950 ${cols===1?32:cols===2?24:20}px "Pretendard Variable",sans-serif`;ctx.fillText(`${i+1}차`,x+13+badgeW2/2,y+h/2+10);
+  if(cols===1){ctx.textAlign='left';ctx.fillStyle='#fff';ctx.font=`950 ${count<=2?47:38}px "Pretendard Variable",sans-serif`;ctx.fillText(fitText(ctx,r.item,405),x+128,y+h/2+15);ctx.textAlign='right';ctx.fillStyle='#ffe184';ctx.font=`950 ${count<=2?49:40}px "Pretendard Variable",sans-serif`;ctx.fillText('★ '+fitText(ctx,r.winner,285),x+colW-24,y+h/2+15);}else{ctx.textAlign='left';ctx.fillStyle='#eee4fb';ctx.font=`900 ${count>10?19:23}px "Pretendard Variable",sans-serif`;ctx.fillText(fitText(ctx,r.item,colW-badgeW2-46),x+badgeW2+28,y+38);ctx.fillStyle='#ffe184';ctx.font=`950 ${count>10?22:27}px "Pretendard Variable",sans-serif`;ctx.fillText('★ '+fitText(ctx,r.winner,colW-badgeW2-46),x+badgeW2+28,y+h-20);}
 });
-let participantY=resultTop+rows*(rowH+gapY)+24;
-/* 참여 명단이 항상 들어갈 공간을 확보하기 위해 결과가 많으면 하단 메타를 더 압축합니다. */
-ctx.textAlign='center';ctx.fillStyle='#f7efff';ctx.font='950 34px "Pretendard Variable",sans-serif';ctx.fillText(`전체 참여 명단  ${state.peopleCount}명`,540,participantY+32);participantY+=58;
-const names=orderedParticipants(),winners=new Set(state.results.map(r=>r.winner)),pCols=names.length<=6?3:4,pGap=10,pW=(932-pGap*(pCols-1))/pCols,pRows=Math.ceil(names.length/pCols);const maxMetaTop=1194;const preferredPH=names.length<=6?66:58;const pH=Math.max(40,Math.min(preferredPH,(maxMetaTop-participantY-24-pGap*Math.max(0,pRows-1))/Math.max(1,pRows)));const participantBottom=participantY+pRows*pH+pGap*Math.max(0,pRows-1);const metaTop=Math.min(maxMetaTop,Math.max(1038,participantBottom+28));
-names.forEach((name,i)=>{const col=i%pCols,row=Math.floor(i/pCols),x=74+col*(pW+pGap),y=participantY+row*(pH+pGap),won=winners.has(name);ctx.fillStyle=won?'rgba(100,66,19,.72)':'rgba(24,13,49,.88)';ctx.strokeStyle=won?'#ffd86a':'rgba(159,92,232,.74)';ctx.lineWidth=2.2;roundRect(ctx,x,y,pW,pH,14);ctx.fill();ctx.stroke();ctx.textAlign='center';ctx.fillStyle=won?'#ffe391':'#e5d9f3';ctx.font=`900 ${pH<46?18:names.length<=6?27:22}px "Pretendard Variable",sans-serif`;ctx.fillText((won?'★ ':'')+fitText(ctx,name,pW-22),x+pW/2,y+pH/2+7);});
-/* 보조 메타는 하단에 작게. */
-const p=n=>String(n).padStart(2,'0');const meta=d=>d?`${d.getFullYear()}.${p(d.getMonth()+1)}.${p(d.getDate())} ${p(d.getHours())}:${p(d.getMinutes())}:${p(d.getSeconds())}`:'';
-ctx.fillStyle='rgba(16,8,31,.92)';ctx.strokeStyle='rgba(159,94,229,.46)';ctx.lineWidth=2;roundRect(ctx,74,metaTop,932,92,20);ctx.fill();ctx.stroke();
-ctx.textAlign='left';ctx.fillStyle='#9e8bb6';ctx.font='800 18px "Pretendard Variable",sans-serif';ctx.fillText('시작',100,metaTop+33);ctx.fillText('완료',384,metaTop+33);ctx.fillText('추첨 ID',676,metaTop+33);ctx.fillStyle='#f1eaff';ctx.font='900 20px "Pretendard Variable",sans-serif';ctx.fillText(meta(state.drawStartedAt),100,metaTop+64);ctx.fillText(meta(state.drawFinishedAt),384,metaTop+64);ctx.fillText(fitText(ctx,state.drawId,290),676,metaTop+64);
-ctx.textAlign='center';ctx.fillStyle='#776887';ctx.font='700 15px "Pretendard Variable",sans-serif';ctx.fillText('최초/재추첨 표시는 현재 브라우저 세션 기준 · 추첨 결과는 서버에 저장되지 않습니다.',540,1310);ctx.fillStyle='#a493ba';ctx.font='800 17px "Pretendard Variable",sans-serif';ctx.fillText('CAT HERO V4 · V4.1.10',540,1337);
+const resultBottom=resultTop+rows*cardH+(rows-1)*gapY;
+/* 참여 명단: 동일 높이 칩. 6명 이하는 3열, 그 이상은 4열. */
+let participantTitleY=resultBottom+48;ctx.textAlign='center';ctx.fillStyle='#f7efff';ctx.font='950 34px "Pretendard Variable",sans-serif';ctx.fillText(`전체 참여 명단  ${state.peopleCount}명`,540,participantTitleY);
+const names=orderedParticipants(),winners=new Set(state.results.map(r=>r.winner)),pCols=names.length<=6?3:4,pGap=10,pW=(932-pGap*(pCols-1))/pCols,pRows=Math.ceil(names.length/pCols),pTop=participantTitleY+24,desiredPH=names.length<=6?66:54,participantMaxBottom=1112,pH=Math.max(32,Math.min(desiredPH,Math.floor((participantMaxBottom-pTop-pGap*Math.max(0,pRows-1))/Math.max(1,pRows))));
+names.forEach((name,i)=>{const col=i%pCols,row=Math.floor(i/pCols),x=74+col*(pW+pGap),y=pTop+row*(pH+pGap),won=winners.has(name);ctx.fillStyle=won?'rgba(100,66,19,.76)':'rgba(24,13,49,.90)';ctx.strokeStyle=won?'#ffd86a':'rgba(159,92,232,.76)';ctx.lineWidth=2.2;roundRect(ctx,x,y,pW,pH,14);ctx.fill();ctx.stroke();ctx.textAlign='center';ctx.fillStyle=won?'#ffe391':'#e5d9f3';ctx.font=`900 ${pH<42?16:names.length<=6?26:21}px "Pretendard Variable",sans-serif`;ctx.fillText((won?'★ ':'')+fitText(ctx,name,pW-22),x+pW/2,y+pH/2+8);});
+const participantBottom=pTop+pRows*pH+(pRows-1)*pGap;
+/* 하단 메타 카드 3개도 동일 높이/폭. */
+const metaTop=Math.min(1140,Math.max(participantBottom+28,1008)),metaH=108,metaX=74,metaW=932,metaCell=metaW/3;ctx.fillStyle='rgba(16,8,31,.94)';ctx.strokeStyle='rgba(159,94,229,.48)';ctx.lineWidth=2;roundRect(ctx,metaX,metaTop,metaW,metaH,20);ctx.fill();ctx.stroke();for(let i=1;i<3;i++){ctx.strokeStyle='rgba(160,105,215,.22)';ctx.beginPath();ctx.moveTo(metaX+metaCell*i,metaTop+18);ctx.lineTo(metaX+metaCell*i,metaTop+metaH-18);ctx.stroke();}
+const p=n=>String(n).padStart(2,'0');const meta=d=>d?`${d.getFullYear()}.${p(d.getMonth()+1)}.${p(d.getDate())} ${p(d.getHours())}:${p(d.getMinutes())}:${p(d.getSeconds())}`:'';const metas=[['시작',meta(state.drawStartedAt)],['완료',meta(state.drawFinishedAt)],['추첨 ID',state.drawId]];metas.forEach(([a,b],i)=>{const cx=metaX+metaCell*(i+.5);ctx.textAlign='center';ctx.fillStyle='#9f8db7';ctx.font='800 18px "Pretendard Variable",sans-serif';ctx.fillText(a,cx,metaTop+33);ctx.fillStyle='#f3ecff';ctx.font='900 20px "Pretendard Variable",sans-serif';ctx.fillText(fitText(ctx,b,metaCell-26),cx,metaTop+72);});
+ctx.textAlign='center';ctx.fillStyle='#756785';ctx.font='700 15px "Pretendard Variable",sans-serif';ctx.fillText('최초/재추첨 표시는 현재 브라우저 세션 기준 · 추첨 결과는 서버에 저장되지 않습니다.',540,1278);ctx.fillStyle='#a493ba';ctx.font='800 18px "Pretendard Variable",sans-serif';ctx.fillText('CAT HERO V4 · V4.1.11',540,1310);
 return new Promise((resolve,reject)=>canvas.toBlob(b=>b?resolve(b):reject(Error('이미지 생성 실패')),'image/png',1));}
 function clearShareUrl(){if(state.shareUrl){URL.revokeObjectURL(state.shareUrl);state.shareUrl='';}}
 async function openShareImage(){if(!state.results.length)return;const btn=$('shareResultBtn'),old=btn.textContent;btn.disabled=true;btn.textContent='이미지 만드는 중…';try{clearShareUrl();state.shareBlob=await makeShareImage();state.shareUrl=URL.createObjectURL(state.shareBlob);$('sharePreview').src=state.shareUrl;$('shareModal').hidden=false;$('shareModal').setAttribute('aria-hidden','false');document.body.style.overflow='hidden';}catch(e){alert('결과 이미지를 만들지 못했습니다. '+(e.message||e));}finally{btn.disabled=false;btn.textContent=old;}}

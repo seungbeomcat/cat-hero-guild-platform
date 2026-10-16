@@ -1,4 +1,4 @@
-# Cat Hero Guild Platform V4.1.10 Architecture
+# Cat Hero Guild Platform V4.1.11 Architecture
 
 ## 분리 원칙
 - V3.0 계열은 도살장 전용 기준본이며 수정하지 않습니다.
@@ -102,3 +102,10 @@
 - 계산기 화면 DOM 자체를 저장하지 않고, 현재 핵심 결과값을 1080px 폭 Canvas PNG로 재렌더링합니다.
 - 시스템이 파일 공유를 지원하면 Web Share API를 직접 호출하며, 미지원 환경은 파일 저장으로 대체합니다.
 - 기존 계산식/분배 계산 로직과 공유 렌더러는 분리되어 있습니다.
+
+
+## V4.1.11 공유/보상 변경
+- 계산 결과 공유는 Canvas PNG를 즉시 만들고 Web Share API에는 파일만 전달합니다.
+- 계산기→룰렛 전달은 V4.1.10의 one-shot sessionStorage 구조를 그대로 사용합니다.
+- 신규 보상 아이콘은 `assets/rewards/*.webp` 로컬 자산으로 관리하며 `REWARD_IMAGE_MAP` catalog에 연결합니다.
+- 룰렛 공유 이미지는 데이터 저장 없이 현재 결과를 Canvas에만 렌더링합니다.

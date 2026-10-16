@@ -1,22 +1,20 @@
 {
-  "version": "V4.1.10",
+  "version": "V4.1.11",
   "buildDate": "2026-10-16",
-  "source": "V4.1.9 full (V4.1.5 lineage)",
+  "source": "V4.1.10 full (V4.1.5 lineage)",
   "liveValidation": "static-syntax-invariants-pass; iPhone/GitHub Pages runtime check pending",
   "changes": [
-    "계산 결과 상단을 이미지 공유 / 보상 분배 룰렛 2개 독립 카드로 변경",
-    "이미지 공유는 핵심 계산 결과를 고해상도 PNG로 즉시 렌더링 후 시스템 공유창 호출",
-    "보상 분배 룰렛은 현재 계산 참여자를 일회성 sessionStorage로 전달해 참여자 선택 단계를 건너뜀",
-    "행운 룰렛 단톡방 결과 이미지를 사용자 선택 2번 시안 방향의 대형 고가독성 레이아웃으로 재설계",
-    "결과 회차 수에 따라 1/2/3/4열 자동 배치, 전체 참여 명단과 당첨자 강조 유지",
-    "길드전 보상 카테고리 유지, 길드전 전용 아이템 미추가",
+    "계산 결과 버튼을 컴팩트한 이미지 바로 공유 / 보상 분배 룰렛 독립 카드로 개선",
+    "계산 결과 공유는 PNG 파일만 전송하고 동적 높이/선명한 이탈 기준 파란 강조선 적용",
+    "행운 룰렛 단톡방 결과 이미지의 상단 타이틀/상태 배지/카드 높이 비율 재정리",
+    "길드 보상 목록에 검은 보석 및 스타 펀치 장갑/모자/목도리/신발 5종 아이콘 추가",
     "미완성 은하 격전지 개편안 미반영, Firestore Rules 변경 없음"
   ],
   "files": [
     {
       "path": "ARCHITECTURE.md",
-      "bytes": 6663,
-      "sha256": "7971a9e703441f967c422f6b29d31dbb285a4b7bb5ab247ba7ece2077bebe4e2"
+      "bytes": 7140,
+      "sha256": "0731ede3a617757ec1e5e7959a16a1d473ec8d5c628d24c1157d0eb0fe1f2a9d"
     },
     {
       "path": "BUILD_MANIFEST_V4.0.1_BASELINE.json",
@@ -25,18 +23,18 @@
     },
     {
       "path": "DATA_MODEL.md",
-      "bytes": 3390,
-      "sha256": "aa4649cda83258ea6c908708ed5e33786645bb216d1473bfaa358d113d0012b8"
+      "bytes": 3654,
+      "sha256": "626d337361904bc39d7797bf044832172d75e951c00c91b0c34a0221e23f9bbe"
     },
     {
       "path": "PRE_GITHUB_CHECKLIST.md",
-      "bytes": 1533,
-      "sha256": "1ed1655fb948aad8991d6c113f74abb6834fef18340d726a21f19c27ae171f97"
+      "bytes": 754,
+      "sha256": "7a3d8868030e95b31b2728b601c175df0b5cd5d5473ccc076e6375467ccc2ef8"
     },
     {
       "path": "README.md",
-      "bytes": 1814,
-      "sha256": "d7332894d667b656b2a0b344b9f882e80cc17adc2ffbcc58a69f71c93f127b1e"
+      "bytes": 1705,
+      "sha256": "a3e9f70be8434fb0103badf929741fa07e269a38526eff9ffef2c8239dce9e08"
     },
     {
       "path": "RELEASE_NOTES_V4.0.1.md",
@@ -99,6 +97,11 @@
       "sha256": "310b169f330876d553272c2b6e211fa09a9295e6b15179971e9bffacd1d6a265"
     },
     {
+      "path": "RELEASE_NOTES_V4.1.11.md",
+      "bytes": 1712,
+      "sha256": "5a0cb29e37dc335de0e5c35c21566388a5bc36a5e4331575dc3cb120d780a49a"
+    },
+    {
       "path": "RELEASE_NOTES_V4.1.2.md",
       "bytes": 1261,
       "sha256": "3cb6626afe245078380e015f97ce269a4a859efeba34462287cec566e31f3ac0"
@@ -140,13 +143,13 @@
     },
     {
       "path": "SOURCE_BASELINE.md",
-      "bytes": 837,
-      "sha256": "7d9360c8e4b1b58fa5452cbd38c188441737ecd6886ad9729377200445c3468b"
+      "bytes": 959,
+      "sha256": "48600f0e27920a710f3d11710e5fcba6fbe6bf0a250365bd5e92f7e62eef4398"
     },
     {
       "path": "VALIDATION.md",
-      "bytes": 3353,
-      "sha256": "61a6850a317b21dac888bdfddbc66322e5087b4240487e5b18e8417ea40aca40"
+      "bytes": 2027,
+      "sha256": "c44694763c99ccdbfd48206298dafd7346ff035946b341c76901f992ae76ec7a"
     },
     {
       "path": "assets/bananyang-v337-display.webp",
@@ -334,6 +337,31 @@
       "sha256": "b731591586bc064c66aabd202c795ccc5522dd92e6dee08b2a8df27ac7b5ded0"
     },
     {
+      "path": "assets/rewards/reward-black-gem.webp",
+      "bytes": 31116,
+      "sha256": "203f0d2c305951b36d9607078487ff5c543349255c2c3ccb2a84f3aeb44bde3c"
+    },
+    {
+      "path": "assets/rewards/reward-star-punch-gloves.webp",
+      "bytes": 16034,
+      "sha256": "cf7bac81fa49ed8aaa6c3760d43d9f1be3536f335ee190c803840161179c26eb"
+    },
+    {
+      "path": "assets/rewards/reward-star-punch-hat.webp",
+      "bytes": 20336,
+      "sha256": "7bfce8c1cebd9c058044f312626199325b0358480a3f632451964a7b594bd094"
+    },
+    {
+      "path": "assets/rewards/reward-star-punch-scarf.webp",
+      "bytes": 17906,
+      "sha256": "f39ea4ebf594f91fde4e5bb58d188684e9085c5110ddf7f49e94c9f3c40d734c"
+    },
+    {
+      "path": "assets/rewards/reward-star-punch-shoes.webp",
+      "bytes": 16700,
+      "sha256": "2d24901285e90a4b1aa3eb289bc12c18fa2c15d7df867459f5c401ed758c0c50"
+    },
+    {
       "path": "assets/rewards/skyblue-bottom.png",
       "bytes": 57915,
       "sha256": "b7269e084c071cbe161fc74e861013d1326422bf655331c028285e7bcce2a66e"
@@ -346,12 +374,12 @@
     {
       "path": "boss.html",
       "bytes": 206960,
-      "sha256": "7084ee39af78c781b62993e8ee745fb9a09eb955ab1228382396abb751f2bc28"
+      "sha256": "d6add8983e0ca881c485bb021c56b2824b127f830d5f6ef3415c0c1062a6849a"
     },
     {
       "path": "firebase-config.js",
       "bytes": 561,
-      "sha256": "a2b178b8c815c7492f1e0e9d75abe4e4f9c3527e357fd3de777f9c85780328b9"
+      "sha256": "3d2fc312a8600bedd3e3f5289716f94f2137328d0c485d6fb6f2567fbfc609e7"
     },
     {
       "path": "firestore.multiguild.rules",
@@ -360,28 +388,28 @@
     },
     {
       "path": "index-module.mjs",
-      "bytes": 29980,
-      "sha256": "4438e06261a53f32824041e4d567b69e9f3d3deb9e7a487ef1da50a604aa21ea"
+      "bytes": 29981,
+      "sha256": "b1a7816a44d78b3dceff8fca797a896606d410e96d84821301f0bec895de8dde"
     },
     {
       "path": "index.html",
-      "bytes": 2545,
-      "sha256": "54b72415801f9d73b40dabe9efa814f7e4a83da4dc428ed5a8c134cc51f344d6"
+      "bytes": 2546,
+      "sha256": "25581e6a70b0f88416919529bc6b1dc571fbf4bfbb720ce777e124a54f7c5ebb"
     },
     {
       "path": "main.html",
-      "bytes": 609599,
-      "sha256": "d101876702a52d1a9b90715807c18ffba80ea2b255d8d697278b6455aee6bebe"
+      "bytes": 610332,
+      "sha256": "1e8163b77168c55b287eda41ed80e9ed452514c4cc6ae2e668ccabec8febd58f"
     },
     {
       "path": "ops.html",
       "bytes": 283981,
-      "sha256": "5fcc58e4b7171ded17f7763abf5482d5e292768af84b252943fc4d9c2b68da79"
+      "sha256": "8ac10deadee07b2118d637af9174213a1e2a1c7bcc403e35b8eb058b82b09c04"
     },
     {
       "path": "roulette.html",
-      "bytes": 48105,
-      "sha256": "100170687b0bd8702aa735dfb907d9bad8394239e5265560010cbb8267e94d56"
+      "bytes": 48529,
+      "sha256": "24474b75aca406e50b02f08d3eafb473fa57328b51a0eb1945ea3d20518cb1bb"
     },
     {
       "path": "shared/admin-audit.js",
@@ -406,7 +434,7 @@
     {
       "path": "shared/reward-entry.js",
       "bytes": 12257,
-      "sha256": "268b70418e36fbcae76c7149b2d71913f93ec4daa4cbf6e3f5af8b53a8da8acf"
+      "sha256": "b4959a15899094c4b1176ebf7577d8b764cbdb6aac5239d14b1616c639817c52"
     },
     {
       "path": "shared/tenant.js",

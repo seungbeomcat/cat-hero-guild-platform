@@ -1,5 +1,5 @@
 window.GUILD_OPS_CONFIG = Object.freeze({
-  version: 'V4.1.10',
+  version: 'V4.1.11',
   buildDate: '2026.10.16',
   platformName: 'Cat Hero Guild Platform',
   firebase: {

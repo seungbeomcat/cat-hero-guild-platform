@@ -1,4 +1,4 @@
-/* V2.1.5: compact mobile reward entry — tightened selectors and separated date fields */
+/* V2.1.6: compact mobile reward entry — tightened selectors and separated date fields */
 import {initializeApp,getApps,getApp} from 'https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js';
 import {getAuth} from 'https://www.gstatic.com/firebasejs/12.3.0/firebase-auth.js';
 import {getFirestore,doc,getDoc,setDoc,serverTimestamp} from 'https://www.gstatic.com/firebasejs/12.3.0/firebase-firestore.js';
