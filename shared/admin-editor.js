@@ -2,6 +2,7 @@ import {initializeApp,getApps,getApp} from 'https://www.gstatic.com/firebasejs/1
 import {getAuth} from 'https://www.gstatic.com/firebasejs/12.3.0/firebase-auth.js';
 import {getFirestore,doc,getDoc,writeBatch,serverTimestamp,collection} from 'https://www.gstatic.com/firebasejs/12.3.0/firebase-firestore.js';
 
+await window.CAT_HERO_V4_TENANT?.waitLocalAuth?.();
 const app=getApps().length?getApp():initializeApp(window.GUILD_OPS_CONFIG.firebase),auth=getAuth(app),db=getFirestore(app);
 const gid=window.CAT_HERO_V4_TENANT?.gid?.()||new URLSearchParams(location.search).get('g')||'';
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));

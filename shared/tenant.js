@@ -14,10 +14,17 @@
       ]);
       const app=appLib.getApps().length?appLib.getApp():appLib.initializeApp(window.GUILD_OPS_CONFIG.firebase);
       let auth;
-      try{auth=authLib.initializeAuth(app,{persistence:[authLib.indexedDBLocalPersistence,authLib.browserLocalPersistence,authLib.browserSessionPersistence]});}
+      try{auth=authLib.initializeAuth(app,{persistence:[authLib.browserLocalPersistence,authLib.indexedDBLocalPersistence]});}
       catch(_e){auth=authLib.getAuth(app);}
       if(typeof auth.authStateReady==='function')await auth.authStateReady();
-      return {auth,authLib};
+      let persistenceMode='unavailable';
+      try{await authLib.setPersistence(auth,authLib.browserLocalPersistence);persistenceMode='browserLocal';}
+      catch(localError){
+        console.warn('브라우저 로컬 인증 유지 설정 실패, IndexedDB 로컬 유지로 재시도합니다.',localError);
+        try{await authLib.setPersistence(auth,authLib.indexedDBLocalPersistence);persistenceMode='indexedDBLocal';}
+        catch(indexedError){console.error('영구 인증 유지 설정 실패',indexedError);}
+      }
+      return {auth,authLib,persistenceMode};
     })();
     return authPromise;
   }

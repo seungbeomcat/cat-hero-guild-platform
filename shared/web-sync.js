@@ -2,6 +2,7 @@ import {initializeApp,getApps,getApp} from 'https://www.gstatic.com/firebasejs/1
 import {getAuth} from 'https://www.gstatic.com/firebasejs/12.3.0/firebase-auth.js';
 import {getFirestore,doc,onSnapshot,setDoc,updateDoc,serverTimestamp,addDoc,collection} from 'https://www.gstatic.com/firebasejs/12.3.0/firebase-firestore.js';
 const CFG=window.GUILD_OPS_CONFIG, gid=window.CAT_HERO_V4_TENANT?.gid?.()||'';
+await window.CAT_HERO_V4_TENANT?.waitLocalAuth?.();
 const app=getApps().length?getApp():initializeApp(CFG.firebase);
 const auth=getAuth(app),db=getFirestore(app);
 const rosterRef=doc(db,'guilds',gid,'data','roster'),rewardRef=doc(db,'guilds',gid,'data','rewards');

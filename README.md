@@ -1,10 +1,14 @@
-# Cat Hero Guild Platform V4.1.3
+# Cat Hero Guild Platform V4.1.4
 
-Build date: 2026-10-15
+Build date: 2026-10-16
 
 멀티길드용 Cat Hero Guild Platform 전체 패키지입니다.
 
-## V4.1.3 핵심 변경
+## V4.1.4 핵심 변경
+- 관리자 인증을 `browserLocalPersistence` 우선으로 고정하고 IndexedDB 로컬 저장을 보조 수단으로 사용합니다. 브라우저/탭 종료 후 재방문해도 같은 브라우저의 로그인 세션이 복원되도록 강화했습니다.
+- 세션형(`browserSessionPersistence`) 인증 저장을 제거했습니다. 관리자 로그인/등록/중앙관리자 로그인 직전에 영구 저장 가능 여부를 다시 확인합니다.
+- 브라우저 재시작 직후 Firestore 관리자 권한 조회가 일시 실패하더라도, Firebase 사용자와 기존 검증 UID가 일치하면 관리자 UI 상태를 임시 유지하며 실제 쓰기 권한은 Firestore Rules가 계속 검증합니다.
+- 메인·보스·OPS·관리자/보상 모듈은 하위 화면에서 Firebase 세션 복원이 완료된 뒤 인증 객체를 사용하도록 동기화했습니다.
 - 메인 상단 `서버 | 길드명 | 인원수` 및 `격전지 계산기`의 좌→우 광택 효과를 더 선명하고 연속적으로 조정했습니다.
 - 관리자 로그인 상태는 초록색 카드/방패 아이콘으로만 표시하고 `로그인 중` 텍스트는 제거했습니다.
 - 핵심 주간·월간 콘텐츠인 `균열·은하` 메뉴 카드에 카드 내부는 건드리지 않고, 일반 메뉴와 즉시 구분될 정도로 강한 유리광이 테두리를 따라 흐르는 강조 효과를 적용했습니다.
@@ -21,9 +25,9 @@ Build date: 2026-10-15
 - V3→V4로 이관된 운영 데이터와 Firestore 데이터 구조는 변경하지 않습니다.
 
 ## 배포
-V4.1.3는 **Firestore Rules 변경이 없습니다.**
+V4.1.4는 **Firestore Rules 변경이 없습니다.**
 
-이미 V4.1.1 Rules를 게시했다면 GitHub Pages 파일만 V4.1.3 전체 파일로 교체하면 됩니다.
+이미 V4.1.1 Rules를 게시했다면 GitHub Pages 파일만 V4.1.4 전체 파일로 교체하면 됩니다.
 `firestore.multiguild.rules`는 V4.1.1의 보안 규칙을 그대로 포함합니다.
 
-자세한 변경사항은 `RELEASE_NOTES_V4.1.3.md`, 검증 범위는 `VALIDATION.md`를 확인하세요.
+자세한 변경사항은 `RELEASE_NOTES_V4.1.4.md`, 검증 범위는 `VALIDATION.md`를 확인하세요.

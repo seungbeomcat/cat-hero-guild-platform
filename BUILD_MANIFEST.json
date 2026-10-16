@@ -1,22 +1,21 @@
 {
-  "version": "V4.1.3",
-  "buildDate": "2026-10-15",
-  "source": "V4.1.2 full",
-  "liveValidation": "syntax-and-static-structure-pass; post-GitHub-device-check pending",
+  "version": "V4.1.4",
+  "buildDate": "2026-10-16",
+  "source": "V4.1.3 full",
+  "liveValidation": "syntax-static-auth-invariants-pass; post-GitHub iPhone force-close persistence check pending",
   "changes": [
-    "상단 헤더 좌→우 shimmer 강화 및 연속 이동",
-    "균열·은하 메뉴를 일반 메뉴와 즉시 구분되는 강한 움직이는 유리광 테두리/외곽 glow로 강조",
-    "관리자 메인 카드 로그인 중 텍스트 제거 유지",
-    "길드원 편집 폼 슬림화 및 주요 닫기 버튼 강화",
-    "관리자 팝업 압축: 제목 관리자, 관리자/전용주소 기능 단일 도구 박스, 활동기록 가시성 확대",
-    "OPS 회차 선택기 축소 및 명칭 균열의 격전지 / 은하 격전지 확정",
-    "Firestore Rules/인증 세션/데이터 구조 변경 없음"
+    "관리자 인증 영구 저장 우선순위를 browserLocalPersistence → indexedDBLocalPersistence로 고정",
+    "browserSessionPersistence 제거 및 로그인 전 영구 저장 가능 여부 검증",
+    "브라우저 재시작 직후 관리자 권한 조회 네트워크 오류 시 동일 UID의 기존 검증값으로 관리자 UI 임시 유지",
+    "메인/보스/OPS/관리자/보상 모듈이 iframe Firebase Auth 복원 완료 후 인증 객체 사용",
+    "signOut 호출은 관리자 메뉴의 명시적 로그아웃 경로 1곳만 유지",
+    "V4.1.3 UI/데이터 구조/Firestore Rules 유지"
   ],
   "files": [
     {
       "path": "ARCHITECTURE.md",
       "bytes": 4016,
-      "sha256": "36eab2a227d3e90bf751ddd4c2f1d33ff8884039928e6fa31dfb369f67ee5e85"
+      "sha256": "3bc4667cc44e411abb51194b6387d67ee7d69aaaaad22dcb5ee67b611004ae1d"
     },
     {
       "path": "BUILD_MANIFEST_V4.0.1_BASELINE.json",
@@ -26,17 +25,17 @@
     {
       "path": "DATA_MODEL.md",
       "bytes": 1845,
-      "sha256": "2b5fb002085aa379ffad8bb17efbc7e38a3362cc44175d33a04d33cecb835816"
+      "sha256": "20f8619a8397a468dd544d75a89d340826270d434bfa77edf84fea2d595136a0"
     },
     {
       "path": "PRE_GITHUB_CHECKLIST.md",
-      "bytes": 1243,
-      "sha256": "1daf5c5a195ad2ba26c8c70e54421cde1d0d0bff4cec013efbad7a28bbb2949d"
+      "bytes": 1234,
+      "sha256": "becadab29abb6a04aa7c5278fcf0d599e6013953d350b4d2360de52d18f26d35"
     },
     {
       "path": "README.md",
-      "bytes": 1909,
-      "sha256": "0c8f8caa855b99b82d9d7293c5fd8f8b8df2da55db0eebd929fc26120f9b4f60"
+      "bytes": 2794,
+      "sha256": "ea906f8186766e748eb70fe73b56844fb79e90b1a6f25462c8d766f27b4afbe6"
     },
     {
       "path": "RELEASE_NOTES_V4.0.1.md",
@@ -104,14 +103,19 @@
       "sha256": "6e25b2486b3c8db35eeb4808d4b06f3802cae2f0039d43d79cc1388125dff904"
     },
     {
+      "path": "RELEASE_NOTES_V4.1.4.md",
+      "bytes": 1817,
+      "sha256": "64240a440c4b10472b36e7615da7f4c4139e3c85994a44d86f3cbb3b04c4c801"
+    },
+    {
       "path": "SOURCE_BASELINE.md",
       "bytes": 695,
-      "sha256": "a89118193f7b42d39ceba30dc26eae7b15aa6f6dec8b93ebe34071b56c239ed1"
+      "sha256": "946db4853e5340683c0f1edc537dcf8dea5603b8c8fac51f4c4d91d87f064946"
     },
     {
       "path": "VALIDATION.md",
-      "bytes": 2802,
-      "sha256": "dc065415560876d74f7d85c0a034b3fb3cf7ca76104f40e55b30862d26aac0a3"
+      "bytes": 3017,
+      "sha256": "c8608a497030230a0c4161d662db03d264d618b1cbdae5ac22b93e833f21e4c0"
     },
     {
       "path": "assets/bananyang-v337-display.webp",
@@ -305,13 +309,13 @@
     },
     {
       "path": "boss.html",
-      "bytes": 206904,
-      "sha256": "0204a62493e4f4af46fba3db534d05cf47a2a3cc0c1f5c0683a7a691b83a428a"
+      "bytes": 206956,
+      "sha256": "f284bdde467c6409fc908e52687dc2bea9377447d63bf91120f79852f81eddfb"
     },
     {
       "path": "firebase-config.js",
       "bytes": 560,
-      "sha256": "52ec76f0ea4890b422d9fc79de5fb95d9fc1ced04a6f3a25f28efa26bf124db9"
+      "sha256": "23545c5ba4c9e34053d37bfb5bb4bdda9b07ce3d9fbb1c8380927bcd6064f9c1"
     },
     {
       "path": "firestore.multiguild.rules",
@@ -320,33 +324,33 @@
     },
     {
       "path": "index-module.mjs",
-      "bytes": 28644,
-      "sha256": "c181eac49fe73285b69479825e26d00aa267896d78c5bb0a9d78cd5765909120"
+      "bytes": 29936,
+      "sha256": "e74cf257d619809fc3c01a6b5173d5ab1117a0a481766d69a8b676b69c1e0c2f"
     },
     {
       "path": "index.html",
       "bytes": 2544,
-      "sha256": "3a3365b93f85486fff3b98a6730503b3be353f6d0f0985d5e9f6249949707f8e"
+      "sha256": "45aa5a29bc1c7205a1af7c152bb36702bec92c5dfee267ae002c6ed318aa875c"
     },
     {
       "path": "main.html",
       "bytes": 595765,
-      "sha256": "338068832114f98e2e8041a5f62ee1845522390923ecf18f2c533e54f67aff18"
+      "sha256": "01805758b034ab7a1b6a1ee60e0da1c91b121fa9637529be41892bf1db961d9a"
     },
     {
       "path": "ops.html",
-      "bytes": 277955,
-      "sha256": "18680655327fd0e775db0f98074f684c891b74566474436d60389b30e10805a8"
+      "bytes": 278013,
+      "sha256": "f12e02b9e99f17dc5fab8eafe133d80469ef55bff3e2dcef7894d3fb4f8b27ef"
     },
     {
       "path": "shared/admin-audit.js",
-      "bytes": 14771,
-      "sha256": "29cf547c367afb118977a50053ae0ca4bbf5e9e650adbc6ceabcab8391df26a5"
+      "bytes": 14823,
+      "sha256": "1d6ccbf6eb6347cd0c542692f1c0e4f089507e61242c913a3473974bf8c09f15"
     },
     {
       "path": "shared/admin-editor.js",
-      "bytes": 17802,
-      "sha256": "54af605fb1b3e3a64cfd7846caaa0be343b7d0d8c94389a5c03efad5f05756a5"
+      "bytes": 17854,
+      "sha256": "190c83472b09cf797919e89fa3ce966d051288fe0a2b7a1f2bce649636bf4639"
     },
     {
       "path": "shared/guild-core.js",
@@ -360,18 +364,18 @@
     },
     {
       "path": "shared/reward-entry.js",
-      "bytes": 12181,
-      "sha256": "6793d39265d4b317c97005cde52196cadd7e2103cbb64e50b755dbceff41c5fe"
+      "bytes": 12233,
+      "sha256": "cad4a5c3cbc6e8df2ada76192df742f46d09050721441e69608694adc65fb561"
     },
     {
       "path": "shared/tenant.js",
-      "bytes": 3143,
-      "sha256": "bcf586727a0dfe20f917b86aa150a7e7f829d8742f67c50e2cb7a2d63d27afb4"
+      "bytes": 3652,
+      "sha256": "6b9cd0ceade2bf03ebc722460f4e02121c408dae5ecca6dd7d561d5583df3f53"
     },
     {
       "path": "shared/web-sync.js",
-      "bytes": 14939,
-      "sha256": "120a794a04bf084627a5fe5d9c4f15c06914c4ab6e981c89cb5fe27a660c692e"
+      "bytes": 14991,
+      "sha256": "c35787ef848e41f0cd5cb66d8e1f1f9e00612e5b8585357a0e0ede8b6da97bc8"
     }
   ]
 }

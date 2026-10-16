@@ -1,4 +1,4 @@
-# Cat Hero Guild Platform V4.1.3 Architecture
+# Cat Hero Guild Platform V4.1.4 Architecture
 
 ## 분리 원칙
 - V3.0 계열은 도살장 전용 기준본이며 수정하지 않습니다.

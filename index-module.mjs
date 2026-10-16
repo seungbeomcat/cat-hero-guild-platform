@@ -1,12 +1,12 @@
 import {initializeApp,getApps,getApp} from 'https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js';
-import {initializeAuth,getAuth,onAuthStateChanged,indexedDBLocalPersistence,browserLocalPersistence,browserSessionPersistence,signInWithEmailAndPassword,createUserWithEmailAndPassword,signOut} from 'https://www.gstatic.com/firebasejs/12.3.0/firebase-auth.js';
+import {initializeAuth,getAuth,onAuthStateChanged,setPersistence,indexedDBLocalPersistence,browserLocalPersistence,signInWithEmailAndPassword,createUserWithEmailAndPassword,signOut} from 'https://www.gstatic.com/firebasejs/12.3.0/firebase-auth.js';
 import {getFirestore,doc,getDoc,setDoc,updateDoc,deleteDoc,collection,getDocs,onSnapshot,writeBatch,runTransaction,serverTimestamp,addDoc,query,where} from 'https://www.gstatic.com/firebasejs/12.3.0/firebase-firestore.js';
 
 const CFG=window.GUILD_OPS_CONFIG;
 const app=getApps().length?getApp():initializeApp(CFG.firebase);
 let auth;
 try{
-  auth=initializeAuth(app,{persistence:[indexedDBLocalPersistence,browserLocalPersistence,browserSessionPersistence]});
+  auth=initializeAuth(app,{persistence:[browserLocalPersistence,indexedDBLocalPersistence]});
 }catch(_e){
   auth=getAuth(app);
 }
@@ -27,9 +27,34 @@ let roleCheckSerial=0;
 window.CAT_HERO_V4_CONTEXT=null;
 window.CAT_HERO_V4_AUTH_STATE={guildId:'',isGuildAdmin:false,isPlatformAdmin:false,user:null,ready:false};
 
+let durablePersistenceMode='pending';
+async function ensureDurablePersistence(){
+  try{
+    await setPersistence(auth,browserLocalPersistence);
+    durablePersistenceMode='browserLocal';
+    return durablePersistenceMode;
+  }catch(localError){
+    console.warn('브라우저 로컬 인증 유지 설정 실패, IndexedDB 로컬 유지로 재시도합니다.',localError);
+    try{
+      await setPersistence(auth,indexedDBLocalPersistence);
+      durablePersistenceMode='indexedDBLocal';
+      return durablePersistenceMode;
+    }catch(indexedError){
+      durablePersistenceMode='unavailable';
+      console.error('영구 인증 유지 설정 실패',indexedError);
+      return durablePersistenceMode;
+    }
+  }
+}
+async function requireDurablePersistence(){
+  const mode=await ensureDurablePersistence();
+  if(mode==='unavailable')throw Error('이 브라우저에서는 관리자 로그인 유지 저장소를 사용할 수 없습니다. 비공개 모드 또는 사이트 데이터 차단 설정을 확인해 주세요.');
+  return mode;
+}
 const authReady=(async()=>{
   if(typeof auth.authStateReady==='function')await auth.authStateReady();
   else await new Promise(resolve=>{let unsub=()=>{};unsub=onAuthStateChanged(auth,()=>{try{unsub();}catch(_e){}resolve();},()=>resolve());});
+  await ensureDurablePersistence();
   window.CAT_HERO_V4_AUTH_STATE.ready=true;
   return auth.currentUser;
 })();
@@ -72,9 +97,9 @@ async function roleFor(id){
       guildAdmin=snap.exists()&&snap.data().active===true;
       if(guildAdmin)rememberVerifiedAdmin(id,u);else clearVerifiedAdmin(id);
     }catch(e){
-      console.warn('관리자 권한 확인 실패',e);
+      console.warn('관리자 권한 확인 실패 — 저장된 관리자 확인값을 임시 유지합니다.',e);
       const marker=readVerifiedAdmin(id);
-      guildAdmin=!!marker&&marker.uid===u.uid&&window.CAT_HERO_V4_AUTH_STATE.guildId===id&&window.CAT_HERO_V4_AUTH_STATE.isGuildAdmin===true;
+      guildAdmin=!!marker&&marker.uid===u.uid;
     }
   }
   if(serial!==roleCheckSerial)return window.CAT_HERO_V4_AUTH_STATE;
@@ -130,7 +155,9 @@ async function credentialDialog(title,{registration=false}={}){
 async function adminLogin(id){
   const data=await credentialDialog('관리자 로그인');if(!data)return false;
   try{
+    await requireDurablePersistence();
     await signInWithEmailAndPassword(auth,data.email,data.password);
+    await ensureDurablePersistence();
     await auth.currentUser?.getIdToken(true);
     await roleFor(id);
     if(!window.CAT_HERO_V4_AUTH_STATE.isGuildAdmin){alert('이 계정은 해당 길드의 관리자로 등록되어 있지 않습니다.\n관리자 등록코드가 있다면 관리자 메뉴에서 등록을 진행해 주세요.');return false;}
@@ -142,10 +169,12 @@ async function adminRegister(id){
   if(!data.code)return false;
   let u=auth.currentUser;
   try{
+    await requireDurablePersistence();
     if(!u||String(u.email||'').toLowerCase()!==data.email.toLowerCase()){
       try{u=(await createUserWithEmailAndPassword(auth,data.email,data.password)).user;}
       catch(e){if(e.code==='auth/email-already-in-use')u=(await signInWithEmailAndPassword(auth,data.email,data.password)).user;else throw e;}
     }
+    await ensureDurablePersistence();
     await u.getIdToken(true);
     await runTransaction(db,async tx=>{
       const ir=doc(db,'guildInvites',data.code),ar=doc(db,'guilds',id,'admins',u.uid);
@@ -178,6 +207,7 @@ window.CAT_HERO_V4_CHECK_ADMIN=(id,opts)=>checkAdminOnly(id,opts);
 window.CAT_HERO_V4_ENSURE_ADMIN=checkAdminOnly;
 window.CAT_HERO_V4_REQUEST_ADMIN=requestAdminPortal;
 window.CAT_HERO_V4_PERMISSION_MESSAGE=permissionMessage;
+window.CAT_HERO_V4_AUTH_PERSISTENCE=()=>durablePersistenceMode;
 window.CAT_HERO_V4_LOGOUT=async()=>{
   if(!confirm('관리자에서 로그아웃하고 일반 길드원 모드로 전환하시겠습니까?'))return false;
   try{await signOut(auth);clearVerifiedAdmin(gid);await roleFor(gid);announceRole();return true;}catch(e){alert('로그아웃 실패: '+(e.code||e.message));return false;}
@@ -209,7 +239,7 @@ function buildBootstrapUrl(id){return `${location.origin}${location.pathname}?g=
 function showRoute(r,push=false){
   if(!frame)return;if(!['main','boss','ops'].includes(r))r='main';
   roleFor(gid).then(announceRole).catch(e=>console.warn('route role refresh',e));
-  frame.src=`${r}.html?g=${encodeURIComponent(gid)}&v=413`;
+  frame.src=`${r}.html?g=${encodeURIComponent(gid)}&v=414`;
   if(push){
     const url=accessMode==='private'&&accessSecret?buildPrivateUrl(accessSecret,r):`${location.pathname}?g=${encodeURIComponent(gid)}${r==='main'?'':'#'+r}`;
     history.pushState({r},'',url);
@@ -252,7 +282,7 @@ function landing(msg=''){
 async function platformLogin(){
   await authReady;await roleFor('');if(window.CAT_HERO_V4_AUTH_STATE.isPlatformAdmin)return true;
   const data=await credentialDialog('중앙관리자 로그인');if(!data)return false;
-  try{await signInWithEmailAndPassword(auth,data.email,data.password);await auth.currentUser?.getIdToken(true);await roleFor('');if(!window.CAT_HERO_V4_AUTH_STATE.isPlatformAdmin){alert('중앙관리자 계정이 아닙니다.');return false;}return true;}catch(e){alert('로그인 실패: '+(e.code||e.message));return false;}
+  try{await requireDurablePersistence();await signInWithEmailAndPassword(auth,data.email,data.password);await ensureDurablePersistence();await auth.currentUser?.getIdToken(true);await roleFor('');if(!window.CAT_HERO_V4_AUTH_STATE.isPlatformAdmin){alert('중앙관리자 계정이 아닙니다.');return false;}return true;}catch(e){alert('로그인 실패: '+(e.code||e.message));return false;}
 }
 async function openPlatform(){
   if(!await platformLogin())return;

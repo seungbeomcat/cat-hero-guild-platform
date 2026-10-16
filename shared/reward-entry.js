@@ -4,6 +4,7 @@ import {getAuth} from 'https://www.gstatic.com/firebasejs/12.3.0/firebase-auth.j
 import {getFirestore,doc,getDoc,setDoc,serverTimestamp} from 'https://www.gstatic.com/firebasejs/12.3.0/firebase-firestore.js';
 const config=window.GUILD_OPS_CONFIG.firebase;
 const gid=window.CAT_HERO_V4_TENANT?.gid?.()||'';
+await window.CAT_HERO_V4_TENANT?.waitLocalAuth?.();
 const app=getApps().length?getApp():initializeApp(config);
 const auth=getAuth(app),db=getFirestore(app),ref=doc(db,'guilds',gid,'data','rewards');
 const safe=x=>String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));

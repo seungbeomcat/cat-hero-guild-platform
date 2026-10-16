@@ -2,6 +2,7 @@ import {initializeApp,getApps,getApp} from 'https://www.gstatic.com/firebasejs/1
 import {getAuth} from 'https://www.gstatic.com/firebasejs/12.3.0/firebase-auth.js';
 import {getFirestore,collection,getDocs,addDoc,serverTimestamp,query,orderBy,limit,startAfter,doc,getDoc,writeBatch} from 'https://www.gstatic.com/firebasejs/12.3.0/firebase-firestore.js';
 const gid=window.CAT_HERO_V4_TENANT?.gid?.()||'',config=window.GUILD_OPS_CONFIG.firebase;
+await window.CAT_HERO_V4_TENANT?.waitLocalAuth?.();
 const app=getApps().length?getApp():initializeApp(config),auth=getAuth(app),db=getFirestore(app);
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 let dialog,rows=[],cursor=null,activeType='전체',pageSize=60;
