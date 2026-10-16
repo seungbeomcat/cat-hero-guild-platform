@@ -79,7 +79,8 @@ service cloud.firestore {
         allow read: if guildAdmin(guildId) || platformAdmin();
         allow create: if guildAdmin(guildId);
         allow update: if false;
-        allow delete: if platformAdmin();
+        // V4.2.5: 해당 길드 활성 관리자의 자체 기록 삭제 허용. 타 길드 접근은 불가.
+        allow delete: if guildAdmin(guildId) || platformAdmin();
       }
     }
 

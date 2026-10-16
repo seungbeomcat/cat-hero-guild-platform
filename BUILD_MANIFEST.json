@@ -1,31 +1,78 @@
 {
-  "version": "V4.2.4",
+  "version": "V4.2.5",
   "buildDate": "2026-10-16",
-  "baseline": "V4.2.2 full",
-  "scope": "roulette result screen / share PNG / global version labels only",
+  "baseline": "V4.2.3 complete source",
+  "scope": "reward selector, reward catalog, result display, share PNG, version labels and documentation; no database changes",
   "validation": {
-    "roulette_version": true,
-    "dividers_exactly_two": true,
-    "top_divider": true,
-    "action_divider": true,
-    "proof_container_border_none": true,
-    "winner_green": true,
-    "winner_black": true,
-    "card_width_35pct": true,
-    "participant_auto_layout": true,
-    "winner_auto_layout": true,
-    "share_only_files": true,
-    "two_equal_buttons": true,
-    "roster_not_discarded": true,
-    "rewards_included": true,
-    "menu_icons_included": true,
-    "firebase_rules_untouched": true,
-    "assets_unchanged": true,
-    "shared_unchanged": true,
-    "roulette_and_shared_js_syntax": true,
-    "browser_40_combinations": true
+    "jsSyntax": "pass",
+    "localBrowserTests": "pass (simulated guild roster; no live Firebase)",
+    "assetCount": 45,
+    "summon": 19,
+    "equipment": 16,
+    "recipes": 10,
+    "legacyDatabaseRulesUnchanged": true
   },
-  "fileCountExcludingManifest": 92,
+  "changedOriginalFiles": [
+    "README.md",
+    "__visual_check.html",
+    "boss.html",
+    "index-module.mjs",
+    "index.html",
+    "main.html",
+    "ops.html",
+    "roulette.html"
+  ],
+  "newFiles": [
+    "RELEASE_NOTES_V4.2.4.md",
+    "VALIDATION_V4.2.4.md",
+    "assets/roulette-rewards/equipment/equipment_advanced_band.png",
+    "assets/roulette-rewards/equipment/equipment_advanced_glove.png",
+    "assets/roulette-rewards/equipment/equipment_advanced_paw.png",
+    "assets/roulette-rewards/equipment/equipment_advanced_ribbon.png",
+    "assets/roulette-rewards/equipment/equipment_hero_band.png",
+    "assets/roulette-rewards/equipment/equipment_hero_glove.png",
+    "assets/roulette-rewards/equipment/equipment_hero_paw.png",
+    "assets/roulette-rewards/equipment/equipment_hero_ribbon.png",
+    "assets/roulette-rewards/equipment/equipment_normal_band.png",
+    "assets/roulette-rewards/equipment/equipment_normal_glove.png",
+    "assets/roulette-rewards/equipment/equipment_normal_paw.png",
+    "assets/roulette-rewards/equipment/equipment_normal_ribbon.png",
+    "assets/roulette-rewards/equipment/equipment_rare_band.png",
+    "assets/roulette-rewards/equipment/equipment_rare_glove.png",
+    "assets/roulette-rewards/equipment/equipment_rare_paw.png",
+    "assets/roulette-rewards/equipment/equipment_rare_ribbon.png",
+    "assets/roulette-rewards/recipes/recipe_advanced_gear.png",
+    "assets/roulette-rewards/recipes/recipe_advanced_shard.png",
+    "assets/roulette-rewards/recipes/recipe_advanced_wheel.png",
+    "assets/roulette-rewards/recipes/recipe_hero_fish.png",
+    "assets/roulette-rewards/recipes/recipe_hero_flower.png",
+    "assets/roulette-rewards/recipes/recipe_legend_statue.png",
+    "assets/roulette-rewards/recipes/recipe_rare_cloud.png",
+    "assets/roulette-rewards/recipes/recipe_rare_round.png",
+    "assets/roulette-rewards/recipes/recipe_rare_spiral.png",
+    "assets/roulette-rewards/recipes/recipe_red_leaf.png",
+    "assets/roulette-rewards/summon/ticket_blue_100.png",
+    "assets/roulette-rewards/summon/ticket_blue_120.png",
+    "assets/roulette-rewards/summon/ticket_blue_150.png",
+    "assets/roulette-rewards/summon/ticket_blue_300.png",
+    "assets/roulette-rewards/summon/ticket_blue_50.png",
+    "assets/roulette-rewards/summon/ticket_blue_500.png",
+    "assets/roulette-rewards/summon/ticket_blue_80.png",
+    "assets/roulette-rewards/summon/ticket_blue_800.png",
+    "assets/roulette-rewards/summon/ticket_gold_100.png",
+    "assets/roulette-rewards/summon/ticket_gold_120.png",
+    "assets/roulette-rewards/summon/ticket_gold_150.png",
+    "assets/roulette-rewards/summon/ticket_gold_3.png",
+    "assets/roulette-rewards/summon/ticket_gold_300.png",
+    "assets/roulette-rewards/summon/ticket_gold_5.png",
+    "assets/roulette-rewards/summon/ticket_gold_500.png",
+    "assets/roulette-rewards/summon/ticket_gold_800.png",
+    "assets/roulette-rewards/summon/ticket_purple_100.png",
+    "assets/roulette-rewards/summon/ticket_purple_50.png",
+    "assets/roulette-rewards/summon/ticket_purple_80.png",
+    "shared/roulette-reward-catalog.js"
+  ],
+  "fileCountExcludingManifest": 141,
   "files": [
     {
       "path": "ARCHITECTURE.md",
@@ -49,8 +96,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 1624,
-      "sha256": "c8049a37a6464768871d170e479dbb97eaef72593edb9c2eabd78941e74cce36"
+      "bytes": 2250,
+      "sha256": "ebdd2f65f51a82b8c97e12bc98325042497d46ac735bb7dec056dc2441e2dd15"
     },
     {
       "path": "RELEASE_NOTES_V4.0.1.md",
@@ -183,6 +230,11 @@
       "sha256": "c8049a37a6464768871d170e479dbb97eaef72593edb9c2eabd78941e74cce36"
     },
     {
+      "path": "RELEASE_NOTES_V4.2.4.md",
+      "bytes": 1606,
+      "sha256": "cac5389e2c612cea3f814663efc4a3a13dd64a5ccf36299b6ec78c53f7ea6034"
+    },
+    {
       "path": "SOURCE_BASELINE.md",
       "bytes": 361,
       "sha256": "bd2f692ed96219cd365941412528bf9c17590206927784372d7b64fc40868936"
@@ -191,6 +243,16 @@
       "path": "VALIDATION.md",
       "bytes": 1141,
       "sha256": "edbc96790c906b890fd694c844b16d8375d534cc3dd95f0c30aeeac9214cf917"
+    },
+    {
+      "path": "VALIDATION_V4.2.4.md",
+      "bytes": 1076,
+      "sha256": "a064148d786f12d39ba8f33b8d0167b5c9862a56758545f22eb4b85e65ad87cd"
+    },
+    {
+      "path": "__visual_check.html",
+      "bytes": 55097,
+      "sha256": "1656b7ee2044b028e40c8d0bb8913d4049eb89541d8610620346eb5cc8d90267"
     },
     {
       "path": "assets/bananyang-v337-display.webp",
@@ -413,9 +475,234 @@
       "sha256": "8ac8bfd95de4d4cf614e70b28c6061286a90dd504ffcaaf63be715c14e5aeb87"
     },
     {
+      "path": "assets/roulette-rewards/equipment/equipment_advanced_band.png",
+      "bytes": 58541,
+      "sha256": "4a36957ee004320fab27131e63d097322f1776acd9fbaad436196de2956b186f"
+    },
+    {
+      "path": "assets/roulette-rewards/equipment/equipment_advanced_glove.png",
+      "bytes": 42064,
+      "sha256": "a0aa51561cc39b651e9adacfe1491a284d930a6da05e264bdfb7bc23861971d6"
+    },
+    {
+      "path": "assets/roulette-rewards/equipment/equipment_advanced_paw.png",
+      "bytes": 64676,
+      "sha256": "8a42b74d216a2e4e57668fb8204f640991288cab61bc2270b74c16b0d3eefaaf"
+    },
+    {
+      "path": "assets/roulette-rewards/equipment/equipment_advanced_ribbon.png",
+      "bytes": 70152,
+      "sha256": "5fe49ba50ea447ac568fc337537418c88619918f75e75cf1d871b972f95d25fc"
+    },
+    {
+      "path": "assets/roulette-rewards/equipment/equipment_hero_band.png",
+      "bytes": 85189,
+      "sha256": "207f2200cd3300c35f86303e6a945478aa5e934bdd12331b21360298d941e534"
+    },
+    {
+      "path": "assets/roulette-rewards/equipment/equipment_hero_glove.png",
+      "bytes": 72870,
+      "sha256": "78588ac33b5f391fa916c7e083b6f803c8959e8ab5160bca6da2d7a96b7833ce"
+    },
+    {
+      "path": "assets/roulette-rewards/equipment/equipment_hero_paw.png",
+      "bytes": 107603,
+      "sha256": "bee60e31f50a1146c4ae89003be6ae8ff5d75f3817dd0a5f0054a62442dadccb"
+    },
+    {
+      "path": "assets/roulette-rewards/equipment/equipment_hero_ribbon.png",
+      "bytes": 121067,
+      "sha256": "bf617adc81e845d17b86ca8da78a4749c333399b7bb7a0a1015113b86c0a3cd4"
+    },
+    {
+      "path": "assets/roulette-rewards/equipment/equipment_normal_band.png",
+      "bytes": 58435,
+      "sha256": "55cd7faf307394caf4d9a0913c3fef100b745b499a53e5aead0350e3ce28b584"
+    },
+    {
+      "path": "assets/roulette-rewards/equipment/equipment_normal_glove.png",
+      "bytes": 39736,
+      "sha256": "d5b441148abc1e945cb6b3f200c080cf78c8603c990f6bc3ff701cc90c9b4250"
+    },
+    {
+      "path": "assets/roulette-rewards/equipment/equipment_normal_paw.png",
+      "bytes": 65578,
+      "sha256": "41bcbc3365d98cabd327f48b79b5b6d5104a6ea84a78dad27a41ca74443df2d4"
+    },
+    {
+      "path": "assets/roulette-rewards/equipment/equipment_normal_ribbon.png",
+      "bytes": 67043,
+      "sha256": "d5ccddbe63998b6319f4c826612036d1f44ca7d27db60a7c07c6fd5d12f3bfa6"
+    },
+    {
+      "path": "assets/roulette-rewards/equipment/equipment_rare_band.png",
+      "bytes": 70746,
+      "sha256": "bffd445e001222e5c000990183afee10e96ee44a24c0aaab86ec4233dfb4215d"
+    },
+    {
+      "path": "assets/roulette-rewards/equipment/equipment_rare_glove.png",
+      "bytes": 58860,
+      "sha256": "e2d9bc7057bbdf6715b95433397b2ce493bc29ee10fffe1a65f75e7d92ef70d4"
+    },
+    {
+      "path": "assets/roulette-rewards/equipment/equipment_rare_paw.png",
+      "bytes": 87640,
+      "sha256": "02dd3f814ef64fa1b4018182f1355c8969851c35a0c5b8d9585646d9f37279d1"
+    },
+    {
+      "path": "assets/roulette-rewards/equipment/equipment_rare_ribbon.png",
+      "bytes": 81502,
+      "sha256": "123929bd23d1afc11e23489a7ef8cbc56a6d640aad40b41d758abdfb58fa50e8"
+    },
+    {
+      "path": "assets/roulette-rewards/recipes/recipe_advanced_gear.png",
+      "bytes": 89664,
+      "sha256": "faee4d8d0277c3177bebb77d139a15fe7d06020be4d8a265a485f7605b59b021"
+    },
+    {
+      "path": "assets/roulette-rewards/recipes/recipe_advanced_shard.png",
+      "bytes": 86723,
+      "sha256": "e3a6dc0f0caf43b942a70330202720065fce5737968acef7f60059b5856c1ca7"
+    },
+    {
+      "path": "assets/roulette-rewards/recipes/recipe_advanced_wheel.png",
+      "bytes": 85373,
+      "sha256": "a9cf1cfa33e1d090d963ee8741a2ad4f96f869d5fede23cd59c9b84eff2748c6"
+    },
+    {
+      "path": "assets/roulette-rewards/recipes/recipe_hero_fish.png",
+      "bytes": 83499,
+      "sha256": "8d4afd126e99dac7c48462de000a6f851411fd9e65a3e2d40999b00f30505973"
+    },
+    {
+      "path": "assets/roulette-rewards/recipes/recipe_hero_flower.png",
+      "bytes": 88491,
+      "sha256": "4fb08ab12a61fff6f468c6447788fb4195240d14163bd5253cd0203937990668"
+    },
+    {
+      "path": "assets/roulette-rewards/recipes/recipe_legend_statue.png",
+      "bytes": 86717,
+      "sha256": "7f66605ef551d47792d5cf1d854078fa9d35d332b761285fdb87781cd8056ad9"
+    },
+    {
+      "path": "assets/roulette-rewards/recipes/recipe_rare_cloud.png",
+      "bytes": 79325,
+      "sha256": "f6300b589a8f2d7e48cfeceb4a6435b7854cd4b8f8358863726d7f02295cba70"
+    },
+    {
+      "path": "assets/roulette-rewards/recipes/recipe_rare_round.png",
+      "bytes": 85218,
+      "sha256": "79a7130f2d98103b9e50e4d58eebe5c57f2370983e24d00d53a1ee4a7c75c540"
+    },
+    {
+      "path": "assets/roulette-rewards/recipes/recipe_rare_spiral.png",
+      "bytes": 86812,
+      "sha256": "6e16da06b8fd30a352abccc13c6707875afeac58766654263e7fd9ee3b9b743c"
+    },
+    {
+      "path": "assets/roulette-rewards/recipes/recipe_red_leaf.png",
+      "bytes": 81162,
+      "sha256": "e5566715b0e2eb75dca937525394114830f0a9f09dac0665331a98d26da21e9f"
+    },
+    {
+      "path": "assets/roulette-rewards/summon/ticket_blue_100.png",
+      "bytes": 91035,
+      "sha256": "0816af97992373056defc0cd185e47efbcbc3d065598cf98b7b0e3b86c0875c3"
+    },
+    {
+      "path": "assets/roulette-rewards/summon/ticket_blue_120.png",
+      "bytes": 1374252,
+      "sha256": "7149bd592a1907f782edf5db97756a732fdc382b72dd911924c7716f22075b68"
+    },
+    {
+      "path": "assets/roulette-rewards/summon/ticket_blue_150.png",
+      "bytes": 93892,
+      "sha256": "929bfec1c33eef26fdc1ccf1037cd366f2ef2c8e8092b9bc5d642d5d2312e85e"
+    },
+    {
+      "path": "assets/roulette-rewards/summon/ticket_blue_300.png",
+      "bytes": 94419,
+      "sha256": "d5756e17f43d244f60f1b5517796b64bb739e9093342c6eb556e6ed76b0ee67a"
+    },
+    {
+      "path": "assets/roulette-rewards/summon/ticket_blue_50.png",
+      "bytes": 92834,
+      "sha256": "ef3d82ea325a6cf9f9437766382b9c7983577cb347014060ea3bd6f28c17d0b0"
+    },
+    {
+      "path": "assets/roulette-rewards/summon/ticket_blue_500.png",
+      "bytes": 93343,
+      "sha256": "85ffc18e03f2b96625c365e32915cb6edda12347d1d03ca4747ea99f06fceaef"
+    },
+    {
+      "path": "assets/roulette-rewards/summon/ticket_blue_80.png",
+      "bytes": 94503,
+      "sha256": "6d3ae1a0e151db770ef657faba3fc298dbf43c9e36071aa97581d00c379f9a0d"
+    },
+    {
+      "path": "assets/roulette-rewards/summon/ticket_blue_800.png",
+      "bytes": 94895,
+      "sha256": "a5fc83ed815730b05c0a1dfe3886a4b66252032b9a5da4558d9c7536a699543b"
+    },
+    {
+      "path": "assets/roulette-rewards/summon/ticket_gold_100.png",
+      "bytes": 106880,
+      "sha256": "0818bfddadc8def840db8436091fed4483b99dd864dcb315ad2b896d60cfb421"
+    },
+    {
+      "path": "assets/roulette-rewards/summon/ticket_gold_120.png",
+      "bytes": 110342,
+      "sha256": "b31cbaaa90aba03721b15f6b1fe300b196d64cab50f42ed3dcf49e7203f75df3"
+    },
+    {
+      "path": "assets/roulette-rewards/summon/ticket_gold_150.png",
+      "bytes": 109754,
+      "sha256": "fd381831a57c1ac91db9c91bad7d55c3c918d98749ceb216030e6c5ee2b02d4f"
+    },
+    {
+      "path": "assets/roulette-rewards/summon/ticket_gold_3.png",
+      "bytes": 92797,
+      "sha256": "e6d47f78fb261565faa3c5dd6e89d337218c2ccf115ffa94a6b9317eca2e8c57"
+    },
+    {
+      "path": "assets/roulette-rewards/summon/ticket_gold_300.png",
+      "bytes": 110329,
+      "sha256": "c293b3153b24fbe51bf28311c0267b3010deca86d8b7f53cc524e388378ce97e"
+    },
+    {
+      "path": "assets/roulette-rewards/summon/ticket_gold_5.png",
+      "bytes": 91627,
+      "sha256": "6e2f59acc0dd81d61a085e453a2cae8b54b19a4cbecc1ee9e18e001da5c32bf9"
+    },
+    {
+      "path": "assets/roulette-rewards/summon/ticket_gold_500.png",
+      "bytes": 109209,
+      "sha256": "a48f1c34ac02308fa0b21203d14c881ec8c55852776b28a96aa6350d35883f8a"
+    },
+    {
+      "path": "assets/roulette-rewards/summon/ticket_gold_800.png",
+      "bytes": 110894,
+      "sha256": "1c4f9e37e9fe523d952021d0148dc3761b3f782ed236a61e01316d5ab77c86f1"
+    },
+    {
+      "path": "assets/roulette-rewards/summon/ticket_purple_100.png",
+      "bytes": 91629,
+      "sha256": "a1b6e2dc2f9c4808118ad3a984551de9626c3fd49bbd4a6f9cef283d1f2da42b"
+    },
+    {
+      "path": "assets/roulette-rewards/summon/ticket_purple_50.png",
+      "bytes": 93435,
+      "sha256": "80c05e2c11ae1eed32c6d79c0ba13b519ab16ca0c046b9368cee0ec0b0711065"
+    },
+    {
+      "path": "assets/roulette-rewards/summon/ticket_purple_80.png",
+      "bytes": 95176,
+      "sha256": "a46c7783e3a8103c2e4d5eada894a293f576d913b5326bf52ec522d7f6a9afdc"
+    },
+    {
       "path": "boss.html",
       "bytes": 206956,
-      "sha256": "d16557a8ab79957162c93554e784a8998be91d62ffe05d324d47391fe37652b2"
+      "sha256": "8693d3933e70c0046106cd92c1a3a3aa7a174d4ba9ca424cffffd965b99798c6"
     },
     {
       "path": "firebase-config.js",
@@ -430,27 +717,27 @@
     {
       "path": "index-module.mjs",
       "bytes": 29980,
-      "sha256": "85fc15fc5a856d40661d818e0fdfac6f3be5f18ef8adcb97f16fcfdb72fb4ecb"
+      "sha256": "62d4364e8f0e82e78dc52bf95913eb3efac0ad2a46138b19ccd61d25147f28f0"
     },
     {
       "path": "index.html",
       "bytes": 2544,
-      "sha256": "c55e8220ccae723ecd16954a789e14d286e6731b4f7d98a39ce822c59c8eea75"
+      "sha256": "1e37727935128db875590e704c248b1458018605dcc191c9c7c5a2a3f8327779"
     },
     {
       "path": "main.html",
       "bytes": 610993,
-      "sha256": "a2429288ef3678d52b67b7874ad7bbfe14ab3a749f31442723f4edff7c17d5e3"
+      "sha256": "aef8bd72a3c7782d0a289d4d3dc976fd602e1d7774058e0bc748eabc6eb89daa"
     },
     {
       "path": "ops.html",
       "bytes": 283978,
-      "sha256": "b9b04edfe64e445ef2c0a9a1ad2a847e93b7280e756a64d7af3721376e6a5e56"
+      "sha256": "b74290b531d598b63a798ddcf01e5e56ede85cf5762591f37e4f755dd227db84"
     },
     {
       "path": "roulette.html",
-      "bytes": 54809,
-      "sha256": "c27ecaeaefb49c2c62654779f3d405e19f069bf85a21eb37fc4fa00f59a13aef"
+      "bytes": 67741,
+      "sha256": "cb3a6d7a18215cace987b2dffead4513d68e57b4d08639d0573285b8145a47f3"
     },
     {
       "path": "shared/admin-audit.js",
@@ -478,6 +765,11 @@
       "sha256": "5032898b9a73384696c83fce01bc9ce07a97cf2016c6f89150acdb79a754755b"
     },
     {
+      "path": "shared/roulette-reward-catalog.js",
+      "bytes": 7231,
+      "sha256": "b237ea3346c48f7e780393f984ca5cb0451da1d472b813bd21d7b9f7c789b1ad"
+    },
+    {
       "path": "shared/tenant.js",
       "bytes": 3652,
       "sha256": "6b9cd0ceade2bf03ebc722460f4e02121c408dae5ecca6dd7d561d5583df3f53"
@@ -487,5 +779,7 @@
       "bytes": 15045,
       "sha256": "8e85fd2eb0bdd7ec7c692597f49887e3e33b7b913740c69262b8ef9f1485e1a6"
     }
-  ]
+  ],
+  "previousRelease": "V4.2.4",
+  "note": "See BUILD_MANIFEST_V4.2.5.json for actual file hashes."
 }

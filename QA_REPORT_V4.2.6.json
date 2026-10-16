@@ -1,0 +1,57 @@
+{
+  "version": "V4.2.6",
+  "base": "V4.2.5",
+  "asset_total": 67,
+  "baseline_png_count": 45,
+  "new_png_count": 22,
+  "categories": {
+    "장비": 22,
+    "레시피": 10,
+    "소환권": 27,
+    "상자": 8
+  },
+  "baseline_unchanged": true,
+  "firestore_rules_unchanged": true,
+  "approved_ticket_blue_120": {
+    "unchanged": true,
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGB",
+    "reason": "사용자 승인 원본을 변경하지 않기 위한 예외"
+  },
+  "added_icons_spec": {
+    "size": [
+      512,
+      512
+    ],
+    "mode": "RGBA",
+    "transparent_corners": true
+  },
+  "browser_QA": {
+    "widths": [
+      320,
+      390,
+      720
+    ],
+    "result_counts": [
+      1,
+      2,
+      8
+    ],
+    "icon_popup_above": true,
+    "category_popup_widths": [
+      108,
+      118
+    ],
+    "grade_popup_width_under_100": true,
+    "ticket_options": 27,
+    "chest_legend_options": 3,
+    "share_png_output_size": [
+      1080,
+      781
+    ]
+  },
+  "limits": "브라우저 모의 데이터 테스트이며 iPhone Safari 실제 디바이스·Firebase 네트워크 연결 검증은 배포 이후 필요. 720px 8개 테스트는 검증용 애니메이션 대기시간만 단축하여 수행, 배포 JS 추첨 애니메이션 시간은 변경하지 않음."
+}

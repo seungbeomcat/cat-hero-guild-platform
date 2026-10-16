@@ -1,3 +1,23 @@
+# Cat Hero Guild Platform V4.2.6
+
+- V4.2.4 전체본 기반, 관리자 활동 기록 개별 삭제·일괄삭제 추가.
+- GitHub에 ZIP 내부 폴더의 **내용 전체**를 배포합니다.
+- **필수:** Firestore Rules도 `firestore.multiguild.rules` 기준으로 업데이트해야 길드 관리자의 삭제가 동작합니다.
+- 변경 내역: `RELEASE_NOTES_V4.2.6.md`.
+
+---
+
+# Cat Hero Guild Platform V4.2.4
+
+- V4.2.3 전체본을 기반으로, 보상 선택과 당첨 결과 및 공유 이미지 개선.
+- GitHub에는 ZIP 내부 최상위 폴더 내용 전체를 기존 리포지토리 루트에 업로드하세요.
+- Firebase 설정, Rules, 기존 운영용 페이지/길드 데이터는 유지합니다.
+- 자세한 변경 내용: `RELEASE_NOTES_V4.2.4.md`.
+- 보상 아이콘 추가: `assets/roulette-rewards/`에 PNG 파일을 두고 `shared/roulette-reward-catalog.js`에 항목을 등록합니다.
+- 이전 릴리스 기록은 기존 `RELEASE_NOTES_V4.2.3.md` 등에 보존했습니다.
+
+---
+
 # Cat Hero Guild Platform V4.2.3
 
 Build date: 2026-10-16

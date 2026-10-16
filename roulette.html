@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#090218">
-<title>Cat Hero · 행운 룰렛 V4.2.4</title>
+<title>Cat Hero · 행운 룰렛 V4.2.6</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <style>
 :root{--violet:#8b47f2;--violet2:#bc78ff;--blue:#5bc8ff;--ink:#f8f3ff;--muted:#c4b5dd;--panel:rgba(24,12,49,.86);--panel2:rgba(13,8,31,.94);--line:#8a43e8;--gold:#ffd76a;--green:#7ff4cc}
@@ -76,7 +76,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 
 
 <style id="v424-reward-picker-and-winner-grid">
-/* V4.2.4: compact inline item selectors; image-only icon dropdown; single-line result grid. */
+/* V4.2.6: compact inline item selectors; image-only icon dropdown; single-line result grid. */
 .item-inputs{gap:8px!important;margin-top:10px!important}
 .item-row{display:flex!important;align-items:center!important;gap:6px!important;min-width:0!important;width:100%!important;position:relative}
 .item-tag{height:43px!important;flex:0 0 42px!important;font-size:11px!important}
@@ -99,8 +99,8 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 .reward-icon-option[aria-pressed="true"]{border-color:#82ccff;box-shadow:0 0 0 1px #4ea3fa,inset 0 0 8px rgba(79,161,250,.25)}
 .reward-icon-option[aria-pressed="true"]:after{content:'✓';position:absolute;right:2px;top:1px;color:#fefefe;background:#267dd1;border-radius:50%;font-size:10px;width:15px;height:15px;line-height:15px;text-align:center}
 /* Keep results in a compact multi-column grid; one outcome = one horizontal card. */
-.result-list{display:grid!important;grid-template-columns:repeat(var(--winner-cols,2),minmax(0,1fr))!important;gap:8px!important;width:100%!important;max-width:var(--winner-grid-max,100%)!important;margin:0 auto!important;align-items:stretch!important;justify-content:center!important}
-.result-row{display:flex!important;flex:none!important;flex-direction:row!important;align-items:center!important;justify-content:space-between!important;gap:7px!important;min-width:0!important;width:100%!important;max-width:none!important;min-height:55px!important;height:55px!important;padding:6px 9px!important;border:1.6px solid #658be5!important;border-radius:12px!important;background:linear-gradient(135deg,#1d2d49,#241638)!important;box-shadow:inset 0 1px 0 rgba(227,216,255,.07),0 3px 9px rgba(0,0,0,.15)!important;overflow:hidden!important}
+.result-list{display:flex!important;flex-direction:row!important;flex-wrap:wrap!important;gap:8px!important;width:100%!important;max-width:var(--winner-grid-max,100%)!important;margin:0 auto!important;align-items:stretch!important;justify-content:center!important}
+.result-row{display:flex!important;flex:0 0 var(--winner-card-width,156px)!important;flex-direction:row!important;align-items:center!important;justify-content:space-between!important;gap:7px!important;min-width:0!important;width:var(--winner-card-width,156px)!important;max-width:var(--winner-card-width,156px)!important;min-height:55px!important;height:55px!important;padding:6px 9px!important;border:1.6px solid #658be5!important;border-radius:12px!important;background:linear-gradient(135deg,#1d2d49,#241638)!important;box-shadow:inset 0 1px 0 rgba(227,216,255,.07),0 3px 9px rgba(0,0,0,.15)!important;overflow:hidden!important}
 .result-row.is-text{border-color:#9264d3!important;background:linear-gradient(130deg,#2a1d42,#17152f)!important}
 .result-item{display:flex!important;flex:0 1 auto!important;align-items:center!important;justify-content:flex-start!important;min-width:0!important;width:auto!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important;color:#ffd68d!important;text-align:left!important;font-size:clamp(10.5px,2.75vw,13px)!important;line-height:1.1!important}
 .result-item.reward-image{flex:0 0 auto!important;overflow:visible!important}
@@ -109,6 +109,46 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 .result-row.is-text .result-winner{color:#d5d6ff!important}
 @media(min-width:540px){.reward-category{width:116px}.reward-grade{width:106px}.result-row{height:64px!important;min-height:64px!important}.result-item.reward-image img{width:48px!important;height:48px!important}.result-winner{font-size:14.5px!important}.result-item{font-size:14px!important}}
 @media(max-width:355px){.item-row{gap:4px!important}.item-tag{flex-basis:37px!important}.reward-category{width:73px!important;padding-left:5px!important;padding-right:16px!important;font-size:12px!important}.reward-grade{width:66px!important;padding-left:5px!important;padding-right:16px!important;font-size:12px!important}.reward-pick-button{padding:2px 4px!important;font-size:10px!important}.result-row{gap:4px!important;padding:5px 6px!important}.result-item.reward-image img{width:37px!important;height:37px!important}.result-winner{font-size:10.5px!important}}
+</style>
+
+<style id="v426-compact-reward-menus-and-winners">
+/* Only the reward item controls are replaced; participant pickers and item-count selector remain unchanged. */
+.item-row{gap:6px!important}
+.reward-choice-wrap{position:relative;flex:0 0 auto;min-width:0}
+.reward-kind-wrap{width:clamp(75px,23vw,110px)}
+.reward-grade-wrap{width:clamp(67px,21vw,94px)}
+button.reward-compact-select{
+ position:relative;display:block;width:100%!important;min-width:0!important;max-width:none!important;height:43px!important;
+ border:1.5px solid #8552b8!important;border-radius:11px!important;
+ color:#f6eaff!important;background:linear-gradient(145deg,#251044,#140a2b)!important;background-image:none!important;
+ padding:0!important;outline:none;font:850 clamp(11px,3vw,13px) "Pretendard Variable",sans-serif!important;cursor:pointer
+}
+.reward-compact-select:focus-visible{outline:2px solid #9accff!important;outline-offset:2px}
+.reward-compact-label{position:absolute;inset:0 2px;display:flex;align-items:center;justify-content:center;white-space:nowrap;pointer-events:none;text-align:center}
+.reward-compact-label.is-placeholder{color:#bba5d1}
+.reward-select-chevron{position:absolute;right:6px;top:50%;transform:translateY(-58%);font-size:16px;line-height:1;color:#d9b3ff;pointer-events:none}
+.reward-choice-menu{position:absolute;z-index:110;left:0;top:calc(100% + 5px);width:118px;max-width:calc(100vw - 26px);max-height:234px;overflow-y:auto;overscroll-behavior:contain;padding:5px;border:1.5px solid #9853eb;border-radius:12px;background:#1b1035;box-shadow:0 12px 35px #000a,0 0 12px #783cb933}
+.reward-choice-menu[hidden]{display:none!important}
+.reward-grade-menu{width:94px}
+.reward-choice-option{display:block;width:100%;height:38px;border:0;border-radius:8px;background:transparent;color:#f3e7ff;text-align:center;font:850 13px "Pretendard Variable",sans-serif;cursor:pointer}
+.reward-choice-option+.reward-choice-option{border-top:1px solid #6c439522}
+.reward-choice-option.selected,.reward-choice-option:hover{background:linear-gradient(120deg,#6034aa,#2e3e82);color:#fff}
+.reward-choice-option:disabled{opacity:.31;cursor:not-allowed}
+/* Reward icon chooser opens above its own input in all modes, and scrolls inside the menu. */
+.reward-picker{position:relative;min-width:0}
+.reward-pick-menu{bottom:calc(100% + 7px)!important;top:auto!important;right:0!important;width:min(310px,calc(100vw - 36px))!important;max-height:min(344px,52dvh);overscroll-behavior:contain}
+.reward-pick-button{position:relative;justify-content:center!important;padding:3px 20px 3px 6px!important}
+.reward-pick-placeholder{width:100%;text-align:center!important;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.reward-pick-button .reward-chevron{position:absolute;right:7px;top:50%;transform:translateY(-55%);font-size:16px}
+.reward-pick-button img{margin:0 auto}
+/* Each compact result card consists of exactly one line of icon(or entered reward) and winner. */
+.result-list{gap:8px!important;justify-content:center!important}
+.result-row{height:51px!important;min-height:51px!important;padding:5px 7px!important;gap:7px!important;justify-content:center!important;border-radius:11px!important;flex:0 0 var(--winner-card-width,130px)!important}
+.result-item.reward-image img{width:38px!important;height:38px!important}
+.result-item{flex:0 1 auto!important;font-size:12px!important;max-width:60%!important;text-align:center!important}
+.result-winner{flex:0 1 auto!important;font-size:13px!important;text-align:center!important;max-width:72%!important}
+@media(max-width:355px){.reward-kind-wrap{width:75px}.reward-grade-wrap{width:67px}.reward-choice-menu{width:108px}.reward-grade-menu{width:88px}.reward-select-chevron{right:4px}.reward-compact-label{font-size:11px}.item-row{gap:4px!important}.result-row{gap:5px!important;padding:4px 6px!important}.result-item.reward-image img{width:36px!important;height:36px!important}.result-winner{font-size:12px!important}}
+@media(min-width:540px){.reward-kind-wrap{width:110px}.reward-grade-wrap{width:94px}.result-row{height:55px!important;min-height:55px!important}.result-item.reward-image img{width:41px!important;height:41px!important}.result-winner{font-size:13.5px!important}}
 </style>
 </head>
 <body>
@@ -167,12 +207,12 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
     </div>
   </section>
 
-  <footer class="footer"><b>Created by 879 | 안창살 · V4.2.4</b><br>2026.10.16</footer>
+  <footer class="footer"><b>Created by 879 | 안창살 · V4.2.6</b><br>2026.10.17</footer>
 </main>
 
 <script src="./firebase-config.js"></script>
 <script src="./shared/guild-core.js?v=423"></script>
-<script src="./shared/roulette-reward-catalog.js?v=424"></script>
+<script src="./shared/roulette-reward-catalog.js?v=426"></script>
 <script>
 (function(){
 'use strict';
@@ -181,7 +221,7 @@ const core=window.DosaljaShared||window.CatHeroShared||{members:{},guild:{}};
 const guild=core.guild||{};
 const roster=Object.entries(core.members||{}).filter(([,m])=>!m?.retired&&!m?.inactive&&!m?.left).sort((a,b)=>Number(b[1]?.base||0)-Number(a[1]?.base||0)||a[0].localeCompare(b[0],'ko-KR')).map(([n])=>n);
 const rewardCatalog=Array.isArray(window.CatHeroRouletteRewards)?window.CatHeroRouletteRewards:[];
-const rewardKinds=["소환권","장비","레시피","입력"];
+const rewardKinds=["소환권","상자","장비","레시피","입력"];
 const rewardGrades=["일반","고급","희귀","영웅","전설"];
 const blankReward=()=>({kind:"",grade:"",icon:"",text:""});
 const rewardValid=x=>!!x&&(x.kind==="입력"?!!String(x.text||"").trim():!!x.icon&&rewardCatalog.some(r=>r.src===x.icon&&r.kind===x.kind&&(x.kind==="소환권"||r.grade===x.grade)));
@@ -216,36 +256,74 @@ function confirmMembers(){if(state.selected.length<2||state.running)return;state
 $('memberConfirmBtn').onclick=confirmMembers;
 function setupItems(){state.itemCount=0;state.items=[];$('itemStep').hidden=false;$('itemStatus').textContent='미설정';$('itemCountBtn').innerHTML='<span class="placeholder">추첨 항목 개수 선택</span><span class="chev">⌄</span>';$('itemInputs').innerHTML='';$('startBtn').disabled=true;const host=$('itemCountMenu');host.innerHTML='';for(let n=1;n<=state.peopleCount;n++){const b=document.createElement('button');b.type='button';b.dataset.value=n;b.textContent=n+'개';b.onclick=()=>selectItemCount(n);host.append(b);}}
 function selectItemCount(n){state.itemCount=n;state.items=Array.from({length:n},blankReward);$('itemCountBtn').innerHTML=`<span>${n}개</span><span class="chev">⌄</span>`;$('itemCountBtn').setAttribute('aria-expanded','false');$('itemCountMenu').hidden=true;$('itemStatus').textContent=n+'개';[...$('itemCountMenu').querySelectorAll('button')].forEach(b=>b.classList.toggle('selected',Number(b.dataset.value)===n));renderItemInputs();}
-function closeRewardMenus(except){document.querySelectorAll('.reward-pick-menu').forEach(el=>{if(el!==except){el.hidden=true;el.previousElementSibling?.setAttribute('aria-expanded','false');}});}
-function menuOptions(select,values,placeholder){const opt=document.createElement('option');opt.value='';opt.textContent=placeholder;select.append(opt);values.forEach(value=>{const o=document.createElement('option');o.value=value;o.textContent=value;select.append(o);});}
+function closeRewardMenus(except){
+  document.querySelectorAll('.reward-pick-menu,.reward-choice-menu').forEach(el=>{
+    if(el!==except){el.hidden=true;el.previousElementSibling?.setAttribute('aria-expanded','false');}
+  });
+}
+function makeRewardDropdown(i,kind,options,placeholder,value,choose){
+  const host=document.createElement('div');host.className='reward-choice-wrap '+(kind==='category'?'reward-kind-wrap':'reward-grade-wrap');
+  const button=document.createElement('button');button.type='button';button.className='reward-compact-select '+(kind==='category'?'reward-category':'reward-grade');
+  button.setAttribute('aria-label',`${i+1}차 보상 ${kind==='category'?'분류':'등급'}`);button.setAttribute('aria-haspopup','listbox');button.setAttribute('aria-expanded','false');
+  const label=document.createElement('span');label.className='reward-compact-label'+(!value?' is-placeholder':'');label.textContent=value||placeholder;
+  const arrow=document.createElement('span');arrow.className='reward-select-chevron';arrow.textContent='⌄';button.append(label,arrow);
+  const menu=document.createElement('div');menu.className='reward-choice-menu '+(kind==='category'?'reward-kind-menu':'reward-grade-menu');menu.setAttribute('role','listbox');menu.hidden=true;
+  options.forEach(opt=>{
+    const b=document.createElement('button');b.type='button';b.className='reward-choice-option'+(opt.value===value?' selected':'');b.textContent=opt.value;
+    b.setAttribute('role','option');b.setAttribute('aria-selected',String(opt.value===value));b.disabled=Boolean(opt.disabled);
+    b.onclick=()=>{choose(opt.value);};menu.append(b);
+  });
+  button.onclick=e=>{e.stopPropagation();const isOpening=menu.hidden;closeRewardMenus(isOpening?menu:null);closeMenus();menu.hidden=!isOpening;button.setAttribute('aria-expanded',String(isOpening));};
+  host.append(button,menu);return host;
+}
+function updatePopupHeight(menu,button){
+  const sticky=document.querySelector('.topbar');const stickyBottom=sticky?sticky.getBoundingClientRect().bottom:0;
+  // Prefer opening upwards, with scrolling within the menu. iPhone Safari uses the visible viewport.
+  const usable=button.getBoundingClientRect().top-Math.max(stickyBottom+8,12)-8;
+  menu.style.maxHeight=Math.max(112,Math.min(344,usable))+'px';
+}
 function renderItemInputs(){
  const host=$('itemInputs');host.innerHTML='';closeRewardMenus();
  for(let i=0;i<state.itemCount;i++){
   const item=state.items[i]||blankReward(),row=document.createElement('div');row.className='item-row';
   const tag=document.createElement('span');tag.className='item-tag';tag.textContent=`${i+1}차`;row.append(tag);
-  const category=document.createElement('select');category.className='reward-category';category.setAttribute('aria-label',`${i+1}차 보상 분류`);menuOptions(category,rewardKinds,'분류');category.value=item.kind;
-  category.onchange=()=>{state.items[i]={...blankReward(),kind:category.value};renderItemInputs();};row.append(category);
+  row.append(makeRewardDropdown(i,'category',rewardKinds.map(v=>({value:v})),'분류',item.kind,
+    value=>{state.items[i]={...blankReward(),kind:value};renderItemInputs();}));
   if(item.kind==='입력'){
-   const input=document.createElement('input');input.type='text';input.className='reward-text-input';input.maxLength=40;input.autocomplete='off';input.placeholder='자유 입력';input.setAttribute('aria-label',`${i+1}차 직접 입력 보상`);input.value=item.text||'';
-   input.oninput=()=>{state.items[i].text=input.value;updateStart();};row.append(input);
-  } else if(item.kind){
-   if(item.kind!=='소환권'){
-    const grade=document.createElement('select');grade.className='reward-grade';grade.setAttribute('aria-label',`${i+1}차 보상 등급`);menuOptions(grade,rewardGrades,'등급');grade.value=item.grade;
-    grade.onchange=()=>{state.items[i]={...state.items[i],grade:grade.value,icon:''};renderItemInputs();};row.append(grade);
-   }
-   const holder=document.createElement('div');holder.className='reward-picker';const button=document.createElement('button');button.type='button';button.className='reward-pick-button';button.setAttribute('aria-label',`${i+1}차 보상 아이콘 선택`);button.setAttribute('aria-expanded','false');const locked=item.kind!=='소환권'&&!item.grade;button.disabled=locked;
-   if(item.icon){const img=document.createElement('img');img.src=item.icon;img.alt='선택된 보상 아이콘';button.append(img);}else{const hint=document.createElement('span');hint.className='reward-pick-placeholder';hint.textContent='아이콘 선택';button.append(hint);}
-   const arrow=document.createElement('span');arrow.className='reward-chevron';arrow.textContent='⌄';button.append(arrow);
-   const menu=document.createElement('div');menu.className='reward-pick-menu';menu.hidden=true;
-   const grid=document.createElement('div');grid.className='reward-icon-grid';const filtered=rewardCatalog.filter(r=>r.kind===item.kind&&(item.kind==='소환권'||r.grade===item.grade));
-   filtered.forEach(reward=>{const option=document.createElement('button');option.type='button';option.className='reward-icon-option';option.setAttribute('aria-label','보상 아이콘 선택');option.setAttribute('aria-pressed',String(item.icon===reward.src));option.title='';const img=document.createElement('img');img.src=reward.src;img.alt='';img.loading='lazy';option.append(img);option.onclick=()=>{state.items[i].icon=reward.src;renderItemInputs();updateStart();};grid.append(option);});
-   menu.append(grid);button.onclick=e=>{e.stopPropagation();const next=menu.hidden;closeRewardMenus(next?menu:null);closeMenus();menu.hidden=!next;button.setAttribute('aria-expanded',String(next));};holder.append(button,menu);row.append(holder);
+    const input=document.createElement('input');input.type='text';input.className='reward-text-input';input.maxLength=40;input.autocomplete='off';input.placeholder='자유 입력';input.setAttribute('aria-label',`${i+1}차 직접 입력 보상`);input.value=item.text||'';
+    input.oninput=()=>{state.items[i].text=input.value;updateStart();};row.append(input);
+  }else if(item.kind){
+    if(item.kind!=='소환권'){
+      const values=rewardGrades.map(v=>({value:v,disabled:!rewardCatalog.some(r=>r.kind===item.kind&&r.grade===v)}));
+      row.append(makeRewardDropdown(i,'grade',values,'등급',item.grade,
+        value=>{state.items[i]={...state.items[i],grade:value,icon:''};renderItemInputs();}));
+    }
+    const holder=document.createElement('div');holder.className='reward-picker';
+    const button=document.createElement('button');button.type='button';button.className='reward-pick-button';button.setAttribute('aria-label',`${i+1}차 보상 아이콘 선택`);button.setAttribute('aria-expanded','false');
+    const locked=item.kind!=='소환권'&&!item.grade;button.disabled=locked;
+    if(item.icon){const img=document.createElement('img');img.src=item.icon;img.alt='선택된 보상 아이콘';button.append(img);}else{const hint=document.createElement('span');hint.className='reward-pick-placeholder';hint.textContent='아이콘 선택';button.append(hint);}
+    const arrow=document.createElement('span');arrow.className='reward-chevron';arrow.textContent='⌄';button.append(arrow);
+    const menu=document.createElement('div');menu.className='reward-pick-menu';menu.hidden=true;
+    const grid=document.createElement('div');grid.className='reward-icon-grid';
+    const filtered=rewardCatalog.filter(r=>r.kind===item.kind&&(item.kind==='소환권'||r.grade===item.grade));
+    filtered.forEach(reward=>{
+      const option=document.createElement('button');option.type='button';option.className='reward-icon-option';option.dataset.rewardId=reward.id;option.setAttribute('aria-label','보상 아이콘 선택');option.setAttribute('aria-pressed',String(item.icon===reward.src));
+      const img=document.createElement('img');img.src=reward.src;img.alt='';img.loading='lazy';option.append(img);
+      option.onclick=()=>{state.items[i].icon=reward.src;renderItemInputs();updateStart();};grid.append(option);
+    });
+    menu.append(grid);
+    button.onclick=e=>{
+      e.stopPropagation();const open=menu.hidden;closeRewardMenus(open?menu:null);closeMenus();menu.hidden=!open;button.setAttribute('aria-expanded',String(open));
+      if(open){updatePopupHeight(menu,button);requestAnimationFrame(()=>{const r=menu.getBoundingClientRect();const bar=document.querySelector('.topbar');const limit=(bar?.getBoundingClientRect().bottom||0)+6;if(r.top<limit){window.scrollBy({top:r.top-limit-4,behavior:'smooth'});}});}
+    };
+    holder.append(button,menu);row.append(holder);
   }
   host.append(row);
  }
  updateStart();
 }
-document.addEventListener('click',e=>{if(!e.target.closest('.reward-picker'))closeRewardMenus();});
+document.addEventListener('click',e=>{if(!e.target.closest('.reward-picker,.reward-choice-wrap'))closeRewardMenus();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeRewardMenus();});
 function updateStart(){$('startBtn').disabled=!(state.membersConfirmed&&state.selected.length>=2&&state.peopleCount===state.selected.length&&state.itemCount>0&&state.items.length===state.itemCount&&state.items.every(rewardValid));}
 
 function hashText(text){let h=2166136261;for(let i=0;i<text.length;i++){h^=text.charCodeAt(i);h=Math.imul(h,16777619);}return (h>>>0).toString(36).toUpperCase();}
@@ -274,8 +352,31 @@ function participantRows(names){
 }
 function idealWinnerCols(n){if(n<=3)return n;if(n===4)return 2;if(n===6)return 3;if(n===8)return 4;if(n===9)return 3;return Math.min(4,Math.ceil(Math.sqrt(n)));}
 function resultGroups(items,maxCols=4){const n=items.length,cols=Math.min(maxCols,idealWinnerCols(n)),out=[];for(let i=0;i<n;i+=cols)out.push(items.slice(i,i+cols));return out;}
-function sizeWinnerGrid(){const host=$('resultList');if(!host||!state.results.length)return;const avail=host.parentElement?.clientWidth||host.clientWidth||320;const ideal=idealWinnerCols(state.results.length);const mobileMax=Math.max(1,Math.floor((avail+8)/140));const cols=Math.min(ideal,mobileMax);host.style.setProperty('--winner-cols',String(cols));host.style.setProperty('--winner-grid-max',Math.min(avail,cols*225+(cols-1)*8)+'px');}
-window.addEventListener('resize',sizeWinnerGrid,{passive:true});
+function sizeWinnerGrid(){
+  const host=$('resultList');if(!host||!state.results.length)return;
+  const avail=host.parentElement?.clientWidth||host.clientWidth||320;
+  const canvas=document.createElement('canvas'),ctx=canvas.getContext('2d');
+  let requested=130;
+  for(const r of state.results){
+    if(rewardImage(r.item)){
+      ctx.font='900 13px "Pretendard Variable",sans-serif';
+      requested=Math.max(requested,Math.ceil(38+7+ctx.measureText(r.winner).width+18));
+    }else{
+      ctx.font='900 12px "Pretendard Variable",sans-serif';const left=ctx.measureText(r.item.text||'').width;
+      ctx.font='900 13px "Pretendard Variable",sans-serif';const right=ctx.measureText(r.winner).width;
+      requested=Math.max(requested,Math.ceil(left+right+25));
+    }
+  }
+  const ideal=idealWinnerCols(state.results.length),gap=8;
+  const desired=Math.min(194,Math.max(130,requested));
+  const mobileMax=Math.max(1,Math.floor((avail+gap)/(desired+gap)));
+  const cols=Math.min(ideal,mobileMax);
+  const cardW=Math.min(desired,Math.floor((avail-gap*(cols-1))/cols));
+  host.style.setProperty('--winner-cols',String(cols));
+  host.style.setProperty('--winner-card-width',cardW+'px');
+  host.style.setProperty('--winner-grid-max',Math.min(avail,cols*cardW+(cols-1)*gap)+'px');
+}
+window.addEventListener('resize' ,sizeWinnerGrid,{passive:true});
 function showResults(){
   $('runPanel').hidden=true;
   const host=$('resultList');host.innerHTML='';
@@ -291,7 +392,7 @@ function showResults(){
   setClock('proofStart',state.drawStartedAt);setClock('proofEnd',state.drawFinishedAt);
   const winners=new Set(state.results.map(r=>r.winner)),names=orderedParticipants(),people=$('participantList');people.innerHTML='';
   participantRows(names).forEach(group=>{const line=document.createElement('div');line.className='participant-line';line.style.setProperty('--columns',String(group.length));group.forEach(name=>{const chip=document.createElement('span');chip.className='participant-chip'+(winners.has(name)?' winner':'');chip.textContent=name;chip.title=name+(winners.has(name)?' · 당첨':'');line.append(chip);});people.append(line);});$('participantCount').textContent=`${names.length}명`;
-  $('resultPanel').hidden=false;burst();requestAnimationFrame(()=>requestAnimationFrame(scrollResultTop));
+  $('resultPanel').hidden=false;sizeWinnerGrid();burst();requestAnimationFrame(()=>requestAnimationFrame(scrollResultTop));
 }
 function burst(){const colors=['#ffd76a','#bf71ff','#67d4ff','#83f2d0','#ff78d1'];for(let i=0;i<42;i++){const s=document.createElement('i');s.className='spark';s.style.left=(5+Math.random()*90)+'vw';s.style.background=colors[i%colors.length];s.style.setProperty('--dx',((Math.random()-.5)*180)+'px');s.style.setProperty('--rot',(360+Math.random()*720)+'deg');s.style.animationDelay=(Math.random()*.45)+'s';document.body.append(s);setTimeout(()=>s.remove(),3400);}}
 $('againBtn').onclick=()=>{if(state.running||!state.selected.length||!state.items.length)return;startDraw();};
@@ -304,7 +405,7 @@ async function makeShareImage(){
   const pGroups=participantRows(people),rGroups=resultGroups(state.results);
   const gap=24,headerH=110,timeH=158,chipH=77,chipGap=12,peopleHead=72,peopleBottom=22;
   const peopleH=peopleHead+pGroups.length*chipH+Math.max(0,pGroups.length-1)*chipGap+peopleBottom;
-  const resultHead=70,resultCardH=100,resultGap=16,resultsH=resultHead+rGroups.length*resultCardH+Math.max(0,rGroups.length-1)*resultGap;
+  const resultHead=70,resultCardH=84,resultGap=14,resultsH=resultHead+rGroups.length*resultCardH+Math.max(0,rGroups.length-1)*resultGap;
   const H=pad+headerH+gap+timeH+gap+peopleH+gap+resultsH+pad;
   const canvas=document.createElement('canvas');canvas.width=W;canvas.height=H;
   const ctx=canvas.getContext('2d',{alpha:false});ctx.imageSmoothingEnabled=true;ctx.imageSmoothingQuality='high';
@@ -317,7 +418,7 @@ async function makeShareImage(){
   let y=pad;
   putText('추첨 결과',pad+4,y+39,{size:49,min:49,align:'left',weight:950});
   const badgeText=state.firstAttempt?'최초 추첨':`재추첨 ${state.attemptNo}회차`;
-  ctx.font='900 27px "Pretendard Variable",sans-serif';const badgeW=Math.max(165,ctx.measureText(badgeText).width+50);
+  ctx.font='900 22px "Pretendard Variable",sans-serif';const badgeW=Math.max(165,ctx.measureText(badgeText).width+50);
   const badgeX=W-pad-badgeW;rounded(badgeX,y+13,badgeW,53,27,state.firstAttempt?'rgba(25,113,87,.70)':'rgba(111,75,28,.67)',state.firstAttempt?'#82dfbc':'#e7c37d',2.5);
   putText(badgeText,badgeX+badgeW/2,y+40,{size:27,min:24,color:state.firstAttempt?'#caffeb':'#ffe3ac',maxWidth:badgeW-18});
   drawLine(y+headerH-8);
@@ -356,8 +457,8 @@ async function makeShareImage(){
   putText('당첨 결과',pad+4,y+38,{size:34,min:34,align:'left',weight:950});
   putText(`${state.results.length}개`,W-pad-4,y+38,{size:28,min:28,align:'right',color:'#c4b7d6',weight:900});
   // Match the on-page compact winner grid: responsive column count, single horizontal card.
-  const cols=Math.min(4,idealWinnerCols(state.results.length)),cGap=18;
-  const cardW=Math.min(330,(inner-(cols-1)*cGap)/cols);
+  const cols=Math.min(4,idealWinnerCols(state.results.length)),cGap=16;
+  const cardW=Math.min(228,(inner-(cols-1)*cGap)/cols);
   const imageCache=new Map();
   await Promise.all(state.results.filter(r=>rewardImage(r.item)).map(async r=>{
     if(imageCache.has(r.item.icon))return;
@@ -373,19 +474,19 @@ async function makeShareImage(){
       rounded(x,cardY,cardW,resultCardH,20,iconic?'#1e2945':'#281b40',iconic?'#7295e9':'#9b72dc',3);
       const middleY=cardY+resultCardH/2;
       if(iconic){
-        const im=imageCache.get(r.item.icon),imageSide=78;
+        const im=imageCache.get(r.item.icon),imageSide=68;
         if(im)ctx.drawImage(im,x+11,cardY+(resultCardH-imageSide)/2,imageSide,imageSide);
         else putText('◇',x+48,middleY,{size:45,min:45,color:'#8ecbff'});
-        const nameSpace=cardW-104;
-        ctx.font='930 29px "Pretendard Variable",sans-serif';
-        putText(fitText(ctx,r.winner,nameSpace),x+cardW-12,middleY,{size:29,min:21,maxWidth:nameSpace,align:'right',color:'#f6efff',weight:930});
+        const nameSpace=cardW-92;
+        ctx.font='930 25px "Pretendard Variable",sans-serif';
+        putText(fitText(ctx,r.winner,nameSpace),x+cardW-12,middleY,{size:25,min:20,maxWidth:nameSpace,align:'right',color:'#f6efff',weight:930});
       }else{
-        const leftW=Math.max(65,cardW*.51),rightW=cardW-leftW-28;
+        const leftW=Math.max(65,cardW*.54),rightW=cardW-leftW-24;
         const leftText=String(r.item.text||'');
-        ctx.font='900 27px "Pretendard Variable",sans-serif';
-        putText(fitText(ctx,leftText,leftW-17),x+14,middleY,{size:27,min:20,maxWidth:leftW-17,align:'left',color:'#ffd58c',weight:900});
-        ctx.font='930 27px "Pretendard Variable",sans-serif';
-        putText(fitText(ctx,r.winner,rightW),x+cardW-13,middleY,{size:27,min:20,maxWidth:rightW,align:'right',color:'#dfe0ff',weight:930});
+        ctx.font='900 22px "Pretendard Variable",sans-serif';
+        putText(fitText(ctx,leftText,leftW-17),x+14,middleY,{size:22,min:18,maxWidth:leftW-17,align:'left',color:'#ffd58c',weight:900});
+        ctx.font='930 23px "Pretendard Variable",sans-serif';
+        putText(fitText(ctx,r.winner,rightW),x+cardW-13,middleY,{size:23,min:18,maxWidth:rightW,align:'right',color:'#dfe0ff',weight:930});
       }
       x+=cardW+cGap;
     });

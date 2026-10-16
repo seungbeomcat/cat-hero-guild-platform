@@ -1,0 +1,36 @@
+{
+  "base": "V4.2.5",
+  "version": "V4.2.6",
+  "existing": 45,
+  "added": 22,
+  "total": 67,
+  "new_category_counts": {
+    "상자": 8,
+    "장비": 6,
+    "소환권": 8
+  },
+  "new_assets": [
+    "./assets/roulette-rewards/chest/chest_advanced_2.png",
+    "./assets/roulette-rewards/chest/chest_rare_1.png",
+    "./assets/roulette-rewards/chest/chest_rare_2.png",
+    "./assets/roulette-rewards/chest/chest_hero_1.png",
+    "./assets/roulette-rewards/chest/chest_hero_2.png",
+    "./assets/roulette-rewards/chest/chest_legend_1.png",
+    "./assets/roulette-rewards/chest/chest_legend_2.png",
+    "./assets/roulette-rewards/chest/chest_legend_3.png",
+    "./assets/roulette-rewards/equipment/ring_normal.png",
+    "./assets/roulette-rewards/equipment/ring_advanced.png",
+    "./assets/roulette-rewards/equipment/ring_rare.png",
+    "./assets/roulette-rewards/equipment/necklace_normal.png",
+    "./assets/roulette-rewards/equipment/necklace_advanced.png",
+    "./assets/roulette-rewards/equipment/necklace_rare.png",
+    "./assets/roulette-rewards/summon/ticket_yellow_10.png",
+    "./assets/roulette-rewards/summon/ticket_yellow_300.png",
+    "./assets/roulette-rewards/summon/ticket_yellow_500.png",
+    "./assets/roulette-rewards/summon/ticket_yellow_1000.png",
+    "./assets/roulette-rewards/summon/ticket_red_600.png",
+    "./assets/roulette-rewards/summon/ticket_red_1000.png",
+    "./assets/roulette-rewards/summon/ticket_purple_600.png",
+    "./assets/roulette-rewards/summon/ticket_purple_1000.png"
+  ]
+}

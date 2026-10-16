@@ -1,4 +1,4 @@
-/* V4.2.4 — 추가 아이콘은 아래 배열에 id, kind, grade, src를 추가합니다. 아이콘별 화면 명칭은 표시하지 않습니다. */
+/* V4.2.6: 보상 원본 PNG 목록. 추가 시 kind/grade/src를 입력합니다. 화면에는 아이템 이름을 표시하지 않습니다. */
 window.CatHeroRouletteRewards = Object.freeze([
   {
     "id": "equipment_advanced_band",
@@ -269,5 +269,137 @@ window.CatHeroRouletteRewards = Object.freeze([
     "kind": "소환권",
     "grade": null,
     "src": "./assets/roulette-rewards/summon/ticket_purple_80.png"
+  },
+  {
+    "id": "chest_advanced_2",
+    "kind": "상자",
+    "grade": "고급",
+    "src": "./assets/roulette-rewards/chest/chest_advanced_2.png"
+  },
+  {
+    "id": "chest_rare_1",
+    "kind": "상자",
+    "grade": "희귀",
+    "src": "./assets/roulette-rewards/chest/chest_rare_1.png"
+  },
+  {
+    "id": "chest_rare_2",
+    "kind": "상자",
+    "grade": "희귀",
+    "src": "./assets/roulette-rewards/chest/chest_rare_2.png"
+  },
+  {
+    "id": "chest_hero_1",
+    "kind": "상자",
+    "grade": "영웅",
+    "src": "./assets/roulette-rewards/chest/chest_hero_1.png"
+  },
+  {
+    "id": "chest_hero_2",
+    "kind": "상자",
+    "grade": "영웅",
+    "src": "./assets/roulette-rewards/chest/chest_hero_2.png"
+  },
+  {
+    "id": "chest_legend_1",
+    "kind": "상자",
+    "grade": "전설",
+    "src": "./assets/roulette-rewards/chest/chest_legend_1.png"
+  },
+  {
+    "id": "chest_legend_2",
+    "kind": "상자",
+    "grade": "전설",
+    "src": "./assets/roulette-rewards/chest/chest_legend_2.png"
+  },
+  {
+    "id": "chest_legend_3",
+    "kind": "상자",
+    "grade": "전설",
+    "src": "./assets/roulette-rewards/chest/chest_legend_3.png"
+  },
+  {
+    "id": "ring_normal",
+    "kind": "장비",
+    "grade": "일반",
+    "src": "./assets/roulette-rewards/equipment/ring_normal.png"
+  },
+  {
+    "id": "ring_advanced",
+    "kind": "장비",
+    "grade": "고급",
+    "src": "./assets/roulette-rewards/equipment/ring_advanced.png"
+  },
+  {
+    "id": "ring_rare",
+    "kind": "장비",
+    "grade": "희귀",
+    "src": "./assets/roulette-rewards/equipment/ring_rare.png"
+  },
+  {
+    "id": "necklace_normal",
+    "kind": "장비",
+    "grade": "일반",
+    "src": "./assets/roulette-rewards/equipment/necklace_normal.png"
+  },
+  {
+    "id": "necklace_advanced",
+    "kind": "장비",
+    "grade": "고급",
+    "src": "./assets/roulette-rewards/equipment/necklace_advanced.png"
+  },
+  {
+    "id": "necklace_rare",
+    "kind": "장비",
+    "grade": "희귀",
+    "src": "./assets/roulette-rewards/equipment/necklace_rare.png"
+  },
+  {
+    "id": "ticket_yellow_10",
+    "kind": "소환권",
+    "grade": null,
+    "src": "./assets/roulette-rewards/summon/ticket_yellow_10.png"
+  },
+  {
+    "id": "ticket_yellow_300",
+    "kind": "소환권",
+    "grade": null,
+    "src": "./assets/roulette-rewards/summon/ticket_yellow_300.png"
+  },
+  {
+    "id": "ticket_yellow_500",
+    "kind": "소환권",
+    "grade": null,
+    "src": "./assets/roulette-rewards/summon/ticket_yellow_500.png"
+  },
+  {
+    "id": "ticket_yellow_1000",
+    "kind": "소환권",
+    "grade": null,
+    "src": "./assets/roulette-rewards/summon/ticket_yellow_1000.png"
+  },
+  {
+    "id": "ticket_red_600",
+    "kind": "소환권",
+    "grade": null,
+    "src": "./assets/roulette-rewards/summon/ticket_red_600.png"
+  },
+  {
+    "id": "ticket_red_1000",
+    "kind": "소환권",
+    "grade": null,
+    "src": "./assets/roulette-rewards/summon/ticket_red_1000.png"
+  },
+  {
+    "id": "ticket_purple_600",
+    "kind": "소환권",
+    "grade": null,
+    "src": "./assets/roulette-rewards/summon/ticket_purple_600.png"
+  },
+  {
+    "id": "ticket_purple_1000",
+    "kind": "소환권",
+    "grade": null,
+    "src": "./assets/roulette-rewards/summon/ticket_purple_1000.png"
   }
 ]);
