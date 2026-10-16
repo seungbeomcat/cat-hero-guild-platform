@@ -228,8 +228,8 @@ window.CAT_HERO_V4_APPLY_ACCESS_SECRET=secret=>{
 
 function route(){
   const raw=(location.hash||'').replace(/^#/,'');
-  if(raw.includes('=')){const hp=new URLSearchParams(raw);const r=hp.get('r')||'main';return ['main','boss','ops'].includes(r)?r:'main';}
-  return ['main','boss','ops'].includes(raw)?raw:'main';
+  if(raw.includes('=')){const hp=new URLSearchParams(raw);const r=hp.get('r')||'main';return ['main','boss','ops','roulette'].includes(r)?r:'main';}
+  return ['main','boss','ops','roulette'].includes(raw)?raw:'main';
 }
 function buildPrivateUrl(secret,r='main'){
   const hp=new URLSearchParams();hp.set('k',secret);if(r&&r!=='main')hp.set('r',r);
@@ -237,9 +237,9 @@ function buildPrivateUrl(secret,r='main'){
 }
 function buildBootstrapUrl(id){return `${location.origin}${location.pathname}?g=${encodeURIComponent(id)}`;}
 function showRoute(r,push=false){
-  if(!frame)return;if(!['main','boss','ops'].includes(r))r='main';
+  if(!frame)return;if(!['main','boss','ops','roulette'].includes(r))r='main';
   roleFor(gid).then(announceRole).catch(e=>console.warn('route role refresh',e));
-  frame.src=`${r}.html?g=${encodeURIComponent(gid)}&v=415`;
+  frame.src=`${r}.html?g=${encodeURIComponent(gid)}&v=416`;
   if(push){
     const url=accessMode==='private'&&accessSecret?buildPrivateUrl(accessSecret,r):`${location.pathname}?g=${encodeURIComponent(gid)}${r==='main'?'':'#'+r}`;
     history.pushState({r},'',url);
@@ -248,7 +248,7 @@ function showRoute(r,push=false){
 window.addEventListener('message',e=>{
   if(e.origin!==location.origin)return;const d=e.data||{};
   if(d.type==='cat-hero-v4-data-changed'&&d.guildId===gid){loadGuild({reuseFrame:true});return;}
-  if(d.type==='dosalja-unified-route'&&['main','boss','ops'].includes(d.route))showRoute(d.route,true);
+  if(d.type==='dosalja-unified-route'&&['main','boss','ops','roulette'].includes(d.route))showRoute(d.route,true);
   if(d.type==='cat-hero-v4-role-request')announceRole();
 });
 window.addEventListener('popstate',()=>showRoute(route(),false));

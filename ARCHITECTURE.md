@@ -1,4 +1,4 @@
-# Cat Hero Guild Platform V4.1.5 Architecture
+# Cat Hero Guild Platform V4.1.6 Architecture
 
 ## 분리 원칙
 - V3.0 계열은 도살장 전용 기준본이며 수정하지 않습니다.
@@ -6,10 +6,11 @@
 - 하나의 앱 코드를 여러 길드가 사용하되 Firestore 경로는 `guildId`로 분리합니다.
 
 ## 화면 구조
-- `index.html` / `index-module.mjs`: 최상위 shell, Firebase Auth, 관리자 인증, 길드 주소 해석, main/boss/ops iframe 라우팅.
+- `index.html` / `index-module.mjs`: 최상위 shell, Firebase Auth, 관리자 인증, 길드 주소 해석, main/boss/ops/roulette iframe 라우팅.
 - `main.html`: 격전지 계산기, 길드원 조회/관리, 보상 조회/관리, 관리자 관리.
 - `boss.html`: 상층 2구역 보스 시간/처치/기록.
 - `ops.html`: 균열·은하 회차/초대형/참여/결과.
+- `roulette.html`: 일반 길드원 포함 공용 행운 룰렛. Firestore 쓰기/추첨 기록 저장 없음.
 
 ## 관리자 인증
 - Firebase Auth 세션은 최상위 shell이 로컬 영속성으로 초기화합니다.
@@ -49,6 +50,7 @@
 ## 일반 길드원 권한
 - 계산기: 길드원 선택, 서버격추, 지역/보스 선택 및 계산 사용 가능.
 - 길드원/보스/보상/OPS 결과: 조회·참고 가능.
+- 행운 룰렛: 참여자·추첨 항목 설정, 자동 순차 추첨, 결과 이미지 생성/공유 가능.
 - 추가/수정/삭제/회차 시작·종료 등 쓰기: 불가.
 
 ## 관리자 활동기록
@@ -69,3 +71,9 @@
 - `guilds/{guildId}/data/opsResourceDefaults` stores per-member starting time independently from active rounds.
 - Draft/no-round edits never write to `rounds/{roundId}`.
 - A new round copies these defaults into its member resource snapshot.
+
+
+## V4.1.6 행운 룰렛
+- `roulette.html`은 현재 길드 roster를 읽기만 하는 공용 미니게임입니다.
+- 관리자 인증 및 Firestore 쓰기/활동기록 저장을 사용하지 않습니다.
+- 통합 라우터의 `roulette` 경로로 진입하며 은하 OPS 데이터 구조와 분리됩니다.
