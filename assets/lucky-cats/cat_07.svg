@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180" role="img" aria-label="메인쿤 고양이 아바타">
+<defs><radialGradient id="bg"><stop stop-color="#fff" stop-opacity=".8"/><stop offset="1" stop-color="#B4EFDA"/></radialGradient><filter id="s"><feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#130938" flood-opacity=".55"/></filter></defs>
+<rect x="3" y="3" width="174" height="174" rx="41" fill="url(#bg)" stroke="#9E6AFF" stroke-width="5"/>
+<g opacity=".6" fill="#fff"><circle cx="22" cy="35" r="6"/><circle cx="151" cy="18" r="5"/><path d="M155 137 l3 10 10 3 -10 3 -3 10 -3 -10 -10 -3 10 -3Z"/></g>
+<g filter="url(#s)" stroke="#825D49" stroke-width="6" stroke-linejoin="round"><path d="M43 64 L38 19 Q39 11 48 19 L70 37 Z" fill="#CDA47F"/><path d="M112 37 L134 19 Q144 11 145 22 L140 65 Z" fill="#CDA47F"/><path d="M46 57 Q55 35 88 35 Q122 36 134 57 Q151 66 138 88 Q149 107 132 123 Q112 142 90 138 Q56 141 42 119 Q26 104 39 89 Q26 72 46 57 Z" fill="#CDA47F"/></g>
+
+<path d="M55 72 Q63 64 74 73" stroke="#825D49" stroke-width="2" fill="none" opacity=".3"/>
+<ellipse cx="68" cy="93" rx="8.5" ry="12.5" fill="#513A4F"/><ellipse cx="112" cy="93" rx="8.5" ry="12.5" fill="#513A4F"/>
+<ellipse cx="65" cy="89" rx="3.1" ry="4" fill="#fff"/><ellipse cx="109" cy="89" rx="3.1" ry="4" fill="#fff"/>
+<ellipse cx="51" cy="108" rx="9" ry="5" fill="#FFA4B7" opacity=".77"/><ellipse cx="129" cy="108" rx="9" ry="5" fill="#FFA4B7" opacity=".77"/>
+<path d="M84 105 Q90 100 96 105 L90 111Z" fill="#D77B95"/><path d="M90 111 Q83 121 77 114 M90 111 Q97 121 103 114" fill="none" stroke="#825D49" stroke-width="3" stroke-linecap="round"/>
+<path d="M61 111 L38 107 M61 117 L39 118 M119 111 L143 107 M119 117 L142 118" fill="none" stroke="#825D49" stroke-width="2" opacity=".66"/>
+<path d="M55 141 Q88 153 125 141" fill="none" stroke="#ffffff" stroke-width="5" opacity=".48"/>
+</svg>

@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#090218">
-<title>Cat Hero · 행운 룰렛 V4.2.9</title>
+<title>Cat Hero · 행운 게임 V4.3.1</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <style>
 :root{--violet:#8b47f2;--violet2:#bc78ff;--blue:#5bc8ff;--ink:#f8f3ff;--muted:#c4b5dd;--panel:rgba(24,12,49,.86);--panel2:rgba(13,8,31,.94);--line:#8a43e8;--gold:#ffd76a;--green:#7ff4cc}
@@ -223,18 +223,75 @@ button.reward-compact-select,.reward-pick-button{font-weight:900!important}
 .result-actions{order:7!important}
 @media(max-width:355px){.result-winners{padding:13px 0 18px!important}.result-row{padding:6px 3px 7px!important;border-width:3px!important;border-radius:12px!important}.result-winner{min-height:24px!important;font-size:clamp(9.5px,3vw,14px)!important;margin-top:4px!important;padding-top:3px!important}.participant-chip{font-size:10px!important;padding:7px 2px!important}.duplicate-setting{padding:9px}}
 </style>
+
+<style id="v430-lucky-game-plinko-and-result-polish">
+/* New game-selection state, while the existing award catalog and draw engine remain shared. */
+.game-choice-panel{margin-top:16px;overflow:hidden}
+.game-choice-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;padding:6px 14px 0}
+.game-choice-card{position:relative;isolation:isolate;min-width:0;min-height:206px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;cursor:pointer;border:2.5px solid #8A68EB;border-radius:22px;color:#fff;background:radial-gradient(circle at 50% 16%,rgba(202,145,255,.35),transparent 60%),linear-gradient(157deg,#34235F,#110B2F);box-shadow:0 8px 25px #080016a0,inset 0 0 0 1px #ffffff2b;transition:transform .18s,border-color .18s}
+.game-choice-card:focus-visible,.game-choice-card:active{outline:3px solid #a6e8ff;outline-offset:2px;transform:scale(.975)}
+.game-choice-ball{border-color:#75D4FF;box-shadow:0 0 21px #54aaff45,inset 0 0 0 1px #ffffff25}
+.game-choice-wheel{border-color:#BB85F7;box-shadow:0 0 19px #ce89ff35,inset 0 0 0 1px #ffffff25}
+.game-choice-icon{position:relative;display:grid;place-items:center;width:94px;height:100px;border-radius:30px;font-size:56px;text-shadow:0 3px 14px #29204e}
+.game-choice-dots{position:absolute;bottom:0;right:-6px;font-size:11px;line-height:1.4;color:#8EE9FF;text-shadow:0 0 10px #6CCBFF}
+.game-choice-card b{font-size:19px;font-weight:950}.game-choice-card small{font-size:10.5px;color:#D0C3ED;line-height:1.4}
+.game-choice-note{margin:13px 16px 16px;text-align:center;color:#D0BDE9;line-height:1.6;font-size:11px}
+.plinko-shell[hidden],.wheel-shell[hidden],.game-choice-panel[hidden]{display:none!important}
+.plinko-shell{position:relative;z-index:1;margin:14px auto 8px;max-width:600px}
+.plinko-cat-title{display:flex;justify-content:center;align-items:center;gap:9px;font-weight:950;font-size:15px;color:#F6D6FF;text-shadow:0 0 15px #B172E7}
+.plinko-board{width:100%;max-width:530px;position:relative;margin:8px auto 0;border:4px solid #9571EA;border-radius:24px;background:linear-gradient(150deg,#332171,#150D3E);box-shadow:0 0 18px #A26BEE88,0 0 0 2px #8ADBFA4F,inset 0 0 28px #9B4DDC33;overflow:hidden}
+#plinkoCanvas{display:block;width:100%;aspect-ratio:840/850;height:auto}
+.plinko-avatars{display:grid;grid-template-columns:repeat(var(--cat-columns,5),minmax(0,1fr));gap:6px;margin:12px auto 7px;max-width:530px}
+.plinko-person{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;min-width:0;gap:3px;border:2px solid #815CB7;border-radius:12px;background:linear-gradient(150deg,#27184D,#100B26);padding:5px 2px 7px;box-shadow:inset 0 0 7px #8D62CB44}
+.plinko-person img{width:min(100%,68px);max-height:67px;aspect-ratio:1;object-fit:contain}
+.plinko-person b{font-size:clamp(8px,2.7vw,12px);color:#EFE2FF;font-weight:900;line-height:1.16;max-width:100%;overflow-wrap:anywhere;word-break:keep-all}
+.plinko-person-number{position:absolute;z-index:2;left:3px;top:3px;display:grid;place-items:center;min-width:16px;height:16px;font-size:10px;color:#f7ebff;border:1px solid #DFABFF99;background:#3C287A;border-radius:50%;font-weight:950}
+.plinko-person-win{border-color:#FFE17D;background:linear-gradient(145deg,#70502F,#241638);box-shadow:0 0 0 2px #FFDA7D55,0 0 18px #FFD57988}
+.plinko-person-win b{color:#FFEA9C}
+.plinko-win-flash{font-size:22px;font-weight:1000;color:#FFE68B;text-shadow:0 0 23px #FFB952,0 2px #512C92;animation:plinkoWinPop .6s ease-out both;padding:9px}
+.plinko-win-flash[hidden]{display:none!important}
+@keyframes plinkoWinPop{from{transform:scale(.7);opacity:0}to{transform:scale(1);opacity:1}}
+.round-reward-icon{display:block;width:72px;height:72px;object-fit:contain;margin:4px auto}
+/* On-page result only: award artwork is ~70% of V4.2.9 and member names are more prominent. */
+.result-list{gap:var(--result-gap)!important}
+.result-row{padding:9px 6px!important}
+.result-row.is-icon .result-item.reward-image img{width:min(100%,calc(var(--result-card-icon) * .87))!important;max-width:calc(var(--result-card-icon) * .87)!important;height:auto!important;max-height:none!important;aspect-ratio:1!important}
+.result-winner{font-size:clamp(14px,4.4vw,20px)!important;font-weight:1000!important;letter-spacing:-.045em!important;color:#fff9ff!important}
+.result-row.is-text .result-item{font-size:clamp(13px,3.7vw,18px)!important;font-weight:950!important}
+.proof-grid{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important;margin:0!important}
+.proof-card{padding:4px 0!important;margin:2px 0!important;background:none!important;border:0!important;box-shadow:none!important}
+.proof-cell{display:flex!important;flex-direction:row!important;align-items:center!important;justify-content:center!important;gap:8px!important;padding:10px 6px!important;min-height:42px!important;border:1px solid #663C96!important;border-radius:12px!important}
+.proof-cell small{display:inline!important;margin:0!important;white-space:nowrap!important;font-size:clamp(9px,2.6vw,12px)!important}
+.proof-cell strong{display:inline!important;white-space:nowrap!important;font-size:clamp(10px,2.95vw,14px)!important;letter-spacing:-.045em!important}
+@media(max-width:360px){.game-choice-grid{gap:8px;padding:5px 10px}.game-choice-card{min-height:175px}.game-choice-icon{font-size:48px}.game-choice-card b{font-size:16px}.game-choice-card small{font-size:9px}.plinko-avatars{gap:4px}.plinko-person{padding:3px 1px 5px}.plinko-person b{font-size:9px}.proof-cell{gap:4px!important;padding:8px 3px!important}.proof-cell small{font-size:9px!important}.proof-cell strong{font-size:10px!important}}
+@media(prefers-reduced-motion:reduce){.game-choice-card,.plinko-win-flash{animation:none!important;transition:none!important}}
+</style>
 </head>
 <body>
 <div class="sky" aria-hidden="true"></div>
 <main class="app">
   <header class="topbar">
     <button id="backBtn" class="back" type="button" aria-label="메인으로 돌아가기"><svg viewBox="0 0 24 24"><path d="m14.5 5-7 7 7 7"/></svg></button>
-    <div class="headcopy"><div id="guildLine" class="guildline">길드 · 공용 기능</div><h1>행운 룰렛</h1></div>
+    <div class="headcopy"><div id="guildLine" class="guildline">길드 · 공용 기능</div><h1 id="gameTitle">행운 게임</h1></div>
     <span class="public-badge" aria-label="일반 길드원도 사용 가능한 공용 기능">길드원 공용</span>
   </header>
 
-  <section id="memberStep" class="step">
-    <div class="step-head"><span class="step-no">01</span><div class="step-title"><b>참여 길드원</b><small>룰렛에 참여할 길드원을 직접 선택하세요.</small></div><span id="memberCount" class="step-count">선택 0명</span></div>
+  <section id="gameStep" class="step game-choice-panel" aria-label="행운 게임 선택">
+    <div class="step-head"><span class="step-no">✦</span><div class="step-title"><b>행운 게임</b><small>보상 분배를 진행할 게임을 선택하세요.</small></div></div>
+    <div class="game-choice-grid">
+      <button id="pickPlinko" class="game-choice-card game-choice-ball" type="button">
+        <span class="game-choice-icon" aria-hidden="true">🐾<span class="game-choice-dots">● ● ●<br> ● ●<br>● ● ●</span></span>
+        <b>행운 구슬</b><small>통통 튀는 구슬 낙하 추첨</small>
+      </button>
+      <button id="pickRoulette" class="game-choice-card game-choice-wheel" type="button">
+        <span class="game-choice-icon" aria-hidden="true">🎡</span><b>행운 룰렛</b><small>빙글빙글 회전판 추첨</small>
+      </button>
+    </div>
+    <p class="game-choice-note">동일한 참여자·보상·중복 당첨 설정을 사용하며, 진행자 한 명이 게임을 실행하고 결과를 공유합니다.</p>
+  </section>
+
+  <section id="memberStep" class="step" hidden>
+    <div class="step-head"><span class="step-no">01</span><div class="step-title"><b>참여 길드원</b><small>추첨에 참여할 길드원을 직접 선택하세요.</small></div><span id="memberCount" class="step-count">선택 0명</span></div>
     <div class="step-body"><div id="rosterGrid" class="roster-grid"></div><button id="memberConfirmBtn" class="member-confirm" type="button" disabled>참여자 확인</button><div id="selectionHint" class="selection-hint">최소 2명 이상 선택해 주세요.</div></div>
   </section>
 
@@ -248,19 +305,25 @@ button.reward-compact-select,.reward-pick-button{font-weight:900!important}
       <label class="duplicate-setting" for="allowDuplicate"><span class="duplicate-text"><b>중복 당첨 허용</b><small id="duplicateHint">OFF · 당첨자는 다음 회차에서 제외됩니다.</small></span><input id="allowDuplicate" type="checkbox" aria-label="중복 당첨 허용"><span class="duplicate-toggle" aria-hidden="true"></span></label>
       <div id="itemInputs" class="item-inputs"></div>
       <div class="rule-note">분류와 등급에 맞는 보상 아이콘을 선택하거나 직접 입력할 수 있습니다. 중복 당첨 허용 여부를 먼저 확인해 주세요.</div>
-      <button id="startBtn" class="start" type="button" disabled>룰렛 시작</button>
+      <button id="startBtn" class="start" type="button" disabled>게임 시작</button>
     </div>
   </section>
 
   <section id="runPanel" class="run" hidden aria-live="polite">
     <div id="roundLine" class="roundline">1 / 1 ROUND</div>
     <div id="roundItem" class="rounditem">추첨 준비 중</div>
-    <div class="wheel-shell">
+    <div id="rouletteShell" class="wheel-shell">
       <div class="wheel-aura"></div><div class="wheel-ring"></div><div class="wheel-spark wheel-spark-one" aria-hidden="true">✦</div><div class="wheel-spark wheel-spark-two" aria-hidden="true">✧</div><div class="wheel-spark wheel-spark-three" aria-hidden="true">✦</div><div class="pointer"></div>
       <canvas id="wheel" class="wheel-canvas" width="900" height="900" aria-label="행운 룰렛"></canvas>
       <div class="hub"><span class="hub-paw" aria-hidden="true">🐾</span><span>LUCKY</span></div>
     </div>
-    <div id="runStatus" class="run-status">룰렛을 준비하고 있습니다…</div>
+    <div id="plinkoShell" class="plinko-shell" hidden>
+      <div class="plinko-cat-title"><span>🐾</span> 고양이 행운 구슬 <span>✨</span></div>
+      <div class="plinko-board"><canvas id="plinkoCanvas" width="840" height="850" aria-label="구슬 낙하 게임판과 길드원별 도착 칸"></canvas></div>
+      <div id="plinkoAvatars" class="plinko-avatars" aria-label="참여 길드원에게 배정한 고양이 아바타"></div>
+      <div id="plinkoWinFlash" class="plinko-win-flash" hidden aria-live="polite"></div>
+    </div>
+    <div id="runStatus" class="run-status">추첨을 준비하고 있습니다…</div>
     <div class="progress"><i id="progressBar"></i></div>
   </section>
 
@@ -282,7 +345,7 @@ button.reward-compact-select,.reward-pick-button{font-weight:900!important}
     </div>
   </section>
 
-  <footer class="footer"><b>Created by 879 | 안창살 · V4.2.9</b><br>2026.10.17</footer>
+  <footer class="footer"><b>Created by 879 | 안창살 · V4.3.1</b><br>2026.10.17</footer>
 </main>
 
 <script src="./firebase-config.js"></script>
@@ -302,31 +365,44 @@ const blankReward=()=>({kind:"",grade:"",icon:"",text:""});
 const rewardValid=x=>!!x&&(x.kind==="입력"?!!String(x.text||"").trim():!!x.icon&&rewardCatalog.some(r=>r.src===x.icon&&r.kind===x.kind&&(x.kind==="소환권"||r.grade===x.grade)));
 const rewardKey=x=>x.kind==="입력"?"text:"+String(x.text).trim().replace(/\s+/g," ").toLocaleLowerCase("ko-KR"):"icon:"+x.icon;
 const rewardImage=x=>x?.kind!=="입력"&&!!x?.icon;
-const state={peopleCount:0,selected:[],membersConfirmed:false,itemCount:0,items:[],results:[],running:false,rotation:0,shareUrl:'',shareBlob:null,drawStartedAt:null,drawFinishedAt:null,drawId:'',attemptNo:1,firstAttempt:true,configKey:'',allowDuplicates:false};
+const state={gameMode:'',catMap:{},peopleCount:0,selected:[],membersConfirmed:false,itemCount:0,items:[],results:[],running:false,rotation:0,shareUrl:'',shareBlob:null,drawStartedAt:null,drawFinishedAt:null,drawId:'',attemptNo:1,firstAttempt:true,configKey:'',allowDuplicates:false};
 $('guildLine').textContent=[guild.server,guild.name].filter(Boolean).join(' | ')||'길드 · 공용 기능';
 
 function postRoute(route){try{if(parent&&parent!==window){parent.postMessage({type:'dosalja-unified-route',route},location.origin);return;}}catch(_e){} const g=new URLSearchParams(location.search).get('g')||'';location.href=`main.html${g?'?g='+encodeURIComponent(g):''}`;}
-$('backBtn').onclick=()=>postRoute('main');
+$('backBtn').onclick=()=>{if(!state.running&&state.gameMode&&!($('resultPanel').hidden===false)){$('gameStep').hidden=false;$('memberStep').hidden=true;$('itemStep').hidden=true;state.gameMode='';$('gameTitle').textContent='행운 게임';return;}postRoute('main');};
+function chooseGame(mode){
+  if(!['plinko','roulette'].includes(mode)||state.running)return;
+  state.gameMode=mode;
+  $('gameTitle').textContent=mode==='plinko'?'행운 구슬':'행운 룰렛';
+  $('startBtn').textContent=mode==='plinko'?'행운 구슬 시작':'룰렛 시작';
+  $('gameStep').hidden=true;$('memberStep').hidden=false;
+  $('rouletteShell').hidden=mode==='plinko';$('plinkoShell').hidden=mode!=='plinko';
+  const fromCalculator=consumeCalculatorPrefill();
+  if(!fromCalculator)requestAnimationFrame(()=>$('memberStep').scrollIntoView({behavior:'smooth',block:'start'}));
+}
+$('pickPlinko').addEventListener('click',()=>chooseGame('plinko'));
+$('pickRoulette').addEventListener('click',()=>chooseGame('roulette'));
+
 
 function closeMenus(except){[['itemCountBtn','itemCountMenu']].forEach(([b,m])=>{if(m===except)return;$(m).hidden=true;$(b).setAttribute('aria-expanded','false');});}
 function bindSelect(buttonId,menuId){$(buttonId).onclick=e=>{e.stopPropagation();const menu=$(menuId),open=menu.hidden;closeMenus(open?menuId:null);menu.hidden=!open;$(buttonId).setAttribute('aria-expanded',String(open));};}
 bindSelect('itemCountBtn','itemCountMenu');
 document.addEventListener('click',e=>{if(!e.target.closest('.custom-select'))closeMenus();});
 
-function renderRoster(){const host=$('rosterGrid');host.innerHTML='';const visible=roster.slice(0,16);if(!visible.length){host.innerHTML='<div style="grid-column:1/-1;color:#baa5d1;font-size:12px;padding:10px">등록된 길드원 정보를 불러오지 못했습니다.</div>';return;}visible.forEach(name=>{const b=document.createElement('button');b.type='button';b.className='member'+(state.selected.includes(name)?' selected':'');b.textContent=name;b.title=name;b.setAttribute('aria-pressed',String(state.selected.includes(name)));b.onclick=()=>toggleMember(name);host.append(b);});$('memberCount').textContent=`선택 ${state.selected.length}명`;const ready=state.selected.length>=2;$('memberConfirmBtn').disabled=!ready;$('selectionHint').textContent=ready?`${state.selected.length}명 선택됨 · 확인 후 추첨 항목을 설정합니다.`:'최소 2명 이상 선택해 주세요.';$('selectionHint').classList.toggle('ready',ready);}
+function renderRoster(){const host=$('rosterGrid');host.innerHTML='';const visible=roster.slice(0,17);if(!visible.length){host.innerHTML='<div style="grid-column:1/-1;color:#baa5d1;font-size:12px;padding:10px">등록된 길드원 정보를 불러오지 못했습니다.</div>';return;}visible.forEach(name=>{const b=document.createElement('button');b.type='button';b.className='member'+(state.selected.includes(name)?' selected':'');b.textContent=name;b.title=name;b.setAttribute('aria-pressed',String(state.selected.includes(name)));b.onclick=()=>toggleMember(name);host.append(b);});$('memberCount').textContent=`선택 ${state.selected.length}명`;const ready=state.selected.length>=2;$('memberConfirmBtn').disabled=!ready;$('selectionHint').textContent=ready?`${state.selected.length}명 선택됨 · 확인 후 추첨 항목을 설정합니다.`:'최소 2명 이상 선택해 주세요.';$('selectionHint').classList.toggle('ready',ready);}
 function consumeCalculatorPrefill(){
   let raw='';try{raw=sessionStorage.getItem('cat-hero-v4:roulette-prefill')||'';sessionStorage.removeItem('cat-hero-v4:roulette-prefill');}catch(_e){}
   if(!raw)return false;
   try{
     const data=JSON.parse(raw),incoming=Array.isArray(data?.names)?data.names:[];
-    const valid=[...new Set(incoming.map(x=>String(x||'').trim()).filter(n=>roster.includes(n)))].slice(0,16);
+    const valid=[...new Set(incoming.map(x=>String(x||'').trim()).filter(n=>roster.includes(n)))].slice(0,17);
     if(valid.length<2){$('selectionHint').textContent='계산기 참여 명단을 불러오지 못했습니다. 참여자를 직접 선택해 주세요.';$('selectionHint').classList.remove('ready');return false;}
     state.selected=valid;state.peopleCount=valid.length;state.membersConfirmed=true;renderRoster();setupItems();$('memberStep').hidden=true;$('itemStep').hidden=false;
     const help=$('itemStep').querySelector('.step-title small');if(help)help.textContent=`계산기 참여자 ${valid.length}명 자동 선택 · 추첨 항목을 설정하세요.`;
     setTimeout(()=>$('itemStep').scrollIntoView({behavior:'smooth',block:'start'}),80);return true;
   }catch(_e){$('selectionHint').textContent='계산기 참여 명단을 불러오지 못했습니다. 참여자를 직접 선택해 주세요.';return false;}
 }
-function toggleMember(name){if(state.running)return;const i=state.selected.indexOf(name);if(i>=0)state.selected.splice(i,1);else if(state.selected.length<16)state.selected.push(name);state.membersConfirmed=false;state.peopleCount=state.selected.length;state.itemCount=0;state.items=[];$('itemStep').hidden=true;$('runPanel').hidden=true;$('resultPanel').hidden=true;renderRoster();}
+function toggleMember(name){if(state.running)return;const i=state.selected.indexOf(name);if(i>=0)state.selected.splice(i,1);else if(state.selected.length<17)state.selected.push(name);state.membersConfirmed=false;state.peopleCount=state.selected.length;state.itemCount=0;state.items=[];$('itemStep').hidden=true;$('runPanel').hidden=true;$('resultPanel').hidden=true;renderRoster();}
 function confirmMembers(){if(state.selected.length<2||state.running)return;state.peopleCount=state.selected.length;state.membersConfirmed=true;setupItems();setTimeout(()=>$('itemStep').scrollIntoView({behavior:'smooth',block:'start'}),100);}
 $('memberConfirmBtn').onclick=confirmMembers;
 function setupItems(){state.itemCount=0;state.items=[];$('itemStep').hidden=false;$('itemStatus').textContent='미설정';$('itemCountBtn').replaceChildren(Object.assign(document.createElement('span'),{className:'placeholder',textContent:'추첨 항목 개수 선택'}),makePremiumChevron('chev'));$('itemInputs').innerHTML='';$('startBtn').disabled=true;renderItemCountMenu();}
@@ -412,8 +488,8 @@ function updateStart(){$('startBtn').disabled=!(state.membersConfirmed&&state.se
 function hashText(text){let h=2166136261;for(let i=0;i<text.length;i++){h^=text.charCodeAt(i);h=Math.imul(h,16777619);}return (h>>>0).toString(36).toUpperCase();}
 function drawConfigKey(){const members=state.selected.slice().sort((a,b)=>a.localeCompare(b,'ko-KR')).join('|');const items=state.items.map(rewardKey).sort((a,b)=>a.localeCompare(b,'ko-KR')).join('|');const guildKey=[guild.server,guild.name].filter(Boolean).join('|');return hashText(guildKey+'::'+members+'::'+items+'::'+(state.allowDuplicates?'repeat':'unique'));}
 function formatStamp(d){if(!d)return '';const p=n=>String(n).padStart(2,'0');return `${d.getFullYear()}.${p(d.getMonth()+1)}.${p(d.getDate())} ${p(d.getHours())}:${p(d.getMinutes())}:${p(d.getSeconds())}`;}
-function formatClock(d){if(!d)return {date:'',time:''};const p=n=>String(n).padStart(2,'0');return {date:`${d.getFullYear()}.${p(d.getMonth()+1)}.${p(d.getDate())}`,time:`${p(d.getHours())}:${p(d.getMinutes())}:${p(d.getSeconds())}`};}
-function setClock(id,d){const v=formatClock(d),el=$(id);el.innerHTML=`<span class="proof-date">${v.date}</span><span class="proof-time">${v.time}</span>`;}
+function formatClock(d){if(!d)return '';const p=n=>String(n).padStart(2,'0');return `${p(d.getMonth()+1)}.${p(d.getDate())} ${p(d.getHours())}:${p(d.getMinutes())}:${p(d.getSeconds())}`;}
+function setClock(id,d){$(id).textContent=formatClock(d);}
 function orderedParticipants(){const chosen=new Set(state.selected);return roster.filter(n=>chosen.has(n)).concat(state.selected.filter(n=>!roster.includes(n)));}
 function randomDrawId(){const a=new Uint32Array(2);crypto.getRandomValues(a);return 'R-'+Date.now().toString(36).toUpperCase()+'-'+(a[0]^a[1]).toString(36).toUpperCase().slice(0,6);}
 function registerAttempt(){state.configKey=drawConfigKey();const k=`cat-hero-v4:roulette-session:${state.configKey}`;let n=0;try{n=Number(sessionStorage.getItem(k)||0)||0;sessionStorage.setItem(k,String(n+1));}catch(_e){}state.attemptNo=n+1;state.firstAttempt=state.attemptNo===1;state.drawStartedAt=new Date();state.drawFinishedAt=null;state.drawId=randomDrawId();}
@@ -423,8 +499,74 @@ function sleep(ms){return new Promise(r=>setTimeout(r,ms));}
 function drawWheel(names){const c=$('wheel'),ctx=c.getContext('2d'),w=c.width,h=c.height,cx=w/2,cy=h/2,r=w*.465,n=Math.max(1,names.length),step=Math.PI*2/n;ctx.clearRect(0,0,w,h);const colors=['#a76ef1','#6ba9ed','#d481d9','#65b9dd','#a48bee','#5bb6c9','#ca78c5','#7aace8'];for(let i=0;i<n;i++){const a0=-Math.PI/2+i*step,a1=a0+step;ctx.beginPath();ctx.moveTo(cx,cy);ctx.arc(cx,cy,r,a0,a1);ctx.closePath();const grad=ctx.createRadialGradient(cx,cy,r*.08,cx,cy,r);grad.addColorStop(0,'#5844a4');grad.addColorStop(.46,colors[i%colors.length]);grad.addColorStop(1,i%2?'#4b398d':'#593c96');ctx.fillStyle=grad;ctx.fill();ctx.strokeStyle='rgba(255,247,255,.87)';ctx.lineWidth=3.2;ctx.stroke();}
 ctx.save();ctx.beginPath();ctx.arc(cx,cy,r,0,Math.PI*2);ctx.strokeStyle='#ffe9ff';ctx.lineWidth=9;ctx.shadowColor='#ffaeea';ctx.shadowBlur=23;ctx.stroke();ctx.restore();
 for(let i=0;i<n;i++){const mid=-Math.PI/2+(i+.5)*step;ctx.save();ctx.translate(cx,cy);ctx.rotate(mid);ctx.translate(r*.66,0);ctx.rotate(Math.PI/2);const fs=n<=6?34:n<=10?28:n<=13?24:21;ctx.font=`900 ${fs}px "Pretendard Variable",sans-serif`;ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillStyle='#fff';ctx.shadowColor='rgba(23,8,67,.96)';ctx.shadowBlur=9;let text=names[i];while(ctx.measureText(text).width>r*.43&&text.length>3)text=text.slice(0,-2)+'…';ctx.fillText(text,0,0);ctx.restore();}}
+// V4.3.0: Each run receives a distinct, non-repeating cat avatar assignment.
+const CAT_ASSETS=Array.from({length:17},(_,i)=>`./assets/lucky-cats/cat_${String(i+1).padStart(2,'0')}.svg`);
+function assignCats(){const ids=CAT_ASSETS.slice();for(let i=ids.length-1;i>0;i--){const j=secureIndex(i+1);[ids[i],ids[j]]=[ids[j],ids[i]];}state.catMap=Object.fromEntries(state.selected.map((name,i)=>[name,ids[i]]));}
+function renderCatParticipants(names,active=''){
+  const host=$('plinkoAvatars');host.replaceChildren();host.style.setProperty('--cat-columns',String(names.length<5?names.length:Math.min(5,names.length)));
+  names.forEach((name,i)=>{
+    const slot=document.createElement('div');slot.className='plinko-person'+(name===active?' plinko-person-win':'');slot.setAttribute('data-name',name);
+    const image=document.createElement('img');image.src=state.catMap[name]||CAT_ASSETS[i%17];image.alt='고양이 아바타';image.width=64;image.height=64;
+    const label=document.createElement('b');label.textContent=name;label.title=name;
+    const number=document.createElement('span');number.className='plinko-person-number';number.textContent=String(i+1);
+    slot.append(number,image,label);host.append(slot);
+  });
+}
+// The cryptographically sampled index (makePlan) is authoritative, and the animation lands in precisely that slot.
+// Animation is a visualization of the draw, NOT a physical probability engine.
+function paintPlinko(names,ball=null,selected=-1){
+  const canvas=$('plinkoCanvas'),ctx=canvas.getContext('2d'),w=canvas.width,h=canvas.height,n=names.length;
+  ctx.clearRect(0,0,w,h);
+  const fill=ctx.createLinearGradient(0,0,w,h);fill.addColorStop(0,'#251A60');fill.addColorStop(.52,'#241452');fill.addColorStop(1,'#0B133D');ctx.fillStyle=fill;ctx.beginPath();ctx.roundRect(6,16,w-12,h-28,64);ctx.fill();
+  // Cat ears behind the peg field; all details are rendered onto the same canvas at 60fps.
+  ctx.save();ctx.globalAlpha=.24;ctx.fillStyle='#BC86F9';ctx.beginPath();ctx.moveTo(65,220);ctx.lineTo(93,35);ctx.quadraticCurveTo(122,7,221,140);ctx.lineTo(420,110);ctx.lineTo(624,145);ctx.quadraticCurveTo(738,5,760,37);ctx.lineTo(781,225);ctx.closePath();ctx.fill();ctx.restore();
+  const pegRows=11,ystart=172,rowGap=45;
+  for(let r=0;r<pegRows;r++){
+    const columns=10+(r%2),step=(w-118)/(columns-1),xstart=(w-(columns-1)*step)/2;
+    for(let c=0;c<columns;c++){
+      const x=xstart+c*step,y=ystart+r*rowGap;ctx.save();ctx.shadowBlur=14;ctx.shadowColor=r%2?'#87E6FF':'#F0B7FF';
+      const g=ctx.createRadialGradient(x-2,y-3,1,x,y,8);g.addColorStop(0,'#FFFFFF');g.addColorStop(.6,r%2?'#A7EBFF':'#DBC5FF');g.addColorStop(1,'#7161CB');ctx.fillStyle=g;ctx.beginPath();ctx.arc(x,y,7.4,0,Math.PI*2);ctx.fill();ctx.restore();
+    }
+  }
+  const laneY=730,laneGap=3,laneW=(w-50)/n,slotLeft=25;
+  ctx.textAlign='center';ctx.textBaseline='middle';ctx.font=n>12?'bold 19px sans-serif':'bold 26px sans-serif';
+  for(let i=0;i<n;i++){
+    const x=slotLeft+i*laneW+laneGap/2,ww=laneW-laneGap;
+    ctx.save();ctx.shadowBlur=i===selected?24:7;ctx.shadowColor=i===selected?'#FFE47E':'#9E83F9';ctx.fillStyle=i===selected?'#FFDB7A':i%2?'#5743A9':'#347BC9';ctx.strokeStyle=i===selected?'#FFFFFF':'#CDB7FF';ctx.lineWidth=2.5;ctx.beginPath();ctx.roundRect(x,laneY,ww,78,Math.min(9,ww/4));ctx.fill();ctx.stroke();ctx.restore();
+    ctx.fillStyle=i===selected?'#3C2466':'#fff';ctx.fillText(String(i+1),x+ww/2,laneY+38);
+  }
+  if(ball){const {x,y}=ball;ctx.save();ctx.shadowColor='#FFE78E';ctx.shadowBlur=39;const bg=ctx.createRadialGradient(x-7,y-8,1,x,y,29);bg.addColorStop(0,'#FFFFFF');bg.addColorStop(.26,'#FFF4B8');bg.addColorStop(.62,'#FBD47D');bg.addColorStop(1,'#BE6DFA');ctx.fillStyle=bg;ctx.beginPath();ctx.arc(x,y,24,0,Math.PI*2);ctx.fill();ctx.lineWidth=4;ctx.strokeStyle='#fff5fb';ctx.stroke();ctx.restore();}
+}
+function easeInOut(t){return .5-.5*Math.cos(Math.PI*t);}
+async function dropPlinko(plan,roundIndex){
+  const names=plan.names,target=plan.winnerIndex,n=names.length;
+  $('roundLine').textContent=`${roundIndex+1} / ${state.items.length} ROUND`;
+  const label=$('roundItem');label.replaceChildren();if(rewardImage(plan.item)){const icon=document.createElement('img');icon.src=plan.item.icon;icon.alt='현재 보상';icon.className='round-reward-icon';label.append(icon);}else label.textContent=plan.item.text;
+  $('plinkoWinFlash').hidden=true;renderCatParticipants(names);$('runStatus').textContent=`${names.length}명 · 구슬이 출발합니다!`;
+  $('progressBar').style.width=(roundIndex/state.items.length*100)+'%';
+  paintPlinko(names,{x:420,y:92});
+  const w=$('plinkoCanvas').width,xEnd=25+((target+.5)*(w-50)/n),xStart=w/2;
+  const duration=3700,steps=12,points=[];
+  for(let j=0;j<=steps;j++){
+    const v=j/steps,base=xStart+(xEnd-xStart)*easeInOut(v);
+    const amp=(1-Math.abs(2*v-1))*(names.length>10?18:24);
+    const jitter=j===0||j===steps?0:Math.sin(j*2.7+target*.72)*amp;
+    points.push({x:Math.max(37,Math.min(w-37,base+jitter)),y:88+v*700});
+  }
+  const initial=performance.now();
+  await new Promise(resolve=>{
+    function frame(now){const progress=Math.max(0,Math.min(1,(now-initial)/duration)),seg=progress*steps,i=Math.min(steps-1,Math.floor(seg)),u=easeInOut(seg-i);const a=points[i],b=points[i+1];
+      const ball={x:a.x+(b.x-a.x)*u,y:a.y+(b.y-a.y)*u};paintPlinko(names,ball,progress===1?target:-1);
+      if(progress<1)requestAnimationFrame(frame);else resolve();
+    }requestAnimationFrame(frame);
+  });
+  paintPlinko(names,{x:xEnd,y:788},target);renderCatParticipants(names,plan.winner);
+  const win=$('plinkoWinFlash');win.textContent=`✨ 당첨! ${plan.winner} ✨`;win.hidden=false;
+  $('runStatus').textContent=roundIndex===state.items.length-1?'마지막 구슬 도착 · 결과를 정리합니다.':'구슬 도착! 다음 회차로 이동합니다…';
+  $('progressBar').style.width=((roundIndex+1)/state.items.length*100)+'%';await sleep(roundIndex===state.items.length-1?1100:940);
+}
 async function spinTo(plan,roundIndex){const canvas=$('wheel'),n=plan.names.length,step=360/n,target=-(plan.winnerIndex+.5)*step;drawWheel(plan.names);$('roundLine').textContent=`${roundIndex+1} / ${state.items.length} ROUND`;const label=$('roundItem');label.replaceChildren();if(rewardImage(plan.item)){const icon=document.createElement('img');icon.src=plan.item.icon;icon.alt='추첨 보상 아이콘';icon.style.cssText='display:block;width:64px;height:64px;object-fit:contain;margin:0 auto';label.append(icon);}else{label.textContent=plan.item.text;}$('runStatus').textContent=`${plan.names.length}명 중 추첨 중…`;$('progressBar').style.width=((roundIndex)/state.items.length*100)+'%';canvas.style.transition='none';canvas.style.transform=`rotate(${state.rotation}deg)`;canvas.getBoundingClientRect();const current=((state.rotation%360)+360)%360,targetNorm=((target%360)+360)%360;let delta=(targetNorm-current+360)%360;delta+=360*(5+secureIndex(3));state.rotation+=delta;canvas.style.transition='transform 3.65s cubic-bezier(.08,.72,.10,1)';canvas.style.transform=`rotate(${state.rotation}deg)`;await sleep(3700);$('runStatus').textContent=roundIndex===state.items.length-1?'마지막 회차 완료 · 결과 정리 중…':'회차 완료 · 다음 룰렛으로 이동합니다…';$('progressBar').style.width=((roundIndex+1)/state.items.length*100)+'%';await sleep(roundIndex===state.items.length-1?850:720);}
-async function startDraw(){if(state.running||$('startBtn').disabled)return;state.running=true;closeMenus();closeRewardMenus();state.results=[];state.rotation=0;registerAttempt();const plan=makePlan();$('memberStep').hidden=true;$('itemStep').hidden=true;$('resultPanel').hidden=true;$('runPanel').hidden=false;$('runPanel').scrollIntoView({behavior:'smooth',block:'start'});for(let i=0;i<plan.length;i++)await spinTo(plan[i],i);state.results=plan.map(({item,winner})=>({item,winner}));state.drawFinishedAt=new Date();state.running=false;showResults();}
+async function startDraw(){if(state.running||$('startBtn').disabled||!state.gameMode)return;state.running=true;closeMenus();closeRewardMenus();state.results=[];state.rotation=0;registerAttempt();assignCats();const plan=makePlan();$('memberStep').hidden=true;$('itemStep').hidden=true;$('resultPanel').hidden=true;$('rouletteShell').hidden=state.gameMode==='plinko';$('plinkoShell').hidden=state.gameMode!=='plinko';$('runPanel').hidden=false;$('runPanel').scrollIntoView({behavior:'smooth',block:'start'});try{for(let i=0;i<plan.length;i++){if(state.gameMode==='plinko')await dropPlinko(plan[i],i);else await spinTo(plan[i],i);}state.results=plan.map(({item,winner})=>({item,winner}));state.drawFinishedAt=new Date();state.running=false;showResults();}catch(e){console.error('추첨 진행 오류',e);state.running=false;alert('추첨을 완료하지 못했습니다. 화면을 확인한 후 다시 실행해 주세요.');$('runPanel').hidden=true;$('itemStep').hidden=false;}}
 $('startBtn').onclick=startDraw;
 function scrollResultTop(){const panel=$('resultPanel'),bar=document.querySelector('.topbar');if(!panel)return;const offset=(bar?.getBoundingClientRect().height||0)+18;const y=Math.max(0,panel.getBoundingClientRect().top+window.scrollY-offset);window.scrollTo({top:y,behavior:'smooth'});setTimeout(()=>{const yy=Math.max(0,panel.getBoundingClientRect().top+window.scrollY-offset);if(Math.abs(window.scrollY-yy)>4)window.scrollTo({top:yy,behavior:'auto'});},320);}
 // Shared responsive row arrangement for the on-page result and the actual PNG.
@@ -439,11 +581,11 @@ function sizeWinnerGrid(){
   const gap=cols===4?7:cols===3?9:12;
   const width=Math.floor((avail-gap*(cols-1))/cols);
   // Single winner is always a centered, compact showcase card.
-  const cardW=Math.min(width,cols===1?208:cols===2?175:cols===3?148:138);
+  const cardW=Math.min(width,cols===1?152:cols===2?135:cols===3?111:92);
   host.style.setProperty('--result-cols',String(cols));
   host.style.setProperty('--result-gap',gap+'px');
   host.style.setProperty('--result-card-w',cardW+'px');
-  host.style.setProperty('--result-card-icon',Math.min(cardW-20,cols===1?170:cols===2?140:cols===3?106:88)+'px');
+  host.style.setProperty('--result-card-icon',Math.min(cardW-16,cols===1?137:cols===2?117:cols===3?95:80)+'px');
 }
 window.addEventListener('resize' ,sizeWinnerGrid,{passive:true});
 function showResults(){
@@ -588,11 +730,11 @@ async function makeShareImage(){
   });
   return await new Promise((resolve,reject)=>canvas.toBlob(b=>b?resolve(b):reject(Error('이미지 생성 실패')),'image/png'));
 }
-function saveBlob(blob){const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=`행운룰렛-결과-${new Date().toISOString().slice(0,10)}.png`;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1500);}
-async function shareCurrentResult(){if(!state.results.length)return;const btn=$('shareResultBtn'),old=btn.textContent;btn.disabled=true;btn.textContent='공유 준비 중…';try{const blob=await makeShareImage();const file=new File([blob],`행운룰렛-결과.png`,{type:'image/png'});if(navigator.share&&(!navigator.canShare||navigator.canShare({files:[file]}))){await navigator.share({files:[file]});}else{saveBlob(blob);}}catch(e){if(e?.name!=='AbortError'){try{const blob=await makeShareImage();saveBlob(blob);}catch(_e){alert('결과 이미지를 만들지 못했습니다.');}}}finally{btn.disabled=false;btn.textContent=old;}}
+function saveBlob(blob){const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=`${state.gameMode==='plinko'?'행운구슬':'행운룰렛'}-결과-${new Date().toISOString().slice(0,10)}.png`;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1500);}
+async function shareCurrentResult(){if(!state.results.length)return;const btn=$('shareResultBtn'),old=btn.textContent;btn.disabled=true;btn.textContent='공유 준비 중…';try{const blob=await makeShareImage();const file=new File([blob],`${state.gameMode==='plinko'?'행운구슬':'행운룰렛'}-결과.png`,{type:'image/png'});if(navigator.share&&(!navigator.canShare||navigator.canShare({files:[file]}))){await navigator.share({files:[file]});}else{saveBlob(blob);}}catch(e){if(e?.name!=='AbortError'){try{const blob=await makeShareImage();saveBlob(blob);}catch(_e){alert('결과 이미지를 만들지 못했습니다.');}}}finally{btn.disabled=false;btn.textContent=old;}}
 $('shareResultBtn').onclick=shareCurrentResult;
 window.addEventListener('message',e=>{if(e.origin!==location.origin)return;const d=e.data||{};if(d.type==='cat-hero-v4-roster-updated')location.reload();});
-renderRoster();consumeCalculatorPrefill();
+renderRoster();
 })();
 </script>
 </body>
