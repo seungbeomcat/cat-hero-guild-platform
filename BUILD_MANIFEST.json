@@ -1,8 +1,18 @@
 {
-  "version": "V4.2.7",
-  "buildDate": "2026-10-17",
-  "baseline": "V4.2.6 complete source",
-  "fileCountExcludingManifests": 174,
+  "version": "V4.2.9",
+  "baseline": "V4.2.8 complete ZIP",
+  "date": "2026-10-17",
+  "assetCounts": {
+    "장비": 22,
+    "레시피": 10,
+    "소환권": 27,
+    "상자": 8
+  },
+  "existingChanged": [
+    "index.html",
+    "roulette.html"
+  ],
+  "baselineFileCount": 178,
   "files": [
     {
       "path": "ARCHITECTURE.md",
@@ -18,6 +28,11 @@
       "path": "BUILD_MANIFEST_V4.2.5.json",
       "bytes": 24430,
       "sha256": "85b40dd160e94ccd3665f11e2088986c589b6c07550a38c667ff5909ac15a413"
+    },
+    {
+      "path": "BUILD_MANIFEST_V4.2.7.json",
+      "bytes": 30140,
+      "sha256": "f7829bb25d223a74ce99f9c505625fc3343e3e9f42a601a630fd75aeaac12dd8"
     },
     {
       "path": "DATA_MODEL.md",
@@ -205,6 +220,16 @@
       "sha256": "a09eb9c8e085543f92ee6f3b8424cecfcb1a7d1354bcda4a372cd65a2c378167"
     },
     {
+      "path": "RELEASE_NOTES_V4.2.8.md",
+      "bytes": 3313,
+      "sha256": "601a84d40c4f8f914b9fb51ba4c9f5333996bf151aab510c7c1ff2bf57725ace"
+    },
+    {
+      "path": "RELEASE_NOTES_V4.2.9.md",
+      "bytes": 1697,
+      "sha256": "9e27f4280f09801b7d4b2980fa1be63e06574f0a36aa95e5a11674194b1d5a84"
+    },
+    {
       "path": "SOURCE_BASELINE.md",
       "bytes": 361,
       "sha256": "bd2f692ed96219cd365941412528bf9c17590206927784372d7b64fc40868936"
@@ -233,6 +258,11 @@
       "path": "VALIDATION_V4.2.7.md",
       "bytes": 844,
       "sha256": "71e6df5ad43b5970b4eae68e390c46dd252df12d2ca71361307f17eee08cc718"
+    },
+    {
+      "path": "VALIDATION_V4.2.8.md",
+      "bytes": 1007,
+      "sha256": "749e63853c3bd2602cb1c5507cbcfa86676501487958a7fd9e3a00e24d153259"
     },
     {
       "path": "__visual_check.html",
@@ -797,7 +827,7 @@
     {
       "path": "boss.html",
       "bytes": 206956,
-      "sha256": "7bbd1cdba958c155dccbf4ff430ebca47d8b68d61d364de025cf6f35a3631245"
+      "sha256": "f30aa10cb69864ee5c7d181efa739f028273a6c112fc5e75b5043f13600bd489"
     },
     {
       "path": "firebase-config.js",
@@ -817,27 +847,27 @@
     {
       "path": "index.html",
       "bytes": 2544,
-      "sha256": "3d09eba6a48b3d753db2d80347d0100e5d6f38bd79653f183585f9896978e7a0"
+      "sha256": "542029e6f5fd532b200899ece807fcbef1a228ebd2dcc762d276d93f8c57f1e4"
     },
     {
       "path": "main.html",
       "bytes": 610993,
-      "sha256": "bf850bf444379b95bb0aeafd7691645a3eb2cdcb3de427d106d1475f261b37dd"
+      "sha256": "8c93b54b2471bdf0bc78a271a5a728bd1a4dd91b561914ad6fd6bd88ff07c705"
     },
     {
       "path": "ops.html",
       "bytes": 283978,
-      "sha256": "f470c83c64f4a426f5b346298d03e67084cd32f6576381cf82b48938e97090c5"
+      "sha256": "69663f86329e37ca0941d125e21b9336e03ab0ce7660d165aea7a83cde4e8c51"
     },
     {
       "path": "roulette.html",
-      "bytes": 75845,
-      "sha256": "b1c0e9eead18cca9784d30b098837a9d24c068d0b2ad813e1ecddb41b07968d9"
+      "bytes": 92307,
+      "sha256": "12e0df3a317fe42db8e157e18f4e7aebfe0c8c3886d428c64ced95cb161dfecb"
     },
     {
       "path": "shared/admin-audit.js",
       "bytes": 23325,
-      "sha256": "80faa3a0ffe106b743c67692dfb5bd1d4d768454102453912af208a0141f1a60"
+      "sha256": "165569501fbf1d5b3266d98be27f8102ba7a13511606d3e1c96fde7b1b5b3e4e"
     },
     {
       "path": "shared/admin-editor.js",
@@ -874,6 +904,5 @@
       "bytes": 15045,
       "sha256": "8e85fd2eb0bdd7ec7c692597f49887e3e33b7b913740c69262b8ef9f1485e1a6"
     }
-  ],
-  "notes": "Source, asset, and rules integrity verified; see QA_REPORT_V4.2.7.json"
+  ]
 }
