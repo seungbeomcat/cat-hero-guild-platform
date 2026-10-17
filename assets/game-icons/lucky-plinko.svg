@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180" role="img" aria-label="행운 구슬 아이콘">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#6E43FF"/>
+      <stop offset="1" stop-color="#151033"/>
+    </linearGradient>
+    <linearGradient id="frame" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#A6EEFF"/>
+      <stop offset="1" stop-color="#C38CFF"/>
+    </linearGradient>
+    <radialGradient id="ball" cx="50%" cy="45%" r="60%">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="0.3" stop-color="#FFF2A8"/>
+      <stop offset="0.68" stop-color="#FFD66D"/>
+      <stop offset="1" stop-color="#E388FF"/>
+    </radialGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%"><feDropShadow dx="0" dy="0" stdDeviation="4" flood-color="#98E8FF" flood-opacity="0.8"/></filter>
+  </defs>
+  <rect x="7" y="7" width="166" height="166" rx="38" fill="url(#bg)" stroke="url(#frame)" stroke-width="6"/>
+  <path d="M35 62 L52 25 Q60 12 72 25 L91 48 L113 43 L129 22 Q139 10 147 24 L150 62" fill="#8A67F2" opacity="0.42"/>
+  <rect x="26" y="42" width="128" height="101" rx="20" fill="#241554" stroke="#B78FFF" stroke-opacity="0.7"/>
+  <g fill="#BDEFFF" opacity="0.94" filter="url(#glow)">
+    <circle cx="45" cy="60" r="4"/><circle cx="75" cy="60" r="4"/><circle cx="105" cy="60" r="4"/><circle cx="135" cy="60" r="4"/>
+    <circle cx="60" cy="79" r="4"/><circle cx="90" cy="79" r="4"/><circle cx="120" cy="79" r="4"/>
+    <circle cx="45" cy="98" r="4"/><circle cx="75" cy="98" r="4"/><circle cx="105" cy="98" r="4"/><circle cx="135" cy="98" r="4"/>
+    <circle cx="60" cy="117" r="4"/><circle cx="90" cy="117" r="4"/><circle cx="120" cy="117" r="4"/>
+  </g>
+  <g>
+    <rect x="28" y="143" width="40" height="18" rx="8" fill="#2D7ED0" stroke="#9FE8FF"/>
+    <rect x="70" y="143" width="40" height="18" rx="8" fill="#5B48B7" stroke="#DFC0FF"/>
+    <rect x="112" y="143" width="40" height="18" rx="8" fill="#2D7ED0" stroke="#9FE8FF"/>
+  </g>
+  <path d="M98 27 C91 37 89 50 93 60 C97 70 104 79 99 89 C95 97 84 104 73 115" fill="none" stroke="#FFE7B2" stroke-width="4.8" stroke-linecap="round" stroke-dasharray="1 11" opacity="0.85"/>
+  <circle cx="101" cy="27" r="15" fill="url(#ball)" stroke="#FFF8EA" stroke-width="3" filter="url(#glow)"/>
+  <circle cx="96" cy="22" r="4" fill="#FFFFFF" opacity="0.9"/>
+</svg>
