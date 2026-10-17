@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#090218">
-<title>Cat Hero · 행운 게임 V4.3.5</title>
+<title>Cat Hero · 행운 게임 V4.3.6</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <style>
 :root{--violet:#8b47f2;--violet2:#bc78ff;--blue:#5bc8ff;--ink:#f8f3ff;--muted:#c4b5dd;--panel:rgba(24,12,49,.86);--panel2:rgba(13,8,31,.94);--line:#8a43e8;--gold:#ffd76a;--green:#7ff4cc}
@@ -225,8 +225,8 @@ button.reward-compact-select,.reward-pick-button{font-weight:900!important}
 </style>
 
 <style id="v433-lucky-game-plinko-and-result-polish">
-.game-choice-panel{margin-top:16px;overflow:hidden}
-.game-choice-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;padding:8px 14px 0}
+.game-choice-panel{margin-top:16px;overflow:hidden;padding-bottom:26px!important}
+.game-choice-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;padding:8px 14px 0;margin-bottom:0}
 .game-choice-card{position:relative;overflow:hidden;isolation:isolate;min-width:0;min-height:198px;padding:20px 14px 18px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;cursor:pointer;border:2.5px solid #8A68EB;border-radius:24px;color:#fff;background:radial-gradient(circle at 50% 14%,rgba(238,194,255,.18),transparent 48%),linear-gradient(157deg,#34235F,#110B2F);box-shadow:0 10px 28px #080016b3,inset 0 0 0 1px #ffffff2b;transition:transform .18s,border-color .18s,box-shadow .18s}
 .game-choice-card::before{content:"";position:absolute;inset:-20% auto -20% -65%;width:45%;background:linear-gradient(110deg,transparent,rgba(255,255,255,.12),transparent);transform:rotate(12deg);pointer-events:none;transition:transform .45s ease}
 .game-choice-card:hover::before,.game-choice-card:focus-visible::before{transform:translateX(210%) rotate(12deg)}
@@ -262,7 +262,7 @@ button.reward-compact-select,.reward-pick-button{font-weight:900!important}
 @media(max-width:360px){.game-choice-grid{gap:10px;padding:6px 10px}.game-choice-card{min-height:176px;padding:16px 10px 14px}.game-choice-icon{width:96px;height:96px;border-radius:26px}.game-choice-card b{font-size:18px}.plinko-avatars{gap:5px}.plinko-person{padding:5px 2px 7px}.plinko-person b{font-size:9px}.plinko-person-slot{font-size:8px}.plinko-helper{gap:6px}.plinko-helper span{font-size:9.4px;padding:7px 10px}.proof-cell{gap:4px!important;padding:8px 3px!important}.proof-cell small{font-size:9px!important}.proof-cell strong{font-size:10px!important}}
 @media(prefers-reduced-motion:reduce){.game-choice-card,.plinko-win-flash{animation:none!important;transition:none!important}}
 
-/* V4.3.5: Restore V4.3.1 result/proof rules omitted by V4.3.2. */
+/* V4.3.6: Restore V4.3.1 result/proof rules omitted by V4.3.2. */
 .round-reward-icon{display:block;width:64px;height:64px;object-fit:contain;margin:4px auto;max-width:100%;max-height:64px;flex:none}
 /* On-page result only: award artwork is ~70% of V4.2.9 and member names are more prominent. */
 .result-list{gap:var(--result-gap)!important}
@@ -276,7 +276,7 @@ button.reward-compact-select,.reward-pick-button{font-weight:900!important}
 .proof-cell small{display:inline!important;margin:0!important;white-space:nowrap!important;font-size:clamp(9px,2.6vw,12px)!important}
 .proof-cell strong{display:inline!important;white-space:nowrap!important;font-size:clamp(10px,2.95vw,14px)!important;letter-spacing:-.045em!important}
 
-/* V4.3.5: Popup menus prefer the space above the triggering button; never extend the page. */
+/* V4.3.6: Popup menus prefer the space above the triggering button; never extend the page. */
 .reward-choice-menu.menu-above,.reward-pick-menu.menu-above{top:auto!important;bottom:calc(100% + 6px)!important}
 .reward-choice-menu.menu-below,.reward-pick-menu.menu-below{top:calc(100% + 6px)!important;bottom:auto!important}
 .reward-choice-menu,.reward-pick-menu{overscroll-behavior:contain;overflow-y:auto;-webkit-overflow-scrolling:touch}
@@ -284,7 +284,7 @@ button.reward-compact-select,.reward-pick-button{font-weight:900!important}
 @media(max-width:360px){.round-reward-icon{width:64px;height:64px}.proof-cell{gap:4px!important;padding:8px 3px!important}.proof-cell small{font-size:9px!important}.proof-cell strong{font-size:10px!important}}
 </style>
 <style id="v434-viewport-fit">
-/* V4.3.5 — viewport-contained draw stage: round reward, game board and roster visible together. */
+/* V4.3.6 — viewport-contained draw stage: round reward, game board and roster visible together. */
 html.v434-stage-locked,body.v434-stage-locked{overflow:hidden!important;overscroll-behavior:none}
 .run.v434-live{
  position:fixed!important;z-index:29!important;
@@ -393,7 +393,7 @@ html.v434-stage-locked,body.v434-stage-locked{overflow:hidden!important;overscro
     <div id="plinkoShell" class="plinko-shell" hidden>
       <div class="plinko-cat-title"><span class="plinko-cat-mark">🐾</span><span>고양이 행운 구슬</span><span class="plinko-cat-spark">✨</span></div>
       <div class="plinko-board"><canvas id="plinkoCanvas" width="840" height="890" aria-label="구슬 낙하 게임판과 길드원별 도착 칸"></canvas></div>
-      <div class="plinko-helper" aria-hidden="true"><span>구슬이 충돌 핀을 튕기며 지그재그로 내려갑니다</span><span id="plinkoRuleNote">도착한 슬롯의 참가자가 당첨됩니다</span></div>
+      <div class="plinko-helper" aria-hidden="true"><span>참가자별 동일한 확률로 슬롯을 무작위 배정합니다</span><span id="plinkoRuleNote">도착한 슬롯의 참가자가 당첨됩니다</span></div>
       <div id="plinkoAvatars" class="plinko-avatars" aria-label="참여 길드원에게 배정한 고양이 아바타"></div>
       <div id="plinkoWinFlash" class="plinko-win-flash" hidden aria-live="polite"></div>
     </div>
@@ -419,12 +419,13 @@ html.v434-stage-locked,body.v434-stage-locked{overflow:hidden!important;overscro
     </div>
   </section>
 
-  <footer class="footer"><b>Created by 879 | 안창살 · V4.3.5</b><br>2026.10.17</footer>
+  <footer class="footer"><b>Created by 879 | 안창살 · V4.3.6</b><br>2026.10.17</footer>
 </main>
 
 <script src="./firebase-config.js"></script>
 <script src="./shared/guild-core.js?v=423"></script>
 <script src="./shared/roulette-reward-catalog.js?v=426"></script>
+<script src="./shared/plinko-physics.js?v=436"></script>
 <script>
 (function(){
 'use strict';
@@ -494,7 +495,7 @@ function makePremiumChevron(className){
   const arrow=document.createElement('span');arrow.className=className;
   arrow.setAttribute('aria-hidden','true');return arrow;
 }
-// V4.3.5: Use visualViewport when available, with a fixed header safety boundary.
+// V4.3.6: Use visualViewport when available, with a fixed header safety boundary.
 function placeRewardMenu(menu,button,cap=300){
   const viewport=window.visualViewport;
   const viewportTop=viewport?viewport.offsetTop:0;
@@ -616,192 +617,177 @@ function renderCatParticipants(names,active=''){
     slot.append(number,image,meta,label);host.append(slot);
   });
 }
-// The cryptographically sampled index (makePlan) remains authoritative.
-// The animation below was redesigned to look and behave like a real pinball-style plinko board,
-// with visible peg collisions, varied pin response, ricochets and a guided final capture into the sampled slot.
-function clampValue(v,min,max){return v<min?min:v>max?max:v;}
-function lerpValue(a,b,t){return a+(b-a)*t;}
-function buildPlinkoScene(names,targetIndex){
-  const canvas=$('plinkoCanvas'),w=canvas.width,h=canvas.height,n=names.length;
-  const slotLeft=32,slotGap=Math.max(6,Math.min(10,18-n*.3)),slotAreaWidth=w-64,slotW=(slotAreaWidth-slotGap*(n-1))/n;
-  const slotY=730,slotH=88,rows=n>=12?11:10,fieldTop=138,fieldBottom=slotY-132,rowGap=(fieldBottom-fieldTop)/(rows-1);
-  const leftBound=72,rightBound=w-72,targetCenter=slotLeft+targetIndex*(slotW+slotGap)+slotW/2;
-  const pegColumns=Math.min(12,Math.max(8,n+3));
-  const pegs=[];
-  for(let r=0;r<rows;r++){
-    const cols=pegColumns+(r%2),usableW=w-156,step=usableW/Math.max(1,cols-1),xStart=(w-(cols-1)*step)/2,y=fieldTop+r*rowGap;
-    for(let c=0;c<cols;c++){
-      const x=xStart+c*step;
-      let type='normal';
-      if((r+c)%9===0) type='booster';
-      else if((r*5+c)%8===0) type='splitter';
-      pegs.push({x,y,r:type==='booster'?10.8:type==='splitter'?8.7:7.5,type});
-    }
+// V4.3.6: physics determines the physical landing slot, not a preselected winner.
+// Fisher-Yates slot assignment makes every participant equally likely, independent of slot bias.
+const PLINKO_ENGINE=window.CatPlinkoPhysics;
+function preparePlinkoRound(pool,item){
+  if(!PLINKO_ENGINE)throw Error('충돌 엔진을 불러오지 못했습니다.');
+  const names=PLINKO_ENGINE.shuffle(pool,secureIndex);
+  const board=PLINKO_ENGINE.createBoard(names.length);
+  let simulation=null;
+  for(let attempt=0;attempt<12;attempt++){
+    const candidate=PLINKO_ENGINE.simulate(board,()=>secureIndex(0x100000000)/0x100000000);
+    if(PLINKO_ENGINE.validate(candidate,board)){simulation=candidate;break;}
   }
-  const waypoints=[];
-  let previous=w/2+(secureIndex(3)-1)*24;
-  for(let r=0;r<rows;r++){
-    const progress=(r+1)/rows;
-    const base=lerpValue(w/2,targetCenter,Math.min(1,progress*1.06));
-    let swing=(progress<.34?112:progress<.7?80:Math.max(slotW*.6,26))*(.45+secureIndex(100)/170);
-    if(r>=rows-2) swing*=.15;
-    const sign=((secureIndex(2)?1:-1)*(r%2===0?1:-1));
-    let x=clampValue(base+sign*swing,leftBound,rightBound);
-    if(Math.abs(x-previous)<34&&r<rows-2)x=clampValue(x+sign*42,leftBound,rightBound);
-    if(r===rows-1)x=targetCenter;
-    previous=x;
-    waypoints.push(x);
-  }
-  const dividerXs=Array.from({length:n-1},(_,i)=>slotLeft+(i+1)*slotW+i*slotGap+slotGap/2);
-  return {w,h,n,slotLeft,slotGap,slotAreaWidth,slotW,slotY,slotH,rows,fieldTop,fieldBottom,rowGap,leftBound,rightBound,targetCenter,startX:w/2,startY:64,ballR:18,pegs,waypoints,dividerXs};
+  if(!simulation)throw Error('유효한 낙하 경로 생성에 실패했습니다. 당첨은 확정되지 않았습니다.');
+  return {item,names,board,simulation};
 }
-function simulatePlinkoFrames(scene,targetIndex){
-  const frames=[],impacts=[],trail=[];
-  let x=scene.startX+(secureIndex(5)-2)*12,y=scene.startY,vx=(secureIndex(100)-50)/22,vy=0,settled=0;
-  for(let step=0;step<540;step++){
-    const depth=clampValue((y-scene.fieldTop)/(scene.slotY-scene.fieldTop),0,1);
-    const rowIndex=clampValue(Math.round((y-scene.fieldTop)/scene.rowGap),0,scene.rows-1);
-    const waypoint=scene.waypoints[rowIndex]??scene.targetCenter;
-    const follow=depth<.2?.024:depth<.75?.038:.062;
-    vx+=clampValue((waypoint-x)/(depth>.7?180:260),-.32,.32)*follow;
-    vx+=Math.sin((step+rowIndex)*.16)*.014;
-    vy+=depth>.72?.34:.42;
-    vx*=depth>.82?.993:.996;
-    vy*=.997;
-    if(x<scene.leftBound){x=scene.leftBound;vx=Math.abs(vx)*.88+.08;}
-    if(x>scene.rightBound){x=scene.rightBound;vx=-Math.abs(vx)*.88-.08;}
-    for(const peg of scene.pegs){
-      if(Math.abs(peg.y-y)>34||Math.abs(peg.x-x)>34)continue;
-      const dx=x-peg.x,dy=y-peg.y,minDist=scene.ballR+peg.r,dist=Math.hypot(dx,dy)||.0001;
-      if(dist<minDist){
-        const nx=dx/dist,ny=dy/dist,overlap=minDist-dist+.01;
-        x+=nx*overlap;y+=ny*overlap;
-        const vn=vx*nx+vy*ny;
-        if(vn<0){
-          const restitution=peg.type==='booster'?1.14:peg.type==='splitter'?.97:.89;
-          vx-=(1+restitution)*vn*nx;vy-=(1+restitution)*vn*ny;
-          const tangentX=-ny,tangentY=nx;
-          const tangentKick=(peg.type==='booster'?.34:peg.type==='splitter'?.46:.22)*((secureIndex(2)?1:-1)+(x<peg.x?-.2:.2));
-          vx+=tangentX*tangentKick;
-          vy+=tangentY*Math.abs(tangentKick)*.08;
-          impacts.push({x:peg.x,y:peg.y,life:1,type:peg.type});
-        }
-      }
-    }
-    if(y>scene.slotY-120){
-      for(const wallX of scene.dividerXs){
-        if(Math.abs(x-wallX)<scene.ballR+4&&y>scene.slotY-88){
-          const dir=x<wallX?-1:1;
-          x=wallX+dir*(scene.ballR+4);
-          vx=dir*Math.max(.7,Math.abs(vx)*.95);
-        }
-      }
-      const captureStrength=y>scene.slotY-48?.24:.11;
-      vx+=clampValue((scene.targetCenter-x)/60,-1.2,1.2)*captureStrength;
-      if(y>scene.slotY-34)vy*=.95;
-    }
-    x+=vx;y+=vy;
-    if(y>scene.slotY+28){x+=(scene.targetCenter-x)*.18;vx*=.78;}
-    if(y>=scene.slotY+scene.slotH*.34){
-      y=scene.slotY+scene.slotH*.34;
-      x=lerpValue(x,scene.targetCenter,.28);
-      vx*=.65;vy*=.35;
-      if(Math.abs(scene.targetCenter-x)<1.8){settled++;if(settled>10){x=scene.targetCenter;break;}}
-    }
-    for(let i=impacts.length-1;i>=0;i--){impacts[i].life-=.08;if(impacts[i].life<=0)impacts.splice(i,1);}
-    trail.push({x,y});if(trail.length>9)trail.shift();
-    if(step%2===0)frames.push({x,y,trail:[...trail],impacts:impacts.map(hit=>({...hit}))});
-  }
-  for(let i=0;i<10;i++){
-    trail.push({x:scene.targetCenter,y:scene.slotY+scene.slotH*.34});if(trail.length>9)trail.shift();
-    frames.push({x:scene.targetCenter,y:scene.slotY+scene.slotH*.34,trail:[...trail],impacts:[]});
-  }
-  return frames;
-}
-function paintPlinko(names,scene,ball=null,selected=-1){
-  const canvas=$('plinkoCanvas'),ctx=canvas.getContext('2d'),{w,h,n,slotLeft,slotGap,slotW,slotY,slotH,fieldTop,pegs,dividerXs,targetCenter}=scene;
+function paintPlinko(names,board,ball=null,winningSlot=-1){
+  const canvas=$('plinkoCanvas'),ctx=canvas.getContext('2d');
+  const w=board.width,h=board.height,n=board.n;
   ctx.clearRect(0,0,w,h);
-  const outer=ctx.createLinearGradient(0,0,w,h);outer.addColorStop(0,'#24175D');outer.addColorStop(.52,'#1D124C');outer.addColorStop(1,'#081129');
-  ctx.fillStyle=outer;ctx.beginPath();ctx.roundRect(10,12,w-20,h-24,54);ctx.fill();
-  ctx.save();ctx.beginPath();ctx.roundRect(22,24,w-44,h-48,44);ctx.clip();
-  const glow=ctx.createRadialGradient(w*.48,0,0,w*.48,190,480);glow.addColorStop(0,'rgba(129,218,255,.19)');glow.addColorStop(1,'rgba(129,218,255,0)');ctx.fillStyle=glow;ctx.fillRect(0,0,w,h);
-  ctx.fillStyle='rgba(255,255,255,.055)';
-  for(let i=0;i<18;i++){
-    const sx=80+(i*79)%680,sy=68+((i*131)%150),r=1.5+((i*17)%20)/20;
-    ctx.beginPath();ctx.arc(sx,sy,r,0,Math.PI*2);ctx.fill();
-  }
-  ctx.lineCap='round';
-  const funnel=ctx.createLinearGradient(w/2,36,w/2,170);funnel.addColorStop(0,'rgba(255,244,188,.85)');funnel.addColorStop(1,'rgba(183,130,255,.08)');
-  ctx.strokeStyle=funnel;ctx.lineWidth=5;
-  ctx.beginPath();ctx.moveTo(w/2-34,56);ctx.lineTo(w/2-104,126);ctx.stroke();
-  ctx.beginPath();ctx.moveTo(w/2+34,56);ctx.lineTo(w/2+104,126);ctx.stroke();
-  ctx.fillStyle='rgba(255,255,255,.06)';ctx.beginPath();ctx.roundRect(w/2-50,38,100,42,18);ctx.fill();ctx.strokeStyle='rgba(246,227,255,.18)';ctx.lineWidth=2;ctx.stroke();ctx.fillStyle='#FCEBFF';ctx.font='900 16px "Pretendard Variable",sans-serif';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText('START',w/2,59);
-  if(selected>=0){
-    const sx=slotLeft+selected*(slotW+slotGap);const beam=ctx.createLinearGradient(0,fieldTop,0,slotY+slotH);beam.addColorStop(0,'rgba(255,223,129,.04)');beam.addColorStop(.45,'rgba(255,223,129,.16)');beam.addColorStop(1,'rgba(255,223,129,.30)');
-    ctx.fillStyle=beam;ctx.beginPath();ctx.roundRect(sx+4,fieldTop-20,slotW-8,slotY-fieldTop+slotH+10,22);ctx.fill();
-  }
-  const impactMap=new Map();
-  if(ball&&ball.impacts)ball.impacts.forEach(hit=>impactMap.set(hit.x+'|'+hit.y,hit));
-  for(const peg of pegs){
-    const hit=impactMap.get(peg.x+'|'+peg.y);
-    const glowColor=peg.type==='booster'?'#FFD875':peg.type==='splitter'?'#FF95F5':'#8DEAFF';
-    const fillMid=peg.type==='booster'?'#FFEAA1':peg.type==='splitter'?'#F3C6FF':'#C7F7FF';
-    const radius=peg.r+(hit?hit.life*2.2:0);
-    ctx.save();ctx.shadowBlur=(hit?22:14)+(peg.type==='booster'?4:0);ctx.shadowColor=glowColor;
-    const g=ctx.createRadialGradient(peg.x-2,peg.y-2,1,peg.x,peg.y,radius+2);g.addColorStop(0,'#FFFFFF');g.addColorStop(.55,fillMid);g.addColorStop(1,peg.type==='booster'?'#AB77E7':peg.type==='splitter'?'#8A63D3':'#6F69CD');ctx.fillStyle=g;ctx.beginPath();ctx.arc(peg.x,peg.y,radius,0,Math.PI*2);ctx.fill();ctx.restore();
-    if(hit){ctx.save();ctx.globalAlpha=.22*hit.life;ctx.fillStyle=glowColor;ctx.beginPath();ctx.arc(peg.x,peg.y,radius+12*hit.life,0,Math.PI*2);ctx.fill();ctx.restore();}
-  }
-  ctx.save();ctx.shadowBlur=18;ctx.shadowColor='rgba(136,111,255,.32)';ctx.fillStyle='rgba(116,94,205,.36)';
-  for(const wallX of dividerXs){ctx.beginPath();ctx.roundRect(wallX-5,slotY-98,10,100,8);ctx.fill();}
-  ctx.restore();
-  ctx.textAlign='center';ctx.textBaseline='middle';
-  for(let i=0;i<n;i++){
-    const x=slotLeft+i*(slotW+slotGap),mid=x+slotW/2;
-    ctx.save();ctx.shadowBlur=i===selected?24:9;ctx.shadowColor=i===selected?'#FFE47E':'#9E83F9';ctx.fillStyle=i===selected?'#F7D77A':i%2?'#5A48AF':'#347FCE';ctx.strokeStyle=i===selected?'#FFF8DF':'#D5C2FF';ctx.lineWidth=2.5;ctx.beginPath();ctx.roundRect(x,slotY,slotW,slotH,Math.min(18,slotW/3));ctx.fill();ctx.stroke();ctx.fillStyle=i===selected?'#52336E':'#FFFFFF';ctx.font='900 '+(n>10?18:24)+'px "Pretendard Variable",sans-serif';ctx.fillText(String(i+1),mid,slotY+34);ctx.font='800 '+(n>10?9:10.5)+'px "Pretendard Variable",sans-serif';ctx.fillStyle=i===selected?'rgba(82,51,110,.88)':'rgba(255,255,255,.86)';ctx.fillText('SLOT',mid,slotY+58);ctx.restore();
-  }
-  if(ball){
-    if(ball.trail){
-      ball.trail.forEach((pt,index)=>{const alpha=(index+1)/ball.trail.length*.16;ctx.save();ctx.globalAlpha=alpha;ctx.fillStyle='#FFEBA9';ctx.beginPath();ctx.arc(pt.x,pt.y,7+index*.8,0,Math.PI*2);ctx.fill();ctx.restore();});
+  // The ornate peg board is rasterized ONCE per round; only the ball and hit pegs animate.
+  // This avoids 100+ radial gradients and blurs on every frame on iPhone Safari.
+  if(board._staticCanvas){
+    ctx.drawImage(board._staticCanvas,0,0);
+    ctx.save();ctx.beginPath();ctx.roundRect(28,28,w-56,h-56,38);ctx.clip();
+    if(winningSlot>=0){
+      const laneX=board.left+board.slotWidth*winningSlot+2;
+      ctx.save();ctx.shadowColor='#FFE486';ctx.shadowBlur=25;
+      ctx.fillStyle='rgba(255,214,112,.38)';ctx.strokeStyle='#FFF5B1';ctx.lineWidth=3;
+      ctx.beginPath();ctx.roundRect(laneX,board.slotTop,board.slotWidth-4,board.slotBottom-board.slotTop,Math.min(14,board.slotWidth/3));ctx.fill();ctx.stroke();
+      ctx.fillStyle='#4B266A';ctx.textAlign='center';ctx.textBaseline='middle';
+      ctx.font='950 '+(n>=13?17:n>=9?21:28)+'px "Pretendard Variable",sans-serif';
+      ctx.fillText(String(winningSlot+1),laneX+(board.slotWidth-4)/2,board.slotTop+36);
+      ctx.restore();
     }
-    const {x,y}=ball;
-    ctx.save();ctx.globalAlpha=.28;ctx.fillStyle='#FFEFB1';ctx.beginPath();ctx.arc(x-13,y-18,17,0,Math.PI*2);ctx.fill();ctx.globalAlpha=.16;ctx.beginPath();ctx.arc(x-24,y-33,10,0,Math.PI*2);ctx.fill();ctx.restore();
-    ctx.save();ctx.shadowColor='#FFE78E';ctx.shadowBlur=34;const bg=ctx.createRadialGradient(x-7,y-8,1,x,y,29);bg.addColorStop(0,'#FFFFFF');bg.addColorStop(.28,'#FFF4B8');bg.addColorStop(.62,'#FBD47D');bg.addColorStop(1,'#BE6DFA');ctx.fillStyle=bg;ctx.beginPath();ctx.arc(x,y,22,0,Math.PI*2);ctx.fill();ctx.lineWidth=3.6;ctx.strokeStyle='#fff5fb';ctx.stroke();ctx.restore();
+    if(ball){
+      const impacts=new Map();
+      for(const hit of ball.impacts||[])impacts.set(hit.peg,hit.life);
+      for(const [index,life] of impacts){
+        const peg=board.pegs[index];if(!peg)continue;
+        const color=peg.type==='spring'?'#FFDE83':peg.type==='prism'?'#F4B4FF':'#A0E6FF';
+        ctx.save();ctx.shadowColor=color;ctx.shadowBlur=19;ctx.globalAlpha=life;
+        ctx.strokeStyle=color;ctx.lineWidth=3;ctx.beginPath();ctx.arc(peg.x,peg.y,peg.r+6+(1-life)*15,0,Math.PI*2);ctx.stroke();ctx.restore();
+      }
+      for(let i=0;i<(ball.trail||[]).length;i++){
+        const trail=ball.trail[i];ctx.fillStyle='rgba(255,234,179,'+((i+1)/ball.trail.length*.22)+')';
+        ctx.beginPath();ctx.arc(trail.x,trail.y,3+(i+1)*.55,0,Math.PI*2);ctx.fill();
+      }
+      const x=ball.x,y=ball.y,r=board.ballRadius;
+      ctx.save();ctx.shadowColor='#FFE18E';ctx.shadowBlur=19;
+      const orb=ctx.createRadialGradient(x-r*.35,y-r*.4,1,x,y,r*1.3);orb.addColorStop(0,'#FFFFFF');orb.addColorStop(.3,'#FFF8C1');orb.addColorStop(.7,'#FFD27F');orb.addColorStop(1,'#9160EB');
+      ctx.fillStyle=orb;ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);ctx.fill();ctx.strokeStyle='#FFFFFF';ctx.lineWidth=1.8;ctx.stroke();ctx.restore();
+    }
+    ctx.restore();return;
   }
-  ctx.restore();
+  ctx.save();
+  const fill=ctx.createLinearGradient(0,0,w,h);fill.addColorStop(0,'#1A103E');fill.addColorStop(.6,'#21124C');fill.addColorStop(1,'#080E2C');
+  ctx.fillStyle=fill;ctx.beginPath();ctx.roundRect(9,10,w-18,h-20,50);ctx.fill();
+  // Recessed glass chamber, metallic rim and ambient constellation.
+  ctx.strokeStyle='rgba(205,174,255,.34)';ctx.lineWidth=6;ctx.beginPath();ctx.roundRect(18,18,w-36,h-36,44);ctx.stroke();
+  const halo=ctx.createRadialGradient(w*.5,95,5,w*.5,300,520);halo.addColorStop(0,'rgba(125,114,249,.22)');halo.addColorStop(1,'rgba(125,114,249,0)');ctx.fillStyle=halo;ctx.fillRect(32,32,w-64,h-64);
+  ctx.save();ctx.beginPath();ctx.roundRect(28,28,w-56,h-56,38);ctx.clip();
+  ctx.globalAlpha=.22;ctx.fillStyle='#C5A1FF';ctx.beginPath();ctx.moveTo(74,227);ctx.lineTo(104,52);ctx.quadraticCurveTo(121,25,166,91);ctx.lineTo(240,174);ctx.lineTo(420,140);ctx.lineTo(600,174);ctx.lineTo(674,91);ctx.quadraticCurveTo(719,25,736,52);ctx.lineTo(766,227);ctx.closePath();ctx.fill();ctx.globalAlpha=1;
+  // Physical slot channels start below the pins and extend to the bottom.
+  for(let lane=0;lane<n;lane++){
+    const x=board.left+board.slotWidth*lane;
+    if(winningSlot===lane){ctx.fillStyle='rgba(255,209,106,.24)';ctx.fillRect(x,board.slotTop-62,board.slotWidth,board.slotBottom-board.slotTop+79);}
+    else if(lane%2===0){ctx.fillStyle='rgba(113,102,218,.075)';ctx.fillRect(x,board.slotTop-62,board.slotWidth,board.slotBottom-board.slotTop+79);}
+  }
+  for(const bx of board.boundaries){
+    ctx.save();ctx.shadowBlur=10;ctx.shadowColor='#988AF6';ctx.strokeStyle='rgba(170,156,247,.84)';ctx.lineWidth=6;ctx.beginPath();ctx.moveTo(bx,board.slotTop-60);ctx.lineTo(bx,board.slotBottom+7);ctx.stroke();ctx.restore();
+  }
+  // Top nozzle clearly shows the launch location.
+  ctx.fillStyle='rgba(180,142,255,.2)';ctx.beginPath();ctx.roundRect(w/2-85,43,170,58,24);ctx.fill();
+  ctx.strokeStyle='rgba(235,209,255,.6)';ctx.lineWidth=4;ctx.stroke();
+  ctx.fillStyle='#F8E2FF';ctx.font='900 23px "Pretendard Variable",sans-serif';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText('LUCKY DROP',w/2,74);
+  ctx.strokeStyle='rgba(246,215,167,.6)';ctx.lineWidth=4;ctx.beginPath();ctx.moveTo(w/2-70,98);ctx.lineTo(w/2-92,123);ctx.moveTo(w/2+70,98);ctx.lineTo(w/2+92,123);ctx.stroke();
+  // Distinct contact-aware pegs. Gold=bouncy, pink=angled, cyan=standard.
+  const impactMap=new Map();
+  for(const hit of ball?.impacts||[]){impactMap.set(hit.peg,{life:hit.life});}
+  for(let i=0;i<board.pegs.length;i++){
+    const peg=board.pegs[i],hit=impactMap.get(i),h=hit?.life||0;
+    const color=peg.type==='spring'?'#FFD27B':peg.type==='prism'?'#F4A3FC':'#8ADFFF';
+    const rim=peg.type==='spring'?'#C7833D':peg.type==='prism'?'#A362DE':'#5666CB';
+    const radius=peg.r+(h*1.7);
+    ctx.save();ctx.shadowColor=color;ctx.shadowBlur=11+h*18;
+    const g=ctx.createRadialGradient(peg.x-2,peg.y-2,1,peg.x,peg.y,radius);
+    g.addColorStop(0,'#FFFFFF');g.addColorStop(.5,color);g.addColorStop(1,rim);ctx.fillStyle=g;
+    ctx.beginPath();ctx.arc(peg.x,peg.y,radius,0,Math.PI*2);ctx.fill();
+    if(peg.type==='spring'){ctx.strokeStyle='rgba(255,241,166,.65)';ctx.lineWidth=1.5;ctx.beginPath();ctx.arc(peg.x,peg.y,peg.r+4,0,Math.PI*2);ctx.stroke();}
+    else if(peg.type==='prism'){ctx.strokeStyle='rgba(255,185,255,.65)';ctx.lineWidth=1.5;ctx.beginPath();ctx.arc(peg.x,peg.y,peg.r+3,0,Math.PI*2);ctx.stroke();}
+    if(h){ctx.globalAlpha=h*.6;ctx.strokeStyle=color;ctx.lineWidth=3;ctx.beginPath();ctx.arc(peg.x,peg.y,peg.r+5+(1-h)*16,0,Math.PI*2);ctx.stroke();}
+    ctx.restore();
+  }
+  // High contrast numbered landing cups, no pre-winner glow.
+  for(let i=0;i<n;i++){
+    const x=board.left+i*board.slotWidth+2,width=board.slotWidth-4;
+    ctx.save();ctx.shadowBlur=i===winningSlot?24:6;ctx.shadowColor=i===winningSlot?'#FFE37A':'#9776E9';
+    const slotGradient=ctx.createLinearGradient(x,board.slotTop,x,board.slotBottom);
+    slotGradient.addColorStop(0,i===winningSlot?'#FFE9A0':i%2?'#6A50AD':'#3587C9');slotGradient.addColorStop(1,i===winningSlot?'#B7782A':i%2?'#3E2F76':'#224D90');
+    ctx.fillStyle=slotGradient;ctx.strokeStyle=i===winningSlot?'#FFF7C3':'#DCC0FF';ctx.lineWidth=2.5;
+    ctx.beginPath();ctx.roundRect(x,board.slotTop,width,board.slotBottom-board.slotTop,Math.min(14,width/3));ctx.fill();ctx.stroke();
+    ctx.fillStyle=i===winningSlot?'#4A2966':'#FFFFFF';ctx.textAlign='center';ctx.textBaseline='middle';ctx.font='950 '+(n>=13?17:n>=9?21:28)+'px "Pretendard Variable",sans-serif';ctx.fillText(String(i+1),x+width/2,board.slotTop+36);
+    if(n<=8){ctx.font='850 11px "Pretendard Variable",sans-serif';ctx.fillText('SLOT',x+width/2,board.slotTop+61);}
+    ctx.restore();
+  }
+  // Cache the final static scene prior to any moving ball or result highlight.
+  const cached=document.createElement('canvas');cached.width=w;cached.height=h;
+  cached.getContext('2d').drawImage(canvas,0,0);board._staticCanvas=cached;
+  if(ball){
+    for(let i=0;i<(ball.trail||[]).length;i++){
+      const t=ball.trail[i],opacity=(i+1)/ball.trail.length*.24;
+      ctx.fillStyle='rgba(255,223,155,'+opacity+')';ctx.beginPath();ctx.arc(t.x,t.y,board.ballRadius*(.3+(i/ball.trail.length)*.48),0,Math.PI*2);ctx.fill();
+    }
+    const x=ball.x,y=ball.y,r=board.ballRadius;
+    ctx.save();ctx.shadowBlur=24;ctx.shadowColor='#FFE0A0';
+    const orb=ctx.createRadialGradient(x-r*.35,y-r*.4,1,x,y,r*1.4);
+    orb.addColorStop(0,'#FFFFFF');orb.addColorStop(.28,'#FFF9CC');orb.addColorStop(.67,'#FFD17E');orb.addColorStop(1,'#8A54E9');
+    ctx.fillStyle=orb;ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);ctx.fill();ctx.strokeStyle='#FFFFFF';ctx.lineWidth=2;ctx.stroke();ctx.restore();
+  }
+  ctx.restore();ctx.restore();
 }
-async function dropPlinko(plan,roundIndex){
-  const names=plan.names,target=plan.winnerIndex;
+async function dropPlinko(item,pool,roundIndex){
+  const round=preparePlinkoRound(pool,item);
+  const {names,board,simulation}=round;
   $('roundLine').textContent=(roundIndex+1)+' / '+state.items.length+' ROUND';
   const label=$('roundItem');label.replaceChildren();
-  if(rewardImage(plan.item)){
-    const icon=document.createElement('img');icon.src=plan.item.icon;icon.alt='현재 보상';icon.className='round-reward-icon';label.append(icon);
-  }else label.textContent=plan.item.text;
+  if(rewardImage(item)){const icon=document.createElement('img');icon.src=item.icon;icon.alt='현재 보상';icon.className='round-reward-icon';label.append(icon);}else label.textContent=item.text;
   $('plinkoWinFlash').hidden=true;renderCatParticipants(names);fitLiveStage(names.length);
-  $('runStatus').textContent=names.length+'명 · 충돌 핀을 통과하며 구슬이 낙하합니다.';
-  const rule=$('plinkoRuleNote');if(rule)rule.textContent=state.allowDuplicates?'핀 충돌 시뮬레이션 · 중복 ON':'핀 충돌 시뮬레이션 · 중복 OFF';
+  const helper=$('plinkoRuleNote');if(helper)helper.textContent='슬롯 무작위 배정 · 도착 후 당첨 확정';
+  $('runStatus').textContent=names.length+'명 · 핀 충돌로 구슬이 낙하하는 중…';
   $('progressBar').style.width=(roundIndex/state.items.length*100)+'%';
-  const scene=buildPlinkoScene(names,target);const frames=simulatePlinkoFrames(scene,target);
-  paintPlinko(names,scene,{x:scene.startX,y:scene.startY,trail:[{x:scene.startX,y:scene.startY}],impacts:[]});
-  const duration=Math.max(3350,Math.min(4700,frames.length*18));
-  const initial=performance.now();
-  await new Promise(resolve=>{
-    function frame(now){
-      const progress=Math.max(0,Math.min(1,(now-initial)/duration));
-      const idx=Math.min(frames.length-1,Math.floor(progress*(frames.length-1)));
-      paintPlinko(names,scene,frames[idx],progress>.9?target:-1);
-      if(progress<1)requestAnimationFrame(frame);else resolve();
+  const sequence=simulation.history;
+  const intro={x:sequence[0].x,y:sequence[0].y,trail:[],impacts:[]};
+  paintPlinko(names,board,null);
+  paintPlinko(names,board,intro);
+  const tickDuration=1000/90;
+  let elapsed=0,lastFrameTime=null;
+  await new Promise((resolve,reject)=>{
+    function next(t){
+      try{
+        if(lastFrameTime===null)lastFrameTime=t;
+        elapsed+=Math.max(0,Math.min(38,t-lastFrameTime));
+        lastFrameTime=t;
+        const i=Math.max(0,Math.min(sequence.length-1,Math.floor(elapsed/tickDuration)));
+        const frame=sequence[i];
+        if(!frame)throw Error('구슬 프레임을 찾을 수 없습니다.');
+        const trail=sequence.slice(Math.max(0,i-10),i+1).map(p=>({x:p.x,y:p.y}));
+        const impacts=[];
+        for(let f=Math.max(0,i-11);f<=i;f++)for(const event of sequence[f].events){
+          if(event.peg!==undefined)impacts.push({peg:event.peg,life:Math.max(.06,1-(i-f)/12)});
+        }
+        paintPlinko(names,board,{x:frame.x,y:frame.y,trail,impacts});
+        if(i<sequence.length-1)requestAnimationFrame(next);else resolve();
+      }catch(error){reject(error);}
     }
-    requestAnimationFrame(frame);
+    requestAnimationFrame(next);
   });
-  paintPlinko(names,scene,{x:scene.targetCenter,y:scene.slotY+scene.slotH*.34,trail:[{x:scene.targetCenter,y:scene.slotY+scene.slotH*.34}],impacts:[]},target);
-  renderCatParticipants(names,plan.winner);
-  const win=$('plinkoWinFlash');win.textContent='✨ '+(target+1)+'번 슬롯 · 당첨 '+plan.winner+' ✨';win.hidden=false;
-  $('runStatus').textContent=roundIndex===state.items.length-1?'마지막 구슬 도착 · 결과를 정리합니다.':'구슬 도착 완료 · 다음 회차를 준비합니다…';
+  if(!PLINKO_ENGINE.validate(simulation,board))throw Error('구슬의 정상적인 슬롯 도착을 확인하지 못했습니다.');
+  const winnerIndex=simulation.slot,winner=names[winnerIndex];
+  if(!winner)throw Error('도착 슬롯에 배정된 참가자가 없습니다.');
+  // Winning colors and cards are applied ONLY AFTER all simulation frames and confirmed landing.
+  paintPlinko(names,board,{x:simulation.last.x,y:simulation.last.y,trail:[],impacts:[]},winnerIndex);
+  renderCatParticipants(names,winner);
+  const win=$('plinkoWinFlash');win.textContent='✨ '+(winnerIndex+1)+'번 슬롯 · 당첨 '+winner+' ✨';win.hidden=false;
+  $('runStatus').textContent='도착 확인 · '+winner+'님 당첨 확정';
   $('progressBar').style.width=((roundIndex+1)/state.items.length*100)+'%';
-  await sleep(roundIndex===state.items.length-1?1100:960);
+  await sleep(roundIndex===state.items.length-1?1100:850);
+  return {item,winner,names,winnerIndex};
 }
 async function spinTo(plan,roundIndex){const canvas=$('wheel'),n=plan.names.length,step=360/n,target=-(plan.winnerIndex+.5)*step;drawWheel(plan.names);$('roundLine').textContent=`${roundIndex+1} / ${state.items.length} ROUND`;const label=$('roundItem');label.replaceChildren();if(rewardImage(plan.item)){const icon=document.createElement('img');icon.src=plan.item.icon;icon.alt='추첨 보상 아이콘';icon.style.cssText='display:block;width:64px;height:64px;object-fit:contain;margin:0 auto';label.append(icon);}else{label.textContent=plan.item.text;}fitLiveStage(plan.names.length);$('runStatus').textContent=`${plan.names.length}명 중 추첨 중…`;$('progressBar').style.width=((roundIndex)/state.items.length*100)+'%';canvas.style.transition='none';canvas.style.transform=`rotate(${state.rotation}deg)`;canvas.getBoundingClientRect();const current=((state.rotation%360)+360)%360,targetNorm=((target%360)+360)%360;let delta=(targetNorm-current+360)%360;delta+=360*(5+secureIndex(3));state.rotation+=delta;canvas.style.transition='transform 3.65s cubic-bezier(.08,.72,.10,1)';canvas.style.transform=`rotate(${state.rotation}deg)`;await sleep(3700);$('runStatus').textContent=roundIndex===state.items.length-1?'마지막 회차 완료 · 결과 정리 중…':'회차 완료 · 다음 룰렛으로 이동합니다…';$('progressBar').style.width=((roundIndex+1)/state.items.length*100)+'%';await sleep(roundIndex===state.items.length-1?850:720);}
-// V4.3.5. Keep the entire live draw within the visible viewport, below the sticky header.
+// V4.3.6. Keep the entire live draw within the visible viewport, below the sticky header.
 // Item, ball board and numbered participants are always kept in the same draw stage.
 let liveLayoutCount=3;
 let liveStageActive=false;
@@ -873,7 +859,34 @@ function deactivateLiveStage(){
 window.addEventListener('resize',()=>{if(liveStageActive)fitLiveStage();},{passive:true});
 window.visualViewport?.addEventListener('resize',()=>{if(liveStageActive)fitLiveStage();},{passive:true});
 window.visualViewport?.addEventListener('scroll',()=>{if(liveStageActive)fitLiveStage();},{passive:true});
-async function startDraw(){if(state.running||$('startBtn').disabled||!state.gameMode)return;state.running=true;closeMenus();closeRewardMenus();state.results=[];state.rotation=0;registerAttempt();assignCats();const plan=makePlan();$('memberStep').hidden=true;$('itemStep').hidden=true;$('resultPanel').hidden=true;$('rouletteShell').hidden=state.gameMode==='plinko';$('plinkoShell').hidden=state.gameMode!=='plinko';$('runPanel').hidden=false;activateLiveStage(plan[0]?.names?.length||state.selected.length);try{for(let i=0;i<plan.length;i++){if(state.gameMode==='plinko')await dropPlinko(plan[i],i);else await spinTo(plan[i],i);}state.results=plan.map(({item,winner})=>({item,winner}));state.drawFinishedAt=new Date();state.running=false;showResults();}catch(e){console.error('추첨 진행 오류',e);state.running=false;deactivateLiveStage();alert('추첨을 완료하지 못했습니다. 화면을 확인한 후 다시 실행해 주세요.');$('runPanel').hidden=true;$('itemStep').hidden=false;}}
+async function startDraw(){
+  if(state.running||$('startBtn').disabled||!state.gameMode)return;
+  state.running=true;closeMenus();closeRewardMenus();state.results=[];state.rotation=0;
+  registerAttempt();assignCats();
+  const roulettePlan=state.gameMode==='roulette'?makePlan():null;
+  $('memberStep').hidden=true;$('itemStep').hidden=true;$('resultPanel').hidden=true;
+  $('rouletteShell').hidden=state.gameMode==='plinko';$('plinkoShell').hidden=state.gameMode!=='plinko';
+  $('runPanel').hidden=false;activateLiveStage(state.selected.length);
+  try{
+    if(state.gameMode==='plinko'){
+      const pool=state.selected.slice();
+      for(let i=0;i<state.items.length;i++){
+        const result=await dropPlinko(state.items[i],pool,i);
+        state.results.push({item:result.item,winner:result.winner});
+        if(!state.allowDuplicates)pool.splice(pool.indexOf(result.winner),1);
+      }
+    }else{
+      for(let i=0;i<roulettePlan.length;i++)await spinTo(roulettePlan[i],i);
+      state.results=roulettePlan.map(({item,winner})=>({item,winner}));
+    }
+    state.drawFinishedAt=new Date();state.running=false;showResults();
+  }catch(e){
+    console.error('추첨 진행 오류',e);
+    state.running=false;deactivateLiveStage();
+    alert('추첨 진행 중 오류가 발생했습니다. 정상 도착 결과를 확인하지 못했으므로 다시 실행해 주세요.');
+    $('runPanel').hidden=true;$('itemStep').hidden=false;
+  }
+}
 $('startBtn').onclick=startDraw;
 function scrollResultTop(){const panel=$('resultPanel'),bar=document.querySelector('.topbar');if(!panel)return;const offset=(bar?.getBoundingClientRect().height||0)+18;const y=Math.max(0,panel.getBoundingClientRect().top+window.scrollY-offset);window.scrollTo({top:y,behavior:'smooth'});setTimeout(()=>{const yy=Math.max(0,panel.getBoundingClientRect().top+window.scrollY-offset);if(Math.abs(window.scrollY-yy)>4)window.scrollTo({top:yy,behavior:'auto'});},320);}
 // Shared responsive row arrangement for the on-page result and the actual PNG.
@@ -1037,7 +1050,7 @@ async function makeShareImage(){
     else write(name,x+chipW/2,y+chipH/2,29,'#f3e9ff',chipW-25,920,21);
   });
   // Current V4 release identifier on the actual exported PNG, outside the approved reward/participant layout.
-  write('Created by 879 | 안창살 · V4.3.5',W/2,H-29,21,'#9E8BBE',contentW,800,18);
+  write('Created by 879 | 안창살 · V4.3.6',W/2,H-29,21,'#9E8BBE',contentW,800,18);
   return await new Promise((resolve,reject)=>canvas.toBlob(b=>b?resolve(b):reject(Error('이미지 생성 실패')),'image/png'));
 }
 function saveBlob(blob){const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=`${state.gameMode==='plinko'?'행운구슬':'행운룰렛'}-결과-${new Date().toISOString().slice(0,10)}.png`;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1500);}
