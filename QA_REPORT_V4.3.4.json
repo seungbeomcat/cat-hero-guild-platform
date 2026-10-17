@@ -1,0 +1,78 @@
+{
+  "version": "V4.3.4",
+  "date": "2026-10-17",
+  "basis": "V4.3.3",
+  "type": "local Chromium browser emulation (not real iPhone Safari or live Firebase)",
+  "tested": [
+    {
+      "viewport": "390x844_plinko_3",
+      "round_reward_visible": true,
+      "progress_within_viewport": true,
+      "panel_no_vertical_overflow": true,
+      "participants_visible": true
+    },
+    {
+      "viewport": "320x568_plinko_3",
+      "round_reward_visible": true,
+      "progress_within_viewport": true,
+      "panel_no_vertical_overflow": true,
+      "participants_visible": true
+    },
+    {
+      "viewport": "390x844_plinko_17",
+      "round_reward_visible": true,
+      "progress_within_viewport": true,
+      "panel_no_vertical_overflow": true,
+      "participants_visible": true
+    },
+    {
+      "viewport": "320x568_plinko_17",
+      "round_reward_visible": true,
+      "progress_within_viewport": true,
+      "panel_no_vertical_overflow": true,
+      "participants_visible": true
+    },
+    {
+      "viewport": "390x844_roulette_3",
+      "round_reward_visible": true,
+      "progress_within_viewport": true,
+      "panel_no_vertical_overflow": true,
+      "participants_visible": true
+    },
+    {
+      "viewport": "320x568_roulette_3",
+      "round_reward_visible": true,
+      "progress_within_viewport": true,
+      "panel_no_vertical_overflow": true,
+      "participants_visible": true
+    }
+  ],
+  "supplementary_test_viewports": [
+    "320x480 plinko 3",
+    "320x480 plinko 17",
+    "375x667 plinko 8",
+    "390x660 plinko 17",
+    "430x932 roulette 3",
+    "320x480 roulette 3",
+    "568x320 landscape plinko 3"
+  ],
+  "results": {
+    "javascript_syntax_cases": 47,
+    "original_reward_icons_preserved": 67,
+    "cat_icons_preserved": 17,
+    "production_logic_unchanged": true,
+    "share_png_generated": true,
+    "original_512px_reward_png_rendered_in_current_round": true,
+    "runtime_errors": []
+  },
+  "unverified": [
+    "actual iOS Safari",
+    "KakaoTalk in-app browser",
+    "live Firebase tenant environment",
+    "real GitHub Pages deployment"
+  ],
+  "limitations": [
+    "Small display / zoomed text may reduce avatar and wheel readability",
+    "Animation is a visualization of secure RNG result, not physical RNG."
+  ]
+}

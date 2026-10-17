@@ -1,0 +1,1100 @@
+{
+  "version": "V4.3.4",
+  "date": "2026-10-17",
+  "source": "V4.3.3",
+  "baseline": "V4.3.1",
+  "file_count": 216,
+  "hash_records": 214,
+  "self_excluded": [
+    "BUILD_MANIFEST.json",
+    "BUILD_MANIFEST_V4.3.4.json"
+  ],
+  "assetCounts": {
+    "장비": 22,
+    "레시피": 10,
+    "소환권": 27,
+    "상자": 8,
+    "고양이": 17,
+    "게임선택 아이콘": 2
+  },
+  "modified_existing": [
+    "boss.html",
+    "index-module.mjs",
+    "index.html",
+    "main.html",
+    "ops.html",
+    "roulette.html"
+  ],
+  "files": [
+    {
+      "path": "ARCHITECTURE.md",
+      "bytes": 7803,
+      "sha256": "fe99b77c2f0d7a6fdb158e26f00b18612475872c89aae2b9340a2481ea7d77a0"
+    },
+    {
+      "path": "BUILD_MANIFEST_V4.0.1_BASELINE.json",
+      "bytes": 10122,
+      "sha256": "95d3a73aa5f654413cec9370fb13c89a10e5615b65916e2115a919e2489535ed"
+    },
+    {
+      "path": "BUILD_MANIFEST_V4.2.5.json",
+      "bytes": 24430,
+      "sha256": "85b40dd160e94ccd3665f11e2088986c589b6c07550a38c667ff5909ac15a413"
+    },
+    {
+      "path": "BUILD_MANIFEST_V4.2.7.json",
+      "bytes": 30140,
+      "sha256": "f7829bb25d223a74ce99f9c505625fc3343e3e9f42a601a630fd75aeaac12dd8"
+    },
+    {
+      "path": "BUILD_MANIFEST_V4.2.7_ARCHIVED.json",
+      "bytes": 30140,
+      "sha256": "f7829bb25d223a74ce99f9c505625fc3343e3e9f42a601a630fd75aeaac12dd8"
+    },
+    {
+      "path": "BUILD_MANIFEST_V4.2.9.json",
+      "bytes": 30835,
+      "sha256": "95034da777076a1ea9556c04b5cbb4b5470cc05d6caeed66eb36501329a56dec"
+    },
+    {
+      "path": "BUILD_MANIFEST_V4.3.3.json",
+      "bytes": 36191,
+      "sha256": "14dd17ea73de5c0893bede7a63ebf524ba38e5cb9ec2438597f856874b4e78bd"
+    },
+    {
+      "path": "DATA_MODEL.md",
+      "bytes": 3652,
+      "sha256": "85ba7fb7d606a4790336d67e86cfac64398708f32f084c04b3be6392b900f53c"
+    },
+    {
+      "path": "INTEGRATION_MANIFEST_V4.2.6.json",
+      "bytes": 1516,
+      "sha256": "c032220985754f25f7690f16603b7f836e7c61dbf78dbcbe826e629c2b282deb"
+    },
+    {
+      "path": "INTEGRATION_MANIFEST_V4.2.7.json",
+      "bytes": 448,
+      "sha256": "bee4594c621b214a7680d03dc2171a76faa0dd9f42c42e7d83f034780b562880"
+    },
+    {
+      "path": "PRE_GITHUB_CHECKLIST.md",
+      "bytes": 818,
+      "sha256": "1280ca97d0e51da5a9a25754b57e041fd8dba4b9189e4ee55d421a9ee49fc15e"
+    },
+    {
+      "path": "QA_REPORT_V4.2.6.json",
+      "bytes": 1294,
+      "sha256": "d42d59bfaad4b159d009c0ef07b73e79704881c9064071d41023d0f1803546c0"
+    },
+    {
+      "path": "QA_REPORT_V4.2.7.json",
+      "bytes": 1401,
+      "sha256": "b285fc518f3ac91aa748b339e84831afac94f36d6ed8204ee4e8cb5964e2b119"
+    },
+    {
+      "path": "QA_REPORT_V4.3.3.json",
+      "bytes": 1678,
+      "sha256": "94fe1982fb31fa1e7ec02b9ab3bef8e55c83bb962d1ba03e7642e7d3986903e5"
+    },
+    {
+      "path": "QA_REPORT_V4.3.4.json",
+      "bytes": 2251,
+      "sha256": "9109f4f46ab3a485e9d3ca6e0544974d2c5c2ebff80d49e99186fc326cf8c186"
+    },
+    {
+      "path": "README.md",
+      "bytes": 2871,
+      "sha256": "ebfd3940e587769a26b1f90e29f11e73b7a92b4b9bba8c579fd39ad22c7fe0c0"
+    },
+    {
+      "path": "RELEASE_NOTES_V4.0.1.md",
+      "bytes": 910,
+      "sha256": "b8e67b00069299f6af1ece34fd33e5bf74ad1bd7ecd6037c4cb4ff205141a475"
+    },
+    {
+      "path": "RELEASE_NOTES_V4.0.2.md",
+      "bytes": 1114,
+      "sha256": "73e1e44e279d1522d49d4f8b7e60620c71c101ca8628663238a0f07f13a6509a"
+    },
+    {
+      "path": "RELEASE_NOTES_V4.0.3.md",
+      "bytes": 1104,
+      "sha256": "47832033d438b081aa8a12c2cf0a0a3c470bb6c0640b7df5469b28d104547b66"
+    },
+    {
+      "path": "RELEASE_NOTES_V4.0.4.md",
+      "bytes": 818,
+      "sha256": "d2930baedce061dbfc1d8886eb88aa19a743d4b424e24041b5ca9d3e4a7f88f5"
+    },
+    {
+      "path": "RELEASE_NOTES_V4.0.5.md",
+      "bytes": 693,
+      "sha256": "a8c0862f19ca6c3fc25331c0b4259ae8083563e522c36d0bedcc60c7bc8ba092"
+    },
+    {
+      "path": "RELEASE_NOTES_V4.0.6.md",
+      "bytes": 3100,
+      "sha256": "dac0f49463cfbc7163e921a3bd1d288dc96833d2353a8b11c9f77fcdf9cf7ef8"
+    },
+    {
+      "path": "RELEASE_NOTES_V4.0.7.md",
+      "bytes": 1380,
+      "sha256": "3cf310808a9fdcc3e33ea4cd66d725b79e3d2812c75775f1e697743ef9d8b769"
+    },
+    {
+      "path": "RELEASE_NOTES_V4.0.8.md",
+      "bytes": 1726,
+      "sha256": "ae6e45ee7a7a2daeba93c34ef1198f2cf1626b87491b4552146351daf54fd328"
+    },
+    {
+      "path": "RELEASE_NOTES_V4.0.9.md",
+      "bytes": 806,
+      "sha256": "eae764bbdd8f4fa47e92584c10b6bc032eb1443a00ce10ca7e3e19d7439cb574"
+    },
+    {
+      "path": "RELEASE_NOTES_V4.1.0.md",
+      "bytes": 804,
+      "sha256": "84cc98711b7ff2e7ee6adcd31ced2548dcd5e34fdc1be518111f2e63960105f2"
+    },
+    {
+      "path": "RELEASE_NOTES_V4.1.1.md",
+      "bytes": 1833,
+      "sha256": "477e3d9570846e796196a6e4452b9e228c4705de9617805d27e7c7d62cc79e80"
+    },
+    {
+      "path": "RELEASE_NOTES_V4.1.10.md",
+      "bytes": 1880,
+      "sha256": "310b169f330876d553272c2b6e211fa09a9295e6b15179971e9bffacd1d6a265"
+    },
+    {
+      "path": "RELEASE_NOTES_V4.1.11.md",
+      "bytes": 1712,
+      "sha256": "5a0cb29e37dc335de0e5c35c21566388a5bc36a5e4331575dc3cb120d780a49a"
+    },
+    {
+      "path": "RELEASE_NOTES_V4.1.12.md",
+      "bytes": 1394,
+      "sha256": "81255a71821d68a4b904d22a715eafbd5bfaedca73c9ecf696ed56528eb0ba8c"
+    },
+    {
+      "path": "RELEASE_NOTES_V4.1.13.md",
+      "bytes": 1712,
+      "sha256": "5ffbe513f0cc13651da45b55288016a26fb168a8ccd86e8ee2f2bf90f863179d"
+    },
+    {
+      "path": "RELEASE_NOTES_V4.1.2.md",
+      "bytes": 1261,
+      "sha256": "3cb6626afe245078380e015f97ce269a4a859efeba34462287cec566e31f3ac0"
+    },
+    {
+      "path": "RELEASE_NOTES_V4.1.3.md",
+      "bytes": 1288,
+      "sha256": "6e25b2486b3c8db35eeb4808d4b06f3802cae2f0039d43d79cc1388125dff904"
+    },
+    {
+      "path": "RELEASE_NOTES_V4.1.4.md",
+      "bytes": 1817,
+      "sha256": "64240a440c4b10472b36e7615da7f4c4139e3c85994a44d86f3cbb3b04c4c801"
+    },
+    {
+      "path": "RELEASE_NOTES_V4.1.5.md",
+      "bytes": 1475,
+      "sha256": "f7fd3e477c634407894195c54ebaf6646d7401f6a0989aaa8d34311969edee96"
+    },
+    {
+      "path": "RELEASE_NOTES_V4.1.6.md",
+      "bytes": 1701,
+      "sha256": "ea36b00aedea94c8a91608b8b10792f435c7180b5839e8a2563a7e1f48b9ac70"
+    },
+    {
+      "path": "RELEASE_NOTES_V4.1.7.md",
+      "bytes": 1538,
+      "sha256": "85c84dfaa6b47169c6ce0bee402c7c7d3328bb6a59b11ab6067598b3f21d4ad5"
+    },
+    {
+      "path": "RELEASE_NOTES_V4.1.8.md",
+      "bytes": 2140,
+      "sha256": "c2ee06def0a37afae1c3fac60c3e2287658120a55888d7d965a48bd200e8b4ac"
+    },
+    {
+      "path": "RELEASE_NOTES_V4.1.9.md",
+      "bytes": 1329,
+      "sha256": "e0c7a2c94b3585c8c025b71a44d806e8ec3a94a7840764f75b274b1ce155adfd"
+    },
+    {
+      "path": "RELEASE_NOTES_V4.2.1.md",
+      "bytes": 1167,
+      "sha256": "d9f69fcb114a6d59c0746c900e09a4aa93a3405bdd84bb9e0d72460b3c1762d7"
+    },
+    {
+      "path": "RELEASE_NOTES_V4.2.2.md",
+      "bytes": 2112,
+      "sha256": "658eec4013ab994110a9ee535df2025564b86756d1bd396f4849ba79e1451a1a"
+    },
+    {
+      "path": "RELEASE_NOTES_V4.2.3.md",
+      "bytes": 1624,
+      "sha256": "c8049a37a6464768871d170e479dbb97eaef72593edb9c2eabd78941e74cce36"
+    },
+    {
+      "path": "RELEASE_NOTES_V4.2.4.md",
+      "bytes": 1606,
+      "sha256": "cac5389e2c612cea3f814663efc4a3a13dd64a5ccf36299b6ec78c53f7ea6034"
+    },
+    {
+      "path": "RELEASE_NOTES_V4.2.5.md",
+      "bytes": 2034,
+      "sha256": "09ebb0e9f2997511920a8a0aa69f06096a83a9bd789b7d82f3766f17b5405503"
+    },
+    {
+      "path": "RELEASE_NOTES_V4.2.6.md",
+      "bytes": 2314,
+      "sha256": "432b217b46e9157cff4aaf100b65a612607bf2bcdf9bb14313af7674a8cf6cd5"
+    },
+    {
+      "path": "RELEASE_NOTES_V4.2.7.md",
+      "bytes": 2498,
+      "sha256": "a09eb9c8e085543f92ee6f3b8424cecfcb1a7d1354bcda4a372cd65a2c378167"
+    },
+    {
+      "path": "RELEASE_NOTES_V4.2.8.md",
+      "bytes": 3313,
+      "sha256": "601a84d40c4f8f914b9fb51ba4c9f5333996bf151aab510c7c1ff2bf57725ace"
+    },
+    {
+      "path": "RELEASE_NOTES_V4.2.9.md",
+      "bytes": 1697,
+      "sha256": "9e27f4280f09801b7d4b2980fa1be63e06574f0a36aa95e5a11674194b1d5a84"
+    },
+    {
+      "path": "RELEASE_NOTES_V4.3.0.md",
+      "bytes": 2261,
+      "sha256": "48c0fa56ca3ac74ea35fef45ab967c0707eb6c0cc8fd0581e1cec64b1b42678f"
+    },
+    {
+      "path": "RELEASE_NOTES_V4.3.1.md",
+      "bytes": 796,
+      "sha256": "39996791a0db4c4c1f4142db07ceae1705a0688a9351cbcf1af0f4de5de2cb45"
+    },
+    {
+      "path": "RELEASE_NOTES_V4.3.2.md",
+      "bytes": 1481,
+      "sha256": "b0b50f23f1809e236f9e0b15be0a5662f29ba4e068f7cc84622d09e24f13a6ec"
+    },
+    {
+      "path": "RELEASE_NOTES_V4.3.3.md",
+      "bytes": 2487,
+      "sha256": "81075ddfae33af03f211cc4e28e234cfd1e4ee48cc4d6fc837df8a655776888c"
+    },
+    {
+      "path": "RELEASE_NOTES_V4.3.4.md",
+      "bytes": 2153,
+      "sha256": "d8a61446f2c7e194e92b855f131b61e198e8ef509b267e1d715b09823a98987c"
+    },
+    {
+      "path": "SOURCE_BASELINE.md",
+      "bytes": 361,
+      "sha256": "bd2f692ed96219cd365941412528bf9c17590206927784372d7b64fc40868936"
+    },
+    {
+      "path": "VALIDATION.md",
+      "bytes": 1141,
+      "sha256": "edbc96790c906b890fd694c844b16d8375d534cc3dd95f0c30aeeac9214cf917"
+    },
+    {
+      "path": "VALIDATION_V4.2.4.md",
+      "bytes": 1076,
+      "sha256": "a064148d786f12d39ba8f33b8d0167b5c9862a56758545f22eb4b85e65ad87cd"
+    },
+    {
+      "path": "VALIDATION_V4.2.5.md",
+      "bytes": 1500,
+      "sha256": "ab182e9eed08e09176f532a26ce0515819d3a9918ced0b71311ea4d348c80645"
+    },
+    {
+      "path": "VALIDATION_V4.2.6.md",
+      "bytes": 1810,
+      "sha256": "904d7815a89e756d2dc2e420d87a9ab09d5b6558a77e1b9334a00501a8e0b2dd"
+    },
+    {
+      "path": "VALIDATION_V4.2.7.md",
+      "bytes": 844,
+      "sha256": "71e6df5ad43b5970b4eae68e390c46dd252df12d2ca71361307f17eee08cc718"
+    },
+    {
+      "path": "VALIDATION_V4.2.8.md",
+      "bytes": 1007,
+      "sha256": "749e63853c3bd2602cb1c5507cbcfa86676501487958a7fd9e3a00e24d153259"
+    },
+    {
+      "path": "VALIDATION_V4.2.9.md",
+      "bytes": 1581,
+      "sha256": "2cfa54de4b4f66b294b3bb3062f7658fecbaa97e13e0c4eda945ba4a5dab615a"
+    },
+    {
+      "path": "VALIDATION_V4.3.0.md",
+      "bytes": 1584,
+      "sha256": "6c9a1deec8cd14be97ec9abf9c3a2b9e8e3ed03faaf541ed5a49bcfd6330af43"
+    },
+    {
+      "path": "VALIDATION_V4.3.1.md",
+      "bytes": 886,
+      "sha256": "95c2ced527e1f1ec09e77468e48e46431c002a0cbfa95b60d9ec569a48bfe229"
+    },
+    {
+      "path": "VALIDATION_V4.3.2.md",
+      "bytes": 1039,
+      "sha256": "c3422393f2c8995225512e082b3abb12edc37c30413284c94e3dc3682162a2b6"
+    },
+    {
+      "path": "VALIDATION_V4.3.3.md",
+      "bytes": 2511,
+      "sha256": "89aa850e17f8f8d098b3273ba46aa44541f3b447e1d55134c27aaa7eca7eada9"
+    },
+    {
+      "path": "VALIDATION_V4.3.4.md",
+      "bytes": 1345,
+      "sha256": "45e63b89be835a4d189f2a2e35010f8740308d17b4c3ed60b3dfa43eacb04f2e"
+    },
+    {
+      "path": "__visual_check.html",
+      "bytes": 55097,
+      "sha256": "1656b7ee2044b028e40c8d0bb8913d4049eb89541d8610620346eb5cc8d90267"
+    },
+    {
+      "path": "assets/bananyang-v337-display.webp",
+      "bytes": 15086,
+      "sha256": "55a776f8b96b58a6cc461486a760ea32b2fc1327e5f8fc2ec4ecdbda26352371"
+    },
+    {
+      "path": "assets/bananyang-v337.png",
+      "bytes": 357659,
+      "sha256": "a792818c3c3e2855747a1f9d43ee19fe281cac2453ddd9d8cf28016ab53031a5"
+    },
+    {
+      "path": "assets/boss-cat-display.webp",
+      "bytes": 37078,
+      "sha256": "89365b382b72afe86e50e92d707d2b49997abec455fb507d0fb727a812980486"
+    },
+    {
+      "path": "assets/boss-cat.png",
+      "bytes": 1577753,
+      "sha256": "3c31be842ad1e76daf05d71082319874da60c552c6091ae032719b52cbb9fd9f"
+    },
+    {
+      "path": "assets/boss-food-display.webp",
+      "bytes": 35298,
+      "sha256": "5525331c07606bf2e128b23f012a4de131c56d835a5b205ae82a5df3f2803dcf"
+    },
+    {
+      "path": "assets/boss-food.png",
+      "bytes": 1499471,
+      "sha256": "a1b177bb7f5ed8a07d699039b0686c1aee510a72fa6eee50b20f5eca8859be84"
+    },
+    {
+      "path": "assets/boss-pirate-display.webp",
+      "bytes": 45650,
+      "sha256": "9a649b4bf954fd9599e022f507118c2e94b390691ca3fbf7217441e610e1e945"
+    },
+    {
+      "path": "assets/boss-pirate.png",
+      "bytes": 1689490,
+      "sha256": "5c75534baa0d35f4e91e2cb7e87c8389a77b9187a9b7d756b986c5a23f623d1a"
+    },
+    {
+      "path": "assets/boss-wolf-display.webp",
+      "bytes": 38278,
+      "sha256": "93055749ed09b7a795a9ba784f936faa25a4b5c2d8947299da6814588ea25044"
+    },
+    {
+      "path": "assets/boss-wolf.png",
+      "bytes": 1584475,
+      "sha256": "a12a8bd97e2ecb706886af895118e87aba2d2e12bf93b8120c6004a19d9c852d"
+    },
+    {
+      "path": "assets/game-icons/lucky-plinko.svg",
+      "bytes": 2458,
+      "sha256": "101184f76fec48f0419f957059870de0512ddd029b1a5fba39c9f0bf331cb68d"
+    },
+    {
+      "path": "assets/game-icons/lucky-wheel.svg",
+      "bytes": 2613,
+      "sha256": "831b659667d94be782c97a8944e8b9ed6fb9c677c10d3608fad8772cef345aa5"
+    },
+    {
+      "path": "assets/looney-v337-display.webp",
+      "bytes": 19428,
+      "sha256": "e7a761e63d39d4571bec62966472dbe89588d2da1250fe3611471e4e1d3da1e6"
+    },
+    {
+      "path": "assets/looney-v337.png",
+      "bytes": 401201,
+      "sha256": "921d06143771300f815c49014f755d9be4a81511877f0132c641feac0b8f70a6"
+    },
+    {
+      "path": "assets/louis-v337-display.webp",
+      "bytes": 22470,
+      "sha256": "64e3a8e390d9f678a68cda6a585057d9b706080d73a0fcb4b6dd5522b851f0c7"
+    },
+    {
+      "path": "assets/louis-v337.png",
+      "bytes": 427774,
+      "sha256": "81b67fccc5d6cf25c4f324de4699d408a77fb7115264e11929994d6b111261f2"
+    },
+    {
+      "path": "assets/lucky-cats/BREEDS.txt",
+      "bytes": 351,
+      "sha256": "bfff56014fc1688f747c5390a0e5f94b170d414cfd85dd6ad4b4b8d08a99ed5c"
+    },
+    {
+      "path": "assets/lucky-cats/cat_01.svg",
+      "bytes": 2031,
+      "sha256": "2c4080713a1576ee5e01aca8eada11932957e875db6405e13ce89108a31ba0f7"
+    },
+    {
+      "path": "assets/lucky-cats/cat_02.svg",
+      "bytes": 2154,
+      "sha256": "42f24c7f5e2d4ef5db3c70cbe41fb4aef91e9df2879360c453e87387ae5b5fde"
+    },
+    {
+      "path": "assets/lucky-cats/cat_03.svg",
+      "bytes": 2203,
+      "sha256": "fed5c8ee7a8ff8d81a7aa348839fe224982cfd3feed0a2903f8f2ac871371bd1"
+    },
+    {
+      "path": "assets/lucky-cats/cat_04.svg",
+      "bytes": 1801,
+      "sha256": "74b835327bec79bfef4e9c7924d6d9025b74991c14bf982889e9a82ff79528db"
+    },
+    {
+      "path": "assets/lucky-cats/cat_05.svg",
+      "bytes": 2180,
+      "sha256": "9d4371f9dc76cd3c9c981ed156e87b67f99d126a5c174a79380c05ce6bad6979"
+    },
+    {
+      "path": "assets/lucky-cats/cat_06.svg",
+      "bytes": 2004,
+      "sha256": "ccc231db144cb1793ac24c47450b97ce9f4ee501feb74df7c6803742a82431eb"
+    },
+    {
+      "path": "assets/lucky-cats/cat_07.svg",
+      "bytes": 2031,
+      "sha256": "5df21f02f53e558e9152a94a669adf2b2e43e4740bc99e17548c967041e7ffff"
+    },
+    {
+      "path": "assets/lucky-cats/cat_08.svg",
+      "bytes": 1742,
+      "sha256": "502b58a80be2dfa5a6cdf16d2fd5436e556314edac0bfdd962a1963c6a58cbed"
+    },
+    {
+      "path": "assets/lucky-cats/cat_09.svg",
+      "bytes": 1779,
+      "sha256": "5e03ede6eb415b48068c66045746bd25fc1e6dcefaaca70ecc34c87b0cfacb17"
+    },
+    {
+      "path": "assets/lucky-cats/cat_10.svg",
+      "bytes": 2244,
+      "sha256": "9ff42c348b666a30d0a21bc027eae5ce2504bca6db0fdf32022e6c3b1f02267a"
+    },
+    {
+      "path": "assets/lucky-cats/cat_11.svg",
+      "bytes": 2478,
+      "sha256": "084a113ce94813adfd8a3a92fddb2e52f04f7be0572104e3998e2e782f58d398"
+    },
+    {
+      "path": "assets/lucky-cats/cat_12.svg",
+      "bytes": 2479,
+      "sha256": "8222604b996e3b7eeb0f634376340dc10b1b4f52ad70bba0abdfc6027eec4944"
+    },
+    {
+      "path": "assets/lucky-cats/cat_13.svg",
+      "bytes": 2142,
+      "sha256": "72591a968e2e3beba2085fae2fe6adf50305f566ddb232fc045736928af3a931"
+    },
+    {
+      "path": "assets/lucky-cats/cat_14.svg",
+      "bytes": 1905,
+      "sha256": "18e085c79de530a3d0f6588eed33de234412d09eb3bacbabafcca8d5c60ed567"
+    },
+    {
+      "path": "assets/lucky-cats/cat_15.svg",
+      "bytes": 2150,
+      "sha256": "25d47e50924571a3bdcc17cd265bcb7855f0d97c0e24637ebcfd79ae05a22ced"
+    },
+    {
+      "path": "assets/lucky-cats/cat_16.svg",
+      "bytes": 1896,
+      "sha256": "5d9b405f7d72eef7c3ff960a11aff2241876e7db6c5b2d92f27f62fad42d81dc"
+    },
+    {
+      "path": "assets/lucky-cats/cat_17.svg",
+      "bytes": 1968,
+      "sha256": "a2ebc6ea079ac7df6066985643218b78a8629e0ec71c6e6bf130f8de6f9d3ac8"
+    },
+    {
+      "path": "assets/luna-v337-display.webp",
+      "bytes": 15154,
+      "sha256": "4aed7101f4cb7741c14c487e3b86e7131cc543e00e323121995ba5cc07333e47"
+    },
+    {
+      "path": "assets/luna-v337.png",
+      "bytes": 366515,
+      "sha256": "1ba1d5307c2a031fff561b50f249edae243c0fcefc9036db943182c4595a4e42"
+    },
+    {
+      "path": "assets/menu-icons/admin.svg",
+      "bytes": 375,
+      "sha256": "c89d8c5ddfbaac17701150389d9fca47fc26d6dfa3cb2a46b7fff38160ed189e"
+    },
+    {
+      "path": "assets/menu-icons/journal.svg",
+      "bytes": 610,
+      "sha256": "1ef60871a44ef906a5d470064164e8e8ef7a6f42f43732df8cd62e1865a0639f"
+    },
+    {
+      "path": "assets/menu-icons/members.svg",
+      "bytes": 528,
+      "sha256": "7d31c66f11f5c3c538e1b5373da5b67e257582dc202ff11e516b8b6bfdf6f6ac"
+    },
+    {
+      "path": "assets/menu-icons/ops.svg",
+      "bytes": 737,
+      "sha256": "52a55ccc869f3c0dc87edc7450d5c610409e6e7bc9b5d8a2de0b666c69855a8e"
+    },
+    {
+      "path": "assets/menu-icons/rewards.svg",
+      "bytes": 461,
+      "sha256": "7e0f8f8f14bdf6d758eb96714ec81cbdfad0664e489c5c1c0adddf8587da5ede"
+    },
+    {
+      "path": "assets/menu-icons/roulette.svg",
+      "bytes": 715,
+      "sha256": "5c29fdc4af86ad74d55c15756b996fd57d3117c9245b4245d41ea1a6d076dde7"
+    },
+    {
+      "path": "assets/ops-share-preview.jpg",
+      "bytes": 245118,
+      "sha256": "c6d959a51c5efb3851155a1e47c89fcf9cba12506f1cf649a5c86ac71fab10bb"
+    },
+    {
+      "path": "assets/reward-companion-ticket.webp",
+      "bytes": 3210,
+      "sha256": "255465fee69a4bab19224a54996fc20de8a92e4ca21b864272721c5da811a7ac"
+    },
+    {
+      "path": "assets/reward-pickup-companion-ticket.webp",
+      "bytes": 3642,
+      "sha256": "350b2039ee1e3f961499e6a96c672551a9e3bc6b44886313b0c5214a6dc304ad"
+    },
+    {
+      "path": "assets/reward-random-special-rune-ticket.webp",
+      "bytes": 3568,
+      "sha256": "6a19ea4b95cff6d7b8eba9f1345258c2288c0c0cd6b117a4d5d0d0692d081fc5"
+    },
+    {
+      "path": "assets/reward-rune-ticket.webp",
+      "bytes": 2964,
+      "sha256": "5ad2db748e8bb2dae91e3ed99c01c2296d813d758fece4cc454f252a53d94a2b"
+    },
+    {
+      "path": "assets/rewards/guild-brawl-coin.png",
+      "bytes": 85085,
+      "sha256": "4a3650ab2acbac050cc60bda2bf961d9854032993217a3fd2eb805bef101141e"
+    },
+    {
+      "path": "assets/rewards/guild-occupation-orb.png",
+      "bytes": 80259,
+      "sha256": "0acd6aee9b2c0b5c8327d71daa97bd85295aebcf529891294a0a8e946428778b"
+    },
+    {
+      "path": "assets/rewards/hero-equipment-recipe-fragment.png",
+      "bytes": 65566,
+      "sha256": "f5e6e32e56d285c3e1045c245b210e3305f420d6394b0ea6d4acc0133ba23461"
+    },
+    {
+      "path": "assets/rewards/legendary-companion-ticket.png",
+      "bytes": 24787,
+      "sha256": "3978581d4797841c595587d0c49784e8f055f7e917364da85505ddbf71e260c7"
+    },
+    {
+      "path": "assets/rewards/lucky-punch-gloves.png",
+      "bytes": 60074,
+      "sha256": "3cf77233762ac20519568708e2fac60cb13462f6fb0ec7659f5c945e09515db5"
+    },
+    {
+      "path": "assets/rewards/lucky-punch-hat.png",
+      "bytes": 60719,
+      "sha256": "a6b5ef7466e72bb30fd1c1e46e9936a955628020cd7e0139cb51e0b696df20c0"
+    },
+    {
+      "path": "assets/rewards/lucky-punch-scarf.png",
+      "bytes": 61842,
+      "sha256": "c0e7cc95792198ee32d8945f49125a79a8508aeadd92c74ace05d746aa0b06e8"
+    },
+    {
+      "path": "assets/rewards/lucky-punch-shoes.png",
+      "bytes": 59040,
+      "sha256": "58c13920c8a29f0a013c93c199649bb1963a2ef07877e6cd964da20ed73f4c8d"
+    },
+    {
+      "path": "assets/rewards/myth-companion-ticket.png",
+      "bytes": 28957,
+      "sha256": "8f84c47d21a1c9461c3e2bdfc704d68e016b98ff5aafb4d91159b1fe1505bafd"
+    },
+    {
+      "path": "assets/rewards/red-skull.png",
+      "bytes": 82496,
+      "sha256": "b731591586bc064c66aabd202c795ccc5522dd92e6dee08b2a8df27ac7b5ded0"
+    },
+    {
+      "path": "assets/rewards/reward-black-gem.webp",
+      "bytes": 31116,
+      "sha256": "203f0d2c305951b36d9607078487ff5c543349255c2c3ccb2a84f3aeb44bde3c"
+    },
+    {
+      "path": "assets/rewards/reward-star-punch-gloves.webp",
+      "bytes": 16034,
+      "sha256": "cf7bac81fa49ed8aaa6c3760d43d9f1be3536f335ee190c803840161179c26eb"
+    },
+    {
+      "path": "assets/rewards/reward-star-punch-hat.webp",
+      "bytes": 20336,
+      "sha256": "7bfce8c1cebd9c058044f312626199325b0358480a3f632451964a7b594bd094"
+    },
+    {
+      "path": "assets/rewards/reward-star-punch-scarf.webp",
+      "bytes": 17906,
+      "sha256": "f39ea4ebf594f91fde4e5bb58d188684e9085c5110ddf7f49e94c9f3c40d734c"
+    },
+    {
+      "path": "assets/rewards/reward-star-punch-shoes.webp",
+      "bytes": 16700,
+      "sha256": "2d24901285e90a4b1aa3eb289bc12c18fa2c15d7df867459f5c401ed758c0c50"
+    },
+    {
+      "path": "assets/rewards/skyblue-bottom.png",
+      "bytes": 57915,
+      "sha256": "b7269e084c071cbe161fc74e861013d1326422bf655331c028285e7bcce2a66e"
+    },
+    {
+      "path": "assets/rewards/skyblue-top.png",
+      "bytes": 66211,
+      "sha256": "8ac8bfd95de4d4cf614e70b28c6061286a90dd504ffcaaf63be715c14e5aeb87"
+    },
+    {
+      "path": "assets/roulette-rewards/chest/chest_advanced_2.png",
+      "bytes": 123213,
+      "sha256": "35acc2631e1a822d8c8efbe10b5014d5c19ca33b5147eaeb7c2584f8eb879c1f"
+    },
+    {
+      "path": "assets/roulette-rewards/chest/chest_hero_1.png",
+      "bytes": 129247,
+      "sha256": "04e57a135722990b9641ba117fb0fab79b62b3e951e95bccfe3a93b58d69dd48"
+    },
+    {
+      "path": "assets/roulette-rewards/chest/chest_hero_2.png",
+      "bytes": 138671,
+      "sha256": "d02512093364cfc4c9325ee564b6727e53b6a15ff9dfa1798362aaa33f1bd386"
+    },
+    {
+      "path": "assets/roulette-rewards/chest/chest_legend_1.png",
+      "bytes": 130924,
+      "sha256": "a8cd14270dc26cd7e17806e62ab52a9bf3f40fd1ccc7b29044f49a35af1b5fd3"
+    },
+    {
+      "path": "assets/roulette-rewards/chest/chest_legend_2.png",
+      "bytes": 139132,
+      "sha256": "edc1c072e89ec1d7c3524d2e42a2e7df10bd19bb2d46dc5aceb952143e7e8ff8"
+    },
+    {
+      "path": "assets/roulette-rewards/chest/chest_legend_3.png",
+      "bytes": 140972,
+      "sha256": "b49d83b07d4daa6f97bb7fe2bcabec44208eda4b214d0498cfcdf15ca817e3af"
+    },
+    {
+      "path": "assets/roulette-rewards/chest/chest_rare_1.png",
+      "bytes": 126962,
+      "sha256": "4bd9d7c279d4698c574c2022d084aa5211ce0a4bdb969e289257e5c9180cfe39"
+    },
+    {
+      "path": "assets/roulette-rewards/chest/chest_rare_2.png",
+      "bytes": 137636,
+      "sha256": "12ab6b583b05c34bfd859ee7e979ca30896fa162a06f1d16ade99722b7bbdd72"
+    },
+    {
+      "path": "assets/roulette-rewards/equipment/equipment_advanced_band.png",
+      "bytes": 58541,
+      "sha256": "4a36957ee004320fab27131e63d097322f1776acd9fbaad436196de2956b186f"
+    },
+    {
+      "path": "assets/roulette-rewards/equipment/equipment_advanced_glove.png",
+      "bytes": 42064,
+      "sha256": "a0aa51561cc39b651e9adacfe1491a284d930a6da05e264bdfb7bc23861971d6"
+    },
+    {
+      "path": "assets/roulette-rewards/equipment/equipment_advanced_paw.png",
+      "bytes": 64676,
+      "sha256": "8a42b74d216a2e4e57668fb8204f640991288cab61bc2270b74c16b0d3eefaaf"
+    },
+    {
+      "path": "assets/roulette-rewards/equipment/equipment_advanced_ribbon.png",
+      "bytes": 70152,
+      "sha256": "5fe49ba50ea447ac568fc337537418c88619918f75e75cf1d871b972f95d25fc"
+    },
+    {
+      "path": "assets/roulette-rewards/equipment/equipment_hero_band.png",
+      "bytes": 85189,
+      "sha256": "207f2200cd3300c35f86303e6a945478aa5e934bdd12331b21360298d941e534"
+    },
+    {
+      "path": "assets/roulette-rewards/equipment/equipment_hero_glove.png",
+      "bytes": 72870,
+      "sha256": "78588ac33b5f391fa916c7e083b6f803c8959e8ab5160bca6da2d7a96b7833ce"
+    },
+    {
+      "path": "assets/roulette-rewards/equipment/equipment_hero_paw.png",
+      "bytes": 107603,
+      "sha256": "bee60e31f50a1146c4ae89003be6ae8ff5d75f3817dd0a5f0054a62442dadccb"
+    },
+    {
+      "path": "assets/roulette-rewards/equipment/equipment_hero_ribbon.png",
+      "bytes": 121067,
+      "sha256": "bf617adc81e845d17b86ca8da78a4749c333399b7bb7a0a1015113b86c0a3cd4"
+    },
+    {
+      "path": "assets/roulette-rewards/equipment/equipment_normal_band.png",
+      "bytes": 58435,
+      "sha256": "55cd7faf307394caf4d9a0913c3fef100b745b499a53e5aead0350e3ce28b584"
+    },
+    {
+      "path": "assets/roulette-rewards/equipment/equipment_normal_glove.png",
+      "bytes": 39736,
+      "sha256": "d5b441148abc1e945cb6b3f200c080cf78c8603c990f6bc3ff701cc90c9b4250"
+    },
+    {
+      "path": "assets/roulette-rewards/equipment/equipment_normal_paw.png",
+      "bytes": 65578,
+      "sha256": "41bcbc3365d98cabd327f48b79b5b6d5104a6ea84a78dad27a41ca74443df2d4"
+    },
+    {
+      "path": "assets/roulette-rewards/equipment/equipment_normal_ribbon.png",
+      "bytes": 67043,
+      "sha256": "d5ccddbe63998b6319f4c826612036d1f44ca7d27db60a7c07c6fd5d12f3bfa6"
+    },
+    {
+      "path": "assets/roulette-rewards/equipment/equipment_rare_band.png",
+      "bytes": 70746,
+      "sha256": "bffd445e001222e5c000990183afee10e96ee44a24c0aaab86ec4233dfb4215d"
+    },
+    {
+      "path": "assets/roulette-rewards/equipment/equipment_rare_glove.png",
+      "bytes": 58860,
+      "sha256": "e2d9bc7057bbdf6715b95433397b2ce493bc29ee10fffe1a65f75e7d92ef70d4"
+    },
+    {
+      "path": "assets/roulette-rewards/equipment/equipment_rare_paw.png",
+      "bytes": 87640,
+      "sha256": "02dd3f814ef64fa1b4018182f1355c8969851c35a0c5b8d9585646d9f37279d1"
+    },
+    {
+      "path": "assets/roulette-rewards/equipment/equipment_rare_ribbon.png",
+      "bytes": 81502,
+      "sha256": "123929bd23d1afc11e23489a7ef8cbc56a6d640aad40b41d758abdfb58fa50e8"
+    },
+    {
+      "path": "assets/roulette-rewards/equipment/necklace_advanced.png",
+      "bytes": 53939,
+      "sha256": "b130d5deac93217ebf08c7a07c4636efc3b93be244387e7b77af6e60ecd723fd"
+    },
+    {
+      "path": "assets/roulette-rewards/equipment/necklace_normal.png",
+      "bytes": 57156,
+      "sha256": "9a0d866d41a6cf260a55d3e491988d4de9c975ee577c426f753ca7fff419c5b6"
+    },
+    {
+      "path": "assets/roulette-rewards/equipment/necklace_rare.png",
+      "bytes": 60650,
+      "sha256": "a4029b3a41933cd4ed25da2da1a7be73896bbed004131439206c6e1d3a3f5835"
+    },
+    {
+      "path": "assets/roulette-rewards/equipment/ring_advanced.png",
+      "bytes": 45326,
+      "sha256": "22f0b4190833e3534af30377fa25ff8585d419e15ade2adffd4e10a6eac965a3"
+    },
+    {
+      "path": "assets/roulette-rewards/equipment/ring_normal.png",
+      "bytes": 48187,
+      "sha256": "339e6986acf0225b4c4de9854e8e7d6a28fbfda3cbd4dcb46b928302e2f47554"
+    },
+    {
+      "path": "assets/roulette-rewards/equipment/ring_rare.png",
+      "bytes": 49499,
+      "sha256": "8aca07f86b2e494288a2d8c1ba4a1731583163894d00e06926bf9cf7051fc2e6"
+    },
+    {
+      "path": "assets/roulette-rewards/recipes/recipe_advanced_gear.png",
+      "bytes": 89664,
+      "sha256": "faee4d8d0277c3177bebb77d139a15fe7d06020be4d8a265a485f7605b59b021"
+    },
+    {
+      "path": "assets/roulette-rewards/recipes/recipe_advanced_shard.png",
+      "bytes": 86723,
+      "sha256": "e3a6dc0f0caf43b942a70330202720065fce5737968acef7f60059b5856c1ca7"
+    },
+    {
+      "path": "assets/roulette-rewards/recipes/recipe_advanced_wheel.png",
+      "bytes": 85373,
+      "sha256": "a9cf1cfa33e1d090d963ee8741a2ad4f96f869d5fede23cd59c9b84eff2748c6"
+    },
+    {
+      "path": "assets/roulette-rewards/recipes/recipe_hero_fish.png",
+      "bytes": 83499,
+      "sha256": "8d4afd126e99dac7c48462de000a6f851411fd9e65a3e2d40999b00f30505973"
+    },
+    {
+      "path": "assets/roulette-rewards/recipes/recipe_hero_flower.png",
+      "bytes": 88491,
+      "sha256": "4fb08ab12a61fff6f468c6447788fb4195240d14163bd5253cd0203937990668"
+    },
+    {
+      "path": "assets/roulette-rewards/recipes/recipe_legend_statue.png",
+      "bytes": 86717,
+      "sha256": "7f66605ef551d47792d5cf1d854078fa9d35d332b761285fdb87781cd8056ad9"
+    },
+    {
+      "path": "assets/roulette-rewards/recipes/recipe_rare_cloud.png",
+      "bytes": 79325,
+      "sha256": "f6300b589a8f2d7e48cfeceb4a6435b7854cd4b8f8358863726d7f02295cba70"
+    },
+    {
+      "path": "assets/roulette-rewards/recipes/recipe_rare_round.png",
+      "bytes": 85218,
+      "sha256": "79a7130f2d98103b9e50e4d58eebe5c57f2370983e24d00d53a1ee4a7c75c540"
+    },
+    {
+      "path": "assets/roulette-rewards/recipes/recipe_rare_spiral.png",
+      "bytes": 86812,
+      "sha256": "6e16da06b8fd30a352abccc13c6707875afeac58766654263e7fd9ee3b9b743c"
+    },
+    {
+      "path": "assets/roulette-rewards/recipes/recipe_red_leaf.png",
+      "bytes": 81162,
+      "sha256": "e5566715b0e2eb75dca937525394114830f0a9f09dac0665331a98d26da21e9f"
+    },
+    {
+      "path": "assets/roulette-rewards/summon/ticket_blue_100.png",
+      "bytes": 91035,
+      "sha256": "0816af97992373056defc0cd185e47efbcbc3d065598cf98b7b0e3b86c0875c3"
+    },
+    {
+      "path": "assets/roulette-rewards/summon/ticket_blue_120.png",
+      "bytes": 1374252,
+      "sha256": "7149bd592a1907f782edf5db97756a732fdc382b72dd911924c7716f22075b68"
+    },
+    {
+      "path": "assets/roulette-rewards/summon/ticket_blue_150.png",
+      "bytes": 93892,
+      "sha256": "929bfec1c33eef26fdc1ccf1037cd366f2ef2c8e8092b9bc5d642d5d2312e85e"
+    },
+    {
+      "path": "assets/roulette-rewards/summon/ticket_blue_300.png",
+      "bytes": 94419,
+      "sha256": "d5756e17f43d244f60f1b5517796b64bb739e9093342c6eb556e6ed76b0ee67a"
+    },
+    {
+      "path": "assets/roulette-rewards/summon/ticket_blue_50.png",
+      "bytes": 92834,
+      "sha256": "ef3d82ea325a6cf9f9437766382b9c7983577cb347014060ea3bd6f28c17d0b0"
+    },
+    {
+      "path": "assets/roulette-rewards/summon/ticket_blue_500.png",
+      "bytes": 93343,
+      "sha256": "85ffc18e03f2b96625c365e32915cb6edda12347d1d03ca4747ea99f06fceaef"
+    },
+    {
+      "path": "assets/roulette-rewards/summon/ticket_blue_80.png",
+      "bytes": 94503,
+      "sha256": "6d3ae1a0e151db770ef657faba3fc298dbf43c9e36071aa97581d00c379f9a0d"
+    },
+    {
+      "path": "assets/roulette-rewards/summon/ticket_blue_800.png",
+      "bytes": 94895,
+      "sha256": "a5fc83ed815730b05c0a1dfe3886a4b66252032b9a5da4558d9c7536a699543b"
+    },
+    {
+      "path": "assets/roulette-rewards/summon/ticket_gold_100.png",
+      "bytes": 106880,
+      "sha256": "0818bfddadc8def840db8436091fed4483b99dd864dcb315ad2b896d60cfb421"
+    },
+    {
+      "path": "assets/roulette-rewards/summon/ticket_gold_120.png",
+      "bytes": 110342,
+      "sha256": "b31cbaaa90aba03721b15f6b1fe300b196d64cab50f42ed3dcf49e7203f75df3"
+    },
+    {
+      "path": "assets/roulette-rewards/summon/ticket_gold_150.png",
+      "bytes": 109754,
+      "sha256": "fd381831a57c1ac91db9c91bad7d55c3c918d98749ceb216030e6c5ee2b02d4f"
+    },
+    {
+      "path": "assets/roulette-rewards/summon/ticket_gold_3.png",
+      "bytes": 92797,
+      "sha256": "e6d47f78fb261565faa3c5dd6e89d337218c2ccf115ffa94a6b9317eca2e8c57"
+    },
+    {
+      "path": "assets/roulette-rewards/summon/ticket_gold_300.png",
+      "bytes": 110329,
+      "sha256": "c293b3153b24fbe51bf28311c0267b3010deca86d8b7f53cc524e388378ce97e"
+    },
+    {
+      "path": "assets/roulette-rewards/summon/ticket_gold_5.png",
+      "bytes": 91627,
+      "sha256": "6e2f59acc0dd81d61a085e453a2cae8b54b19a4cbecc1ee9e18e001da5c32bf9"
+    },
+    {
+      "path": "assets/roulette-rewards/summon/ticket_gold_500.png",
+      "bytes": 109209,
+      "sha256": "a48f1c34ac02308fa0b21203d14c881ec8c55852776b28a96aa6350d35883f8a"
+    },
+    {
+      "path": "assets/roulette-rewards/summon/ticket_gold_800.png",
+      "bytes": 110894,
+      "sha256": "1c4f9e37e9fe523d952021d0148dc3761b3f782ed236a61e01316d5ab77c86f1"
+    },
+    {
+      "path": "assets/roulette-rewards/summon/ticket_purple_100.png",
+      "bytes": 91629,
+      "sha256": "a1b6e2dc2f9c4808118ad3a984551de9626c3fd49bbd4a6f9cef283d1f2da42b"
+    },
+    {
+      "path": "assets/roulette-rewards/summon/ticket_purple_1000.png",
+      "bytes": 145307,
+      "sha256": "646f2556d5eb81f265da32da4d9d93db8edbc51fc83b27a638e5c526b4eed69f"
+    },
+    {
+      "path": "assets/roulette-rewards/summon/ticket_purple_50.png",
+      "bytes": 93435,
+      "sha256": "80c05e2c11ae1eed32c6d79c0ba13b519ab16ca0c046b9368cee0ec0b0711065"
+    },
+    {
+      "path": "assets/roulette-rewards/summon/ticket_purple_600.png",
+      "bytes": 135516,
+      "sha256": "dd17a66b61da1d9514c5ec8c9195a93c0a89bfbb497bc79c978f7d4e0cd91b10"
+    },
+    {
+      "path": "assets/roulette-rewards/summon/ticket_purple_80.png",
+      "bytes": 95176,
+      "sha256": "a46c7783e3a8103c2e4d5eada894a293f576d913b5326bf52ec522d7f6a9afdc"
+    },
+    {
+      "path": "assets/roulette-rewards/summon/ticket_red_1000.png",
+      "bytes": 160991,
+      "sha256": "23e9609fee0704bc216df7c516c23338aa9ac7c507c972235ac7be488cd85983"
+    },
+    {
+      "path": "assets/roulette-rewards/summon/ticket_red_600.png",
+      "bytes": 149968,
+      "sha256": "f6263bc6c6871c2cb85db00cd1616d706af8f7e824c5bee0a974e68a68e6f7b4"
+    },
+    {
+      "path": "assets/roulette-rewards/summon/ticket_yellow_10.png",
+      "bytes": 116795,
+      "sha256": "e374f75580bba830198d1ea8266a4f860ed008836852d5530dc65b093fc21af5"
+    },
+    {
+      "path": "assets/roulette-rewards/summon/ticket_yellow_1000.png",
+      "bytes": 173875,
+      "sha256": "f26c7d3633a7364c7545c1ed2bd1644e0e39c907f2279fa28593cc7c4c365ebe"
+    },
+    {
+      "path": "assets/roulette-rewards/summon/ticket_yellow_300.png",
+      "bytes": 165995,
+      "sha256": "9400d0702ba56cbc19461b4627228eee16193a953abec7b04d34ad89b03679d8"
+    },
+    {
+      "path": "assets/roulette-rewards/summon/ticket_yellow_500.png",
+      "bytes": 162513,
+      "sha256": "08428ca8265ca066ae34ae2dd9134c9d4415971304ce99919adff4e7269bce1f"
+    },
+    {
+      "path": "boss.html",
+      "bytes": 206956,
+      "sha256": "72b29ef1411501f848fe2450c72d23931b0031e34a7ee472a8a8e38485a0ecdb"
+    },
+    {
+      "path": "firebase-config.js",
+      "bytes": 561,
+      "sha256": "3d2fc312a8600bedd3e3f5289716f94f2137328d0c485d6fb6f2567fbfc609e7"
+    },
+    {
+      "path": "firestore.multiguild.rules",
+      "bytes": 6866,
+      "sha256": "63bd5ad87ec0d260bec225c2a92e353f658330247e0c06520cba713f66445625"
+    },
+    {
+      "path": "index-module.mjs",
+      "bytes": 29980,
+      "sha256": "e5af363ebe03f48b520c97d9284cd5f12cc97f024567b1715627a20e32dd910e"
+    },
+    {
+      "path": "index.html",
+      "bytes": 2544,
+      "sha256": "278c29a671ed58bff36779cdcd5a35d570e649a085bbb54c1ca1851ac42c4be4"
+    },
+    {
+      "path": "main.html",
+      "bytes": 612452,
+      "sha256": "a73929870d5bd3830ea169207be7bd7f2e49e561a08116cba7b164ce3b30f3f0"
+    },
+    {
+      "path": "ops.html",
+      "bytes": 283978,
+      "sha256": "ed764b3320c40930c18a2297ae46ab72858873e9c6231bd8fb0341e4d8362dd6"
+    },
+    {
+      "path": "roulette.html",
+      "bytes": 126987,
+      "sha256": "57392bd074683cca4fd293a8118cab67cb836b28597b826eb46639108b339dbf"
+    },
+    {
+      "path": "shared/admin-audit.js",
+      "bytes": 23325,
+      "sha256": "165569501fbf1d5b3266d98be27f8102ba7a13511606d3e1c96fde7b1b5b3e4e"
+    },
+    {
+      "path": "shared/admin-editor.js",
+      "bytes": 17854,
+      "sha256": "190c83472b09cf797919e89fa3ce966d051288fe0a2b7a1f2bce649636bf4639"
+    },
+    {
+      "path": "shared/guild-core.js",
+      "bytes": 3864,
+      "sha256": "0458dd2bd3f4b64031004b9dd4384653aa1025330fb2469f22288376373b424a"
+    },
+    {
+      "path": "shared/journal-bridge.js",
+      "bytes": 2081,
+      "sha256": "0454a8efb787efe60fb1269141c8bcb0de7e5c103eea9758043d7e102d295b32"
+    },
+    {
+      "path": "shared/reward-entry.js",
+      "bytes": 12853,
+      "sha256": "5032898b9a73384696c83fce01bc9ce07a97cf2016c6f89150acdb79a754755b"
+    },
+    {
+      "path": "shared/roulette-reward-catalog.js",
+      "bytes": 10477,
+      "sha256": "448cf22f34c865ae7a2a1fb8826609d7cb8ae6e0d0e41f33ebd7bd0279f77ee0"
+    },
+    {
+      "path": "shared/tenant.js",
+      "bytes": 3652,
+      "sha256": "6b9cd0ceade2bf03ebc722460f4e02121c408dae5ecca6dd7d561d5583df3f53"
+    },
+    {
+      "path": "shared/web-sync.js",
+      "bytes": 15045,
+      "sha256": "8e85fd2eb0bdd7ec7c692597f49887e3e33b7b913740c69262b8ef9f1485e1a6"
+    }
+  ]
+}

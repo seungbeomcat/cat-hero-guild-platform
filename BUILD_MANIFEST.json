@@ -1,27 +1,29 @@
 {
-  "version": "V4.3.3",
+  "version": "V4.3.5",
   "date": "2026-10-17",
-  "source": "V4.3.2",
+  "source": "V4.3.3",
   "baseline": "V4.3.1",
-  "file_count": 212,
-  "hash_records": 210,
+  "file_count": 216,
+  "hash_records": 214,
   "self_excluded": [
     "BUILD_MANIFEST.json",
-    "BUILD_MANIFEST_V4.3.3.json"
+    "BUILD_MANIFEST_V4.3.5.json"
   ],
   "assetCounts": {
     "장비": 22,
     "레시피": 10,
     "소환권": 27,
-    "상자": 8
+    "상자": 8,
+    "고양이": 17,
+    "게임선택 아이콘": 2
   },
   "modified_existing": [
+    "boss.html",
+    "index-module.mjs",
     "index.html",
     "main.html",
-    "boss.html",
     "ops.html",
-    "roulette.html",
-    "BUILD_MANIFEST.json"
+    "roulette.html"
   ],
   "files": [
     {
@@ -53,6 +55,11 @@
       "path": "BUILD_MANIFEST_V4.2.9.json",
       "bytes": 30835,
       "sha256": "95034da777076a1ea9556c04b5cbb4b5470cc05d6caeed66eb36501329a56dec"
+    },
+    {
+      "path": "BUILD_MANIFEST_V4.3.3.json",
+      "bytes": 36191,
+      "sha256": "14dd17ea73de5c0893bede7a63ebf524ba38e5cb9ec2438597f856874b4e78bd"
     },
     {
       "path": "DATA_MODEL.md",
@@ -88,6 +95,11 @@
       "path": "QA_REPORT_V4.3.3.json",
       "bytes": 1678,
       "sha256": "94fe1982fb31fa1e7ec02b9ab3bef8e55c83bb962d1ba03e7642e7d3986903e5"
+    },
+    {
+      "path": "QA_REPORT_V4.3.5.json",
+      "bytes": 2251,
+      "sha256": "9109f4f46ab3a485e9d3ca6e0544974d2c5c2ebff80d49e99186fc326cf8c186"
     },
     {
       "path": "README.md",
@@ -275,6 +287,11 @@
       "sha256": "81075ddfae33af03f211cc4e28e234cfd1e4ee48cc4d6fc837df8a655776888c"
     },
     {
+      "path": "RELEASE_NOTES_V4.3.5.md",
+      "bytes": 2153,
+      "sha256": "d8a61446f2c7e194e92b855f131b61e198e8ef509b267e1d715b09823a98987c"
+    },
+    {
       "path": "SOURCE_BASELINE.md",
       "bytes": 361,
       "sha256": "bd2f692ed96219cd365941412528bf9c17590206927784372d7b64fc40868936"
@@ -333,6 +350,11 @@
       "path": "VALIDATION_V4.3.3.md",
       "bytes": 2511,
       "sha256": "89aa850e17f8f8d098b3273ba46aa44541f3b447e1d55134c27aaa7eca7eada9"
+    },
+    {
+      "path": "VALIDATION_V4.3.5.md",
+      "bytes": 1345,
+      "sha256": "45e63b89be835a4d189f2a2e35010f8740308d17b4c3ed60b3dfa43eacb04f2e"
     },
     {
       "path": "__visual_check.html",
@@ -425,87 +447,87 @@
       "sha256": "bfff56014fc1688f747c5390a0e5f94b170d414cfd85dd6ad4b4b8d08a99ed5c"
     },
     {
-      "path": "assets/lucky-cats/cat_01.svg",
+      "path": "assets/lucky-cats/cat_01.png",
       "bytes": 2031,
       "sha256": "2c4080713a1576ee5e01aca8eada11932957e875db6405e13ce89108a31ba0f7"
     },
     {
-      "path": "assets/lucky-cats/cat_02.svg",
+      "path": "assets/lucky-cats/cat_02.png",
       "bytes": 2154,
       "sha256": "42f24c7f5e2d4ef5db3c70cbe41fb4aef91e9df2879360c453e87387ae5b5fde"
     },
     {
-      "path": "assets/lucky-cats/cat_03.svg",
+      "path": "assets/lucky-cats/cat_03.png",
       "bytes": 2203,
       "sha256": "fed5c8ee7a8ff8d81a7aa348839fe224982cfd3feed0a2903f8f2ac871371bd1"
     },
     {
-      "path": "assets/lucky-cats/cat_04.svg",
+      "path": "assets/lucky-cats/cat_04.png",
       "bytes": 1801,
       "sha256": "74b835327bec79bfef4e9c7924d6d9025b74991c14bf982889e9a82ff79528db"
     },
     {
-      "path": "assets/lucky-cats/cat_05.svg",
+      "path": "assets/lucky-cats/cat_05.png",
       "bytes": 2180,
       "sha256": "9d4371f9dc76cd3c9c981ed156e87b67f99d126a5c174a79380c05ce6bad6979"
     },
     {
-      "path": "assets/lucky-cats/cat_06.svg",
+      "path": "assets/lucky-cats/cat_06.png",
       "bytes": 2004,
       "sha256": "ccc231db144cb1793ac24c47450b97ce9f4ee501feb74df7c6803742a82431eb"
     },
     {
-      "path": "assets/lucky-cats/cat_07.svg",
+      "path": "assets/lucky-cats/cat_07.png",
       "bytes": 2031,
       "sha256": "5df21f02f53e558e9152a94a669adf2b2e43e4740bc99e17548c967041e7ffff"
     },
     {
-      "path": "assets/lucky-cats/cat_08.svg",
+      "path": "assets/lucky-cats/cat_08.png",
       "bytes": 1742,
       "sha256": "502b58a80be2dfa5a6cdf16d2fd5436e556314edac0bfdd962a1963c6a58cbed"
     },
     {
-      "path": "assets/lucky-cats/cat_09.svg",
+      "path": "assets/lucky-cats/cat_09.png",
       "bytes": 1779,
       "sha256": "5e03ede6eb415b48068c66045746bd25fc1e6dcefaaca70ecc34c87b0cfacb17"
     },
     {
-      "path": "assets/lucky-cats/cat_10.svg",
+      "path": "assets/lucky-cats/cat_10.png",
       "bytes": 2244,
       "sha256": "9ff42c348b666a30d0a21bc027eae5ce2504bca6db0fdf32022e6c3b1f02267a"
     },
     {
-      "path": "assets/lucky-cats/cat_11.svg",
+      "path": "assets/lucky-cats/cat_11.png",
       "bytes": 2478,
       "sha256": "084a113ce94813adfd8a3a92fddb2e52f04f7be0572104e3998e2e782f58d398"
     },
     {
-      "path": "assets/lucky-cats/cat_12.svg",
+      "path": "assets/lucky-cats/cat_12.png",
       "bytes": 2479,
       "sha256": "8222604b996e3b7eeb0f634376340dc10b1b4f52ad70bba0abdfc6027eec4944"
     },
     {
-      "path": "assets/lucky-cats/cat_13.svg",
+      "path": "assets/lucky-cats/cat_13.png",
       "bytes": 2142,
       "sha256": "72591a968e2e3beba2085fae2fe6adf50305f566ddb232fc045736928af3a931"
     },
     {
-      "path": "assets/lucky-cats/cat_14.svg",
+      "path": "assets/lucky-cats/cat_14.png",
       "bytes": 1905,
       "sha256": "18e085c79de530a3d0f6588eed33de234412d09eb3bacbabafcca8d5c60ed567"
     },
     {
-      "path": "assets/lucky-cats/cat_15.svg",
+      "path": "assets/lucky-cats/cat_15.png",
       "bytes": 2150,
       "sha256": "25d47e50924571a3bdcc17cd265bcb7855f0d97c0e24637ebcfd79ae05a22ced"
     },
     {
-      "path": "assets/lucky-cats/cat_16.svg",
+      "path": "assets/lucky-cats/cat_16.png",
       "bytes": 1896,
       "sha256": "5d9b405f7d72eef7c3ff960a11aff2241876e7db6c5b2d92f27f62fad42d81dc"
     },
     {
-      "path": "assets/lucky-cats/cat_17.svg",
+      "path": "assets/lucky-cats/cat_17.png",
       "bytes": 1968,
       "sha256": "a2ebc6ea079ac7df6066985643218b78a8629e0ec71c6e6bf130f8de6f9d3ac8"
     },
@@ -997,7 +1019,7 @@
     {
       "path": "boss.html",
       "bytes": 206956,
-      "sha256": "42581321b6b0b5c801290fcf592d41b1a3e15a1f6eaf516646b59d3e4da77748"
+      "sha256": "72b29ef1411501f848fe2450c72d23931b0031e34a7ee472a8a8e38485a0ecdb"
     },
     {
       "path": "firebase-config.js",
@@ -1012,27 +1034,27 @@
     {
       "path": "index-module.mjs",
       "bytes": 29980,
-      "sha256": "61622592e57ac7b9fbcda3cbbfb4ca7df5b6a4c04517cf41b60d6a58dbe1d762"
+      "sha256": "e5af363ebe03f48b520c97d9284cd5f12cc97f024567b1715627a20e32dd910e"
     },
     {
       "path": "index.html",
       "bytes": 2544,
-      "sha256": "7adf1b5e6e8c480dfd137de5251f2ebf749a1062a73b4048d02fea8de529bea9"
+      "sha256": "278c29a671ed58bff36779cdcd5a35d570e649a085bbb54c1ca1851ac42c4be4"
     },
     {
       "path": "main.html",
       "bytes": 612452,
-      "sha256": "df37f0c2ca9df6a5ede907e5af68ad363df1c503b3cb9ebdfa7e3d8e65139e25"
+      "sha256": "a73929870d5bd3830ea169207be7bd7f2e49e561a08116cba7b164ce3b30f3f0"
     },
     {
       "path": "ops.html",
       "bytes": 283978,
-      "sha256": "9dc0ecee5c1e5af75a9c715e2a70e5957bf88ba9dead3a067df08c5f1a3cf1f4"
+      "sha256": "ed764b3320c40930c18a2297ae46ab72858873e9c6231bd8fb0341e4d8362dd6"
     },
     {
       "path": "roulette.html",
-      "bytes": 115934,
-      "sha256": "ee6c5776b829073aa19b912fc6b0936e40d8db721cbdf7b83fbd99dc50dc584b"
+      "bytes": 126987,
+      "sha256": "57392bd074683cca4fd293a8118cab67cb836b28597b826eb46639108b339dbf"
     },
     {
       "path": "shared/admin-audit.js",
