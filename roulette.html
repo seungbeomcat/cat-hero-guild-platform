@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#090218">
-<title>Cat Hero · 행운 게임 V4.3.8</title>
+<title>Cat Hero · 행운 게임 V4.3.9</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <style>
 :root{--violet:#8b47f2;--violet2:#bc78ff;--blue:#5bc8ff;--ink:#f8f3ff;--muted:#c4b5dd;--panel:rgba(24,12,49,.86);--panel2:rgba(13,8,31,.94);--line:#8a43e8;--gold:#ffd76a;--green:#7ff4cc}
@@ -245,15 +245,15 @@ button.reward-compact-select,.reward-pick-button{font-weight:900!important}
 .plinko-cat-mark,.plinko-cat-spark{display:inline-grid;place-items:center;width:22px;height:22px;border-radius:999px;background:rgba(255,255,255,.06);box-shadow:inset 0 0 0 1px rgba(255,255,255,.12)}
 .plinko-board{width:100%;max-width:548px;position:relative;margin:8px auto 0;padding:8px;border:4px solid #9571EA;border-radius:28px;background:radial-gradient(circle at 50% 12%,rgba(106,203,255,.12),transparent 35%),linear-gradient(150deg,#342171,#130B34);box-shadow:0 0 18px #A26BEE88,0 0 0 2px #8ADBFA4F,inset 0 0 28px #9B4DDC33;overflow:hidden}
 #plinkoCanvas{display:block;width:100%;aspect-ratio:840/890;height:auto;border-radius:20px;background:transparent}
-.plinko-helper{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;max-width:548px;margin:10px auto 0}
+.plinko-helper{display:none;flex-wrap:wrap;justify-content:center;gap:8px;max-width:548px;margin:10px auto 0}
 .plinko-helper span{display:inline-flex;align-items:center;justify-content:center;min-height:32px;padding:7px 12px;border-radius:999px;border:1px solid rgba(183,143,255,.45);background:linear-gradient(145deg,rgba(49,31,95,.78),rgba(18,12,44,.92));color:#E8DEFF;font-size:10.5px;font-weight:820;line-height:1.35;text-align:center;box-shadow:inset 0 0 0 1px rgba(255,255,255,.03)}
 .plinko-avatars{display:grid;grid-template-columns:repeat(var(--cat-columns,5),minmax(0,1fr));gap:9px;margin:12px auto 6px;max-width:548px}
-.plinko-person{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;min-width:0;gap:3px;border:2px solid #815CB7;border-radius:16px;background:radial-gradient(circle at 50% 0%,rgba(131,110,255,.16),transparent 42%),linear-gradient(150deg,#27184D,#100B26);padding:7px 4px 9px;box-shadow:inset 0 0 7px #8D62CB44,0 8px 18px rgba(0,0,0,.16);overflow:hidden}
+.plinko-person{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;min-width:0;gap:8px;border:2px solid var(--slot-border,#815CB7);border-radius:18px;background:radial-gradient(circle at 50% 0%,rgba(255,255,255,.18),transparent 40%),linear-gradient(160deg,var(--slot-bg-1,#3c2c7b),var(--slot-bg-2,#1a123c));padding:8px 5px 12px;box-shadow:inset 0 0 10px rgba(255,255,255,.08),0 8px 18px rgba(0,0,0,.16);overflow:hidden}
 .plinko-person::before{content:"";position:absolute;inset:0 auto auto 0;width:100%;height:35%;background:linear-gradient(180deg,rgba(255,255,255,.07),transparent);pointer-events:none}
-.plinko-person img{width:min(100%,78px);height:auto;max-height:78px;aspect-ratio:1;object-fit:cover;border-radius:18px;box-shadow:0 8px 18px rgba(0,0,0,.24),inset 0 0 0 1px rgba(255,255,255,.08);filter:drop-shadow(0 4px 6px rgba(0,0,0,.18))}
-.plinko-person b{font-size:clamp(8.5px,2.8vw,12px);color:#F8F1FF;font-weight:920;line-height:1.16;max-width:100%;overflow-wrap:anywhere;word-break:keep-all;text-align:center}
-.plinko-person-slot{display:block;color:#CDBCF7;font-size:9px;font-weight:850;line-height:1.1}
-.plinko-person-number{position:absolute;z-index:2;left:4px;top:4px;display:grid;place-items:center;min-width:18px;height:18px;padding:0 4px;font-size:10px;color:#331b5d;border:1px solid #FFF2B4;background:linear-gradient(180deg,#FFF9D0,#FFDB84);border-radius:50%;font-weight:950;box-shadow:0 0 0 2px rgba(78,41,127,.38)}
+.plinko-person img{width:min(100%,78px);height:auto;max-height:78px;aspect-ratio:1;object-fit:cover;border-radius:18px;margin-top:4px;box-shadow:0 8px 18px rgba(0,0,0,.24),inset 0 0 0 1px rgba(255,255,255,.08);filter:drop-shadow(0 4px 6px rgba(0,0,0,.18))}
+.plinko-person b{font-size:clamp(8.7px,2.9vw,12.4px);color:#F8F1FF;font-weight:930;line-height:1.18;max-width:100%;overflow-wrap:anywhere;word-break:keep-all;text-align:center;padding-top:2px}
+.plinko-person-slot{display:none;color:#CDBCF7;font-size:9px;font-weight:850;line-height:1.1}
+.plinko-person-number{position:absolute;z-index:2;left:5px;top:5px;display:grid;place-items:center;min-width:19px;height:19px;padding:0 4px;font-size:10px;color:#40205f;border:1px solid rgba(255,255,255,.72);background:linear-gradient(180deg,#FFF6CC,#FFD77A);border-radius:50%;font-weight:950;box-shadow:0 0 0 2px rgba(78,41,127,.24)}
 .plinko-person-win{border-color:#FFE17D;background:radial-gradient(circle at 50% 0%,rgba(255,214,122,.18),transparent 42%),linear-gradient(145deg,#6E5230,#241638);box-shadow:0 0 0 2px #FFDA7D55,0 0 20px #FFD57988}
 .plinko-person-win b,.plinko-person-win .plinko-person-slot{color:#FFF0B3}
 .plinko-win-flash{display:flex;align-items:center;justify-content:center;gap:8px;max-width:548px;min-height:56px;margin:10px auto 0;padding:10px 14px;border-radius:18px;border:1.5px solid rgba(255,220,132,.66);background:linear-gradient(145deg,rgba(89,62,22,.66),rgba(42,21,50,.95));font-size:21px;font-weight:1000;color:#FFE68B;text-shadow:0 0 23px #FFB952,0 2px #512C92;animation:plinkoWinPop .6s ease-out both;box-shadow:0 0 18px rgba(255,207,121,.28)}
@@ -306,7 +306,7 @@ html.v434-stage-locked,body.v434-stage-locked{overflow:hidden!important;overscro
 .v434-live .plinko-cat-mark,.v434-live .plinko-cat-spark{width:18px!important;height:18px!important;font-size:12px!important}
 .v434-live .plinko-board{flex:0 0 var(--v434-board-h,230px)!important;height:var(--v434-board-h,230px)!important;width:min(100%,var(--v434-board-w,218px))!important;min-height:0!important;max-height:none!important;max-width:none!important;margin:0 auto!important;padding:3px!important;border-width:3px!important;border-radius:22px!important;box-sizing:border-box!important}
 .v434-live #plinkoCanvas{display:block!important;width:100%!important;height:100%!important;aspect-ratio:auto!important;border-radius:16px!important}
-.v434-live .plinko-helper{flex:0 0 auto!important;min-height:0!important;gap:4px!important;margin:0 auto!important;max-width:100%!important;flex-wrap:nowrap!important;overflow:hidden!important}
+.v434-live .plinko-helper{display:none!important;flex:0 0 auto!important;min-height:0!important;gap:4px!important;margin:0 auto!important;max-width:100%!important;flex-wrap:nowrap!important;overflow:hidden!important}
 .v434-live .plinko-helper span{font-size:9px!important;line-height:1.2!important;padding:3px 7px!important;min-height:18px!important;white-space:nowrap!important}
 .v434-live .plinko-helper span:first-child{display:none!important}
 .v434-live .plinko-avatars{flex:0 0 auto!important;width:100%!important;max-width:548px!important;gap:5px!important;margin:0 auto!important;align-items:stretch!important}
@@ -419,13 +419,13 @@ html.v434-stage-locked,body.v434-stage-locked{overflow:hidden!important;overscro
     </div>
   </section>
 
-  <footer class="footer"><b>Created by 879 | 안창살 · V4.3.8</b><br>2026.10.17</footer>
+  <footer class="footer"><b>Created by 879 | 안창살 · V4.3.9</b><br>2026.10.17</footer>
 </main>
 
 <script src="./firebase-config.js"></script>
 <script src="./shared/guild-core.js?v=423"></script>
 <script src="./shared/roulette-reward-catalog.js?v=426"></script>
-<script src="./shared/plinko-physics.js?v=438"></script>
+<script src="./shared/plinko-physics.js?v=439"></script>
 <script>
 (function(){
 'use strict';
@@ -606,6 +606,49 @@ function pegPalette(type){
   if(type==='bumper')return {fill:'#9FBAFF',rim:'#5168D4',glow:'#BFD0FF',ring:'rgba(212,223,255,.66)'};
   return {fill:'#8ADFFF',rim:'#5666CB',glow:'#A0E6FF',ring:''};
 }
+
+function slotPalette(count){
+  const palette=[
+    {from:'#48A7FF',to:'#2D6BDB',border:'#AEDDFF',text:'#FFFFFF'},
+    {from:'#A96BFF',to:'#6D3EE4',border:'#E0C9FF',text:'#FFFFFF'},
+    {from:'#57D6B8',to:'#269E83',border:'#C6FFF0',text:'#FFFFFF'},
+    {from:'#FF9A64',to:'#E1644A',border:'#FFD2B5',text:'#FFFFFF'},
+    {from:'#F78CE7',to:'#C959C8',border:'#FFD3F7',text:'#FFFFFF'},
+    {from:'#FFD56B',to:'#E5A722',border:'#FFF1B8',text:'#4B2C12'},
+    {from:'#69C7FF',to:'#4A85F7',border:'#D7EEFF',text:'#FFFFFF'}
+  ];
+  return Array.from({length:Math.max(1,count)},(_,i)=>palette[i%palette.length]);
+}
+function trimSlotLabel(name){
+  const source=String(name||'').trim();
+  return source.length>8?source.slice(0,7)+'…':source;
+}
+function drawCatBoardOutline(ctx,board){
+  const left=board.left-18,right=board.right+18,top=154,bottom=board.slotTop-18,mid=(left+right)/2;
+  ctx.save();
+  ctx.beginPath();
+  ctx.moveTo(left+8,214);
+  ctx.quadraticCurveTo(left-18,360,left+40,bottom-16);
+  ctx.quadraticCurveTo(mid,bottom+54,right-40,bottom-16);
+  ctx.quadraticCurveTo(right+18,360,right-8,214);
+  ctx.strokeStyle='rgba(194,170,255,.36)';
+  ctx.lineWidth=7;
+  ctx.shadowColor='rgba(155,120,255,.28)';
+  ctx.shadowBlur=18;
+  ctx.stroke();
+  ctx.beginPath();
+  ctx.moveTo(left+18,206);
+  ctx.quadraticCurveTo(left-10,360,left+50,bottom-10);
+  ctx.quadraticCurveTo(mid,bottom+44,right-50,bottom-10);
+  ctx.quadraticCurveTo(right+10,360,right-18,206);
+  ctx.strokeStyle='rgba(255,255,255,.12)';
+  ctx.lineWidth=2.6;
+  ctx.shadowBlur=0;
+  ctx.stroke();
+  ctx.restore();
+}
+const PLINKO_BADGE_TEXT=(String(guild.name||'행운 구슬').trim()||'행운 구슬').replace(/\s*길드$/,'');
+
 function drawWheel(names){const c=$('wheel'),ctx=c.getContext('2d'),w=c.width,h=c.height,cx=w/2,cy=h/2,r=w*.465,n=Math.max(1,names.length),step=Math.PI*2/n;ctx.clearRect(0,0,w,h);const colors=['#a76ef1','#6ba9ed','#d481d9','#65b9dd','#a48bee','#5bb6c9','#ca78c5','#7aace8'];for(let i=0;i<n;i++){const a0=-Math.PI/2+i*step,a1=a0+step;ctx.beginPath();ctx.moveTo(cx,cy);ctx.arc(cx,cy,r,a0,a1);ctx.closePath();const grad=ctx.createRadialGradient(cx,cy,r*.08,cx,cy,r);grad.addColorStop(0,'#5844a4');grad.addColorStop(.46,colors[i%colors.length]);grad.addColorStop(1,i%2?'#4b398d':'#593c96');ctx.fillStyle=grad;ctx.fill();ctx.strokeStyle='rgba(255,247,255,.87)';ctx.lineWidth=3.2;ctx.stroke();}
 ctx.save();ctx.beginPath();ctx.arc(cx,cy,r,0,Math.PI*2);ctx.strokeStyle='#ffe9ff';ctx.lineWidth=9;ctx.shadowColor='#ffaeea';ctx.shadowBlur=23;ctx.stroke();ctx.restore();
 for(let i=0;i<n;i++){const mid=-Math.PI/2+(i+.5)*step;ctx.save();ctx.translate(cx,cy);ctx.rotate(mid);ctx.translate(r*.66,0);ctx.rotate(Math.PI/2);const fs=n<=6?34:n<=10?28:n<=13?24:21;ctx.font=`900 ${fs}px "Pretendard Variable",sans-serif`;ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillStyle='#fff';ctx.shadowColor='rgba(23,8,67,.96)';ctx.shadowBlur=9;let text=names[i];while(ctx.measureText(text).width>r*.43&&text.length>3)text=text.slice(0,-2)+'…';ctx.fillText(text,0,0);ctx.restore();}}
@@ -615,14 +658,16 @@ function assignCats(){const ids=CAT_ASSETS.slice();for(let i=ids.length-1;i>0;i-
 function renderCatParticipants(names,active=''){
   const host=$('plinkoAvatars');host.replaceChildren();
   const cols=names.length<=3?names.length:names.length<=8?4:5;
+  const colors=slotPalette(names.length);
   host.style.setProperty('--cat-columns',String(cols));
   names.forEach((name,i)=>{
-    const slot=document.createElement('div');slot.className='plinko-person'+(name===active?' plinko-person-win':'');slot.setAttribute('data-name',name);slot.title=String(i+1)+'번 슬롯 · '+name;
+    const tone=colors[i%colors.length];
+    const slot=document.createElement('div');slot.className='plinko-person'+(name===active?' plinko-person-win':'');slot.setAttribute('data-name',name);slot.title=name;
+    slot.style.setProperty('--slot-bg-1',tone.from);slot.style.setProperty('--slot-bg-2',tone.to);slot.style.setProperty('--slot-border',tone.border);
     const image=document.createElement('img');image.src=state.catMap[name]||CAT_ASSETS[i%17];image.alt='고양이 아바타';image.width=72;image.height=72;
-    const meta=document.createElement('small');meta.className='plinko-person-slot';meta.textContent=String(i+1)+'번 슬롯';
     const label=document.createElement('b');label.textContent=name;label.title=name;
     const number=document.createElement('span');number.className='plinko-person-number';number.textContent=String(i+1);
-    slot.append(number,image,meta,label);host.append(slot);
+    slot.append(number,image,label);host.append(slot);
   });
 }
 // V4.3.8: physics determines the physical landing slot, not a preselected winner.
@@ -654,8 +699,9 @@ function paintPlinko(names,board,ball=null,winningSlot=-1){
       ctx.fillStyle='rgba(255,214,112,.38)';ctx.strokeStyle='#FFF5B1';ctx.lineWidth=3;
       ctx.beginPath();ctx.roundRect(laneX,board.slotTop,board.slotWidth-4,board.slotBottom-board.slotTop,Math.min(14,board.slotWidth/3));ctx.fill();ctx.stroke();
       ctx.fillStyle='#4B266A';ctx.textAlign='center';ctx.textBaseline='middle';
-      ctx.font='950 '+(n>=13?17:n>=9?21:28)+'px "Pretendard Variable",sans-serif';
-      ctx.fillText(String(winningSlot+1),laneX+(board.slotWidth-4)/2,board.slotTop+36);
+      const winnerLabel=trimSlotLabel(names[winningSlot]||'당첨');
+      ctx.font='950 '+(n>=13?13:n>=9?16:20)+'px "Pretendard Variable",sans-serif';
+      ctx.fillText(winnerLabel,laneX+(board.slotWidth-4)/2,board.slotTop+(board.slotBottom-board.slotTop)/2);
       ctx.restore();
     }
     if(ball){
@@ -685,7 +731,7 @@ function paintPlinko(names,board,ball=null,winningSlot=-1){
   ctx.strokeStyle='rgba(205,174,255,.34)';ctx.lineWidth=6;ctx.beginPath();ctx.roundRect(18,18,w-36,h-36,44);ctx.stroke();
   const halo=ctx.createRadialGradient(w*.5,95,5,w*.5,300,520);halo.addColorStop(0,'rgba(125,114,249,.22)');halo.addColorStop(1,'rgba(125,114,249,0)');ctx.fillStyle=halo;ctx.fillRect(32,32,w-64,h-64);
   ctx.save();ctx.beginPath();ctx.roundRect(28,28,w-56,h-56,38);ctx.clip();
-  ctx.globalAlpha=.22;ctx.fillStyle='#C5A1FF';ctx.beginPath();ctx.moveTo(74,227);ctx.lineTo(104,52);ctx.quadraticCurveTo(121,25,166,91);ctx.lineTo(240,174);ctx.lineTo(420,140);ctx.lineTo(600,174);ctx.lineTo(674,91);ctx.quadraticCurveTo(719,25,736,52);ctx.lineTo(766,227);ctx.closePath();ctx.fill();ctx.globalAlpha=1;
+  ctx.globalAlpha=.22;ctx.fillStyle='#C5A1FF';ctx.beginPath();ctx.moveTo(74,227);ctx.lineTo(104,52);ctx.quadraticCurveTo(121,25,166,91);ctx.lineTo(240,174);ctx.lineTo(420,140);ctx.lineTo(600,174);ctx.lineTo(674,91);ctx.quadraticCurveTo(719,25,736,52);ctx.lineTo(766,227);ctx.closePath();ctx.fill();ctx.globalAlpha=1;drawCatBoardOutline(ctx,board);
   // Physical slot channels start below the pins and extend to the bottom.
   for(let lane=0;lane<n;lane++){
     const x=board.left+board.slotWidth*lane;
@@ -698,7 +744,7 @@ function paintPlinko(names,board,ball=null,winningSlot=-1){
   // Top nozzle clearly shows the launch location.
   ctx.fillStyle='rgba(180,142,255,.2)';ctx.beginPath();ctx.roundRect(w/2-85,43,170,58,24);ctx.fill();
   ctx.strokeStyle='rgba(235,209,255,.6)';ctx.lineWidth=4;ctx.stroke();
-  ctx.fillStyle='#F8E2FF';ctx.font='900 23px "Pretendard Variable",sans-serif';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText('LUCKY DROP',w/2,74);
+  ctx.fillStyle='#F8E2FF';ctx.font='900 23px "Pretendard Variable",sans-serif';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(PLINKO_BADGE_TEXT,w/2,74);
   ctx.strokeStyle='rgba(246,215,167,.6)';ctx.lineWidth=4;ctx.beginPath();ctx.moveTo(w/2-70,98);ctx.lineTo(w/2-92,123);ctx.moveTo(w/2+70,98);ctx.lineTo(w/2+92,123);ctx.stroke();
   // Distinct contact-aware pegs. Gold=bouncy, pink=angled, mint=booster, periwinkle=bumper, cyan=standard.
   const impactMap=new Map();
@@ -718,16 +764,24 @@ function paintPlinko(names,board,ball=null,winningSlot=-1){
     if(h){ctx.globalAlpha=h*.6;ctx.strokeStyle=style.glow;ctx.lineWidth=3;ctx.beginPath();ctx.arc(peg.x,peg.y,peg.r+5+(1-h)*16,0,Math.PI*2);ctx.stroke();}
     ctx.restore();
   }
-  // High contrast numbered landing cups, no pre-winner glow.
+  // Vibrant landing cups labeled with the assigned nickname for this round.
+  const laneColors=slotPalette(n);
   for(let i=0;i<n;i++){
     const x=board.left+i*board.slotWidth+2,width=board.slotWidth-4;
-    ctx.save();ctx.shadowBlur=i===winningSlot?24:6;ctx.shadowColor=i===winningSlot?'#FFE37A':'#9776E9';
+    const tone=laneColors[i%laneColors.length];
+    ctx.save();ctx.shadowBlur=i===winningSlot?24:8;ctx.shadowColor=i===winningSlot?'#FFE37A':tone.border;
     const slotGradient=ctx.createLinearGradient(x,board.slotTop,x,board.slotBottom);
-    slotGradient.addColorStop(0,i===winningSlot?'#FFE9A0':i%2?'#6A50AD':'#3587C9');slotGradient.addColorStop(1,i===winningSlot?'#B7782A':i%2?'#3E2F76':'#224D90');
-    ctx.fillStyle=slotGradient;ctx.strokeStyle=i===winningSlot?'#FFF7C3':'#DCC0FF';ctx.lineWidth=2.5;
+    slotGradient.addColorStop(0,tone.from);slotGradient.addColorStop(1,tone.to);
+    ctx.fillStyle=slotGradient;ctx.strokeStyle=i===winningSlot?'#FFF7C3':tone.border;ctx.lineWidth=2.8;
     ctx.beginPath();ctx.roundRect(x,board.slotTop,width,board.slotBottom-board.slotTop,Math.min(14,width/3));ctx.fill();ctx.stroke();
-    ctx.fillStyle=i===winningSlot?'#4A2966':'#FFFFFF';ctx.textAlign='center';ctx.textBaseline='middle';ctx.font='950 '+(n>=13?17:n>=9?21:28)+'px "Pretendard Variable",sans-serif';ctx.fillText(String(i+1),x+width/2,board.slotTop+36);
-    if(n<=8){ctx.font='850 11px "Pretendard Variable",sans-serif';ctx.fillText('SLOT',x+width/2,board.slotTop+61);}
+    ctx.fillStyle=i===winningSlot?'#4A2966':tone.text;ctx.textAlign='center';ctx.textBaseline='middle';
+    const label=trimSlotLabel(names[i]);
+    const baseSize=n>=13?13:n>=9?16:21;
+    ctx.font='950 '+baseSize+'px "Pretendard Variable",sans-serif';
+    let draw=label;
+    while(ctx.measureText(draw).width>width-14&&draw.length>2)draw=draw.slice(0,-1);
+    if(draw!==label&&draw.length>1)draw=draw.slice(0,-1)+'…';
+    ctx.fillText(draw,x+width/2,board.slotTop+(board.slotBottom-board.slotTop)/2);
     ctx.restore();
   }
   // Cache the final static scene prior to any moving ball or result highlight.
@@ -753,7 +807,6 @@ async function dropPlinko(item,pool,roundIndex){
   const label=$('roundItem');label.replaceChildren();
   if(rewardImage(item)){const icon=document.createElement('img');icon.src=item.icon;icon.alt='현재 보상';icon.className='round-reward-icon';label.append(icon);}else label.textContent=item.text;
   $('plinkoWinFlash').hidden=true;renderCatParticipants(names);fitLiveStage(names.length);
-  const helper=$('plinkoRuleNote');if(helper)helper.textContent='회차마다 핀 배치·슬롯 무작위 리셋 · 도착 후 당첨 확정';
   $('runStatus').textContent=names.length+'명 · 무작위 핀 배치를 통과하며 구슬이 낙하하는 중…';
   $('progressBar').style.width=(roundIndex/state.items.length*100)+'%';
   const sequence=simulation.history;
@@ -788,7 +841,7 @@ async function dropPlinko(item,pool,roundIndex){
   // Winning colors and cards are applied ONLY AFTER all simulation frames and confirmed landing.
   paintPlinko(names,board,{x:simulation.last.x,y:simulation.last.y,trail:[],impacts:[]},winnerIndex);
   renderCatParticipants(names,winner);
-  const win=$('plinkoWinFlash');win.textContent='✨ '+(winnerIndex+1)+'번 슬롯 · 당첨 '+winner+' ✨';win.hidden=false;
+  const win=$('plinkoWinFlash');win.textContent='✨ '+winner+' 당첨 ✨';win.hidden=false;
   $('runStatus').textContent='도착 확인 · '+winner+'님 당첨 확정';
   $('progressBar').style.width=((roundIndex+1)/state.items.length*100)+'%';
   await sleep(roundIndex===state.items.length-1?1100:850);
@@ -1058,7 +1111,7 @@ async function makeShareImage(){
     else write(name,x+chipW/2,y+chipH/2,29,'#f3e9ff',chipW-25,920,21);
   });
   // Current V4 release identifier on the actual exported PNG, outside the approved reward/participant layout.
-  write('Created by 879 | 안창살 · V4.3.8',W/2,H-102,21,'#9E8BBE',contentW,800,18);
+  write('Created by 879 | 안창살 · V4.3.9',W/2,H-102,21,'#9E8BBE',contentW,800,18);
   return await new Promise((resolve,reject)=>canvas.toBlob(b=>b?resolve(b):reject(Error('이미지 생성 실패')),'image/png'));
 }
 function saveBlob(blob){const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=`${state.gameMode==='plinko'?'행운구슬':'행운룰렛'}-결과-${new Date().toISOString().slice(0,10)}.png`;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1500);}

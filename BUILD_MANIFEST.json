@@ -1,12 +1,12 @@
 {
-  "version": "V4.3.8",
+  "version": "V4.3.9",
   "date": "2026-10-17",
   "baseline": "V4.3.6",
   "file_count": 228,
   "hash_records": 226,
   "self_excluded": [
     "BUILD_MANIFEST.json",
-    "BUILD_MANIFEST_V4.3.8.json"
+    "BUILD_MANIFEST_V4.3.9.json"
   ],
   "files": [
     {
@@ -310,7 +310,7 @@
       "sha256": "ceda5a355c621756067bcc10e538a0642ee691f5233ed8b56f470cd6443d3ab4"
     },
     {
-      "path": "RELEASE_NOTES_V4.3.8.md",
+      "path": "RELEASE_NOTES_V4.3.9.md",
       "bytes": 3370,
       "sha256": "16a8e44880105caadfb27441ef66da8210c45ac0d93c451c8ff0d3d15fc09cd8"
     },
@@ -395,7 +395,7 @@
       "sha256": "6caea572f8886a2f1229ac02ef99790cd643d12b37da3bd2c8f1cf22df35d342"
     },
     {
-      "path": "VALIDATION_V4.3.8.md",
+      "path": "VALIDATION_V4.3.9.md",
       "bytes": 3088,
       "sha256": "d00f5a1a7b954af22533d1118413acb26cc067e32de12c4ac1ff1e4fd508a4f7"
     },

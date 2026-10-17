@@ -1,4 +1,4 @@
-/* Cat Hero Plinko physics v4.3.7 — stronger trust-focused physical drawing.
+/* Cat Hero Plinko physics v4.3.9 — denser high-tension physical drawing with abundant randomized specialty pegs.
    - No predetermined destination or hidden steering.
    - Each round randomizes the peg layout, peg specialties and small offsets.
    - Participants are uniformly shuffled across slots before every drop.
@@ -19,12 +19,12 @@
     const left=38,right=WIDTH-38,slotTop=734,slotBottom=828;
     const slotWidth=(right-left)/n;
     const pegs=[];
-    const rows=n<=4?11:n<=8?12:n<=12?13:14;
-    const baseCols=n<=5?9:n<=9?10:11;
-    const xGap=baseCols>=11?62:baseCols===10?66:72;
-    const yGap=rows>=14?43:45;
-    const firstY=155;
-    const typeBag=['standard','standard','standard','standard','spring','prism','booster','bumper'];
+    const rows=n<=4?12:n<=8?13:n<=12?14:15;
+    const baseCols=n<=5?10:n<=9?11:12;
+    const xGap=baseCols>=12?56:baseCols===11?60:66;
+    const yGap=rows>=15?39:41;
+    const firstY=146;
+    const typeBag=['standard','standard','standard','spring','spring','prism','prism','booster','booster','bumper','bumper'];
     const variants=[];
     for(let row=0;row<rows;row++){
       const parity=row%2;
@@ -33,14 +33,16 @@
       for(let c=0;c<count;c++){
         const edge=c===0||c===count-1;
         const rPick=randomFloat(rand);
-        const jitterX=(rPick-.5)*(edge?8:18);
-        const jitterY=(randomFloat(rand)-.5)*10;
+        const jitterX=(rPick-.5)*(edge?9:16);
+        const jitterY=(randomFloat(rand)-.5)*9;
         let type='standard';
         if(!edge || randomFloat(rand)>.25){
           type=typeBag[Math.floor(randomFloat(rand)*typeBag.length)]||'standard';
         }
         if(row<2 && type==='booster')type='spring';
-        if(row>=rows-2 && type==='spring' && randomFloat(rand)<.45)type='bumper';
+        if(row<2 && type==='bumper')type='prism';
+        if(row>=rows-2 && type==='spring' && randomFloat(rand)<.55)type='bumper';
+        if(row>=rows-3 && type==='booster' && randomFloat(rand)<.4)type='prism';
         const radius=type==='spring'?8.8:type==='prism'?8.2:type==='booster'?8.4:type==='bumper'?9.2:7.6;
         const bias=(type==='prism'?(randomFloat(rand)<.5?-1:1):0);
         const peg={x:start+c*xGap+jitterX,y:firstY+row*yGap+jitterY,r:radius,type,row,col:c,bias};
@@ -50,7 +52,7 @@
     }
     const boundaries=Array.from({length:n-1},(_,i)=>left+slotWidth*(i+1));
     return {width:WIDTH,height:HEIGHT,n,left,right,slotTop,slotBottom,slotWidth,ballRadius:RADIUS,pegs,boundaries,
-      rows,baseCols,layoutKey:variants.join(','),minCollisions:Math.max(8,Math.round(rows*0.85))};
+      rows,baseCols,layoutKey:variants.join(','),minCollisions:Math.max(10,Math.round(rows*1.05))};
   }
   function simulate(board,rand=Math.random){
     const radius=board.ballRadius;

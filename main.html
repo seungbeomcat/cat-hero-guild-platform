@@ -8,7 +8,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="Cat Hero 계산기" />
-  <title>Cat Hero · 격전지 계산기 V4.3.8</title>
+  <title>Cat Hero · 격전지 계산기 V4.3.9</title>
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 
@@ -9099,7 +9099,7 @@ body > .wrap{padding-top:clamp(16px,2.5vh,30px)!important}
   <section id="result" class="card result">
     <div id="resultActionBar" class="result-action-bar" aria-label="계산 결과 빠른 기능">
       <button id="shareOpenBtn" class="share-open result-action-btn result-image-share" type="button">이미지 바로 공유</button>
-      <button id="rewardRouletteBtn" class="result-action-btn result-reward-roulette" type="button">분배 게임 실행</button>
+      <button id="rewardRouletteBtn" class="result-action-btn result-reward-roulette" type="button">✨ 행운 게임 시작</button>
     </div>
     <div id="headline" class="headline"></div>
     <div id="mainTable"></div>
@@ -9239,7 +9239,7 @@ body > .wrap{padding-top:clamp(16px,2.5vh,30px)!important}
 
 
 <footer class="footer-credits" aria-label="제작 정보">
-    <div class="creator-credit">Created by 879 | 안창살 · V4.3.8</div>
+    <div class="creator-credit">Created by 879 | 안창살 · V4.3.9</div>
     <div class="build-credit">2026.10.16</div>
   </footer>
 
@@ -11411,8 +11411,8 @@ function resetZ1PlanUi(){
   }
 })();
 </script>
-<script id="cat-hero-v4-brand">(function(){try{const c=parent.CAT_HERO_V4_CONTEXT||{};const g=c.guild||{};const count=Object.keys(c.members||{}).length;document.title=`${g.name||'길드'} · 격전지 계산기 V4.3.8`;const s=document.getElementById('v4GuildServer'),n=document.getElementById('v4GuildName'),m=document.getElementById('v4GuildCount'),sh=document.getElementById('v4ShareGuildTitle');if(s)s.textContent=g.server||'-';if(n)n.textContent=g.name||'길드';if(m)m.textContent=count+'명';if(sh)sh.textContent=(g.name||'길드')+' 격전지 계산기';const sub=document.querySelector('#rosterAllTableBtn .roster-all-table-sub');if(sub)sub.textContent=`${count}명 · 기본 · 최소점수 · 지역격추 한눈에 확인`;}catch(e){console.warn(e)}})();</script>
-<script defer src="./shared/journal-bridge.js?v=423"></script><script>document.body.dataset.webSyncRole="main";</script><script type="module" src="./shared/web-sync.js?v=423"></script><script type="module" src="./shared/reward-entry.js?v=423"></script>
+<script id="cat-hero-v4-brand">(function(){try{const c=parent.CAT_HERO_V4_CONTEXT||{};const g=c.guild||{};const count=Object.keys(c.members||{}).length;document.title=`${g.name||'길드'} · 격전지 계산기 V4.3.9`;const s=document.getElementById('v4GuildServer'),n=document.getElementById('v4GuildName'),m=document.getElementById('v4GuildCount'),sh=document.getElementById('v4ShareGuildTitle');if(s)s.textContent=g.server||'-';if(n)n.textContent=g.name||'길드';if(m)m.textContent=count+'명';if(sh)sh.textContent=(g.name||'길드')+' 격전지 계산 결과';const sub=document.querySelector('#rosterAllTableBtn .roster-all-table-sub');if(sub)sub.textContent=`${count}명 · 기본 · 최소점수 · 지역격추 한눈에 확인`;}catch(e){console.warn(e)}})();</script>
+<script defer src="./shared/journal-bridge.js?v=423"></script><script>document.body.dataset.webSyncRole="main";</script><script type="module" src="./shared/web-sync.js?v=423"></script><script type="module" src="./shared/reward-entry.js?v=439"></script>
 <style id="v201-layout-fixes">
 .v200-stats.v201-stats{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,2fr)!important;gap:8px!important;margin-bottom:12px!important}
 .v201-stats .v200-stat{min-height:0!important;height:106px!important;box-sizing:border-box!important;background:#fff!important;border:3px solid #853ee5!important;border-radius:17px!important;padding:8px 5px!important;color:#4d247e!important}
@@ -11686,11 +11686,18 @@ new MutationObserver(()=>{if(overlay.hidden||!document.getElementById('v200Title
   box-shadow:0 4px 12px rgba(93,46,153,.10),inset 0 0 0 1px rgba(255,255,255,.78)!important;
 }
 #resultActionBar #rewardRouletteBtn{
-  color:#fff!important;
-  border:3px solid #7d35d2!important;
-  background:linear-gradient(132deg,#6e2ac5 0%,#8d42e6 52%,#5c68de 100%)!important;
-  box-shadow:0 4px 13px rgba(105,43,184,.20),inset 0 1px 0 rgba(255,255,255,.18)!important;
+  position:relative!important;
+  overflow:hidden!important;
+  color:#fff9eb!important;
+  border:3px solid #f2c865!important;
+  background:linear-gradient(135deg,#6b2bd4 0%,#8d42e6 46%,#c58b2e 100%)!important;
+  box-shadow:0 0 0 1px rgba(255,238,190,.18),0 8px 18px rgba(137,86,18,.22),0 0 18px rgba(255,212,112,.24),inset 0 1px 0 rgba(255,255,255,.22)!important;
+  animation:rewardCtaPulse 2.6s ease-in-out infinite!important;
 }
+#resultActionBar #rewardRouletteBtn::before{content:'';position:absolute;inset:0 auto 0 -32%;width:42%;background:linear-gradient(90deg,rgba(255,255,255,0),rgba(255,244,202,.74),rgba(255,255,255,0));transform:skewX(-20deg);animation:rewardCtaShimmer 2.9s linear infinite;pointer-events:none;}
+#resultActionBar #rewardRouletteBtn::after{content:'✨';position:absolute;left:12px;top:50%;transform:translateY(-50%);font-size:13px;opacity:.95;pointer-events:none;}
+@keyframes rewardCtaShimmer{0%{transform:translateX(0) skewX(-20deg);opacity:0}12%{opacity:.95}45%{opacity:0}100%{transform:translateX(290%) skewX(-20deg);opacity:0}}
+@keyframes rewardCtaPulse{0%,100%{box-shadow:0 0 0 1px rgba(255,238,190,.18),0 8px 18px rgba(137,86,18,.22),0 0 18px rgba(255,212,112,.24),inset 0 1px 0 rgba(255,255,255,.22)}50%{box-shadow:0 0 0 1px rgba(255,238,190,.22),0 10px 22px rgba(137,86,18,.26),0 0 24px rgba(255,217,125,.35),inset 0 1px 0 rgba(255,255,255,.28)}}
 #resultActionBar #shareOpenBtn.show{display:flex!important}
 #resultActionBar .result-action-btn[disabled]{opacity:.55!important;cursor:wait!important;transform:none!important}
 @media(max-width:350px){#resultActionBar.result-action-bar{gap:10px!important;margin-inline:0!important}#resultActionBar .result-action-btn{min-height:42px!important;height:42px!important;font-size:11px!important;padding-inline:4px!important}}
@@ -11738,7 +11745,7 @@ async function makeCalculatorShareBlob(){
   const headerH=64,rowH=body.length<=4?72:body.length<=7?66:60;
   const tableH=headerH+rowH*body.length;
   const noteH=noteLines.length?94+Math.max(0,noteLines.length-1)*28:0;
-  const tableY=206;
+  const tableY=174;
   const H=Math.min(1800,tableY+tableH+(note?24+noteH:0)+112);
   const c=document.createElement('canvas');c.width=W;c.height=H;const ctx=c.getContext('2d',{alpha:false});
   ctx.imageSmoothingEnabled=true;ctx.imageSmoothingQuality='high';
@@ -11746,9 +11753,9 @@ async function makeCalculatorShareBlob(){
   ctx.strokeStyle='#7e35dc';ctx.lineWidth=7;rounded(ctx,27.5,27.5,W-55,H-55,32);ctx.stroke();
   ctx.strokeStyle='rgba(154,113,230,.55)';ctx.lineWidth=2.5;rounded(ctx,39.5,39.5,W-79,H-79,25);ctx.stroke();
   ctx.textAlign='center';ctx.textBaseline='alphabetic';
-  ctx.fillStyle='#6b32ad';ctx.font='900 27px "Pretendard Variable",sans-serif';ctx.fillText(guildName,W/2,72);
-  ctx.fillStyle='#17345f';ctx.font='950 37px "Pretendard Variable",sans-serif';ctx.fillText('격전지 계산 결과',W/2,118);
-  const hf=fit(ctx,headline,inner,28,48,950);ctx.fillStyle='#482080';ctx.font=`950 ${hf.size}px "Pretendard Variable",sans-serif`;ctx.fillText(hf.text,W/2,174);
+  const shareGuild=(guildName||'길드 격전지 계산 결과').replace(/\s*격전지 계산기$/,'').replace(/\s*격전지 계산 결과$/,'');
+  ctx.fillStyle='#6b32ad';ctx.font='900 34px "Pretendard Variable",sans-serif';ctx.fillText(shareGuild+' 격전지 계산 결과',W/2,84);
+  const hf=fit(ctx,headline,inner,28,48,950);ctx.fillStyle='#482080';ctx.font=`950 ${hf.size}px "Pretendard Variable",sans-serif`;ctx.fillText(hf.text,W/2,136);
   let widths=cols===5?[.19,.20,.20,.20,.21].map(x=>inner*x):Array(cols).fill(inner/cols);
   let highlight=-1;headers.forEach((h,i)=>{if(/이탈/.test(h))highlight=i;});
   let x=margin;
@@ -11757,7 +11764,7 @@ async function makeCalculatorShareBlob(){
   if(highlight>=0){const hx=margin+widths.slice(0,highlight).reduce((a,b)=>a+b,0),hw=widths[highlight];ctx.save();ctx.strokeStyle='#1677e8';ctx.lineWidth=6;ctx.shadowColor='transparent';ctx.strokeRect(Math.round(hx)+3,tableY+3,Math.round(hw)-6,tableH-6);ctx.restore();}
   let y=tableY+tableH+24;
   if(note){ctx.fillStyle='#fff4d9';ctx.strokeStyle='#e4ad36';ctx.lineWidth=2.5;rounded(ctx,margin,y,inner,noteH,20);ctx.fill();ctx.stroke();ctx.textAlign='left';ctx.textBaseline='alphabetic';ctx.fillStyle='#76500f';ctx.font='850 25px "Pretendard Variable",sans-serif';const lines=(noteLines.length?noteLines:wrap(ctx,note,inner-44,2)).slice(0,2);const lineH=34,total=lines.length*lineH,startY=y+(noteH-total)/2+25;lines.forEach((line,i)=>ctx.fillText(line,margin+22,startY+i*lineH));}
-  ctx.textAlign='center';ctx.textBaseline='alphabetic';ctx.fillStyle='#8b7a9e';ctx.font='750 17px "Pretendard Variable",sans-serif';ctx.fillText('Created by 879 | 안창살 · V4.3.8',W/2,H-54);
+  ctx.textAlign='center';ctx.textBaseline='alphabetic';ctx.fillStyle='#8b7a9e';ctx.font='750 17px "Pretendard Variable",sans-serif';ctx.fillText('Created by 879 | 안창살 · V4.3.9',W/2,H-54);
   return await new Promise((resolve,reject)=>c.toBlob(b=>b?resolve(b):reject(new Error('이미지 생성 실패')),'image/png',1));
 }
 function downloadBlob(blob,name){const u=URL.createObjectURL(blob),a=document.createElement('a');a.href=u;a.download=name;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),1500);}
@@ -11804,6 +11811,17 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
   #resultActionBar .result-action-btn{font-size:10.8px!important;padding-left:4px!important;padding-right:4px!important}
 }
 </style>
+
+<style id="v439-lucky-game-gold-nav">
+#v416RouletteNav{
+  border-color:#efc85f!important;
+  background:linear-gradient(180deg,#fff7df 0%,#fff1c6 100%)!important;
+  box-shadow:0 0 0 1px rgba(255,235,176,.35),0 0 20px rgba(255,212,112,.28),0 10px 24px rgba(118,74,16,.14)!important;
+}
+#v416RouletteNav .v200-menu-icon{filter:drop-shadow(0 0 8px rgba(241,202,95,.38))!important}
+#v416RouletteNav span{color:#8b5a00!important;font-weight:950!important}
+</style>
+
 </html>
 
 <script id="v401-guild-title-edit">document.addEventListener('click',e=>{if(e.target.closest('#v4GuildServer,#v4GuildName')){window.DOSALJA_ADMIN?.guildEditor?.();}});</script>
