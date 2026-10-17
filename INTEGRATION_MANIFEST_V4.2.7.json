@@ -1,0 +1,24 @@
+{
+  "version": "V4.2.7",
+  "base": "V4.2.6",
+  "categories": {
+    "equipment": 22,
+    "recipes": 10,
+    "summon": 27,
+    "chest": 8
+  },
+  "total_assets": 67,
+  "changed_files": [
+    "QA_REPORT_V4.2.7.json",
+    "README.md",
+    "RELEASE_NOTES_V4.2.7.md",
+    "VALIDATION_V4.2.7.md",
+    "boss.html",
+    "index.html",
+    "main.html",
+    "ops.html",
+    "roulette.html",
+    "shared/admin-audit.js"
+  ],
+  "firestore_rules_changed": false
+}

@@ -1,0 +1,64 @@
+{
+  "version": "V4.2.7",
+  "based_on": "V4.2.6",
+  "date": "2026-10-17",
+  "improvements": [
+    "share_png_compact_metadata",
+    "share_png_larger_icons_and_winners",
+    "share_png_centered_grid_max_3_cols",
+    "share_png_one_line_custom_entry",
+    "admin_bulk_delete_button_left_red_border",
+    "admin_activity_dropdown_typography"
+  ],
+  "browser_tests": [
+    {
+      "viewport": 320,
+      "count": 1,
+      "png_size": [
+        1080,
+        690
+      ],
+      "js_errors": []
+    },
+    {
+      "viewport": 390,
+      "count": 2,
+      "png_size": [
+        1080,
+        690
+      ],
+      "js_errors": []
+    },
+    {
+      "viewport": 390,
+      "count": 3,
+      "png_size": [
+        1080,
+        756
+      ],
+      "js_errors": []
+    },
+    {
+      "viewport": 720,
+      "count": 8,
+      "png_size": [
+        1080,
+        1102
+      ],
+      "js_errors": []
+    }
+  ],
+  "admin_preview_viewports": [
+    320,
+    390,
+    720
+  ],
+  "admin_bulk_button_border": "3px solid #da3450",
+  "admin_filter_font_size": "11.5px–12px",
+  "asset_count": 67,
+  "asset_integrity": "all 67 source icon PNG files byte-identical to V4.2.6",
+  "firestore_rules": "byte-identical to V4.2.6",
+  "admin_delete_semantics": "unchanged",
+  "preserved_source_files": 73,
+  "notes": "Offline browser data fixture; actual iPhone Safari and live Firebase still require post-deployment verification."
+}
