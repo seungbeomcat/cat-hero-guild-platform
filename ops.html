@@ -8,7 +8,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="default" />
   <meta name="apple-mobile-web-app-title" content="Cat Hero 길드 운영" />
-  <title>Cat Hero · 균열·은하 OPS V4.3.6</title>
+  <title>Cat Hero · 균열·은하 OPS V4.3.8</title>
   <!-- KakaoTalk / social link preview -->
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Cat Hero Guild Platform" />
@@ -177,6 +177,8 @@
     .modal.tall{max-height:94vh}
     .modal-head{height:53px;min-height:53px;background:#fff;border-bottom:1px solid #e1daef;display:flex;align-items:center;justify-content:space-between;padding:0 12px}
     .modal-title{font-size:15px;font-weight:950;color:#332751;letter-spacing:-.2px}
+.level-input-wrap{display:flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:0 14px;border:1.5px solid #d3c7e7;border-radius:14px;background:#fff;text-align:center}.level-prefix{font-size:18px;font-weight:900;color:#4a3b73;letter-spacing:-.02em}.level-input-wrap input{width:100%;max-width:110px;border:none;outline:none;background:transparent;text-align:center;font-size:18px;font-weight:900;color:#332751;padding:0}.boss-register-grid .field,.boss-register-grid .field label,.boss-register-grid .picker-display,.boss-register-grid select,.boss-register-grid input,.boss-register-grid .help{text-align:center!important}.boss-register-grid .field label{display:block;width:100%;margin:0 0 8px}.boss-register-grid select,.boss-register-grid .picker-display{justify-content:center!important}.boss-register-grid .field .level-input-wrap input::-webkit-outer-spin-button,.boss-register-grid .field .level-input-wrap input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+
     .close-btn{width:31px;height:31px;border-radius:9px;border:1px solid #ded5ed;background:#faf8ff;color:#6c5a94;font-size:17px;font-weight:800;line-height:1}
     .modal-body{padding:10px 12px 14px;overflow:auto;-webkit-overflow-scrolling:touch}
     .modal-actions{display:flex;gap:7px;padding:9px 12px 12px;background:#fff;border-top:1px solid #e4deee}
@@ -1665,7 +1667,16 @@
 
     /* V0.3.15 share preview + build-date rule. Typography remains fixed in px. */
     .footer-build-date{color:#9a91ab;font-size:9.5px;font-weight:700;font-variant-numeric:tabular-nums;}
-  </style>
+  
+/* V4.3.8: centered boss registration modal text, with the close button independently anchored. */
+#addBossModal .modal-head{position:relative;justify-content:center!important}
+#addBossModal .modal-head .modal-title{flex:1;text-align:center!important;padding:0 50px}
+#addBossModal .modal-head .close-btn{position:absolute;right:12px;top:50%;transform:translateY(-50%)}
+#addBossModal .modal-body .help{text-align:center!important}
+#addBossModal .modal-actions .action-btn{text-align:center!important}
+#addBossModal .level-input-wrap:focus-within{border-color:#8159db;box-shadow:0 0 0 2px rgba(141,99,224,.14)}
+#addBossModal #newBossLevelInput{font-size:16px!important}
+</style>
 <style id="v0219-boss-roster-style">
 
     /* V0.3.15 — score-ranked boss detail + narrow participant/non-participant roster popup */
@@ -3522,7 +3533,7 @@ input:focus,textarea:focus,select:focus{scroll-margin-bottom:140px;}
       </section>
 
       <div class="footer">
-        <b>Created by 879 | 안창살 · V4.3.6</b><br>
+        <b>Created by 879 | 안창살 · V4.3.8</b><br>
         <span class="footer-build-date">2026.10.17</span>
       </div>
     </main>
@@ -3565,7 +3576,7 @@ input:focus,textarea:focus,select:focus{scroll-margin-bottom:140px;}
       <div class="modal-body">
         <div class="form-grid boss-register-grid">
           <div class="field"><label>지역</label><select id="newBossArea"><option value="wolf">늑대</option><option value="pirate">해적</option><option value="cat">고양이</option><option value="food">음식</option><option value="galaxy">은하</option></select></div>
-          <div class="field"><label>보스 레벨</label><button type="button" class="picker-display" id="newBossLevelBtn">Lv.20</button><input type="hidden" id="newBossLevel" value="20"></div>
+          <div class="field"><label>보스 레벨</label><div class="level-input-wrap"><span class="level-prefix">Lv.</span><input id="newBossLevelInput" type="number" inputmode="numeric" min="1" max="999" step="1" value="20" placeholder="20" aria-label="보스 레벨 입력"></div><input type="hidden" id="newBossLevel" value="20"></div>
           <div class="field"><label>팝업 날짜</label><button type="button" class="picker-display" id="newBossStartDateBtn">2026.10.03.</button><input type="hidden" id="newBossStartDate" /></div>
           <div class="field"><label>팝업 시각</label><button type="button" class="picker-display" id="newBossStartTimeBtn">09:00</button><input type="hidden" id="newBossStartTime" /></div>
         </div>
@@ -3795,7 +3806,7 @@ if(!window.DosaljaShared){
     }
     r.bosses=r.bosses.map((b,i)=>{
       const x={...b,order:Number(b.order)||i+1,participants:{...(b.participants||{})}};
-      x.bossLevel=Number.isFinite(Number(x.bossLevel))?Math.max(20,Math.min(50,Number(x.bossLevel))):null;
+      x.bossLevel=Number.isFinite(Number(x.bossLevel))?Math.max(1,Math.min(999,Math.trunc(Number(x.bossLevel)))):null;
       return x;
     });
     r.isDraft=!r.id; return r;
@@ -3838,7 +3849,7 @@ if(!window.DosaljaShared){
     r.guildRankingList=Array.isArray(r.guildRankingList)?r.guildRankingList.slice(0,4).map((x,i)=>({rank:i+1,server:String(x?.server||""),guild:String(x?.guild||""),total:Number(x?.total)||0})):[];
     r.bosses=Array.isArray(r.bosses)?r.bosses.map((b,i)=>{
       const x={...b,order:Number(b.order)||i+1,participants:{...(b.participants||{})}};
-      x.bossLevel=Number.isFinite(Number(x.bossLevel))?Math.max(20,Math.min(50,Number(x.bossLevel))):null;
+      x.bossLevel=Number.isFinite(Number(x.bossLevel))?Math.max(1,Math.min(999,Math.trunc(Number(x.bossLevel)))):null;
       return x;
     }):[];
     return r;
@@ -4618,12 +4629,23 @@ if(!window.DosaljaShared){
   };
 
   let bossLevelValue=20;
-  function renderBossLevelChoice(){
-    bossLevelValue=Math.max(20,Math.min(50,Number(bossLevelValue)||20));
-    document.getElementById("newBossLevel").value=String(bossLevelValue);
-    document.getElementById("newBossLevelBtn").textContent=`Lv.${bossLevelValue}`;
+  function parseBossLevel(value){
+    const raw=String(value??'').trim();
+    if(!/^[0-9]{1,3}$/.test(raw))return null;
+    const n=Number(raw);
+    return Number.isSafeInteger(n)&&n>=1&&n<=999?n:null;
   }
-  document.getElementById("newBossLevelBtn").onclick=()=>openLevelPicker();
+  function renderBossLevelChoice(){
+    document.getElementById("newBossLevel").value=String(bossLevelValue);
+    const input=document.getElementById("newBossLevelInput");
+    if(input)input.value=String(bossLevelValue);
+  }
+  const bossLevelInput=document.getElementById("newBossLevelInput");
+  bossLevelInput?.addEventListener("input",()=>{
+    const parsed=parseBossLevel(bossLevelInput.value);
+    bossLevelInput.setAttribute('aria-invalid',String(parsed===null));
+    if(parsed!==null){bossLevelValue=parsed;document.getElementById("newBossLevel").value=String(parsed);}
+  });
 
   document.getElementById("addBossBtn").onclick=async()=>{
     if(!state.round?.id){showToast("먼저 실제 회차를 시작하세요.");return;}
@@ -4635,6 +4657,9 @@ if(!window.DosaljaShared){
     openModal("addBossModal");
   };
   document.getElementById("confirmAddBossBtn").onclick=async()=>{
+    const parsedLevel=parseBossLevel(bossLevelInput?.value);
+    if(parsedLevel===null){showToast("보스 레벨은 1부터 999까지 정수로 입력하세요.");bossLevelInput?.focus();return;}
+    bossLevelValue=parsedLevel;
     if(!(await ensureAdmin())) return;
     const startIso=parseLocalDateTimeFields(document.getElementById("newBossStartDate").value,document.getElementById("newBossStartTime").value);
     if(!startIso){showToast("팝업 날짜와 시각을 확인하세요.");return;}
@@ -5214,7 +5239,7 @@ if(!window.DosaljaShared){
   try{ parent.postMessage({type:'dosalja-unified-ready'},'*'); }catch(_e){}
 })();
 </script>
-<script>(function(){try{const g=parent.CAT_HERO_V4_CONTEXT?.guild||{};document.title=`${g.name||'길드'} · 균열·은하 OPS V4.3.6`;}catch(_e){}})();</script>
+<script>(function(){try{const g=parent.CAT_HERO_V4_CONTEXT?.guild||{};document.title=`${g.name||'길드'} · 균열·은하 OPS V4.3.8`;}catch(_e){}})();</script>
 </body>
 </html>
 

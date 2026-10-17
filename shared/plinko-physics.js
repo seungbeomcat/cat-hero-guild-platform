@@ -1,8 +1,9 @@
-/* Cat Hero Plinko physics v4.3.6 — no predetermined destination or hidden steering.
-   Winner fairness: participants are uniformly shuffled across slots before every drop.
-   Physics picks a slot freely; participant at that physical slot is the winner.
-   The permutation is independent of the ball, so each participant's win probability is 1/N.
-   Standalone deterministic simulation for audit; randomness supplied by caller. */
+/* Cat Hero Plinko physics v4.3.7 — stronger trust-focused physical drawing.
+   - No predetermined destination or hidden steering.
+   - Each round randomizes the peg layout, peg specialties and small offsets.
+   - Participants are uniformly shuffled across slots before every drop.
+   - Physics determines the landing slot; the participant in that slot wins.
+   - Extra baffles, denser rows and calmer landing cups reduce sudden late jumps. */
 (function(root,factory){
   const api=factory();
   if(typeof module==='object'&&module.exports)module.exports=api;
@@ -10,44 +11,61 @@
 })(typeof window!=='undefined'?window:globalThis,function(){
   'use strict';
   const WIDTH=840,HEIGHT=890;
-  const RADIUS=11.2;
+  const RADIUS=9.4;
   const clamp=(n,a,b)=>Math.max(a,Math.min(b,n));
-  const RNG_STEP=1/90;
-  function createBoard(n){
+  const randomFloat=rand=>clamp(Number(rand())||0,0,0.999999999999);
+  function createBoard(n,rand=Math.random){
     if(!Number.isInteger(n)||n<1||n>17)throw new Error('플링코 남은 참여 인원은 1~17명입니다.');
-    const left=38,right=WIDTH-38,slotTop=738,slotBottom=826;
+    const left=38,right=WIDTH-38,slotTop=734,slotBottom=828;
     const slotWidth=(right-left)/n;
     const pegs=[];
-    const rows=10,cols=11,xGap=64,firstY=180,yGap=49;
+    const rows=n<=4?11:n<=8?12:n<=12?13:14;
+    const baseCols=n<=5?9:n<=9?10:11;
+    const xGap=baseCols>=11?62:baseCols===10?66:72;
+    const yGap=rows>=14?43:45;
+    const firstY=155;
+    const typeBag=['standard','standard','standard','standard','spring','prism','booster','bumper'];
+    const variants=[];
     for(let row=0;row<rows;row++){
       const parity=row%2;
-      const count=parity?10:11;
+      const count=baseCols-(parity?1:0);
       const start=(WIDTH-((count-1)*xGap))/2;
       for(let c=0;c<count;c++){
-        const typ=(row*11+c)%13===0?'spring':(row*11+c)%11===0?'prism':'standard';
-        pegs.push({x:start+c*xGap,y:firstY+row*yGap,r:typ==='spring'?9:7.8,type:typ,row,col:c});
+        const edge=c===0||c===count-1;
+        const rPick=randomFloat(rand);
+        const jitterX=(rPick-.5)*(edge?8:18);
+        const jitterY=(randomFloat(rand)-.5)*10;
+        let type='standard';
+        if(!edge || randomFloat(rand)>.25){
+          type=typeBag[Math.floor(randomFloat(rand)*typeBag.length)]||'standard';
+        }
+        if(row<2 && type==='booster')type='spring';
+        if(row>=rows-2 && type==='spring' && randomFloat(rand)<.45)type='bumper';
+        const radius=type==='spring'?8.8:type==='prism'?8.2:type==='booster'?8.4:type==='bumper'?9.2:7.6;
+        const bias=(type==='prism'?(randomFloat(rand)<.5?-1:1):0);
+        const peg={x:start+c*xGap+jitterX,y:firstY+row*yGap+jitterY,r:radius,type,row,col:c,bias};
+        pegs.push(peg);
+        variants.push(type);
       }
     }
-    return {width:WIDTH,height:HEIGHT,n,left,right,slotTop,slotBottom,slotWidth,ballRadius:RADIUS,pegs,
-      boundaries:Array.from({length:n-1},(_,i)=>left+slotWidth*(i+1))};
+    const boundaries=Array.from({length:n-1},(_,i)=>left+slotWidth*(i+1));
+    return {width:WIDTH,height:HEIGHT,n,left,right,slotTop,slotBottom,slotWidth,ballRadius:RADIUS,pegs,boundaries,
+      rows,baseCols,layoutKey:variants.join(','),minCollisions:Math.max(8,Math.round(rows*0.85))};
   }
   function simulate(board,rand=Math.random){
     const radius=board.ballRadius;
-    const bounded=()=>clamp(Number(rand())||0,0,0.999999999999);
-    // Launch from a visible nozzle across the middle third, never from a decided destination.
-    const ball={x:board.width/2+(bounded()-.5)*125,y:84,vx:(bounded()-.5)*2.6,vy:0};
+    const bounded=()=>randomFloat(rand);
+    const ball={x:board.width/2+(bounded()-.5)*108,y:80,vx:(bounded()-.5)*1.8,vy:0};
     const history=[],events=[];
-    const g=0.185,air=.999,wallRest=.8,pegRest={standard:.79,spring:1.08,prism:.94};
-    let arrived=false,slot=-1,bounceCount=0,collisions=0;
-    const pegHits=new Int16Array(board.pegs.length);
-    // Simulation is computed in advance and must reach an actual resting slot.
-    for(let step=0;step<4000;step++){
+    const g=0.175,air=.9985,wallRest=.79;
+    const pegRest={standard:.82,spring:1.15,prism:.91,booster:1.03,bumper:.88};
+    let arrived=false,slot=-1,bounceCount=0,collisions=0,settledFrames=0;
+    // multiple-hit rows are expected; this is not a straight waterfall.
+    for(let step=0;step<5600;step++){
       let {x,y,vx,vy}=ball;
-      const previousY=y;
-      vy=Math.min(8.7,vy+g);
+      vy=Math.min(8.35,vy+g);
       vx*=air;
-      // Small substeps prevent tunneling through individual collision pins.
-      const sub=3;
+      const sub=4;
       const frameEvents=[];
       for(let substep=0;substep<sub;substep++){
         const oldX=x,oldY=y;
@@ -55,57 +73,60 @@
         const wallL=board.left+radius,wallR=board.right-radius;
         if(x<wallL){x=wallL;vx=Math.abs(vx)*wallRest;frameEvents.push({type:'wall',x,y});}
         if(x>wallR){x=wallR;vx=-Math.abs(vx)*wallRest;frameEvents.push({type:'wall',x,y});}
-        // Peg collision is radial and reacts to the ACTUAL incoming velocity.
         for(let i=0;i<board.pegs.length;i++){
           const peg=board.pegs[i];
-          if(Math.abs(peg.y-y)>radius+peg.r+4||Math.abs(peg.x-x)>radius+peg.r+4)continue;
+          if(Math.abs(peg.y-y)>radius+peg.r+5||Math.abs(peg.x-x)>radius+peg.r+5)continue;
           const dx=x-peg.x,dy=y-peg.y,dist2=dx*dx+dy*dy,minD=radius+peg.r;
           if(dist2>=minD*minD)continue;
           const len=Math.sqrt(dist2)||1,nx=dx/len,ny=dy/len;
-          x=peg.x+nx*(minD+.18);y=peg.y+ny*(minD+.18);
+          x=peg.x+nx*(minD+.14);y=peg.y+ny*(minD+.14);
           const dot=vx*nx+vy*ny;
           if(dot<0){
-            const restitution=pegRest[peg.type];
+            const restitution=pegRest[peg.type]??pegRest.standard;
             vx-=(1+restitution)*dot*nx;vy-=(1+restitution)*dot*ny;
-            // Contact-driven tangent kick only, not a destination correction.
-            const spin=peg.type==='spring'?1.2:peg.type==='prism'?.75:.22;
-            const tangential=(bounded()-.5)*spin;
-            vx+=-ny*tangential;vy+=nx*tangential;
-            if(peg.type==='spring')vy-=.28;
-            vx=clamp(vx,-9.5,9.5);vy=clamp(vy,-8.5,9.4);
-            collisions++;pegHits[i]++;
+            let spin=(bounded()-.5)*0.18;
+            if(peg.type==='spring'){spin+=(bounded()-.5)*0.85;vy-=0.22;}
+            else if(peg.type==='prism'){spin+=peg.bias*0.46;vx+=peg.bias*0.22;}
+            else if(peg.type==='booster'){spin+=(bounded()-.5)*0.55;vx*=1.05;vy*=0.98;}
+            else if(peg.type==='bumper'){spin+=(bounded()-.5)*0.3;vx*=0.95;vy*=0.94;}
+            vx+=-ny*spin;vy+=nx*spin;
+            if(Math.abs(vx)<0.045)vx+=(bounded()-.5)*0.12;
+            vx=clamp(vx,-7.2,7.2);vy=clamp(vy,-7.5,8.5);
+            collisions++;
             frameEvents.push({type:peg.type,x:peg.x,y:peg.y,peg:i,impact:Math.abs(dot)});
           }
         }
-        // Tall baffles separate landing channels: collisions cannot cross a baffle.
-        if(y>=board.slotTop-63&&y<=board.slotBottom+radius){
+        if(y>=board.slotTop-70&&y<=board.slotBottom+radius){
           for(const bx of board.boundaries){
-            const half=3.1,walltop=board.slotTop-60;
-            const minDist=radius+half;
-            if(Math.abs(x-bx)>=minDist)continue;
-            // Approach from the side: reflect horizontally. There is no hidden slot attraction.
+            const half=4.2,walltop=board.slotTop-66,minDist=radius+half;
+            if(Math.abs(x-bx)>=minDist||y<walltop)continue;
             const dir=oldX<bx?-1:oldX>bx?1:(x<bx?-1:1);
-            x=bx+dir*(minDist+.1);
-            vx=dir*Math.max(.15,Math.abs(vx)*.62);
+            x=bx+dir*(minDist+.08);
+            vx=dir*Math.max(.08,Math.abs(vx)*.54);
+            if(y>board.slotTop+18)vy*=0.985;
             frameEvents.push({type:'divider',x:bx,y});
           }
         }
         if(y>board.slotBottom-radius){
           y=board.slotBottom-radius;
-          if(vy>0){vy=-vy*.23;bounceCount++;frameEvents.push({type:'floor',x,y});}
-          vx*=.82;
+          if(vy>0.06){vy=-vy*0.18;bounceCount++;frameEvents.push({type:'floor',x,y});}
+          else vy=0;
+          vx*=0.72;
         }
       }
-      // Non-collision drag at the bottom settles the ball naturally.
-      if(y>board.slotTop+27){vx*=.965;vy*=.995;}
+      if(y>board.slotTop-10){vx*=0.958;}
+      if(y>board.slotTop+18){vy*=0.996;}
       ball.x=x;ball.y=y;ball.vx=vx;ball.vy=vy;
       const record={x,y,vx,vy,events:frameEvents};
       history.push(record);if(frameEvents.length)events.push(...frameEvents.map(e=>({...e,frame:history.length-1})));
-      if(y>=board.slotBottom-radius-.5&&Math.abs(vx)<.42&&Math.abs(vy)<.7){
-        const lane=clamp(Math.floor((x-board.left)/board.slotWidth),0,board.n-1);
-        slot=lane;arrived=true;break;
-      }
-      // If a rare trajectory stays trapped too long, reject this attempt. NEVER teleport or force a winner.
+      if(y>=board.slotBottom-radius-.55){
+        if(Math.abs(vx)<0.16&&Math.abs(vy)<0.3)settledFrames++;
+        else settledFrames=0;
+        if(settledFrames>=9){
+          const lane=clamp(Math.floor((x-board.left)/board.slotWidth),0,board.n-1);
+          slot=lane;arrived=true;break;
+        }
+      }else settledFrames=0;
     }
     return {arrived,slot,history,events,collisions,bounceCount,last:history[history.length-1]||null};
   }
@@ -116,13 +137,13 @@
   }
   function validate(result,board){
     if(!result.arrived||result.slot<0||result.slot>=board.n)return false;
-    if(!result.history.length)return false;
+    if(!result.history.length||result.collisions<board.minCollisions)return false;
     const last=result.last;
-    if(last.y<board.slotBottom-board.ballRadius-1)return false;
+    if(!last||last.y<board.slotBottom-board.ballRadius-1)return false;
     for(let i=1;i<result.history.length;i++){
       const a=result.history[i-1],b=result.history[i];
-      if(Math.hypot(a.x-b.x,a.y-b.y)>25)return false;
-      if(!Number.isFinite(b.x+b.y))return false;
+      if(Math.hypot(a.x-b.x,a.y-b.y)>24)return false;
+      if(!Number.isFinite(b.x+b.y+b.vx+b.vy))return false;
     }
     return true;
   }

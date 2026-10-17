@@ -2,8 +2,8 @@
   "version": "V4.3.6",
   "date": "2026-10-17",
   "baseline": "V4.3.5",
-  "file_count": 240,
-  "hash_records": 238,
+  "file_count": 222,
+  "hash_records": 220,
   "self_excluded": [
     "BUILD_MANIFEST.json",
     "BUILD_MANIFEST_V4.3.6.json"
@@ -291,8 +291,8 @@
     },
     {
       "path": "RELEASE_NOTES_V4.3.6.md",
-      "bytes": 962,
-      "sha256": "9e31d73a3587436881573187e49aaa35baa01b25ee3f8cb2b1cb6539938bbadb"
+      "bytes": 2971,
+      "sha256": "b70c462cbb590148c07b8a3120904cd105fe198ee44044666f48f10f9c9fe0cf"
     },
     {
       "path": "SOURCE_BASELINE.md",
@@ -366,13 +366,8 @@
     },
     {
       "path": "VALIDATION_V4.3.6.md",
-      "bytes": 1174,
-      "sha256": "67f0fe8d7b9eb52a5e401bb290a4f4b941b3ce7619bd12cd071a32e0125a7e7c"
-    },
-    {
-      "path": "__visual_check.html",
-      "bytes": 55097,
-      "sha256": "1656b7ee2044b028e40c8d0bb8913d4049eb89541d8610620346eb5cc8d90267"
+      "bytes": 1991,
+      "sha256": "471f9998b508af8dfb43aa8cd83a97c332afe9c0cd1c80752637fcb4f7277cbf"
     },
     {
       "path": "assets/bananyang-v337-display.webp",
@@ -456,8 +451,8 @@
     },
     {
       "path": "assets/lucky-cats/BREEDS.txt",
-      "bytes": 351,
-      "sha256": "bfff56014fc1688f747c5390a0e5f94b170d414cfd85dd6ad4b4b8d08a99ed5c"
+      "bytes": 302,
+      "sha256": "db8c560adb545381bd8b4411208546a5d1e84dd19a872dde33fe180bdb21d75a"
     },
     {
       "path": "assets/lucky-cats/cat_01.png",
@@ -465,19 +460,9 @@
       "sha256": "6ff7cb5afbe433236ff485b658b1316f69c1a3f48a5106f108f0c4e8b77796c1"
     },
     {
-      "path": "assets/lucky-cats/cat_01.svg",
-      "bytes": 2031,
-      "sha256": "2c4080713a1576ee5e01aca8eada11932957e875db6405e13ce89108a31ba0f7"
-    },
-    {
       "path": "assets/lucky-cats/cat_02.png",
       "bytes": 110779,
       "sha256": "45d77d5565eba03c351ac38b04f0c2013e18a4beb343a38cac47d916f0dc364d"
-    },
-    {
-      "path": "assets/lucky-cats/cat_02.svg",
-      "bytes": 2154,
-      "sha256": "42f24c7f5e2d4ef5db3c70cbe41fb4aef91e9df2879360c453e87387ae5b5fde"
     },
     {
       "path": "assets/lucky-cats/cat_03.png",
@@ -485,19 +470,9 @@
       "sha256": "45d809e92115bcfb2287afcd760c11b7a3d38b31dec0f91ff50e397d8721524a"
     },
     {
-      "path": "assets/lucky-cats/cat_03.svg",
-      "bytes": 2203,
-      "sha256": "fed5c8ee7a8ff8d81a7aa348839fe224982cfd3feed0a2903f8f2ac871371bd1"
-    },
-    {
       "path": "assets/lucky-cats/cat_04.png",
       "bytes": 99917,
       "sha256": "622eb6371a61897ed636b43e74a6f791a749f902a80bf1513ceb13a5ac6ef0fd"
-    },
-    {
-      "path": "assets/lucky-cats/cat_04.svg",
-      "bytes": 1801,
-      "sha256": "74b835327bec79bfef4e9c7924d6d9025b74991c14bf982889e9a82ff79528db"
     },
     {
       "path": "assets/lucky-cats/cat_05.png",
@@ -505,19 +480,9 @@
       "sha256": "8d27f2431660da86b835c25ad167a34253ec6213de02b2cfb3ac71d5e24db098"
     },
     {
-      "path": "assets/lucky-cats/cat_05.svg",
-      "bytes": 2180,
-      "sha256": "9d4371f9dc76cd3c9c981ed156e87b67f99d126a5c174a79380c05ce6bad6979"
-    },
-    {
       "path": "assets/lucky-cats/cat_06.png",
       "bytes": 104095,
       "sha256": "6b4906edb9025d9974bc1283941134cb439de7a99a44845a9c06b58897ad0e1d"
-    },
-    {
-      "path": "assets/lucky-cats/cat_06.svg",
-      "bytes": 2004,
-      "sha256": "ccc231db144cb1793ac24c47450b97ce9f4ee501feb74df7c6803742a82431eb"
     },
     {
       "path": "assets/lucky-cats/cat_07.png",
@@ -525,19 +490,9 @@
       "sha256": "5773fe74f385b8b5a63f62bd3b39819f24a7fa8829cc6bfb75fd6f8ed27621af"
     },
     {
-      "path": "assets/lucky-cats/cat_07.svg",
-      "bytes": 2031,
-      "sha256": "5df21f02f53e558e9152a94a669adf2b2e43e4740bc99e17548c967041e7ffff"
-    },
-    {
       "path": "assets/lucky-cats/cat_08.png",
       "bytes": 103066,
       "sha256": "e1d612cf121404a32991a4ad974d5cc731a05d7112d2242885a117b959aa1e12"
-    },
-    {
-      "path": "assets/lucky-cats/cat_08.svg",
-      "bytes": 1742,
-      "sha256": "502b58a80be2dfa5a6cdf16d2fd5436e556314edac0bfdd962a1963c6a58cbed"
     },
     {
       "path": "assets/lucky-cats/cat_09.png",
@@ -545,19 +500,9 @@
       "sha256": "65529e9511795ca1b146ed00f291f33bf72e12db6371da6e53675cd43cbcaf41"
     },
     {
-      "path": "assets/lucky-cats/cat_09.svg",
-      "bytes": 1779,
-      "sha256": "5e03ede6eb415b48068c66045746bd25fc1e6dcefaaca70ecc34c87b0cfacb17"
-    },
-    {
       "path": "assets/lucky-cats/cat_10.png",
       "bytes": 91566,
       "sha256": "e969bc8a80c7c85f624a6a4b6b9251ef59e67be86b421f57d123c076fcda1500"
-    },
-    {
-      "path": "assets/lucky-cats/cat_10.svg",
-      "bytes": 2244,
-      "sha256": "9ff42c348b666a30d0a21bc027eae5ce2504bca6db0fdf32022e6c3b1f02267a"
     },
     {
       "path": "assets/lucky-cats/cat_11.png",
@@ -565,19 +510,9 @@
       "sha256": "b3eb844b60fe8c8dc30e62f89fe2021b1d753e7ee28969ec852f6c2e793552ae"
     },
     {
-      "path": "assets/lucky-cats/cat_11.svg",
-      "bytes": 2478,
-      "sha256": "084a113ce94813adfd8a3a92fddb2e52f04f7be0572104e3998e2e782f58d398"
-    },
-    {
       "path": "assets/lucky-cats/cat_12.png",
       "bytes": 102965,
       "sha256": "2f421d0fc82a957eeb21b11d9dda311b3904196f02f92166538b1b754574fcec"
-    },
-    {
-      "path": "assets/lucky-cats/cat_12.svg",
-      "bytes": 2479,
-      "sha256": "8222604b996e3b7eeb0f634376340dc10b1b4f52ad70bba0abdfc6027eec4944"
     },
     {
       "path": "assets/lucky-cats/cat_13.png",
@@ -585,19 +520,9 @@
       "sha256": "a05fe7c3813d3a072f56794757dd6a5dafed519e36fca6140d65870f0dcd3d73"
     },
     {
-      "path": "assets/lucky-cats/cat_13.svg",
-      "bytes": 2142,
-      "sha256": "72591a968e2e3beba2085fae2fe6adf50305f566ddb232fc045736928af3a931"
-    },
-    {
       "path": "assets/lucky-cats/cat_14.png",
       "bytes": 116163,
       "sha256": "d6b3a127293ee15c0e42b7a969af2fe3b8e52536ed60fe22f87edc2aa923f960"
-    },
-    {
-      "path": "assets/lucky-cats/cat_14.svg",
-      "bytes": 1905,
-      "sha256": "18e085c79de530a3d0f6588eed33de234412d09eb3bacbabafcca8d5c60ed567"
     },
     {
       "path": "assets/lucky-cats/cat_15.png",
@@ -605,29 +530,14 @@
       "sha256": "aff8ab8c3f6418daaf853369e9f1565eca6755a161a76f5525b82041192e992c"
     },
     {
-      "path": "assets/lucky-cats/cat_15.svg",
-      "bytes": 2150,
-      "sha256": "25d47e50924571a3bdcc17cd265bcb7855f0d97c0e24637ebcfd79ae05a22ced"
-    },
-    {
       "path": "assets/lucky-cats/cat_16.png",
       "bytes": 101089,
       "sha256": "00b705b2d11b387cfec5a22bc5763d106640fd81fa1174ecdd1b064e14503481"
     },
     {
-      "path": "assets/lucky-cats/cat_16.svg",
-      "bytes": 1896,
-      "sha256": "5d9b405f7d72eef7c3ff960a11aff2241876e7db6c5b2d92f27f62fad42d81dc"
-    },
-    {
       "path": "assets/lucky-cats/cat_17.png",
       "bytes": 110091,
       "sha256": "3055c4822fa04d3f20d73c04d4a922af69bfa25672c46255658802af4fbe26cc"
-    },
-    {
-      "path": "assets/lucky-cats/cat_17.svg",
-      "bytes": 1968,
-      "sha256": "a2ebc6ea079ac7df6066985643218b78a8629e0ec71c6e6bf130f8de6f9d3ac8"
     },
     {
       "path": "assets/luna-v337-display.webp",
@@ -1151,8 +1061,8 @@
     },
     {
       "path": "roulette.html",
-      "bytes": 131530,
-      "sha256": "a9774fa43d710449da6cc57fa15a5020742eb9a912ce019118850d2d24784b9a"
+      "bytes": 131531,
+      "sha256": "36d55dad2307ad4c64d5ce325aca911d70ca86a8a3d73a83bba65b32114da97f"
     },
     {
       "path": "shared/admin-audit.js",
@@ -1199,6 +1109,5 @@
       "bytes": 15045,
       "sha256": "8e85fd2eb0bdd7ec7c692597f49887e3e33b7b913740c69262b8ef9f1485e1a6"
     }
-  ],
-  "validation": "VALIDATION_V4.3.6.md"
+  ]
 }

@@ -8,7 +8,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="Cat Hero 계산기" />
-  <title>Cat Hero · 격전지 계산기 V4.3.6</title>
+  <title>Cat Hero · 격전지 계산기 V4.3.8</title>
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 
@@ -9239,7 +9239,7 @@ body > .wrap{padding-top:clamp(16px,2.5vh,30px)!important}
 
 
 <footer class="footer-credits" aria-label="제작 정보">
-    <div class="creator-credit">Created by 879 | 안창살 · V4.3.6</div>
+    <div class="creator-credit">Created by 879 | 안창살 · V4.3.8</div>
     <div class="build-credit">2026.10.16</div>
   </footer>
 
@@ -9861,7 +9861,7 @@ function render(r){
   if(r.kind==="profile"){
     headline.textContent=`${r.name} · 지역별 종합격추`;
     main.innerHTML=table(["지역","지역격추","종합격추"],r.rows.map(x=>[x[0],regionRaw(x[1]),pct(x[2],1)]),"region-main");
-    note.innerHTML=`<div class="note"><strong>선택된 서버격추는 ${pct(selectedServer,0)}</strong><br><strong>종합격추 = 기본격추(탈것 포함) + 서버격추 + 지역</strong></div>`;
+    note.innerHTML=`<div class="note"><strong>서버격추 ${pct(selectedServer,0)} 선택</strong><br><strong>종합격추 = 기본격추(탈것 포함) + 서버격추 + 지역</strong></div>`;
     detail.innerHTML="";
   }else if(r.kind==="region"){
     headline.textContent=`${r.parsed.region.label} · ${r.name} 예상 딜`;
@@ -9876,7 +9876,7 @@ function render(r){
       r.estimates.map(x=>[`${x.min}분`,fmtInt(x.damage),`${fmtInt(x.low)} ~ ${fmtInt(x.high)}`]),
       "level-table"
     );
-    note.innerHTML=`<div class="note"><strong>선택된 서버격추는 ${pct(selectedServer,0)}</strong><br><strong>종합격추 = 기본격추(탈것 포함) + 서버격추 + 지역</strong></div>`;
+    note.innerHTML=`<div class="note"><strong>서버격추 ${pct(selectedServer,0)} 선택</strong><br><strong>종합격추 = 기본격추(탈것 포함) + 서버격추 + 지역</strong></div>`;
     detail.innerHTML="";
   }else if(r.kind==="z2"){
     if(r.parsed.mode==="z2boss"){
@@ -9897,7 +9897,7 @@ function render(r){
       "z2-main"
     );
 
-    note.innerHTML=`<div class="note"><strong>선택된 서버격추는 ${pct(selectedServer,0)}</strong><br><strong>종합격추 = 기본격추(탈것 포함) + 서버격추 + 지역</strong></div>`;
+    note.innerHTML=`<div class="note"><strong>서버격추 ${pct(selectedServer,0)} 선택</strong><br><strong>종합격추 = 기본격추(탈것 포함) + 서버격추 + 지역</strong></div>`;
 
     if(r.parsed.mode==="z2boss"){
       detail.innerHTML=`<div class="section-title">레벨별 예상 완료시간</div>`+
@@ -9914,7 +9914,7 @@ function render(r){
       r.items.map(x=>[x.name,fmtInt(x.hp),pct(x.G,1),`${x.share.toFixed(2)}%`]),
       "z1-main"
     );
-    note.innerHTML=`<div class="note"><strong>선택된 서버격추는 ${pct(selectedServer,0)}</strong><br><strong>종합격추 = 기본격추(탈것 포함) + 서버격추 + 지역</strong></div>`;
+    note.innerHTML=`<div class="note"><strong>서버격추 ${pct(selectedServer,0)} 선택</strong><br><strong>종합격추 = 기본격추(탈것 포함) + 서버격추 + 지역</strong></div>`;
     detail.innerHTML="";
   }
   result.classList.add("show");
@@ -10676,7 +10676,7 @@ function fitZ1HeadlineElement(el,maxPx=16,minPx=11){
   while(el.scrollWidth>el.clientWidth && size>minPx && guard<20){size-=.5;el.style.fontSize=size+"px";guard++;}
 }
 function z1NoteMarkup(){
-  return `<div class="note"><strong>선택된 서버격추는 ${pct(selectedServer,0)}</strong><br><strong>종합격추 = 기본격추(탈것 포함) + 서버격추 + 지역</strong></div>`;
+  return `<div class="note"><strong>서버격추 ${pct(selectedServer,0)} 선택</strong><br><strong>종합격추 = 기본격추(탈것 포함) + 서버격추 + 지역</strong></div>`;
 }
 function renderZ1Plan(r){
   currentZ1PlanActive=true;
@@ -11411,7 +11411,7 @@ function resetZ1PlanUi(){
   }
 })();
 </script>
-<script id="cat-hero-v4-brand">(function(){try{const c=parent.CAT_HERO_V4_CONTEXT||{};const g=c.guild||{};const count=Object.keys(c.members||{}).length;document.title=`${g.name||'길드'} · 격전지 계산기 V4.3.6`;const s=document.getElementById('v4GuildServer'),n=document.getElementById('v4GuildName'),m=document.getElementById('v4GuildCount'),sh=document.getElementById('v4ShareGuildTitle');if(s)s.textContent=g.server||'-';if(n)n.textContent=g.name||'길드';if(m)m.textContent=count+'명';if(sh)sh.textContent=(g.name||'길드')+' 격전지 계산기';const sub=document.querySelector('#rosterAllTableBtn .roster-all-table-sub');if(sub)sub.textContent=`${count}명 · 기본 · 최소점수 · 지역격추 한눈에 확인`;}catch(e){console.warn(e)}})();</script>
+<script id="cat-hero-v4-brand">(function(){try{const c=parent.CAT_HERO_V4_CONTEXT||{};const g=c.guild||{};const count=Object.keys(c.members||{}).length;document.title=`${g.name||'길드'} · 격전지 계산기 V4.3.8`;const s=document.getElementById('v4GuildServer'),n=document.getElementById('v4GuildName'),m=document.getElementById('v4GuildCount'),sh=document.getElementById('v4ShareGuildTitle');if(s)s.textContent=g.server||'-';if(n)n.textContent=g.name||'길드';if(m)m.textContent=count+'명';if(sh)sh.textContent=(g.name||'길드')+' 격전지 계산기';const sub=document.querySelector('#rosterAllTableBtn .roster-all-table-sub');if(sub)sub.textContent=`${count}명 · 기본 · 최소점수 · 지역격추 한눈에 확인`;}catch(e){console.warn(e)}})();</script>
 <script defer src="./shared/journal-bridge.js?v=423"></script><script>document.body.dataset.webSyncRole="main";</script><script type="module" src="./shared/web-sync.js?v=423"></script><script type="module" src="./shared/reward-entry.js?v=423"></script>
 <style id="v201-layout-fixes">
 .v200-stats.v201-stats{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,2fr)!important;gap:8px!important;margin-bottom:12px!important}
@@ -11536,7 +11536,7 @@ const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&
 const areas=[['늑대','wolf'],['해적','pirate'],['고양이','cat'],['음식','food'],['은하','galaxy'],['1구역','z1'],['2구역','z2'],['3구역','z3']];
 function reset(){selected=[];server='';menuOpen=false;pane.hidden=true;body.querySelectorAll('.v208-first,.v208-second').forEach(r=>r.classList.remove('v208-first','v208-second'));}
 function calc(n,k){if(server==='')return '—';const api=window.DosaljaShared;if(!api)return '—';const v=k.startsWith('z')?api.zoneTotal(n,Number(server),k):api.regionTotal(n,Number(server),k);return v==null?'—':(Number.isInteger(v)?v:Number(v.toFixed(1)))+'%';}
-// V4.3.6: Anchor the comparison window immediately below the basic-attack table header.
+// V4.3.8: Anchor the comparison window immediately below the basic-attack table header.
 function placeCompare(){
  if(pane.hidden)return;
  const header=body.querySelector('.v200-table thead tr:last-child th:nth-child(2)')||body.querySelector('.v200-table thead th:nth-child(2)');
@@ -11731,19 +11731,20 @@ async function makeCalculatorShareBlob(){
   await (document.fonts?.ready||Promise.resolve());
   const {headers,body,cols}=collectShareTable();
   const headline=safeText(document.getElementById('headline')?.textContent)||'격전지 계산 결과';
-  const note=safeText(document.getElementById('note')?.textContent);
+  const noteLines=String(document.getElementById('note')?.innerText||document.getElementById('note')?.textContent||'').split(/\n+/).map(safeText).filter(Boolean);
+  const note=noteLines.join(' ');
   const guildName=safeText(document.getElementById('v4ShareGuildTitle')?.textContent||document.getElementById('v4GuildName')?.textContent||'길드 격전지 계산기');
   const W=1080,margin=54,inner=W-margin*2;
   const headerH=64,rowH=body.length<=4?72:body.length<=7?66:60;
   const tableH=headerH+rowH*body.length;
-  const noteH=note?102:0;
+  const noteH=noteLines.length?94+Math.max(0,noteLines.length-1)*28:0;
   const tableY=206;
-  const H=Math.min(1800,tableY+tableH+(note?24+noteH:0)+72);
+  const H=Math.min(1800,tableY+tableH+(note?24+noteH:0)+112);
   const c=document.createElement('canvas');c.width=W;c.height=H;const ctx=c.getContext('2d',{alpha:false});
   ctx.imageSmoothingEnabled=true;ctx.imageSmoothingQuality='high';
   ctx.fillStyle='#f8f6fb';ctx.fillRect(0,0,W,H);
-  const topGlow=ctx.createLinearGradient(0,0,W,0);topGlow.addColorStop(0,'#6f2bd0');topGlow.addColorStop(.52,'#9b4ded');topGlow.addColorStop(1,'#5e72df');ctx.fillStyle=topGlow;ctx.fillRect(0,0,W,14);
   ctx.strokeStyle='#7e35dc';ctx.lineWidth=7;rounded(ctx,27.5,27.5,W-55,H-55,32);ctx.stroke();
+  ctx.strokeStyle='rgba(154,113,230,.55)';ctx.lineWidth=2.5;rounded(ctx,39.5,39.5,W-79,H-79,25);ctx.stroke();
   ctx.textAlign='center';ctx.textBaseline='alphabetic';
   ctx.fillStyle='#6b32ad';ctx.font='900 27px "Pretendard Variable",sans-serif';ctx.fillText(guildName,W/2,72);
   ctx.fillStyle='#17345f';ctx.font='950 37px "Pretendard Variable",sans-serif';ctx.fillText('격전지 계산 결과',W/2,118);
@@ -11755,8 +11756,8 @@ async function makeCalculatorShareBlob(){
   body.forEach((row,ri)=>{let xx=margin;row.forEach((v,ci)=>{const w=widths[ci],y=tableY+headerH+ri*rowH;ctx.fillStyle=ri%2?'#fbf9ff':'#ffffff';ctx.fillRect(xx,y,w,rowH);ctx.strokeStyle='#d8cee8';ctx.lineWidth=1.7;ctx.strokeRect(Math.round(xx)+1,y+1,Math.round(w)-2,rowH-2);ctx.textAlign='center';ctx.textBaseline='middle';const f=fit(ctx,v,w-16,19,31,900);ctx.fillStyle=ci===highlight?'#df2929':'#27213d';ctx.font=`900 ${f.size}px "Pretendard Variable",sans-serif`;ctx.fillText(f.text,xx+w/2,y+rowH/2);xx+=w;});});
   if(highlight>=0){const hx=margin+widths.slice(0,highlight).reduce((a,b)=>a+b,0),hw=widths[highlight];ctx.save();ctx.strokeStyle='#1677e8';ctx.lineWidth=6;ctx.shadowColor='transparent';ctx.strokeRect(Math.round(hx)+3,tableY+3,Math.round(hw)-6,tableH-6);ctx.restore();}
   let y=tableY+tableH+24;
-  if(note){ctx.fillStyle='#fff4d9';ctx.strokeStyle='#e4ad36';ctx.lineWidth=2.5;rounded(ctx,margin,y,inner,noteH,20);ctx.fill();ctx.stroke();ctx.textAlign='left';ctx.textBaseline='alphabetic';ctx.fillStyle='#76500f';ctx.font='850 25px "Pretendard Variable",sans-serif';const lines=wrap(ctx,note,inner-44,2);const lineH=34,total=lines.length*lineH,startY=y+(noteH-total)/2+25;lines.forEach((line,i)=>ctx.fillText(line,margin+22,startY+i*lineH));}
-  ctx.textAlign='center';ctx.textBaseline='alphabetic';ctx.fillStyle='#8b7a9e';ctx.font='750 17px "Pretendard Variable",sans-serif';ctx.fillText('Created by 879 | 안창살 · V4.3.6',W/2,H-33);
+  if(note){ctx.fillStyle='#fff4d9';ctx.strokeStyle='#e4ad36';ctx.lineWidth=2.5;rounded(ctx,margin,y,inner,noteH,20);ctx.fill();ctx.stroke();ctx.textAlign='left';ctx.textBaseline='alphabetic';ctx.fillStyle='#76500f';ctx.font='850 25px "Pretendard Variable",sans-serif';const lines=(noteLines.length?noteLines:wrap(ctx,note,inner-44,2)).slice(0,2);const lineH=34,total=lines.length*lineH,startY=y+(noteH-total)/2+25;lines.forEach((line,i)=>ctx.fillText(line,margin+22,startY+i*lineH));}
+  ctx.textAlign='center';ctx.textBaseline='alphabetic';ctx.fillStyle='#8b7a9e';ctx.font='750 17px "Pretendard Variable",sans-serif';ctx.fillText('Created by 879 | 안창살 · V4.3.8',W/2,H-54);
   return await new Promise((resolve,reject)=>c.toBlob(b=>b?resolve(b):reject(new Error('이미지 생성 실패')),'image/png',1));
 }
 function downloadBlob(blob,name){const u=URL.createObjectURL(blob),a=document.createElement('a');a.href=u;a.download=name;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),1500);}
