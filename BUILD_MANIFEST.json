@@ -1,18 +1,28 @@
 {
-  "version": "V4.2.9",
-  "baseline": "V4.2.8 complete ZIP",
+  "version": "V4.3.3",
   "date": "2026-10-17",
+  "source": "V4.3.2",
+  "baseline": "V4.3.1",
+  "file_count": 212,
+  "hash_records": 210,
+  "self_excluded": [
+    "BUILD_MANIFEST.json",
+    "BUILD_MANIFEST_V4.3.3.json"
+  ],
   "assetCounts": {
     "장비": 22,
     "레시피": 10,
     "소환권": 27,
     "상자": 8
   },
-  "existingChanged": [
+  "modified_existing": [
     "index.html",
-    "roulette.html"
+    "main.html",
+    "boss.html",
+    "ops.html",
+    "roulette.html",
+    "BUILD_MANIFEST.json"
   ],
-  "baselineFileCount": 178,
   "files": [
     {
       "path": "ARCHITECTURE.md",
@@ -33,6 +43,16 @@
       "path": "BUILD_MANIFEST_V4.2.7.json",
       "bytes": 30140,
       "sha256": "f7829bb25d223a74ce99f9c505625fc3343e3e9f42a601a630fd75aeaac12dd8"
+    },
+    {
+      "path": "BUILD_MANIFEST_V4.2.7_ARCHIVED.json",
+      "bytes": 30140,
+      "sha256": "f7829bb25d223a74ce99f9c505625fc3343e3e9f42a601a630fd75aeaac12dd8"
+    },
+    {
+      "path": "BUILD_MANIFEST_V4.2.9.json",
+      "bytes": 30835,
+      "sha256": "95034da777076a1ea9556c04b5cbb4b5470cc05d6caeed66eb36501329a56dec"
     },
     {
       "path": "DATA_MODEL.md",
@@ -63,6 +83,11 @@
       "path": "QA_REPORT_V4.2.7.json",
       "bytes": 1401,
       "sha256": "b285fc518f3ac91aa748b339e84831afac94f36d6ed8204ee4e8cb5964e2b119"
+    },
+    {
+      "path": "QA_REPORT_V4.3.3.json",
+      "bytes": 1678,
+      "sha256": "94fe1982fb31fa1e7ec02b9ab3bef8e55c83bb962d1ba03e7642e7d3986903e5"
     },
     {
       "path": "README.md",
@@ -230,6 +255,26 @@
       "sha256": "9e27f4280f09801b7d4b2980fa1be63e06574f0a36aa95e5a11674194b1d5a84"
     },
     {
+      "path": "RELEASE_NOTES_V4.3.0.md",
+      "bytes": 2261,
+      "sha256": "48c0fa56ca3ac74ea35fef45ab967c0707eb6c0cc8fd0581e1cec64b1b42678f"
+    },
+    {
+      "path": "RELEASE_NOTES_V4.3.1.md",
+      "bytes": 796,
+      "sha256": "39996791a0db4c4c1f4142db07ceae1705a0688a9351cbcf1af0f4de5de2cb45"
+    },
+    {
+      "path": "RELEASE_NOTES_V4.3.2.md",
+      "bytes": 1481,
+      "sha256": "b0b50f23f1809e236f9e0b15be0a5662f29ba4e068f7cc84622d09e24f13a6ec"
+    },
+    {
+      "path": "RELEASE_NOTES_V4.3.3.md",
+      "bytes": 2487,
+      "sha256": "81075ddfae33af03f211cc4e28e234cfd1e4ee48cc4d6fc837df8a655776888c"
+    },
+    {
       "path": "SOURCE_BASELINE.md",
       "bytes": 361,
       "sha256": "bd2f692ed96219cd365941412528bf9c17590206927784372d7b64fc40868936"
@@ -263,6 +308,31 @@
       "path": "VALIDATION_V4.2.8.md",
       "bytes": 1007,
       "sha256": "749e63853c3bd2602cb1c5507cbcfa86676501487958a7fd9e3a00e24d153259"
+    },
+    {
+      "path": "VALIDATION_V4.2.9.md",
+      "bytes": 1581,
+      "sha256": "2cfa54de4b4f66b294b3bb3062f7658fecbaa97e13e0c4eda945ba4a5dab615a"
+    },
+    {
+      "path": "VALIDATION_V4.3.0.md",
+      "bytes": 1584,
+      "sha256": "6c9a1deec8cd14be97ec9abf9c3a2b9e8e3ed03faaf541ed5a49bcfd6330af43"
+    },
+    {
+      "path": "VALIDATION_V4.3.1.md",
+      "bytes": 886,
+      "sha256": "95c2ced527e1f1ec09e77468e48e46431c002a0cbfa95b60d9ec569a48bfe229"
+    },
+    {
+      "path": "VALIDATION_V4.3.2.md",
+      "bytes": 1039,
+      "sha256": "c3422393f2c8995225512e082b3abb12edc37c30413284c94e3dc3682162a2b6"
+    },
+    {
+      "path": "VALIDATION_V4.3.3.md",
+      "bytes": 2511,
+      "sha256": "89aa850e17f8f8d098b3273ba46aa44541f3b447e1d55134c27aaa7eca7eada9"
     },
     {
       "path": "__visual_check.html",
@@ -320,6 +390,16 @@
       "sha256": "a12a8bd97e2ecb706886af895118e87aba2d2e12bf93b8120c6004a19d9c852d"
     },
     {
+      "path": "assets/game-icons/lucky-plinko.svg",
+      "bytes": 2458,
+      "sha256": "101184f76fec48f0419f957059870de0512ddd029b1a5fba39c9f0bf331cb68d"
+    },
+    {
+      "path": "assets/game-icons/lucky-wheel.svg",
+      "bytes": 2613,
+      "sha256": "831b659667d94be782c97a8944e8b9ed6fb9c677c10d3608fad8772cef345aa5"
+    },
+    {
       "path": "assets/looney-v337-display.webp",
       "bytes": 19428,
       "sha256": "e7a761e63d39d4571bec62966472dbe89588d2da1250fe3611471e4e1d3da1e6"
@@ -338,6 +418,96 @@
       "path": "assets/louis-v337.png",
       "bytes": 427774,
       "sha256": "81b67fccc5d6cf25c4f324de4699d408a77fb7115264e11929994d6b111261f2"
+    },
+    {
+      "path": "assets/lucky-cats/BREEDS.txt",
+      "bytes": 351,
+      "sha256": "bfff56014fc1688f747c5390a0e5f94b170d414cfd85dd6ad4b4b8d08a99ed5c"
+    },
+    {
+      "path": "assets/lucky-cats/cat_01.svg",
+      "bytes": 2031,
+      "sha256": "2c4080713a1576ee5e01aca8eada11932957e875db6405e13ce89108a31ba0f7"
+    },
+    {
+      "path": "assets/lucky-cats/cat_02.svg",
+      "bytes": 2154,
+      "sha256": "42f24c7f5e2d4ef5db3c70cbe41fb4aef91e9df2879360c453e87387ae5b5fde"
+    },
+    {
+      "path": "assets/lucky-cats/cat_03.svg",
+      "bytes": 2203,
+      "sha256": "fed5c8ee7a8ff8d81a7aa348839fe224982cfd3feed0a2903f8f2ac871371bd1"
+    },
+    {
+      "path": "assets/lucky-cats/cat_04.svg",
+      "bytes": 1801,
+      "sha256": "74b835327bec79bfef4e9c7924d6d9025b74991c14bf982889e9a82ff79528db"
+    },
+    {
+      "path": "assets/lucky-cats/cat_05.svg",
+      "bytes": 2180,
+      "sha256": "9d4371f9dc76cd3c9c981ed156e87b67f99d126a5c174a79380c05ce6bad6979"
+    },
+    {
+      "path": "assets/lucky-cats/cat_06.svg",
+      "bytes": 2004,
+      "sha256": "ccc231db144cb1793ac24c47450b97ce9f4ee501feb74df7c6803742a82431eb"
+    },
+    {
+      "path": "assets/lucky-cats/cat_07.svg",
+      "bytes": 2031,
+      "sha256": "5df21f02f53e558e9152a94a669adf2b2e43e4740bc99e17548c967041e7ffff"
+    },
+    {
+      "path": "assets/lucky-cats/cat_08.svg",
+      "bytes": 1742,
+      "sha256": "502b58a80be2dfa5a6cdf16d2fd5436e556314edac0bfdd962a1963c6a58cbed"
+    },
+    {
+      "path": "assets/lucky-cats/cat_09.svg",
+      "bytes": 1779,
+      "sha256": "5e03ede6eb415b48068c66045746bd25fc1e6dcefaaca70ecc34c87b0cfacb17"
+    },
+    {
+      "path": "assets/lucky-cats/cat_10.svg",
+      "bytes": 2244,
+      "sha256": "9ff42c348b666a30d0a21bc027eae5ce2504bca6db0fdf32022e6c3b1f02267a"
+    },
+    {
+      "path": "assets/lucky-cats/cat_11.svg",
+      "bytes": 2478,
+      "sha256": "084a113ce94813adfd8a3a92fddb2e52f04f7be0572104e3998e2e782f58d398"
+    },
+    {
+      "path": "assets/lucky-cats/cat_12.svg",
+      "bytes": 2479,
+      "sha256": "8222604b996e3b7eeb0f634376340dc10b1b4f52ad70bba0abdfc6027eec4944"
+    },
+    {
+      "path": "assets/lucky-cats/cat_13.svg",
+      "bytes": 2142,
+      "sha256": "72591a968e2e3beba2085fae2fe6adf50305f566ddb232fc045736928af3a931"
+    },
+    {
+      "path": "assets/lucky-cats/cat_14.svg",
+      "bytes": 1905,
+      "sha256": "18e085c79de530a3d0f6588eed33de234412d09eb3bacbabafcca8d5c60ed567"
+    },
+    {
+      "path": "assets/lucky-cats/cat_15.svg",
+      "bytes": 2150,
+      "sha256": "25d47e50924571a3bdcc17cd265bcb7855f0d97c0e24637ebcfd79ae05a22ced"
+    },
+    {
+      "path": "assets/lucky-cats/cat_16.svg",
+      "bytes": 1896,
+      "sha256": "5d9b405f7d72eef7c3ff960a11aff2241876e7db6c5b2d92f27f62fad42d81dc"
+    },
+    {
+      "path": "assets/lucky-cats/cat_17.svg",
+      "bytes": 1968,
+      "sha256": "a2ebc6ea079ac7df6066985643218b78a8629e0ec71c6e6bf130f8de6f9d3ac8"
     },
     {
       "path": "assets/luna-v337-display.webp",
@@ -827,7 +997,7 @@
     {
       "path": "boss.html",
       "bytes": 206956,
-      "sha256": "f30aa10cb69864ee5c7d181efa739f028273a6c112fc5e75b5043f13600bd489"
+      "sha256": "42581321b6b0b5c801290fcf592d41b1a3e15a1f6eaf516646b59d3e4da77748"
     },
     {
       "path": "firebase-config.js",
@@ -842,27 +1012,27 @@
     {
       "path": "index-module.mjs",
       "bytes": 29980,
-      "sha256": "62d4364e8f0e82e78dc52bf95913eb3efac0ad2a46138b19ccd61d25147f28f0"
+      "sha256": "61622592e57ac7b9fbcda3cbbfb4ca7df5b6a4c04517cf41b60d6a58dbe1d762"
     },
     {
       "path": "index.html",
       "bytes": 2544,
-      "sha256": "542029e6f5fd532b200899ece807fcbef1a228ebd2dcc762d276d93f8c57f1e4"
+      "sha256": "7adf1b5e6e8c480dfd137de5251f2ebf749a1062a73b4048d02fea8de529bea9"
     },
     {
       "path": "main.html",
-      "bytes": 610993,
-      "sha256": "8c93b54b2471bdf0bc78a271a5a728bd1a4dd91b561914ad6fd6bd88ff07c705"
+      "bytes": 612452,
+      "sha256": "df37f0c2ca9df6a5ede907e5af68ad363df1c503b3cb9ebdfa7e3d8e65139e25"
     },
     {
       "path": "ops.html",
       "bytes": 283978,
-      "sha256": "69663f86329e37ca0941d125e21b9336e03ab0ce7660d165aea7a83cde4e8c51"
+      "sha256": "9dc0ecee5c1e5af75a9c715e2a70e5957bf88ba9dead3a067df08c5f1a3cf1f4"
     },
     {
       "path": "roulette.html",
-      "bytes": 92307,
-      "sha256": "12e0df3a317fe42db8e157e18f4e7aebfe0c8c3886d428c64ced95cb161dfecb"
+      "bytes": 115934,
+      "sha256": "ee6c5776b829073aa19b912fc6b0936e40d8db721cbdf7b83fbd99dc50dc584b"
     },
     {
       "path": "shared/admin-audit.js",

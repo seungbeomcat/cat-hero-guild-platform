@@ -1,0 +1,48 @@
+{
+  "version": "V4.3.3",
+  "date": "2026-10-17",
+  "source_integrity": {
+    "version": "V4.3.3",
+    "baseline": "V4.3.2, repair checked against V4.3.1",
+    "changed_existing_files": [
+      "boss.html",
+      "index.html",
+      "main.html",
+      "ops.html",
+      "roulette.html"
+    ],
+    "reward_assets_unchanged": 67,
+    "cat_avatars_valid": 17,
+    "game_icons_valid": 2,
+    "firebase_rules_unchanged": true,
+    "catalog_unchanged": true,
+    "javascript_syntax_checked": 47,
+    "css_parser_errors": {
+      "roulette.html_css_error_rules": 0,
+      "main.html_css_error_rules": 0
+    },
+    "static_validation": "pass"
+  },
+  "browser_test": {
+    "choice_screen_icon_count": 2,
+    "plinko_reward_dimensions_css_px": [
+      64,
+      64
+    ],
+    "category_menu": "above button on 390px and 320px viewports",
+    "plinko_3participants_2rewards_off": "pass; unique winners",
+    "plinko_17participants_2rewards_off": "pass; 17 unique avatars; result displayed",
+    "plinko_3participants_4rewards_on": "pass; 4 winners possible with repeats",
+    "roulette_3participants_2rewards_off": "pass; result displayed",
+    "compare_popup": "3px below basic attack header; server setting and dynamic position passed",
+    "shared_png": "generated as PNG, 1099015 bytes, footer V4.3.3",
+    "browser": "Chromium 144 Linux / injected local HTML with mock roster; no live Firebase",
+    "limitations": [
+      "iPhone Safari not tested",
+      "Kakao in-app browser not tested",
+      "production Firebase not tested",
+      "GitHub Pages live release not tested"
+    ]
+  },
+  "overall": "PASS for static and local mock browser scenarios; production validation pending"
+}

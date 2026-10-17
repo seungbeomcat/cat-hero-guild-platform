@@ -8,7 +8,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="Cat Hero 계산기" />
-  <title>Cat Hero · 격전지 계산기 V4.3.2</title>
+  <title>Cat Hero · 격전지 계산기 V4.3.3</title>
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 
@@ -9239,7 +9239,7 @@ body > .wrap{padding-top:clamp(16px,2.5vh,30px)!important}
 
 
 <footer class="footer-credits" aria-label="제작 정보">
-    <div class="creator-credit">Created by 879 | 안창살 · V4.3.2</div>
+    <div class="creator-credit">Created by 879 | 안창살 · V4.3.3</div>
     <div class="build-credit">2026.10.16</div>
   </footer>
 
@@ -11411,7 +11411,7 @@ function resetZ1PlanUi(){
   }
 })();
 </script>
-<script id="cat-hero-v4-brand">(function(){try{const c=parent.CAT_HERO_V4_CONTEXT||{};const g=c.guild||{};const count=Object.keys(c.members||{}).length;document.title=`${g.name||'길드'} · 격전지 계산기 V4.3.2`;const s=document.getElementById('v4GuildServer'),n=document.getElementById('v4GuildName'),m=document.getElementById('v4GuildCount'),sh=document.getElementById('v4ShareGuildTitle');if(s)s.textContent=g.server||'-';if(n)n.textContent=g.name||'길드';if(m)m.textContent=count+'명';if(sh)sh.textContent=(g.name||'길드')+' 격전지 계산기';const sub=document.querySelector('#rosterAllTableBtn .roster-all-table-sub');if(sub)sub.textContent=`${count}명 · 기본 · 최소점수 · 지역격추 한눈에 확인`;}catch(e){console.warn(e)}})();</script>
+<script id="cat-hero-v4-brand">(function(){try{const c=parent.CAT_HERO_V4_CONTEXT||{};const g=c.guild||{};const count=Object.keys(c.members||{}).length;document.title=`${g.name||'길드'} · 격전지 계산기 V4.3.3`;const s=document.getElementById('v4GuildServer'),n=document.getElementById('v4GuildName'),m=document.getElementById('v4GuildCount'),sh=document.getElementById('v4ShareGuildTitle');if(s)s.textContent=g.server||'-';if(n)n.textContent=g.name||'길드';if(m)m.textContent=count+'명';if(sh)sh.textContent=(g.name||'길드')+' 격전지 계산기';const sub=document.querySelector('#rosterAllTableBtn .roster-all-table-sub');if(sub)sub.textContent=`${count}명 · 기본 · 최소점수 · 지역격추 한눈에 확인`;}catch(e){console.warn(e)}})();</script>
 <script defer src="./shared/journal-bridge.js?v=423"></script><script>document.body.dataset.webSyncRole="main";</script><script type="module" src="./shared/web-sync.js?v=423"></script><script type="module" src="./shared/reward-entry.js?v=423"></script>
 <style id="v201-layout-fixes">
 .v200-stats.v201-stats{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,2fr)!important;gap:8px!important;margin-bottom:12px!important}
@@ -11491,7 +11491,7 @@ function resetZ1PlanUi(){
 .v200-table tbody tr.v208-first td{background:#e5f2ff!important}
 .v200-table tbody tr.v208-second{outline:3px solid #9245d9!important;outline-offset:-3px;background:#f0e5ff!important}
 .v200-table tbody tr.v208-second td{background:#f0e5ff!important}
-#v206Compare{position:fixed;z-index:2147483000;right:max(7px,env(safe-area-inset-right,0px));left:auto;transform:none;bottom:calc(10px + env(safe-area-inset-bottom,0px));width:fit-content;max-width:calc(100vw - 12px);max-height:min(73dvh,560px);overflow:visible;background:#fff;border:3px solid #853ee5;border-radius:15px;box-shadow:0 9px 26px #08001188;padding:7px;color:#183b69;font-family:inherit;box-sizing:border-box}
+#v206Compare{position:fixed;z-index:2147483000;right:max(7px,env(safe-area-inset-right,0px));left:auto;transform:none;top:var(--compare-top,12px);bottom:auto;width:fit-content;max-width:calc(100vw - 12px);max-height:var(--compare-height,calc(100dvh - 24px));overflow-y:auto;overflow-x:visible;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;background:#fff;border:3px solid #853ee5;border-radius:15px;box-shadow:0 9px 26px #08001188;padding:7px;color:#183b69;font-family:inherit;box-sizing:border-box}
 #v206Compare[hidden]{display:none!important}
 .v208-top{display:flex;align-items:center;justify-content:space-between;gap:5px;margin:0 0 5px;white-space:nowrap}
 .v208-top strong{font-size:12px;color:#4d247e;font-weight:800}
@@ -11536,6 +11536,22 @@ const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&
 const areas=[['늑대','wolf'],['해적','pirate'],['고양이','cat'],['음식','food'],['은하','galaxy'],['1구역','z1'],['2구역','z2'],['3구역','z3']];
 function reset(){selected=[];server='';menuOpen=false;pane.hidden=true;body.querySelectorAll('.v208-first,.v208-second').forEach(r=>r.classList.remove('v208-first','v208-second'));}
 function calc(n,k){if(server==='')return '—';const api=window.DosaljaShared;if(!api)return '—';const v=k.startsWith('z')?api.zoneTotal(n,Number(server),k):api.regionTotal(n,Number(server),k);return v==null?'—':(Number.isInteger(v)?v:Number(v.toFixed(1)))+'%';}
+// V4.3.3: Anchor the comparison window immediately below the basic-attack table header.
+function placeCompare(){
+ if(pane.hidden)return;
+ const header=body.querySelector('.v200-table thead tr:last-child th:nth-child(2)')||body.querySelector('.v200-table thead th:nth-child(2)');
+ if(!header)return;
+ const viewport=window.visualViewport;
+ const topLimit=(viewport?viewport.offsetTop:0)+8;
+ const bottomLimit=(viewport?viewport.offsetTop+viewport.height:window.innerHeight)-Math.max(10,8);
+ const headerBottom=header.getBoundingClientRect().bottom;
+ // Follow the actual header even if its position changes after a scroll/resize.
+ const start=Math.max(topLimit,Math.min(headerBottom+3,bottomLimit-160));
+ const room=Math.max(120,bottomLimit-start);
+ pane.style.setProperty('--compare-top',Math.round(start)+'px');
+ pane.style.setProperty('--compare-height',Math.floor(room)+'px');
+ pane.style.overflowY=pane.scrollHeight>room+2?'auto':'visible';
+}
 function render(){
  body.querySelectorAll('.v200-table tbody tr').forEach(tr=>{const name=tr.cells[0]?.textContent.trim();tr.classList.toggle('v208-first',selected[0]===name);tr.classList.toggle('v208-second',selected[1]===name);});
  if(!selected.length){pane.hidden=true;return;}
@@ -11546,6 +11562,7 @@ function render(){
  pane.querySelector('.v208-close').onclick=reset;
  pane.querySelector('#v208Picker').onclick=()=>{menuOpen=!menuOpen;pane.querySelector('#v208Menu').hidden=!menuOpen;pane.querySelector('#v208Picker').setAttribute('aria-expanded',String(menuOpen));};
  pane.querySelectorAll('[data-server]').forEach(btn=>btn.onclick=()=>{server=btn.dataset.server;menuOpen=false;render();});
+ requestAnimationFrame(placeCompare);
 }
 body.addEventListener('click',e=>{
  const tr=e.target.closest('.v200-table tbody tr');
@@ -11558,6 +11575,12 @@ body.addEventListener('click',e=>{
  if(selected.length&&!e.target.closest('.v200-table')&&!e.target.closest('.v206-help'))reset();
 });
 pane.addEventListener('click',e=>e.stopPropagation());
+let compareFrame=0;
+function queueComparePosition(){if(compareFrame)return;compareFrame=requestAnimationFrame(()=>{compareFrame=0;placeCompare();});}
+overlay.addEventListener('scroll',queueComparePosition,{passive:true});
+window.addEventListener('resize',queueComparePosition,{passive:true});
+window.visualViewport?.addEventListener('resize',queueComparePosition,{passive:true});
+
 document.addEventListener('click',e=>{if(menuOpen&&!pane.contains(e.target)){menuOpen=false;const menu=pane.querySelector('#v208Menu');if(menu)menu.hidden=true;}});
 overlay.addEventListener('click',e=>{if(e.target.closest('#v200Back'))reset();});
 window.addEventListener('dosalja:roster-updated',()=>{reset();});
@@ -11733,7 +11756,7 @@ async function makeCalculatorShareBlob(){
   if(highlight>=0){const hx=margin+widths.slice(0,highlight).reduce((a,b)=>a+b,0),hw=widths[highlight];ctx.save();ctx.strokeStyle='#1677e8';ctx.lineWidth=6;ctx.shadowColor='transparent';ctx.strokeRect(Math.round(hx)+3,tableY+3,Math.round(hw)-6,tableH-6);ctx.restore();}
   let y=tableY+tableH+24;
   if(note){ctx.fillStyle='#fff4d9';ctx.strokeStyle='#e4ad36';ctx.lineWidth=2.5;rounded(ctx,margin,y,inner,noteH,20);ctx.fill();ctx.stroke();ctx.textAlign='left';ctx.textBaseline='alphabetic';ctx.fillStyle='#76500f';ctx.font='850 25px "Pretendard Variable",sans-serif';const lines=wrap(ctx,note,inner-44,2);const lineH=34,total=lines.length*lineH,startY=y+(noteH-total)/2+25;lines.forEach((line,i)=>ctx.fillText(line,margin+22,startY+i*lineH));}
-  ctx.textAlign='center';ctx.textBaseline='alphabetic';ctx.fillStyle='#8b7a9e';ctx.font='750 17px "Pretendard Variable",sans-serif';ctx.fillText('Created by 879 | 안창살 · V4.3.2',W/2,H-33);
+  ctx.textAlign='center';ctx.textBaseline='alphabetic';ctx.fillStyle='#8b7a9e';ctx.font='750 17px "Pretendard Variable",sans-serif';ctx.fillText('Created by 879 | 안창살 · V4.3.3',W/2,H-33);
   return await new Promise((resolve,reject)=>c.toBlob(b=>b?resolve(b):reject(new Error('이미지 생성 실패')),'image/png',1));
 }
 function downloadBlob(blob,name){const u=URL.createObjectURL(blob),a=document.createElement('a');a.href=u;a.download=name;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),1500);}
