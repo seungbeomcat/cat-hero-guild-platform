@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#090218">
-<title>Cat Hero · 행운 게임 V4.3.9</title>
+<title>Cat Hero · 행운 게임 V4.3.10</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <style>
 :root{--violet:#8b47f2;--violet2:#bc78ff;--blue:#5bc8ff;--ink:#f8f3ff;--muted:#c4b5dd;--panel:rgba(24,12,49,.86);--panel2:rgba(13,8,31,.94);--line:#8a43e8;--gold:#ffd76a;--green:#7ff4cc}
@@ -419,13 +419,13 @@ html.v434-stage-locked,body.v434-stage-locked{overflow:hidden!important;overscro
     </div>
   </section>
 
-  <footer class="footer"><b>Created by 879 | 안창살 · V4.3.9</b><br>2026.10.17</footer>
+  <footer class="footer"><b>Created by 879 | 안창살 · V4.3.10</b><br>2026.10.17</footer>
 </main>
 
 <script src="./firebase-config.js"></script>
 <script src="./shared/guild-core.js?v=423"></script>
 <script src="./shared/roulette-reward-catalog.js?v=426"></script>
-<script src="./shared/plinko-physics.js?v=439"></script>
+<script src="./shared/plinko-physics.js?v=4310"></script>
 <script>
 (function(){
 'use strict';
@@ -615,13 +615,19 @@ function slotPalette(count){
     {from:'#FF9A64',to:'#E1644A',border:'#FFD2B5',text:'#FFFFFF'},
     {from:'#F78CE7',to:'#C959C8',border:'#FFD3F7',text:'#FFFFFF'},
     {from:'#FFD56B',to:'#E5A722',border:'#FFF1B8',text:'#4B2C12'},
-    {from:'#69C7FF',to:'#4A85F7',border:'#D7EEFF',text:'#FFFFFF'}
+    {from:'#69C7FF',to:'#4A85F7',border:'#D7EEFF',text:'#FFFFFF'},
+    {from:'#F09DC1',to:'#CC4C86',border:'#FFD8E8',text:'#FFFFFF'},
+    {from:'#8ED77B',to:'#4A9F50',border:'#E0FFD7',text:'#FFFFFF'},
+    {from:'#BCA2FF',to:'#8260D9',border:'#EADFFF',text:'#FFFFFF'},
+    {from:'#FCBB7E',to:'#D48838',border:'#FFE4C0',text:'#FFFFFF'},
+    {from:'#57DDE2',to:'#178CA9',border:'#CBFCFF',text:'#FFFFFF'},
+    {from:'#FF8F9D',to:'#CC506E',border:'#FFCED6',text:'#FFFFFF'},
+    {from:'#A5CF6E',to:'#648E35',border:'#E8F9C4',text:'#FFFFFF'},
+    {from:'#D9A0FF',to:'#A259CF',border:'#F6DCFF',text:'#FFFFFF'},
+    {from:'#87C4F4',to:'#3A78BB',border:'#D8F2FF',text:'#FFFFFF'},
+    {from:'#F3B48F',to:'#C97056',border:'#FFE0CB',text:'#FFFFFF'}
   ];
   return Array.from({length:Math.max(1,count)},(_,i)=>palette[i%palette.length]);
-}
-function trimSlotLabel(name){
-  const source=String(name||'').trim();
-  return source.length>8?source.slice(0,7)+'…':source;
 }
 function drawCatBoardOutline(ctx,board){
   const left=board.left-18,right=board.right+18,top=154,bottom=board.slotTop-18,mid=(left+right)/2;
@@ -698,10 +704,6 @@ function paintPlinko(names,board,ball=null,winningSlot=-1){
       ctx.save();ctx.shadowColor='#FFE486';ctx.shadowBlur=25;
       ctx.fillStyle='rgba(255,214,112,.38)';ctx.strokeStyle='#FFF5B1';ctx.lineWidth=3;
       ctx.beginPath();ctx.roundRect(laneX,board.slotTop,board.slotWidth-4,board.slotBottom-board.slotTop,Math.min(14,board.slotWidth/3));ctx.fill();ctx.stroke();
-      ctx.fillStyle='#4B266A';ctx.textAlign='center';ctx.textBaseline='middle';
-      const winnerLabel=trimSlotLabel(names[winningSlot]||'당첨');
-      ctx.font='950 '+(n>=13?13:n>=9?16:20)+'px "Pretendard Variable",sans-serif';
-      ctx.fillText(winnerLabel,laneX+(board.slotWidth-4)/2,board.slotTop+(board.slotBottom-board.slotTop)/2);
       ctx.restore();
     }
     if(ball){
@@ -774,14 +776,7 @@ function paintPlinko(names,board,ball=null,winningSlot=-1){
     slotGradient.addColorStop(0,tone.from);slotGradient.addColorStop(1,tone.to);
     ctx.fillStyle=slotGradient;ctx.strokeStyle=i===winningSlot?'#FFF7C3':tone.border;ctx.lineWidth=2.8;
     ctx.beginPath();ctx.roundRect(x,board.slotTop,width,board.slotBottom-board.slotTop,Math.min(14,width/3));ctx.fill();ctx.stroke();
-    ctx.fillStyle=i===winningSlot?'#4A2966':tone.text;ctx.textAlign='center';ctx.textBaseline='middle';
-    const label=trimSlotLabel(names[i]);
-    const baseSize=n>=13?13:n>=9?16:21;
-    ctx.font='950 '+baseSize+'px "Pretendard Variable",sans-serif';
-    let draw=label;
-    while(ctx.measureText(draw).width>width-14&&draw.length>2)draw=draw.slice(0,-1);
-    if(draw!==label&&draw.length>1)draw=draw.slice(0,-1)+'…';
-    ctx.fillText(draw,x+width/2,board.slotTop+(board.slotBottom-board.slotTop)/2);
+    // Intentionally blank: assigned nicknames remain visible in the matching cat cards below.
     ctx.restore();
   }
   // Cache the final static scene prior to any moving ball or result highlight.
@@ -1111,7 +1106,7 @@ async function makeShareImage(){
     else write(name,x+chipW/2,y+chipH/2,29,'#f3e9ff',chipW-25,920,21);
   });
   // Current V4 release identifier on the actual exported PNG, outside the approved reward/participant layout.
-  write('Created by 879 | 안창살 · V4.3.9',W/2,H-102,21,'#9E8BBE',contentW,800,18);
+  write('Created by 879 | 안창살 · V4.3.10',W/2,H-102,21,'#9E8BBE',contentW,800,18);
   return await new Promise((resolve,reject)=>canvas.toBlob(b=>b?resolve(b):reject(Error('이미지 생성 실패')),'image/png'));
 }
 function saveBlob(blob){const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=`${state.gameMode==='plinko'?'행운구슬':'행운룰렛'}-결과-${new Date().toISOString().slice(0,10)}.png`;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1500);}
